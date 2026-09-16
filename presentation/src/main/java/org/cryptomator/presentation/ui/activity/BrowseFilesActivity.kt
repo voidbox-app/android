@@ -6,6 +6,7 @@ import android.content.Intent
 import android.content.IntentFilter
 import android.view.Menu
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -87,6 +88,7 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 	override fun setupView() {
 		setupToolbar()
 		setupNavigationMode()
+		setupBackPressedCallback()
 	}
 
 	private fun setupNavigationMode() {
@@ -131,24 +133,30 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 		}.also { LocalBroadcastManager.getInstance(this).registerReceiver(it, IntentFilter(CryptorsService.SCREEN_AND_VAULT_LOCKED)) }
 	}
 
-	override fun onBackPressed() {
-		browseFilesPresenter.onBackPressed()
-		when {
-			isNavigationMode(SELECT_ITEMS) -> {
-				browseFilesPresenter.disableSelectionMode()
-			}
-			supportFragmentManager.backStackEntryCount > 0 -> {
-				supportFragmentManager.popBackStack()
-			}
-			hasCloudNodeSettings() && isNavigationMode(MOVE_CLOUD_NODE) && browseFilesFragment().folder.hasParent() -> {
-				browseFilesFragment().folder.parent?.let {
-					createBackStackFor(it)
-				} ?: throw ParentFolderIsNullException(browseFilesFragment().folder.name)
-			}
-			else -> {
-				super.onBackPressed()
+	private val backPressedCallback = object : OnBackPressedCallback(true) {
+		override fun handleOnBackPressed() {
+			browseFilesPresenter.onBackPressed()
+			when {
+				isNavigationMode(SELECT_ITEMS) -> {
+					browseFilesPresenter.disableSelectionMode()
+				}
+				supportFragmentManager.backStackEntryCount > 0 -> {
+					supportFragmentManager.popBackStack()
+				}
+				hasCloudNodeSettings() && isNavigationMode(MOVE_CLOUD_NODE) && browseFilesFragment().folder.hasParent() -> {
+					browseFilesFragment().folder.parent?.let {
+						createBackStackFor(it)
+					} ?: throw ParentFolderIsNullException(browseFilesFragment().folder.name)
+				}
+				else -> {
+					performDefaultBackPressed(this)
+				}
 			}
 		}
+	}
+
+	private fun setupBackPressedCallback() {
+		onBackPressedDispatcher.addCallback(this, backPressedCallback)
 	}
 
 	private fun isNavigationMode(navigationMode: ChooseCloudNodeSettings.NavigationMode): Boolean = this.navigationMode == navigationMode
@@ -672,10 +680,10 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 	}
 
 	override fun navigateFolderBackBecauseSymlink() {
-		onBackPressed()
+		onBackPressedDispatcher.onBackPressed()
 	}
 
 	override fun navigateFolderBackBecauseNoDirFile() {
-		onBackPressed()
+		onBackPressedDispatcher.onBackPressed()
 	}
 }
