@@ -63,13 +63,17 @@ abstract class BaseDialog<Callback, VB : ViewBinding>(val bindingFactory: (Layou
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		applySecureScreenFlag()
+		setupView()
+	}
+
+	protected fun applySecureScreenFlag() {
 		val config = javaClass.getAnnotation(Dialog::class.java)
 		if (config?.secure == true && SharedPreferencesHandler(requireContext()).secureScreen() && !BuildConfig.DEBUG) {
 			dialog?.window?.setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE)
 		} else {
 			dialog?.window?.clearFlags(WindowManager.LayoutParams.FLAG_SECURE)
 		}
-		setupView()
 	}
 
 	protected open fun disableDialogWhenObscured(): Boolean {
@@ -104,7 +108,7 @@ abstract class BaseDialog<Callback, VB : ViewBinding>(val bindingFactory: (Layou
 	}
 
 	private fun enableButtons(enabled: Boolean) {
-		val dialog = dialog as AlertDialog?
+		val dialog = dialog as? AlertDialog
 		dialog?.getButton(android.app.Dialog.BUTTON_POSITIVE)?.isEnabled = enabled
 		dialog?.getButton(android.app.Dialog.BUTTON_NEGATIVE)?.isEnabled = enabled
 	}
