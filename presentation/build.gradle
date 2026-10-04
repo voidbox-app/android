@@ -30,8 +30,11 @@ android {
 		targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
 
 		applicationId globalConfiguration["androidApplicationId"]
-		versionCode globalConfiguration["androidVersionCode"]
-		versionName globalConfiguration["androidVersionName"]
+		def latchRevision = (System.getenv("LATCH_REVISION") ?: "1").toInteger()
+		def latchVersionCode = (globalConfiguration["androidVersionCode"] as int) * 10 + latchRevision
+		def latchVersionName = globalConfiguration["androidVersionName"] + "-latch" + latchRevision
+		versionCode latchVersionCode
+		versionName latchVersionName
 
 		multiDexEnabled true
 		testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

@@ -45,9 +45,13 @@ jobs:
           else
             tag=$(git tag --list '[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -1)
           fi
+          rev=$(cat LATCH_REVISION 2>/dev/null || echo 1)
+          if [ "$(cat UPSTREAM_TAG)" != "$tag" ]; then rev=1; fi
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
-          if gh release view "$tag-latch" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
-            echo "release $tag-latch already exists"
+          echo "rev=$rev" >> "$GITHUB_OUTPUT"
+          echo "name=$tag-latch$rev" >> "$GITHUB_OUTPUT"
+          if gh release view "$tag-latch$rev" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "release $tag-latch$rev already exists"
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
         env:
@@ -63,6 +67,7 @@ jobs:
           if [ "$base" != "$tag" ]; then
             git rebase --onto "$tag" "$base" latch
             echo "$tag" > UPSTREAM_TAG
+            echo 1 > LATCH_REVISION
             git commit -am "Rebase Latch onto upstream $tag"
             git push origin latch
           fi
@@ -75,6 +80,8 @@ jobs:
 
       - name: Build lite release APK
         if: steps.tag.outputs.skip != 'true'
+        env:
+          LATCH_REVISION: ${{ steps.tag.outputs.rev }}
         run: ./gradlew --no-daemon :presentation:assembleLiteRelease
 
       - name: Sign APK
@@ -88,8 +95,8 @@ jobs:
           unsigned=$(ls presentation/build/outputs/apk/lite/release/*.apk | head -1)
           "$tools/apksigner" sign --ks latch.jks --ks-key-alias latch \
             --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEYSTORE_PASSWORD \
-            --out "latch-${{ steps.tag.outputs.tag }}.apk" "$unsigned"
-          "$tools/apksigner" verify --print-certs "latch-${{ steps.tag.outputs.tag }}.apk"
+            --out "latch-${{ steps.tag.outputs.name }}.apk" "$unsigned"
+          "$tools/apksigner" verify --print-certs "latch-${{ steps.tag.outputs.name }}.apk"
           rm -f latch.jks
 
       - name: Publish release
@@ -98,6 +105,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           tag="${{ steps.tag.outputs.tag }}"
-          gh release create "$tag-latch" "latch-$tag.apk" --repo "$GITHUB_REPOSITORY" \
-            --title "Latch $tag" \
+          name="${{ steps.tag.outputs.name }}"
+          gh release create "$name" "latch-$name.apk" --repo "$GITHUB_REPOSITORY" \
+            --title "Latch $name" \
             --notes "Cryptomator lite $tag with the Latch patch set. Upstream: https://github.com/cryptomator/android/releases/tag/$tag"
