@@ -130,24 +130,40 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 
 	private fun pollUntilApproved(loginFlow: LoginFlow): Credentials {
 		val deadline = System.currentTimeMillis() + POLL_TIMEOUT_MS
+		var lastFailure: String? = null
 		while (System.currentTimeMillis() < deadline) {
-			val request = Request.Builder() //
-				.url(loginFlow.pollEndpoint) //
-				.header("User-Agent", USER_AGENT) //
-				.post(FormBody.Builder().add("token", loginFlow.pollToken).build()) //
-				.build()
-			http.newCall(request).execute().use { response ->
-				if (response.isSuccessful) {
-					val json = JSONObject(response.body?.string() ?: throw IOException("Empty poll response"))
-					return Credentials(json.getString("server").trimEnd('/'), json.getString("loginName"), json.getString("appPassword"))
+			var delay = POLL_INTERVAL_MS
+			try {
+				val request = Request.Builder() //
+					.url(loginFlow.pollEndpoint) //
+					.header("User-Agent", USER_AGENT) //
+					.post(FormBody.Builder().add("token", loginFlow.pollToken).build()) //
+					.build()
+				http.newCall(request).execute().use { response ->
+					if (response.isSuccessful) {
+						return parseCredentials(response.body?.string() ?: throw IOException("Empty poll response"))
+					}
+					// 404 means "not approved yet". Anything else is not final either: Nextcloud throttles
+					// frequent polls (429) and proxies hiccup, so back off and keep polling until the deadline.
+					if (response.code != 404) {
+						lastFailure = "HTTP ${response.code}"
+						delay = response.header("Retry-After")?.toLongOrNull()?.times(1000L) ?: POLL_BACKOFF_MS
+						Timber.tag("NextcloudLogin").w("Poll answered HTTP %d, retrying in %d ms", response.code, delay)
+					}
 				}
-				if (response.code != 404) {
-					throw IOException("Polling failed with HTTP ${response.code}")
-				}
+			} catch (e: IOException) {
+				lastFailure = e.message
+				delay = POLL_BACKOFF_MS
+				Timber.tag("NextcloudLogin").w(e, "Poll failed, retrying in %d ms", delay)
 			}
-			Thread.sleep(POLL_INTERVAL_MS)
+			Thread.sleep(delay)
 		}
-		throw IOException("Login was not approved within the time limit")
+		throw IOException("Login was not approved within the time limit" + (lastFailure?.let { " (last failure: $it)" } ?: ""))
+	}
+
+	private fun parseCredentials(body: String): Credentials {
+		val json = JSONObject(body)
+		return Credentials(json.getString("server").trimEnd('/'), json.getString("loginName"), json.getString("appPassword"))
 	}
 
 	private fun toCloud(credentials: Credentials): WebDavCloud {
@@ -205,7 +221,10 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 	companion object {
 
 		private const val USER_AGENT = "Latch"
-		private const val POLL_INTERVAL_MS = 2000L
-		private const val POLL_TIMEOUT_MS = 10L * 60L * 1000L
+		private const val POLL_INTERVAL_MS = 3000L
+		private const val POLL_BACKOFF_MS = 10000L
+
+		// Nextcloud keeps a login flow token for 20 minutes.
+		private const val POLL_TIMEOUT_MS = 20L * 60L * 1000L
 	}
 }
