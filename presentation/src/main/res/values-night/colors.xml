@@ -39,9 +39,6 @@
 	<color name="latch_outline">#8E918F</color>
 	<color name="latch_outline_variant">#444746</color>
 
-	<!-- Dark sheets and dialogs use the stock Material 3 containers. -->
-	<color name="latch_sheet">@color/latch_surface_container_low</color>
-	<color name="latch_dialog">@color/latch_surface_container_high</color>
 
 	<!-- Legacy names still referenced by notifications, drawables and views. -->
 	<color name="colorPrimary">#1A73E8</color>

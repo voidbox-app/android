@@ -40,10 +40,6 @@
 	<color name="latch_outline">#747775</color>
 	<color name="latch_outline_variant">#C4C7C5</color>
 
-	<!-- #1A73E8 only reaches 4.5:1 on white, so light sheets and dialogs stay on surface
-	     instead of the tonal containers Material 3 would use. -->
-	<color name="latch_sheet">@color/latch_surface</color>
-	<color name="latch_dialog">@color/latch_surface</color>
 
 	<!-- Legacy names still referenced by notifications, drawables and views. -->
 	<color name="colorPrimary">#1A73E8</color>

@@ -38,6 +38,10 @@ import org.cryptomator.presentation.ui.fragment.VaultListFragment
 import org.cryptomator.presentation.ui.layout.ObscuredAwareCoordinatorLayout.Listener
 import org.cryptomator.presentation.util.BiometricAuthenticationMigration
 import javax.inject.Inject
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import com.google.android.material.color.DynamicColors
+import com.google.android.material.color.MaterialColors
 
 @Activity
 class VaultListActivity : BaseActivity<ActivityLayoutObscureAwareBinding>(ActivityLayoutObscureAwareBinding::inflate), //
@@ -62,6 +66,9 @@ class VaultListActivity : BaseActivity<ActivityLayoutObscureAwareBinding>(Activi
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		installSplashScreen()
+		// installSplashScreen() swaps the theme, which drops the Material You overlay and keeps the splash window background.
+		DynamicColors.applyToActivityIfAvailable(this)
+		window.setBackgroundDrawable(ColorDrawable(MaterialColors.getColor(this, com.google.android.material.R.attr.colorSurface, Color.WHITE)))
 		super.onCreate(savedInstanceState)
 	}
 
