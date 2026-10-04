@@ -8,14 +8,19 @@
 	<style name="AppTheme.Base" parent="Theme.Material3.DayNight.NoActionBar">
 		<item name="colorPrimary">@color/colorPrimary</item>
 		<item name="colorPrimaryDark">@color/colorPrimary</item>
-		<item name="colorAccent">@color/colorPrimaryTransparent</item>
+		<item name="colorAccent">?attr/colorPrimary</item>
+		<item name="colorPrimaryContainer">@color/colorPrimaryTransparent</item>
+		<item name="colorOnPrimaryContainer">@color/colorPrimaryDark</item>
 		<item name="colorOnPrimary">@color/colorWhite</item>
 		<item name="colorError">@color/textColorError</item>
 		<item name="android:textColorHighlight">@color/colorPrimaryTransparent</item>
+		<item name="android:statusBarColor">@android:color/transparent</item>
+		<item name="android:windowLightStatusBar">@bool/light_system_bars</item>
+		<item name="android:navigationBarColor">@android:color/transparent</item>
+		<item name="android:windowLightNavigationBar">@bool/light_system_bars</item>
 
 		<item name="android:windowAnimationStyle">@style/CustomActivityAnimation</item>
 
-		<item name="android:fontFamily">@font/open_sans</item>
 
 		<item name="floatingActionButtonStyle">@style/AppTheme.FloatingActionButton</item>
 		<item name="toolbarStyle">@style/AppTheme.Toolbar</item>
@@ -87,23 +92,19 @@
 	</style>
 
 	<style name="Toolbar" parent="">
-		<item name="colorOnSurface">@color/colorWhite</item>
-		<item name="colorOnPrimary">@color/colorWhite</item>
-		<item name="colorOnSurfaceVariant">@color/colorWhite</item>
-		<item name="colorControlNormal">@color/colorWhite</item>
-		<item name="android:editTextColor">@color/colorWhite</item>
+		<item name="colorOnSurface">@color/textColorPrimary</item>
+		<item name="colorOnPrimary">@color/textColorPrimary</item>
+		<item name="colorOnSurfaceVariant">@color/textColorPrimary</item>
+		<item name="colorControlNormal">@color/textColorPrimary</item>
+		<item name="android:editTextColor">@color/textColorPrimary</item>
 	</style>
 
 	<style name="Toolbar.TitleText" parent="TextAppearance.Material3.TitleLarge">
-		<item name="fontFamily">@font/quicksand_medium</item>
-		<item name="android:fontFamily">@font/quicksand_medium</item>
-		<item name="android:textColor">@color/colorWhite</item>
+		<item name="android:textColor">@color/textColorPrimary</item>
 	</style>
 
 	<style name="Toolbar.SubtitleText" parent="TextAppearance.Material3.TitleMedium">
-		<item name="fontFamily">@font/quicksand_medium</item>
-		<item name="android:fontFamily">@font/quicksand_medium</item>
-		<item name="android:textColor">@color/colorWhite</item>
+		<item name="android:textColor">@color/textColorPrimary</item>
 	</style>
 
 	<style name="AppTheme.Snackbar" parent="Widget.Material3.Snackbar">
@@ -116,24 +117,22 @@
 	</style>
 
 	<style name="AppTheme.SnackbarButton" parent="Widget.Material3.Button.TextButton.Snackbar">
-		<item name="android:textColor">@color/colorPrimary</item>
+		<item name="android:textColor">?attr/colorPrimary</item>
 	</style>
 
 	<style name="AppTheme.SnackbarTextview" parent="Widget.Material3.Snackbar.TextView">
 		<item name="android:textColor">@color/textColorPrimary</item>
 	</style>
 
-	<style name="AppTheme.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Primary">
-		<item name="materialThemeOverlay">@style/FloatingActionButton</item>
-	</style>
+	<style name="AppTheme.FloatingActionButton" parent="Widget.Material3.FloatingActionButton.Primary" />
 
 	<style name="FloatingActionButton" parent="">
-		<item name="colorContainer">@color/colorPrimary</item>
-		<item name="colorOnContainer">@color/colorWhite</item>
+		<item name="colorContainer">?attr/colorPrimary</item>
+		<item name="colorOnContainer">?attr/colorOnPrimary</item>
 	</style>
 
 	<style name="PreferenceTheme" parent="@style/BasePreferenceThemeOverlay">
-		<item name="preferenceCategoryTitleTextColor">@color/colorPrimary</item>
+		<item name="preferenceCategoryTitleTextColor">?attr/colorPrimary</item>
 		<item name="android:textColor">@color/textColorPrimary</item>
 	</style>
 

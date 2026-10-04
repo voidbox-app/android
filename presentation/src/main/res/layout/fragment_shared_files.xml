@@ -23,7 +23,7 @@
 					android:layout_marginStart="@dimen/global_padding"
 					android:layout_marginTop="@dimen/global_padding"
 					android:text="@string/screen_share_files_section_files"
-					android:textColor="@color/colorPrimary"
+					android:textColor="?attr/colorPrimary"
 					android:textSize="16sp" />
 
 
@@ -39,7 +39,7 @@
 					android:layout_marginStart="@dimen/global_padding"
 					android:layout_marginTop="@dimen/global_padding"
 					android:text="@string/screen_share_files_section_location"
-					android:textColor="@color/colorPrimary"
+					android:textColor="?attr/colorPrimary"
 					android:textSize="16sp" />
 
 				<androidx.recyclerview.widget.RecyclerView

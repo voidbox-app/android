@@ -30,7 +30,7 @@
 		android:layout_height="35dp"
 		android:layout_alignParentEnd="true"
 		android:layout_margin="10dp"
-		android:background="@color/colorPrimary"
+		android:background="?attr/colorPrimary"
 		android:padding="5dp"
 		android:textColor="@color/textColorWhite" />
 

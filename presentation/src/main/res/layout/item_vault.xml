@@ -55,7 +55,7 @@
 		android:paddingBottom="10dp"
 		android:src="@drawable/ic_lock_open"
 		android:visibility="gone"
-		app:tint="@color/colorPrimary" />
+		app:tint="?attr/colorPrimary" />
 
 	<ImageView
 		android:id="@+id/settings"

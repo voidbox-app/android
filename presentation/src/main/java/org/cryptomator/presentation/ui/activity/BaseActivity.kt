@@ -12,6 +12,7 @@ import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.WindowCompat
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
@@ -69,6 +70,7 @@ abstract class BaseActivity<VB : ViewBinding>(val bindingFactory: (LayoutInflate
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
+		WindowCompat.setDecorFitsSystemWindows(window, false)
 		logLifecycle("onCreate")
 
 		this.activityComponent = initializeDagger()

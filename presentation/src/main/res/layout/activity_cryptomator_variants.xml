@@ -36,7 +36,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:text="@string/screen_cryptomator_variants_website_title"
-						android:textColor="@color/colorPrimary"
+						android:textColor="?attr/colorPrimary"
 						android:textSize="16sp" />
 
 					<LinearLayout
@@ -105,7 +105,7 @@
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
 						android:text="@string/screen_cryptomator_variants_lite_title"
-						android:textColor="@color/colorPrimary"
+						android:textColor="?attr/colorPrimary"
 						android:textSize="16sp" />
 
 					<LinearLayout
@@ -190,7 +190,7 @@
 					android:layout_height="wrap_content"
 					android:layout_marginTop="@dimen/global_padding"
 					android:text="@string/screen_cryptomator_variants_fdroid_title"
-					android:textColor="@color/colorPrimary"
+					android:textColor="?attr/colorPrimary"
 					android:textSize="16sp" />
 
 				<RelativeLayout

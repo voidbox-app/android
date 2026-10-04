@@ -3,8 +3,8 @@
 	android:id="@+id/recycler_view"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	app:fastScrollPopupBgColor="@color/colorPrimary"
+	app:fastScrollPopupBgColor="?attr/colorPrimary"
 	app:fastScrollPopupTextColor="@color/textColorWhite"
 	app:fastScrollPopupTextSize="20sp"
-	app:fastScrollThumbColor="@color/colorPrimary"
+	app:fastScrollThumbColor="?attr/colorPrimary"
 	app:fastScrollTrackColor="@color/textColorWhite" />

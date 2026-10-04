@@ -8,6 +8,7 @@ import android.content.ServiceConnection
 import android.os.Build
 import android.os.IBinder
 import android.os.StrictMode
+import com.google.android.material.color.DynamicColors
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.multidex.MultiDexApplication
 import org.cryptomator.data.cloud.crypto.Cryptors
@@ -56,6 +57,7 @@ class CryptomatorApp : MultiDexApplication(), HasComponent<ApplicationComponent>
 
 	override fun onCreate() {
 		super.onCreate()
+		DynamicColors.applyToActivitiesIfAvailable(this)
 		setupLogging()
 		val sharedPreferencesHandler = SharedPreferencesHandler(applicationContext())
 
