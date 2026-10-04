@@ -11,22 +11,91 @@
 
 		<androidx.appcompat.widget.AppCompatImageView
 			android:id="@+id/ivCryptobot"
-			android:layout_width="280dp"
-			android:layout_height="280dp"
+			android:layout_width="240dp"
+			android:layout_height="240dp"
 			android:layout_gravity="center_horizontal"
-			android:layout_marginTop="24dp"
 			android:adjustViewBounds="true"
 			android:contentDescription="@null"
 			android:scaleType="fitCenter"
 			app:srcCompat="@drawable/ic_welcome_lock" />
 
 		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="8dp"
+			android:text="@string/screen_welcome_intro_title"
+			android:textAppearance="?attr/textAppearanceHeadlineLarge"
+			android:textColor="?attr/colorOnSurface" />
+
+		<TextView
 			android:id="@+id/tvIntroBody"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:layout_marginTop="12dp"
-			android:text="@string/screen_welcome_intro_body"
+			android:text="@string/screen_welcome_intro_thanks"
 			android:textAppearance="?attr/textAppearanceBodyLarge"
 			android:textColor="?attr/colorOnSurfaceVariant" />
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="32dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+
+			<FrameLayout
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:background="@drawable/bg_icon_container">
+
+				<ImageView
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_gravity="center"
+					android:contentDescription="@null"
+					app:srcCompat="@drawable/ic_key"
+					app:tint="?attr/colorOnSurfaceVariant" />
+			</FrameLayout>
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_weight="1"
+				android:text="@string/screen_welcome_intro_feature_key"
+				android:textAppearance="?attr/textAppearanceBodyLarge"
+				android:textColor="?attr/colorOnSurface" />
+		</LinearLayout>
+
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="20dp"
+			android:gravity="center_vertical"
+			android:orientation="horizontal">
+
+			<FrameLayout
+				android:layout_width="40dp"
+				android:layout_height="40dp"
+				android:background="@drawable/bg_icon_container">
+
+				<ImageView
+					android:layout_width="24dp"
+					android:layout_height="24dp"
+					android:layout_gravity="center"
+					android:contentDescription="@null"
+					app:srcCompat="@drawable/ic_encrypted"
+					app:tint="?attr/colorOnSurfaceVariant" />
+			</FrameLayout>
+
+			<TextView
+				android:layout_width="0dp"
+				android:layout_height="wrap_content"
+				android:layout_marginStart="16dp"
+				android:layout_weight="1"
+				android:text="@string/screen_welcome_intro_feature_encrypt"
+				android:textAppearance="?attr/textAppearanceBodyLarge"
+				android:textColor="?attr/colorOnSurface" />
+		</LinearLayout>
 	</LinearLayout>
 </ScrollView>

@@ -30,6 +30,7 @@ import org.cryptomator.presentation.ui.fragment.WelcomeScreenLockFragment
 import org.cryptomator.presentation.ui.layout.ObscuredAwareCoordinatorLayout
 import org.cryptomator.util.FlavorConfig
 import javax.inject.Inject
+import com.google.android.material.tabs.TabLayoutMediator
 
 @Activity
 class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBinding::inflate), //
@@ -81,7 +82,7 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBind
 		}
 
 		setSupportActionBar(binding.mtToolbar.toolbar)
-		supportActionBar?.title = getString(R.string.screen_welcome_title)
+		supportActionBar?.title = ""
 		supportActionBar?.setDisplayHomeAsUpEnabled(false)
 		binding.mtToolbar.toolbar.navigationIcon = null
 
@@ -144,6 +145,7 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding>(ActivityWelcomeBind
 		binding.welcomePager.adapter = pagerAdapter
 		binding.welcomePager.setCurrentItem(0, false)
 		binding.welcomePager.isUserInputEnabled = true
+		TabLayoutMediator(binding.pageDots, binding.welcomePager) { _, _ -> }.attach()
 		binding.welcomePager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
 			override fun onPageSelected(position: Int) {
 				updateNavigationButtons(position)

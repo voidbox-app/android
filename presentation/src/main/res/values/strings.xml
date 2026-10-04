@@ -103,6 +103,10 @@
 	<string name="screen_welcome_screen_lock_button">Set screen lock</string>
 	<string name="screen_welcome_screen_lock_already_set">Screen lock is already set.</string>
 	<string name="screen_welcome_intro_body">Thanks for choosing Latch to protect your files.\n\nWith Latch, the key to your data is in your hands.\n\nLatch encrypts your data quickly and easily.</string>
+	<string name="screen_welcome_intro_title">Welcome to Latch</string>
+	<string name="screen_welcome_intro_thanks">Thanks for choosing Latch to protect your files.</string>
+	<string name="screen_welcome_intro_feature_key">With Latch, the key to your data is in your hands.</string>
+	<string name="screen_welcome_intro_feature_encrypt">Latch encrypts your data quickly and easily.</string>
 	<string name="screen_welcome_trial_button" translatable="false">@string/screen_license_check_trial_price</string>
 	<string name="next">Next</string>
 	<string name="back">Back</string>

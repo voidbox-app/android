@@ -552,4 +552,8 @@
 	<string name="screen_nextcloud_login_msg_server_invalid">Введите правильный адрес сервера</string>
 	<string name="screen_nextcloud_login_msg_server_unreachable">Не удалось связаться с сервером Nextcloud</string>
 	<string name="screen_nextcloud_login_msg_timeout">Вход не был подтверждён, попробуйте ещё раз</string>
+	<string name="screen_welcome_intro_title">Добро пожаловать в Latch</string>
+	<string name="screen_welcome_intro_thanks">Спасибо, что доверили Latch защиту своих файлов.</string>
+	<string name="screen_welcome_intro_feature_key">С Latch ключ к вашим данным в ваших руках.</string>
+	<string name="screen_welcome_intro_feature_encrypt">Latch шифрует данные быстро и без усилий.</string>
 </resources>
