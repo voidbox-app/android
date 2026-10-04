@@ -27,6 +27,7 @@ import org.cryptomator.presentation.ui.activity.UnlockVaultActivity;
 import org.cryptomator.presentation.ui.activity.VaultListActivity;
 import org.cryptomator.presentation.ui.activity.WelcomeActivity;
 import org.cryptomator.presentation.ui.activity.WebDavAddOrChangeActivity;
+import org.cryptomator.presentation.ui.activity.NextcloudLoginActivity;
 import org.cryptomator.presentation.ui.fragment.AutoUploadChooseVaultFragment;
 import org.cryptomator.presentation.ui.fragment.BiometricAuthSettingsFragment;
 import org.cryptomator.presentation.ui.fragment.BrowseFilesFragment;
@@ -91,6 +92,8 @@ public interface ActivityComponent {
 	void inject(CreateNewVaultWorkflow createNewVaultWorkflow);
 
 	void inject(WebDavAddOrChangeActivity webDavAddOrChangeActivity);
+
+	void inject(NextcloudLoginActivity nextcloudLoginActivity);
 
 	void inject(WebDavAddOrChangeFragment webdavAddOrChangeFragment);
 

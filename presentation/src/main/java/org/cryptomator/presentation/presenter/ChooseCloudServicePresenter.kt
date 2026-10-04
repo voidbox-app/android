@@ -50,11 +50,24 @@ class ChooseCloudServicePresenter @Inject constructor( //
 	}
 
 	fun cloudPicked(cloudTypeModel: CloudTypeModel) {
-		if (cloudTypeModel.isMultiInstance) {
-			handleMultiInstanceClouds(cloudTypeModel)
-		} else {
-			handleSingleInstanceClouds(cloudTypeModel)
+		when {
+			cloudTypeModel == CloudTypeModel.NEXTCLOUD -> startNextcloudLogin()
+			cloudTypeModel.isMultiInstance -> handleMultiInstanceClouds(cloudTypeModel)
+			else -> handleSingleInstanceClouds(cloudTypeModel)
 		}
+	}
+
+	private fun startNextcloudLogin() {
+		requestActivityResult( //
+			ActivityResultCallbacks.nextcloudLoginFinished(),  //
+			Intents.nextcloudLoginIntent()
+		)
+	}
+
+	@Callback
+	fun nextcloudLoginFinished(result: ActivityResult) {
+		val cloud = result.intent().getSerializableExtra(CloudConnectionListPresenter.SELECTED_CLOUD) as Cloud
+		onCloudSelected(cloud)
 	}
 
 	private fun handleMultiInstanceClouds(cloudTypeModel: CloudTypeModel) {

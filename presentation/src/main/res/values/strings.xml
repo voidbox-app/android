@@ -116,6 +116,7 @@
 	<string name="cloud_names_onedrive" translatable="false">OneDrive</string>
 	<string name="cloud_names_pcloud" translatable="false">pCloud</string>
 	<string name="cloud_names_webdav" translatable="false">WebDAV</string>
+	<string name="cloud_names_nextcloud" translatable="false">Nextcloud</string>
 	<string name="cloud_names_s3" translatable="false">S3</string>
 	<string name="cloud_names_local_storage">Local storage</string>
 
@@ -762,4 +763,16 @@
 	<string name="update_interval_1d">Once a day</string>
 	<string name="update_interval_never" translatable="false">@string/lock_timeout_never</string>
 
+
+	<!-- # nextcloud sign-in -->
+	<string name="screen_nextcloud_login_title">Nextcloud</string>
+	<string name="screen_nextcloud_login_intro">Latch opens your Nextcloud in the browser. Approve the login there and come back, the server creates an app password for Latch automatically.</string>
+	<string name="screen_nextcloud_login_server_label">Server address</string>
+	<string name="screen_nextcloud_login_server_helper">For example https://cloud.example.com</string>
+	<string name="screen_nextcloud_login_button">Sign in with Nextcloud</string>
+	<string name="screen_nextcloud_login_waiting">Waiting for approval in the browser…</string>
+	<string name="screen_nextcloud_login_cancel">Cancel</string>
+	<string name="screen_nextcloud_login_msg_server_invalid">Enter a valid server address</string>
+	<string name="screen_nextcloud_login_msg_server_unreachable">The Nextcloud server could not be reached</string>
+	<string name="screen_nextcloud_login_msg_timeout">The login was not approved, try again</string>
 </resources>

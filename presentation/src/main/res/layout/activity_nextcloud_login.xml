@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<include
+		android:id="@+id/mt_toolbar"
+		layout="@layout/toolbar_layout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content" />
+
+	<LinearLayout
+		android:id="@+id/content"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:orientation="vertical"
+		android:padding="@dimen/activity_vertical_margin">
+
+		<TextView
+			android:id="@+id/intro_text"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="24dp"
+			android:text="@string/screen_nextcloud_login_intro"
+			android:textAppearance="?attr/textAppearanceBodyLarge"
+			android:textColor="?attr/colorOnSurfaceVariant" />
+
+		<com.google.android.material.textfield.TextInputLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:hint="@string/screen_nextcloud_login_server_label"
+			app:helperText="@string/screen_nextcloud_login_server_helper">
+
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/server_edit_text"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:imeOptions="actionDone"
+				android:inputType="textUri"
+				android:singleLine="true"
+				android:text="https://" />
+
+		</com.google.android.material.textfield.TextInputLayout>
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/sign_in_button"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="24dp"
+			android:text="@string/screen_nextcloud_login_button" />
+
+		<LinearLayout
+			android:id="@+id/waiting_group"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="32dp"
+			android:gravity="center_horizontal"
+			android:orientation="vertical"
+			android:visibility="gone">
+
+			<com.google.android.material.progressindicator.CircularProgressIndicator
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:indeterminate="true" />
+
+			<TextView
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="16dp"
+				android:gravity="center"
+				android:text="@string/screen_nextcloud_login_waiting"
+				android:textAppearance="?attr/textAppearanceBodyMedium"
+				android:textColor="?attr/colorOnSurfaceVariant" />
+
+			<com.google.android.material.button.MaterialButton
+				android:id="@+id/cancel_button"
+				style="@style/Widget.Material3.Button.TextButton"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginTop="8dp"
+				android:text="@string/screen_nextcloud_login_cancel" />
+
+		</LinearLayout>
+
+	</LinearLayout>
+
+</LinearLayout>

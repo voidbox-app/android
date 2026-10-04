@@ -32,6 +32,13 @@ enum class CloudTypeModel(builder: Builder) {
 			.withVaultSelectedImageResource(R.drawable.pcloud_vault_selected) //
 			.withMultiInstances()
 	),  //
+	NEXTCLOUD(
+		Builder("NEXTCLOUD", R.string.cloud_names_nextcloud) //
+			.withCloudImageResource(R.drawable.nextcloud) //
+			.withVaultImageResource(R.drawable.webdav_vault) //
+			.withVaultSelectedImageResource(R.drawable.webdav_vault_selected) //
+			.withMultiInstances()
+	),  //
 	WEBDAV(
 		Builder("WEBDAV", R.string.cloud_names_webdav) //
 			.withCloudImageResource(R.drawable.webdav) //
@@ -96,7 +103,8 @@ enum class CloudTypeModel(builder: Builder) {
 		}
 
 		fun valueOf(type: CloudTypeModel): CloudType {
-			return CloudType.valueOf(type.name)
+			// Nextcloud is a WebDAV cloud with its own sign-in flow; the domain knows only WEBDAV.
+			return if (type == NEXTCLOUD) CloudType.WEBDAV else CloudType.valueOf(type.name)
 		}
 	}
 }

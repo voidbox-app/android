@@ -31,6 +31,7 @@ class CloudModelMapper @Inject constructor() : ModelMapper<CloudModel, Cloud>() 
 			CloudTypeModel.S3 -> S3CloudModel(domainObject)
 			CloudTypeModel.CRYPTO -> CryptoCloudModel(domainObject)
 			CloudTypeModel.WEBDAV -> WebDavCloudModel(domainObject)
+			CloudTypeModel.NEXTCLOUD -> WebDavCloudModel(domainObject)
 			null -> throw IllegalStateException("The type of the object shouldn't be null")
 		}
 	}
