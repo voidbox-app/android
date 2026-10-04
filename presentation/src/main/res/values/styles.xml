@@ -42,6 +42,7 @@
 		<item name="colorSurfaceContainerHighest">@color/latch_surface_container_highest</item>
 		<item name="colorOutline">@color/latch_outline</item>
 		<item name="colorOutlineVariant">@color/latch_outline_variant</item>
+		<item name="elevationOverlayEnabled">false</item>
 
 		<!-- Legacy attributes still read by AppCompat views. -->
 		<item name="colorPrimaryDark">@color/colorPrimary</item>
@@ -94,24 +95,26 @@
 	</style>
 
 	<style name="AppTheme.ListItem">
-		<item name="android:gravity">center_vertical</item>
-		<item name="android:layout_height">48dp</item>
-		<item name="android:textSize">16sp</item>
 		<item name="android:layout_width">match_parent</item>
-		<item name="android:layout_marginStart">16dp</item>
-		<item name="android:layout_marginEnd">16dp</item>
-		<item name="android:paddingBottom">16dp</item>
-		<item name="android:drawablePadding">32dp</item>
+		<item name="android:layout_height">56dp</item>
+		<item name="android:gravity">center_vertical</item>
+		<item name="android:paddingStart">24dp</item>
+		<item name="android:paddingEnd">24dp</item>
+		<item name="android:drawablePadding">16dp</item>
+		<item name="drawableTint">?attr/colorOnSurfaceVariant</item>
+		<item name="android:textAppearance">?attr/textAppearanceBodyLarge</item>
+		<item name="android:textColor">?attr/colorOnSurface</item>
+		<item name="android:background">?attr/selectableItemBackground</item>
 		<item name="android:clickable">true</item>
 		<item name="android:focusable">true</item>
 	</style>
 
 	<style name="AppTheme.ListItemDarkTextColor">
-		<item name="android:textColor">@color/textColorPrimary</item>
+		<item name="android:textColor">?attr/colorOnSurface</item>
 	</style>
 
 	<style name="AppTheme.ListItemLightTextColor">
-		<item name="android:textColor">@color/textColorLight</item>
+		<item name="android:textColor">?attr/colorOnSurfaceVariant</item>
 	</style>
 
 	<!-- Surface toolbar: onSurface title and navigation icon, onSurfaceVariant actions. -->
@@ -125,6 +128,11 @@
 
 	<style name="PreferenceTheme" parent="@style/BasePreferenceThemeOverlay">
 		<item name="preferenceCategoryTitleTextColor">?attr/colorPrimary</item>
+		<item name="switchPreferenceCompatStyle">@style/AppTheme.SwitchPreference</item>
+	</style>
+
+	<style name="AppTheme.SwitchPreference" parent="Preference.SwitchPreferenceCompat.Material">
+		<item name="widgetLayout">@layout/preference_widget_material_switch</item>
 	</style>
 
 	<style name="ModalBottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">

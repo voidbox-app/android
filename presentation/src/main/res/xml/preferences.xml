@@ -22,13 +22,13 @@
 			android:key="biometricAuthentication"
 			android:title="@string/screen_settings_biometric_auth" />
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="disableAppWhenObscured"
 			android:summary="@string/screen_settings_block_app_when_obscured_summary"
 			android:title="@string/screen_settings_block_app_when_obscured" />
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="secureScreen"
 			android:summary="@string/screen_settings_secure_screen_summary"
@@ -56,13 +56,13 @@
 
 	<PreferenceCategory android:title="@string/screen_settings_section_search">
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="liveSearch"
 			android:summary="@string/screen_settings_live_search_summary"
 			android:title="@string/screen_settings_live_search" />
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="globSearch"
 			android:summary="@string/screen_settings_glob_search_summary"
@@ -74,7 +74,7 @@
 		android:key="@string/screen_settings_section_auto_lock"
 		android:title="@string/screen_settings_section_auto_lock">
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="lockOnScreenOff"
 			android:title="@string/screen_settings_auto_lock_on_screen_lock" />
@@ -94,24 +94,24 @@
 		android:key="@string/screen_settings_section_auto_photo_upload"
 		android:title="@string/screen_settings_section_auto_photo_upload">
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="photoUpload"
 			android:summary="@string/screen_settings_section_auto_photo_upload_toggle_summary"
 			android:title="@string/screen_settings_section_auto_photo_upload_toggle" />
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="photoUploadInstant"
 			android:summary="@string/screen_settings_section_auto_photo_upload_toggle_instant_upload_summary"
 			android:title="@string/screen_settings_section_auto_photo_upload_toggle_instant_upload" />
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="photoUploadOnlyUsingWifi"
 			android:title="@string/screen_settings_section_auto_photo_upload_only_wifi_toggle" />
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="photoUploadIncludingVideos"
 			android:title="@string/screen_settings_section_auto_photo_upload_including_videos" />
@@ -124,7 +124,7 @@
 
 	<PreferenceCategory android:title="@string/screen_settings_lru_cache">
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="lruCache"
 			android:summary="@string/screen_settings_lru_cache_toggle_summary"
@@ -157,7 +157,7 @@
 				android:data="@string/screen_settings_support_uri" />
 		</androidx.preference.PreferenceScreen>
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="debugMode"
 			android:title="@string/screen_settings_debug_mode_label" />
@@ -170,19 +170,19 @@
 
 	<PreferenceCategory android:title="@string/screen_settings_advanced_settings">
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="shareOfficeFilePublicly"
 			android:summary="@string/screen_settings_microsoft_apps_workaround_summary"
 			android:title="@string/screen_settings_microsoft_apps_workaround_label" />
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="false"
 			android:key="keepUnlockedWhileEditing"
 			android:summary="@string/screen_settings_keep_unlocked_while_editing_files_summary"
 			android:title="@string/screen_settings_keep_unlocked_while_editing_files" />
 
-		<SwitchPreference
+		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="backgroundUnlockPreparation"
 			android:summary="@string/screen_settings_background_unlock_preparation_label_summary"

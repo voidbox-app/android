@@ -12,7 +12,7 @@ import androidx.biometric.BiometricManager
 import androidx.core.content.ContextCompat
 import androidx.preference.Preference
 import androidx.preference.PreferenceCategory
-import androidx.preference.SwitchPreference
+import androidx.preference.SwitchPreferenceCompat
 import org.cryptomator.presentation.BuildConfig
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.intent.Intents
@@ -47,6 +47,12 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 
 	private lateinit var sharedPreferencesHandler: SharedPreferencesHandler
 	private val licenseChangeListener = Consumer<String> { _ -> setupLicense() }
+
+	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+		super.onViewCreated(view, savedInstanceState)
+		setDivider(null)
+		setDividerHeight(0)
+	}
 
 	override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
 		sharedPreferencesHandler = SharedPreferencesHandler(activity())
@@ -344,17 +350,17 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 
 	fun deactivateDebugMode() {
 		sharedPreferencesHandler.setDebugMode(false)
-		(findPreference(SharedPreferencesHandler.DEBUG_MODE) as SwitchPreference?)?.isChecked = false
+		(findPreference(SharedPreferencesHandler.DEBUG_MODE) as SwitchPreferenceCompat?)?.isChecked = false
 	}
 
 	fun disableAppWhenObscured() {
 		sharedPreferencesHandler.setDisableAppWhenObscured(true)
-		(findPreference(SharedPreferencesHandler.DISABLE_APP_WHEN_OBSCURED) as SwitchPreference?)?.isChecked = true
+		(findPreference(SharedPreferencesHandler.DISABLE_APP_WHEN_OBSCURED) as SwitchPreferenceCompat?)?.isChecked = true
 	}
 
 	fun secureScreen() {
 		sharedPreferencesHandler.setSecureScreen(true)
-		(findPreference(SharedPreferencesHandler.SECURE_SCREEN) as SwitchPreference?)?.isChecked = true
+		(findPreference(SharedPreferencesHandler.SECURE_SCREEN) as SwitchPreferenceCompat?)?.isChecked = true
 	}
 
 	private fun onSendErrorReportClicked() {
@@ -391,7 +397,7 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 		} else {
 			PhotoContentJob.cancelJob(activity().applicationContext)
 		}
-		(findPreference(SharedPreferencesHandler.PHOTO_UPLOAD) as SwitchPreference?)?.isChecked = enabled
+		(findPreference(SharedPreferencesHandler.PHOTO_UPLOAD) as SwitchPreferenceCompat?)?.isChecked = enabled
 	}
 
 	fun disableAutoUpload() {
