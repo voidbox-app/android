@@ -18,7 +18,7 @@
 			android:adjustViewBounds="true"
 			android:contentDescription="@null"
 			android:scaleType="fitCenter"
-			app:srcCompat="@drawable/ic_launcher_foreground" />
+			app:srcCompat="@drawable/ic_welcome_lock" />
 
 		<TextView
 			android:id="@+id/tvIntroBody"

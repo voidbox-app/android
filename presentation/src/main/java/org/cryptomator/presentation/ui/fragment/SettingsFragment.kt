@@ -186,11 +186,7 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 		licensePref?.isEnabled = true
 		when {
 			FlavorConfig.isPremiumFlavor -> {
-				licensePref?.let { pref ->
-					pref.title = getString(R.string.screen_settings_license_title_unlocked)
-					pref.summary = getString(R.string.screen_settings_license_summary_write_access)
-					pref.onPreferenceClickListener = null
-				}
+				licenseCategory?.let { preferenceScreen.removePreference(it) }
 				removeUpdateCheck()
 			}
 			FlavorConfig.isFreemiumFlavor -> {
