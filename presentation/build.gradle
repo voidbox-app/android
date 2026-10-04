@@ -32,9 +32,11 @@ android {
 		applicationId globalConfiguration["androidApplicationId"]
 		def latchRevision = (System.getenv("LATCH_REVISION") ?: "1").toInteger()
 		def latchVersionCode = (globalConfiguration["androidVersionCode"] as int) * 10 + latchRevision
-		def latchVersionName = globalConfiguration["androidVersionName"] + "-latch" + latchRevision
+		def latchStage = rootProject.file("LATCH_STAGE").with { it.exists() ? it.text.trim() : "" }
+		def latchVersionName = globalConfiguration["androidVersionName"] + "-latch" + latchRevision + (latchStage ? "-" + latchStage : "")
 		versionCode latchVersionCode
 		versionName latchVersionName
+		resValue "string", "app_label", "Latch" + (latchStage == "beta" ? " Beta" : "")
 
 		multiDexEnabled true
 		testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'

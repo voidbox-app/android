@@ -2,6 +2,8 @@
 
 Personal Android build of [Cryptomator](https://github.com/cryptomator/android) (lite flavor) for a single phone.
 
+Status: beta, personal use. Releases are published as pre-releases while `LATCH_STAGE` says `beta`; enable pre-releases for Latch in Obtainium to receive them.
+
 What differs from upstream:
 
 - the lite flavor is treated as a premium flavor, so there is no license check and full access is available;

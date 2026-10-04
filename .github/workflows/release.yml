@@ -50,6 +50,7 @@ jobs:
           echo "tag=$tag" >> "$GITHUB_OUTPUT"
           echo "rev=$rev" >> "$GITHUB_OUTPUT"
           echo "name=$tag-latch$rev" >> "$GITHUB_OUTPUT"
+          echo "stage=$(cat LATCH_STAGE 2>/dev/null || true)" >> "$GITHUB_OUTPUT"
           if gh release view "$tag-latch$rev" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
             echo "release $tag-latch$rev already exists"
             echo "skip=true" >> "$GITHUB_OUTPUT"
@@ -106,6 +107,9 @@ jobs:
         run: |
           tag="${{ steps.tag.outputs.tag }}"
           name="${{ steps.tag.outputs.name }}"
-          gh release create "$name" "latch-$name.apk" --repo "$GITHUB_REPOSITORY" \
-            --title "Latch $name" \
+          stage="${{ steps.tag.outputs.stage }}"
+          prerelease=""
+          if [ "$stage" = "beta" ]; then prerelease="--prerelease"; fi
+          gh release create "$name" "latch-$name.apk" --repo "$GITHUB_REPOSITORY" $prerelease \
+            --title "Latch $name${stage:+ $stage}" \
             --notes "Cryptomator lite $tag with the Latch patch set. Upstream: https://github.com/cryptomator/android/releases/tag/$tag"
