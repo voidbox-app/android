@@ -24,8 +24,7 @@ class SettingsVaultBottomSheet : BaseBottomSheet<SettingsVaultBottomSheet.Callba
 		if (vaultModel.isLocked) {
 			binding.lockVault.visibility = LinearLayout.GONE
 		}
-		val cloudType = vaultModel.cloudType
-		binding.cloudImage.setImageResource(cloudType.vaultSelectedImageResource)
+		binding.cloudImage.setImageResource(vaultModel.cloudImageResource)
 		binding.vaultName.text = vaultModel.name
 		binding.vaultPath.text = vaultModel.path
 

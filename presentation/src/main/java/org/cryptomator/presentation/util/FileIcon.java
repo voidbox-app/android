@@ -11,29 +11,29 @@ import static java.lang.Boolean.TRUE;
 
 public enum FileIcon {
 
-	ARCHIVE(R.drawable.node_file_archive, //
+	ARCHIVE(R.drawable.ic_file_archive, //
 			forExtensions("7z", "bz2", "bzip2", "gz", "gzip", "rar", "tar", "zip")), //
-	AUDIO(R.drawable.node_file_audio, //
+	AUDIO(R.drawable.ic_file_audio, //
 			forMediatype("audio")), //
-	MARKUP(R.drawable.node_file_html, //
+	MARKUP(R.drawable.ic_file_html, //
 			forExtensions("html", "xhtml", "xml", "xsl", "xslt")), //
-	IMAGE(R.drawable.node_file_image, //
+	IMAGE(R.drawable.ic_file_image, //
 			forMediatype("image")), //
-	MOVIE(R.drawable.node_file_movie, //
+	MOVIE(R.drawable.ic_file_movie, //
 			forMediatype("video")), //
-	PDF(R.drawable.node_file_pdf, //
+	PDF(R.drawable.ic_file_pdf, //
 			forExtensions("pdf", "ps")), //
-	SLIDES(R.drawable.node_file_presentation, //
+	SLIDES(R.drawable.ic_file_presentation, //
 			forExtensions("key", "keynote", "odp", "ppt", "pot", "pps", "ppa", "pptx", "potx", "ppsx", "ppam", "pptm", "potm", "ppsm")), //
-	SOURCECODE(R.drawable.node_file_sourcecode, //
+	SOURCECODE(R.drawable.ic_file_sourcecode, //
 			forExtensions("bat", "c", "cs", "cpp", "coffee", "d", "e", "for", "go", "h", "java", "js", "lua", "php", "pl", "ps1", "py", "r", "rb", "sh", "vb", "vbs")), //
-	SPREADSHEET(R.drawable.node_file_spreadsheet, //
+	SPREADSHEET(R.drawable.ic_file_spreadsheet, //
 			forExtensions("csv", "numbers", "ods", "ots", "xls", "xlt", "xla", "xlsx", "xltx", "xlsm", "xltm", "xlam", "xlsb")), //
-	TEXT(R.drawable.node_file_text, //
+	TEXT(R.drawable.ic_file_text, //
 			forMediaTypeOrExtensions("text", "md", "todo", "odts", "ods", "doc", "dot", "docx", "dotx", "docm", "dotm")), //
-	VAULT(R.drawable.node_vault, //
+	VAULT(R.drawable.ic_file_vault, //
 			forExtensions("cryptomator")), //
-	UNKNOWN(R.drawable.node_file_unknown);
+	UNKNOWN(R.drawable.ic_file_unknown);
 
 	private final int iconResource;
 	private final Predicate<FileInfo>[] predicates;

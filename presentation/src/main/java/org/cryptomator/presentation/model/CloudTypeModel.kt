@@ -1,7 +1,9 @@
 package org.cryptomator.presentation.model
 
+import org.cryptomator.domain.Cloud
 import org.cryptomator.domain.CloudType
 import org.cryptomator.presentation.R
+import org.cryptomator.domain.WebDavCloud
 
 enum class CloudTypeModel(builder: Builder) {
 
@@ -35,29 +37,29 @@ enum class CloudTypeModel(builder: Builder) {
 	NEXTCLOUD(
 		Builder("NEXTCLOUD", R.string.cloud_names_nextcloud) //
 			.withCloudImageResource(R.drawable.nextcloud) //
-			.withVaultImageResource(R.drawable.webdav_vault) //
-			.withVaultSelectedImageResource(R.drawable.webdav_vault_selected) //
+			.withVaultImageResource(R.drawable.ic_cloud_webdav) //
+			.withVaultSelectedImageResource(R.drawable.ic_cloud_webdav) //
 			.withMultiInstances()
 	),  //
 	WEBDAV(
 		Builder("WEBDAV", R.string.cloud_names_webdav) //
-			.withCloudImageResource(R.drawable.webdav) //
-			.withVaultImageResource(R.drawable.webdav_vault) //
-			.withVaultSelectedImageResource(R.drawable.webdav_vault_selected) //
+			.withCloudImageResource(R.drawable.ic_cloud_webdav) //
+			.withVaultImageResource(R.drawable.ic_cloud_webdav) //
+			.withVaultSelectedImageResource(R.drawable.ic_cloud_webdav) //
 			.withMultiInstances()
 	),  //
 	S3(
 		Builder("S3", R.string.cloud_names_s3) //
-			.withCloudImageResource(R.drawable.s3) //
-			.withVaultImageResource(R.drawable.s3_vault) //
-			.withVaultSelectedImageResource(R.drawable.s3_vault_selected) //
+			.withCloudImageResource(R.drawable.ic_cloud_s3) //
+			.withVaultImageResource(R.drawable.ic_cloud_s3) //
+			.withVaultSelectedImageResource(R.drawable.ic_cloud_s3) //
 			.withMultiInstances()
 	),  //
 	LOCAL(
 		Builder("LOCAL", R.string.cloud_names_local_storage) //
-			.withCloudImageResource(R.drawable.local_fs) //
-			.withVaultImageResource(R.drawable.local_fs_vault) //
-			.withVaultSelectedImageResource(R.drawable.local_fs_vault_selected) //
+			.withCloudImageResource(R.drawable.ic_cloud_local) //
+			.withVaultImageResource(R.drawable.ic_cloud_local) //
+			.withVaultSelectedImageResource(R.drawable.ic_cloud_local) //
 			.withMultiInstances()
 	);
 
@@ -100,6 +102,11 @@ enum class CloudTypeModel(builder: Builder) {
 
 		fun valueOf(type: CloudType): CloudTypeModel {
 			return valueOf(type.name)
+		}
+
+		/** Nextcloud is stored as plain WebDAV; its servers are recognisable by the /remote.php/ DAV path. */
+		fun isNextcloud(cloud: Cloud?): Boolean {
+			return cloud is WebDavCloud && cloud.url()?.contains("/remote.php/") == true
 		}
 
 		fun valueOf(type: CloudTypeModel): CloudType {

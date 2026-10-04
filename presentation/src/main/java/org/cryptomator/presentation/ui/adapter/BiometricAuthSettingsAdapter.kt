@@ -46,7 +46,7 @@ constructor() : RecyclerViewBaseAdapter<VaultModel, BiometricAuthSettingsAdapter
 			val vaultModel = getItem(position)
 
 			binding.vaultName.text = vaultModel.name
-			binding.cloud.setImageResource(vaultModel.cloudType.vaultImageResource)
+			binding.cloud.setImageResource(vaultModel.cloudImageResource)
 
 			binding.toggleBiometricAuth.isChecked = vaultModel.password != null
 

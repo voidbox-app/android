@@ -49,7 +49,7 @@ internal constructor(context: Context) : RecyclerViewBaseAdapter<CloudModel, Clo
 		private fun internalBind(cloudModel: CloudModel) {
 			binding.settings.setOnClickListener { callback.onCloudSettingsClicked(cloudModel) }
 
-			binding.cloudImage.setImageResource(cloudModel.cloudType().cloudImageResource)
+			binding.cloudImage.setImageResource(cloudModel.cloudImageResource())
 
 			itemView.setOnClickListener { callback.onCloudConnectionClicked(cloudModel) }
 

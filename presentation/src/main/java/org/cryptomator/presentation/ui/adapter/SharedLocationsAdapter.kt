@@ -70,7 +70,7 @@ constructor() : RecyclerViewBaseAdapter<VaultModel, SharedLocationsAdapter.Callb
 				binding.selectedVault.isChecked = boundVaultSelected
 				binding.selectedVault.isClickable = !boundVaultSelected
 				if (boundVaultSelected) {
-					binding.cloudImage.setImageResource(it.cloudType.vaultSelectedImageResource)
+					binding.cloudImage.setImageResource(it.cloudImageResource)
 					if (selectedLocation != null) {
 						binding.chosenLocation.visibility = View.VISIBLE
 						binding.chosenLocation.text = selectedLocation
@@ -79,7 +79,7 @@ constructor() : RecyclerViewBaseAdapter<VaultModel, SharedLocationsAdapter.Callb
 					}
 					binding.chooseFolderLocation.visibility = View.VISIBLE
 				} else {
-					binding.cloudImage.setImageResource(it.cloudType.vaultImageResource)
+					binding.cloudImage.setImageResource(it.cloudImageResource)
 					binding.chosenLocation.visibility = View.GONE
 					binding.chooseFolderLocation.visibility = View.GONE
 				}

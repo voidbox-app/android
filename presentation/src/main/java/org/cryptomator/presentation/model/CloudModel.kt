@@ -8,6 +8,7 @@ abstract class CloudModel internal constructor(private val cloud: Cloud) : Seria
 	abstract fun name(): Int
 	abstract fun username(): String?
 	abstract fun cloudType(): CloudTypeModel
+	open fun cloudImageResource(): Int = cloudType().cloudImageResource
 
 	fun toCloud(): Cloud {
 		return cloud

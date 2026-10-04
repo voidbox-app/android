@@ -39,7 +39,7 @@ constructor(private val context: Context) : RecyclerViewBaseAdapter<CloudModel, 
 		override fun bind(position: Int) {
 			val cloudModel = getItem(position)
 
-			binding.cloudImage.setImageResource(cloudModel.cloudType().cloudImageResource)
+			binding.cloudImage.setImageResource(cloudModel.cloudImageResource())
 
 			when (cloudModel.cloudType()) {
 				CloudTypeModel.ONEDRIVE -> binding.cloudName.text = context.getString(R.string.screen_cloud_settings_onedrive_connections)

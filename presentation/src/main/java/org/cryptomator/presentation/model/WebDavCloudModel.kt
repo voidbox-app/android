@@ -18,6 +18,10 @@ class WebDavCloudModel(cloud: Cloud) : CloudModel(cloud) {
 		return CloudTypeModel.WEBDAV
 	}
 
+	override fun cloudImageResource(): Int {
+		return if (CloudTypeModel.isNextcloud(toCloud())) R.drawable.nextcloud else super.cloudImageResource()
+	}
+
 	fun url(): String {
 		return cloud().url()
 	}

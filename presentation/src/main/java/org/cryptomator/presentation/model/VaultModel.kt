@@ -3,6 +3,7 @@ package org.cryptomator.presentation.model
 import org.cryptomator.domain.Vault
 import org.cryptomator.util.crypto.CryptoMode
 import java.io.Serializable
+import org.cryptomator.presentation.R
 
 class VaultModel(private val vault: Vault) : Serializable {
 
@@ -31,6 +32,8 @@ class VaultModel(private val vault: Vault) : Serializable {
 
 	val cloudType: CloudTypeModel
 		get() = CloudTypeModel.valueOf(vault.cloudType)
+	val cloudImageResource: Int
+		get() = if (CloudTypeModel.isNextcloud(vault.cloud)) R.drawable.nextcloud else cloudType.vaultImageResource
 	val password: String?
 		get() = vault.password
 	val passwordCryptoMode: CryptoMode?
