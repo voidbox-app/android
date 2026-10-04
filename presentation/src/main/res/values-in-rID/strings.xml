@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Tidak ada koneksi jaringan</string>
 	<string name="error_invalid_passphrase">Kata sandi salah</string>
 	<string name="error_file_or_folder_exists">Berkas atau folder sudah ada.</string>
-	<string name="error_vault_version_not_supported">Brankas versi %1$s tidak didukung. Brankas ini dibuat menggunakan Cryptomator versi lama ataupun lebih baru.</string>
+	<string name="error_vault_version_not_supported">Brankas versi %1$s tidak didukung. Brankas ini dibuat menggunakan Latch versi lama ataupun lebih baru.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Berkas %1$s tidak ditemukan di folder brankas Anda. Pastikan berkas tersebut ada di folder cloud Anda.</string>
 	<string name="error_vault_already_exists">Brankas sudah ada.</string>
 	<string name="error_no_such_file">Berkas tidak ada.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">Versi yang ditentukan di %1$s berbeda dengan %2$s</string>
 	<string name="error_vault_key_invalid">%1$s tidak cocok dengan %2$s ini</string>
 	<string name="error_vault_config_loading">Kesalahan umum saat memuat konfigurasi brankas</string>
-	<string name="error_file_not_found_after_opening_using_3party">Berkas lokal sudah tidak tersedia lagi setelah beralih kembali ke Cryptomator. Perubahan yang ada tidak dapat disimpan kembali ke cloud.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Berkas lokal sudah tidak tersedia lagi setelah beralih kembali ke Latch. Perubahan yang ada tidak dapat disimpan kembali ke cloud.</string>
 	<string name="error_no_such_bucket">Bucket tidak ada</string>
 	<string name="error_masterkey_location_not_supported">Lokasi Kunci utama belum didukung</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Gagal berkomunikasi dengan aplikasi F-Droid. Belum dipasang?</string>
@@ -69,10 +69,10 @@
 	<string name="cloud_names_local_storage">Penyimpanan lokal</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Cryptomator membutuhkan akses penyimpanan untuk mengekspor berkas</string>
-	<string name="permission_message_upload_file">Cryptomator membutuhkan akses penyimpanan untuk mengunggah berkas</string>
-	<string name="permission_message_share_file">Cryptomator membutuhkan akses penyimpanan untuk membagikan berkas</string>
-	<string name="permission_revoked_re_request_permission">Cryptomator telah kehilangan izin untuk mengakses lokasi ini. Harap pilih folder ini lagi untuk memulihkan izin.</string>
+	<string name="permission_message_export_file">Latch membutuhkan akses penyimpanan untuk mengekspor berkas</string>
+	<string name="permission_message_upload_file">Latch membutuhkan akses penyimpanan untuk mengunggah berkas</string>
+	<string name="permission_message_share_file">Latch membutuhkan akses penyimpanan untuk membagikan berkas</string>
+	<string name="permission_revoked_re_request_permission">Latch telah kehilangan izin untuk mengakses lokasi ini. Harap pilih folder ini lagi untuk memulihkan izin.</string>
 	<string name="snack_bar_action_title_settings">Pengaturan</string>
 	<string name="snack_bar_action_title_search">Cari</string>
 	<string name="snack_bar_action_title_search_previous">Sebelumnya</string>
@@ -88,7 +88,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Cloud tidak ada di dalam daftar?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Tambah ke Cryptomator</string>
+	<string name="screen_vault_list_actions_title">Tambah ke Latch</string>
 	<string name="screen_vault_list_action_create_new_vault">Buat vault baru</string>
 	<string name="screen_vault_list_action_add_existing_vault">Tambahkan vault yang sudah ada</string>
 	<string name="screen_vault_list_vault_action_delete">Hapus</string>
@@ -212,7 +212,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Hanya unggah melalui WIFI</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Unggah video</string>
 	<string name="screen_settings_auto_photo_upload_title">Simpan file unggah otomatis ke&#8230;</string>
-	<string name="screen_settings_website_label">Situs Cryptomator</string>
+	<string name="screen_settings_website_label">Situs Latch</string>
 	<string name="screen_settings_mastodon_label">Ikuti kami di Mastodon</string>
 	<string name="screen_settings_facebook_label">Like kami di Facebook</string>
 	<string name="screen_settings_section_legal">Legal</string>
@@ -245,15 +245,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s tidak dapat diautentikasi.</string>
 	<string name="screen_update_pcloud_connections_title">Perbarui kredensial pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Varian Cryptomator</string>
+	<string name="screen_cryptomator_variants_title">Varian Latch</string>
 	<string name="screen_cryptomator_variants_lite_title">Repositori Utama F-Droid</string>
 	<string name="screen_cryptomator_variants_lite_description">Dikecualikan karena mereka memerlukan kunci API.</string>
 	<string name="screen_cryptomator_variants_lite_install">Pasang</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Repositori Cryptomator F-Droid</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Repositori Latch F-Droid</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Dikecualikan karena mengandung dependensi hak milik.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Tambahkan repositori Cryptomator ke aplikasi F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Tambahkan repositori Latch ke aplikasi F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Tambah</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Pasang Cryptomator menggunakan F-Droid.\nJika muncul error tidak ditemukan, tunggu hingga sinkronisasi F-Droid selesai.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Pasang Latch menggunakan F-Droid.\nJika muncul error tidak ditemukan, tunggu hingga sinkronisasi F-Droid selesai.</string>
 	<string name="screen_cryptomator_variants_website_title">Situs Web</string>
 	<string name="screen_cryptomator_variants_website_description">Berisi dependensi hak milik.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Beralih dari atau ke varian repositori utama F-Droid memerlukan pengaturan aplikasi yang baru.</string>
@@ -283,7 +283,7 @@
 	<string name="dialog_replace_title_single_file_exists">Menimpa file?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Menimpa file?</string>
 	<string name="dialog_unable_to_share_title">Tidak dapat membagikan file</string>
-	<string name="dialog_unable_to_share_message">Anda belum menyiapkan vault sama sekali. Silahkan buat vault baru terlebih dahulu melalui aplikasi Cryptomator.</string>
+	<string name="dialog_unable_to_share_message">Anda belum menyiapkan vault sama sekali. Silahkan buat vault baru terlebih dahulu melalui aplikasi Latch.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Buat vault</string>
 	<string name="dialog_filetype_not_supported_title">Tidak dapat membuka %1$s</string>
@@ -334,12 +334,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">Dalam mode ini, data sensitif dapat ditulis ke file log di perangkat Anda (misalnya, nama dan lokasi file). Kata sandi, cookie, dll secara eksplisit dikecualikan.\n\nJangan lupa untuk menonaktifkan mode debug sesegera mungkin.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Perhatian</string>
 	<string name="dialog_debug_mode_positive_button">Aktifkan</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Karena adanya bug pada aplikasi Microsoft, berkas yang akan diedit harus dibagikan dengan aplikasi ini di folder media publik di perangkat Anda. Setelah Cryptomator dilanjutkan, berkas yang dapat diakses publik akan dihapus lagi, namun Cryptomator tidak dapat memengaruhi apa yang terjadi pada berkas ini untuk sementara. Pastikan Anda mengetahui perilaku ini saat mengaktifkan opsi ini. Ini hanya berlaku untuk jenis berkas Microsoft.\n\nCryptomator akan dimulai ulang setelah aktivasi.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Karena adanya bug pada aplikasi Microsoft, berkas yang akan diedit harus dibagikan dengan aplikasi ini di folder media publik di perangkat Anda. Setelah Latch dilanjutkan, berkas yang dapat diakses publik akan dihapus lagi, namun Latch tidak dapat memengaruhi apa yang terjadi pada berkas ini untuk sementara. Pastikan Anda mengetahui perilaku ini saat mengaktifkan opsi ini. Ini hanya berlaku untuk jenis berkas Microsoft.\n\nLatch akan dimulai ulang setelah aktivasi.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Pengaturan ini adalah fitur keamanan untuk mencegah aplikasi lain mengelabui pengguna melakukan hal-hal yang tidak ingin mereka lakukan.\n\nDengan menonaktifkan, Anda mengonfirmasi bahwa telah <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">menyadari akan bahaya tersebut</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Perhatian</string>
 	<string name="dialog_disable_app_obscured_positive_button">Matikan</string>
 	<string name="dialog_app_is_obscured_info_title">Aplikasi terhalang</string>
-	<string name="dialog_app_is_obscured_info_hint">Aplikasi lain menampilkan sesuatu di atas tampilan Cryptomator (misal, Filter cahaya biru atau aplikasi mode malam). Untuk alasan keamanan, Cryptomator dinonaktifkan.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Cara mengaktifkan Cryptomator</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Aplikasi lain menampilkan sesuatu di atas tampilan Latch (misal, Filter cahaya biru atau aplikasi mode malam). Untuk alasan keamanan, Latch dinonaktifkan.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Cara mengaktifkan Latch</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Tutup</string>
 	<string name="dialog_vaults_removed_during_migration_title">Harap tambahkan kembali vault untuk cloud %1s</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Saat bermigrasi ke versi aplikasi ini, kita perlu menghapus vault berikut dari aplikasi:\n%2s \n\nVault tersebut tidak dihapus dari cloud, tetapi hanya dari aplikasi ini. Maaf atas ketidaknyamanan ini dan harap tambahkan kembali vault ini untuk terus bekerja dengannya.</string>
@@ -353,9 +353,9 @@
 	<string name="dialog_confirm_delete_file_message">Anda yakin ingin menghapus berkas ini?</string>
 	<string name="dialog_confirm_delete_folder_message">Ini akan menghapus semua isi folder. Anda yakin ingin menghapus folder ini?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Fitur autentikasi biometrik dinonaktifkan</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Karena kunci telah dibatalkan, fitur autentikasi biometrik telah dinonaktifkan. Untuk mengaktifkan kembali, buka pengaturan Cryptomator.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Karena kunci telah dibatalkan, fitur autentikasi biometrik telah dinonaktifkan. Untuk mengaktifkan kembali, buka pengaturan Latch.</string>
 	<string name="dialog_enter_license_title">Berikan lisensi yang valid</string>
-	<string name="dialog_enter_license_content">Kami mendeteksi bahwa Anda menginstal Cryptomator tanpa menggunakan Google Play Store. Berikan lisensi yang valid, yang dapat dibeli di <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Kami mendeteksi bahwa Anda menginstal Latch tanpa menggunakan Google Play Store. Berikan lisensi yang valid, yang dapat dibeli di <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">Lisensi yang diberikan tidak valid. Pastikan Anda memasukkannya dengan benar.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Kunci yang Anda input adalah kunci supporter certificate untuk pengguna desktop. Harap masukkan lisensi yang valid.</string>
 	<string name="dialog_enter_license_no_content">Tidak ada lisensi yang diberikan. Harap masukkan lisensi yang valid.</string>
@@ -363,12 +363,12 @@
 	<string name="dialog_license_confirmation_title">Konfirmasi lisensi</string>
 	<string name="dialog_license_confirmation_message">Terima kasih %1$s Anda telah memberikan lisensi yang valid.</string>
 	<string name="dialog_update_available_title">Pembaruan tersedia</string>
-	<string name="dialog_update_available_message">Perbarui Cryptomator ke versi terbaru. Dengan menekan OK, kami akan mengunduh aplikasi di latar belakang dan akan meminta Anda untuk menginstalnya.</string>
+	<string name="dialog_update_available_message">Perbarui Latch ke versi terbaru. Dengan menekan OK, kami akan mengunduh aplikasi di latar belakang dan akan meminta Anda untuk menginstalnya.</string>
 	<string name="dialog_update_available_update">Perbarui sekarang</string>
 	<string name="dialog_update_available_download_site">Buka situs unduhan</string>
 	<string name="dialog_update_available_cancel">Nanti</string>
 	<string name="dialog_download_update_title">Unduh berjalan</string>
-	<string name="dialog_download_update_message">Mengunduh Cryptomator versi terbaru</string>
+	<string name="dialog_download_update_message">Mengunduh Latch versi terbaru</string>
 	<string name="dialog_sym_link_title">Folder adalah tautan simbolis</string>
 	<string name="dialog_sym_link_message">Anda tidak dapat menavigasi ke tautan simbolis ini</string>
 	<string name="dialog_sym_link_back_button">Kembali</string>
@@ -399,9 +399,9 @@
 	<string name="dialog_hub_user_setup_required_title">Diperlukan pengaturan dari pengguna</string>
 	<string name="dialog_hub_user_setup_required_hint">Untuk melanjutkan, silakan lengkapi langkah-langkah yang diperlukan di profil pengguna Hub Anda.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Buka Profil</string>
-	<string name="permission_snackbar_auth_local_vault">Cryptomator membutuhkan akses penyimpanan untuk menggunakan vault lokal</string>
-	<string name="permission_snackbar_auth_auto_upload">Cryptomator membutuhkan akses penyimpanan untuk menggunakan unggahan foto otomatis</string>
-	<string name="permission_snackbar_notifications">Cryptomator perlu izin pemberitahuan untuk menampilkan status brankas, misalnya</string>
+	<string name="permission_snackbar_auth_local_vault">Latch membutuhkan akses penyimpanan untuk menggunakan vault lokal</string>
+	<string name="permission_snackbar_auth_auto_upload">Latch membutuhkan akses penyimpanan untuk menggunakan unggahan foto otomatis</string>
+	<string name="permission_snackbar_notifications">Latch perlu izin pemberitahuan untuk menampilkan status brankas, misalnya</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

@@ -49,7 +49,7 @@
 	<string name="permission_message_export_file">ক্রিপ্টোমেটরের ফাইল এক্সপোর্ট করতে স্টোরেজ অনুমতি প্রয়োজন</string>
 	<string name="permission_message_upload_file">ক্রিপ্টোমেটরের ফাইল আপলোড করতে স্টোরেজ অনুমতি প্রয়োজন</string>
 	<string name="permission_message_share_file">ক্রিপ্টোমেটরের ফাইল শেয়ার করতে স্টোরেজ এক্সেস প্রয়োজন</string>
-	<string name="permission_revoked_re_request_permission">Cryptomator এই অবস্থানে প্রবেশের অনুমতি হারিয়েছে। অনুগ্রহ করে পুনরায় অনুমতি পুনরুদ্ধার করতে এই ফোল্ডারটি আবার নির্বাচন করুন</string>
+	<string name="permission_revoked_re_request_permission">Latch এই অবস্থানে প্রবেশের অনুমতি হারিয়েছে। অনুগ্রহ করে পুনরায় অনুমতি পুনরুদ্ধার করতে এই ফোল্ডারটি আবার নির্বাচন করুন</string>
 	<string name="snack_bar_action_title_settings">সেটিংস</string>
 	<string name="snack_bar_action_title_search">খুঁজুন</string>
 	<string name="snack_bar_action_title_search_previous">পিছনে</string>

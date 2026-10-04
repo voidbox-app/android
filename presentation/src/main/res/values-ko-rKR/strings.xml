@@ -10,7 +10,7 @@
 	<string name="error_purchase_not_available">구매를 완료할 수 없습니다. 잠시 후 다시 시도해 주십시오.</string>
 	<string name="error_invalid_passphrase">잘못된 비밀번호입니다</string>
 	<string name="error_file_or_folder_exists">파일 또는 폴더가 이미 존재합니다.</string>
-	<string name="error_vault_version_not_supported">%1$s 버전의 Vault는 지원되지 않습니다. 해당 vault는 타 버전의 Cryptomator로 생성되었습니다.</string>
+	<string name="error_vault_version_not_supported">%1$s 버전의 Vault는 지원되지 않습니다. 해당 vault는 타 버전의 Latch로 생성되었습니다.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">해당 Vault 폴더 내에 %1$s 파일이 없습니다. Vault 폴더 안에 해당 파일이 있는지 다시 확인해주세요.</string>
 	<string name="error_vault_already_exists">Vault가 이미 존재합니다.</string>
 	<string name="error_no_such_file">파일이 존재하지 않습니다.</string>
@@ -32,7 +32,7 @@
 	<string name="error_vault_version_mismatch">%1$s에 기록된 버전이 %2$s에 기록된 버전과 다릅니다</string>
 	<string name="error_vault_key_invalid">%1$s이(가) %2$s와 동일하지 않습니다</string>
 	<string name="error_vault_config_loading">Vault 설정을 불러오는 중 오류 발생</string>
-	<string name="error_file_not_found_after_opening_using_3party">로컬 파일은 Cryptomator로 돌아온 후 더 이상 존재하지 않습니다. 추가적인 수정 사항이 클라우드에 적용되지 않습니다.</string>
+	<string name="error_file_not_found_after_opening_using_3party">로컬 파일은 Latch로 돌아온 후 더 이상 존재하지 않습니다. 추가적인 수정 사항이 클라우드에 적용되지 않습니다.</string>
 	<string name="error_no_such_bucket">해당 버킷을 찾을 수 없습니다.</string>
 	<string name="error_masterkey_location_not_supported">사용자 지정 마스터키 경로는 아직 지원하지 않습니다</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">F-Droid 앱을 찾을 수 없습니다. 앱을 설치했는지 확인해주세요.</string>
@@ -83,13 +83,13 @@
 	<string name="screen_license_check_cancel_subscription_hint">귀하는 이제 평생 라이선스를 보유하고 있습니다. 향후 불필요한 추가 결제를 방지하려면 설정의 %1$s 옵션을 통해 연간 구독을 취소하십시오.</string>
 	<string name="screen_welcome_title">환영합니다</string>
 	<string name="screen_welcome_notifications_title">알림 받기</string>
-	<string name="screen_welcome_notifications_message">Cryptomator가 백그라운드 활동, 자동 업로드 및 기타 중요 이벤트에 대해 안내할 수 있도록 알림을 허용해 주십시오.</string>
+	<string name="screen_welcome_notifications_message">Latch가 백그라운드 활동, 자동 업로드 및 기타 중요 이벤트에 대해 안내할 수 있도록 알림을 허용해 주십시오.</string>
 	<string name="screen_welcome_notifications_button">알림 허용하기</string>
 	<string name="screen_welcome_notifications_granted">알림이 활성화되었습니다.</string>
 	<string name="screen_welcome_continue_button">계속하기</string>
 	<string name="screen_welcome_screen_lock_button">화면 잠금 설정</string>
 	<string name="screen_welcome_screen_lock_already_set">화면 잠금이 이미 설정되었습니다.</string>
-	<string name="screen_welcome_intro_body">파일 보호를 위해 Cryptomator를 선택해 주셔서 감사합니다.\n\nCryptomator와 함께라면 귀하의 데이터의 제어권은 오직 귀하에게 있습니다.\n\n데이터를 빠르고 간편하게 암호화하세요.</string>
+	<string name="screen_welcome_intro_body">파일 보호를 위해 Latch를 선택해 주셔서 감사합니다.\n\nLatch와 함께라면 귀하의 데이터의 제어권은 오직 귀하에게 있습니다.\n\n데이터를 빠르고 간편하게 암호화하세요.</string>
 	<string name="next">다음</string>
 	<string name="back">이전</string>
 	<!-- # clouds -->
@@ -100,7 +100,7 @@
 	<string name="permission_message_export_file">파일을 내보내기 위해 저장소 접근 권한이 필요합니다.</string>
 	<string name="permission_message_upload_file">파일을 업로드하기 위해 저장소 접근 권한이 필요합니다.</string>
 	<string name="permission_message_share_file">파일을 공유하기 위해 저장소 접근 권한이 필요합니다.</string>
-	<string name="permission_revoked_re_request_permission">Cryptomator에서 이 경로에 접근할 권한을 잃었습니다. 폴더를 선택한 후 권한을 복구해주세요.</string>
+	<string name="permission_revoked_re_request_permission">Latch에서 이 경로에 접근할 권한을 잃었습니다. 폴더를 선택한 후 권한을 복구해주세요.</string>
 	<string name="snack_bar_action_title_settings">설정</string>
 	<string name="snack_bar_action_title_search">검색</string>
 	<string name="snack_bar_action_title_search_previous">이전</string>
@@ -116,7 +116,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">클라우드가 목록에 없습니까?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Cryptomator에 추가하기</string>
+	<string name="screen_vault_list_actions_title">Latch에 추가하기</string>
 	<string name="screen_vault_list_action_create_new_vault">새 Vault 생성</string>
 	<string name="screen_vault_list_action_add_existing_vault">기존 Vault 추가</string>
 	<string name="screen_vault_list_vault_action_delete">제거</string>
@@ -219,7 +219,7 @@
 	<string name="screen_settings_biometric_auth">생체 인증</string>
 	<string name="screen_settings_activate_biometric_auth">생체 인증 활성화</string>
 	<string name="screen_settings_confirm_face_unlock">얼굴 인식 잠금 해제 적용 (가능한 경우)</string>
-	<string name="screen_settings_block_app_when_obscured">타 앱이 화면을 가릴 경우 Cryptomator 비활성화</string>
+	<string name="screen_settings_block_app_when_obscured">타 앱이 화면을 가릴 경우 Latch 비활성화</string>
 	<string name="screen_settings_block_app_when_obscured_summary">입력을 가로채는 것과 가장된 유저 인터페이스를 표시하는 것을 막습니다</string>
 	<string name="screen_settings_secure_screen">스크린샷 차단</string>
 	<string name="screen_settings_secure_screen_summary">최근 사용 목록과 앱 내부에서 스크린샷 차단</string>
@@ -241,7 +241,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Wi-Fi 상태에서만 업로드</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">동영상 업로드</string>
 	<string name="screen_settings_auto_photo_upload_title">자동 업로드 대상 파일 저장 위치&#8230;</string>
-	<string name="screen_settings_website_label">Cryptomator 웹사이트</string>
+	<string name="screen_settings_website_label">Latch 웹사이트</string>
 	<string name="screen_settings_mastodon_label">Mastodon에서 팔로우 하기</string>
 	<string name="screen_settings_facebook_label">Facebook에서 좋아요 누르기</string>
 	<string name="screen_settings_section_legal">법률 정보</string>
@@ -274,15 +274,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s에 인증할 수 없습니다.</string>
 	<string name="screen_update_pcloud_connections_title">pCloud 자격증명 업데이트</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Cryptomator 종류</string>
+	<string name="screen_cryptomator_variants_title">Latch 종류</string>
 	<string name="screen_cryptomator_variants_lite_title">주 F-Droid 리포지토리</string>
 	<string name="screen_cryptomator_variants_lite_description">API 키가 필요하므로 제외되었습니다.</string>
 	<string name="screen_cryptomator_variants_lite_install">설치</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Cryptomator F-Droid 리포지토리</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid 리포지토리</string>
 	<string name="screen_cryptomator_variants_fdroid_description">독점 의존성을 가지고 있어 제외되었습니다.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">F-Droid 앱에 Cryptomator 리포지토리를 추가합니다.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">F-Droid 앱에 Latch 리포지토리를 추가합니다.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">추가</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">F-Droid로 Cryptomator를 설치합니다.\n만약 찾을 수 없음 오류가 표시된다면, F-Droid 동기화가 완료될 시점까지 기다리세요.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">F-Droid로 Latch를 설치합니다.\n만약 찾을 수 없음 오류가 표시된다면, F-Droid 동기화가 완료될 시점까지 기다리세요.</string>
 	<string name="screen_cryptomator_variants_website_title">웹사이트</string>
 	<string name="screen_cryptomator_variants_website_description">독점 의존성을 포함합니다.</string>
 	<string name="screen_cryptomator_variants_installation_hint">F-Droid 리포지토리 판과 상호 전환하려면 앱의 완전한 재설정이 필요합니다.</string>
@@ -312,7 +312,7 @@
 	<string name="dialog_replace_title_single_file_exists">파일을 덮어쓰겠습니까?</string>
 	<string name="dialog_replace_title_multiple_files_exist">파일을 덮어쓰겠습니까?</string>
 	<string name="dialog_unable_to_share_title">파일을 공유할 수 없습니다</string>
-	<string name="dialog_unable_to_share_message">현재 Vault가 존재하지 않습니다. 먼저 Cryptomator 앱으로 Vault를 생성하세요.</string>
+	<string name="dialog_unable_to_share_message">현재 Vault가 존재하지 않습니다. 먼저 Latch 앱으로 Vault를 생성하세요.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Vault 만들기</string>
 	<string name="dialog_filetype_not_supported_title">%1$s을(를) 열 수 없습니다.</string>
@@ -363,12 +363,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">이 모드에서는 민감한 정보들이 로그 파일로 기기에 기록될 수 있습니다.(파일명, 경로 등). 비밀번호, 쿠키 등의 정보는 예외입니다.\n\n 가능한 디버그 모드를 빨리 비활성화 하세요.</string>
 	<string name="dialog_debug_mode_disclaimer_title">주의</string>
 	<string name="dialog_debug_mode_positive_button">활성화</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Microsoft 앱의 버그로 인해, 편집할 파일이 기기의 공개 미디어 폴더에서 공유되어야 합니다. Cryptomator의 실행이 재개되면 이 공개 접근이 가능한 파일은 다시 삭제되나, Cryptomator는 해당 파일에 어떠한 일이 일어났는지 알 수 없습니다. 이 항목을 활성화할 경우 이러한 동작이 일어남을 숙지하세요. 이것은 Microsoft 파일 형식에만 적용됩니다. \n\n활성화 후 Cryptomator를 다시 시작합니다.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Microsoft 앱의 버그로 인해, 편집할 파일이 기기의 공개 미디어 폴더에서 공유되어야 합니다. Latch의 실행이 재개되면 이 공개 접근이 가능한 파일은 다시 삭제되나, Latch는 해당 파일에 어떠한 일이 일어났는지 알 수 없습니다. 이 항목을 활성화할 경우 이러한 동작이 일어남을 숙지하세요. 이것은 Microsoft 파일 형식에만 적용됩니다. \n\n활성화 후 Latch를 다시 시작합니다.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">이 설정은 보안 기능이며, 다른 앱이 사용자가 원치 않는 행동을 하도록 속이는 것을 막습니다.\n\n비활성화 함으로써 <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">위험성에 대해 인지</a>한다는 것을 확인합니다.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">주의</string>
 	<string name="dialog_disable_app_obscured_positive_button">비활성화</string>
 	<string name="dialog_app_is_obscured_info_title">앱이 가려짐</string>
-	<string name="dialog_app_is_obscured_info_hint">다른 앱이 Cryptomator 위에 무언가를 표시하고 있습니다 (예: 블루라이트 필터 혹은 야간 모드 앱 등) 보안 상의 이유로, Cryptomator가 비활성화되었습니다.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Cryptomator를 활성화하는 법</a></string>
+	<string name="dialog_app_is_obscured_info_hint">다른 앱이 Latch 위에 무언가를 표시하고 있습니다 (예: 블루라이트 필터 혹은 야간 모드 앱 등) 보안 상의 이유로, Latch가 비활성화되었습니다.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Latch를 활성화하는 법</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">닫기</string>
 	<string name="dialog_vaults_removed_during_migration_title">%1s 클라우드를 사용하기 위해 Vault들을 다시 추가하십시오</string>
 	<string name="dialog_vaults_removed_during_migration_hint">이 버전의 앱으로 전환하기 위해 다음의 Vault들을 앱에서 제거해야 합니다:\n%2s \n\n이 Vault 들은 클라우드가 아닌 이 앱에서만 제거됩니다. 계속 사용하기 위해 이 Vault들을 다시 추가하세요.</string>
@@ -382,9 +382,9 @@
 	<string name="dialog_confirm_delete_file_message">정말 이 파일을 삭제하시겠습니까?</string>
 	<string name="dialog_confirm_delete_folder_message">폴더의 모든 하위 항목들을 삭제합니다. 그래도 이 폴더를 삭제할까요?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">생체 인증 기능이 비활성화됨</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">키가 유효하지 않게 되어, 생체 인증 기능이 비활성화 되었습니다. 다시 활성화하려면 Cryptomator 설정을 여세요.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">키가 유효하지 않게 되어, 생체 인증 기능이 비활성화 되었습니다. 다시 활성화하려면 Latch 설정을 여세요.</string>
 	<string name="dialog_enter_license_title">유효한 라이선스를 입력하세요</string>
-	<string name="dialog_enter_license_content">Google Play 스토어를 이용하지 않고 Cryptomator가 설치되었음을 감지했습니다. 유효한 라이선스를 입력해주세요. 라이선스는 <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a>에서 구매가능합니다.</string>
+	<string name="dialog_enter_license_content">Google Play 스토어를 이용하지 않고 Latch가 설치되었음을 감지했습니다. 유효한 라이선스를 입력해주세요. 라이선스는 <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a>에서 구매가능합니다.</string>
 	<string name="dialog_enter_license_not_valid_content">입력된 라이선스는 유효하지 않습니다. 다시한번 확인해주세요.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">제공된 키는 데스크톱 판의 서포터 인증서입니다. 유효한 라이선스를 입력하세요.</string>
 	<string name="dialog_enter_license_no_content">라이선스가 입력되지 않았습니다. 유효한 라이선스를 입력해주세요.</string>
@@ -392,12 +392,12 @@
 	<string name="dialog_license_confirmation_title">라이선스 확인</string>
 	<string name="dialog_license_confirmation_message">%1$s님, 유효한 라이선스를 사용해 주셔서 감사합니다.</string>
 	<string name="dialog_update_available_title">업데이트가 출시되었습니다</string>
-	<string name="dialog_update_available_message">Cryptomator을 최신 버전으로 업데이트합니다. OK를 누르면 백그라운드에서 앱을 다운로드하고 설치를 요청합니다.</string>
+	<string name="dialog_update_available_message">Latch을 최신 버전으로 업데이트합니다. OK를 누르면 백그라운드에서 앱을 다운로드하고 설치를 요청합니다.</string>
 	<string name="dialog_update_available_update">지금 업데이트 하기</string>
 	<string name="dialog_update_available_download_site">다운로드 페이지로 가기</string>
 	<string name="dialog_update_available_cancel">다음에 하기</string>
 	<string name="dialog_download_update_title">다운로드중</string>
-	<string name="dialog_download_update_message">최신 버전의 Cryptomator 다운로드중</string>
+	<string name="dialog_download_update_message">최신 버전의 Latch 다운로드중</string>
 	<string name="dialog_sym_link_title">폴더가 심볼릭 링크임</string>
 	<string name="dialog_sym_link_message">이 심볼릭 링크를 탐색할 수 없습니다</string>
 	<string name="dialog_sym_link_back_button">이전</string>
@@ -433,9 +433,9 @@
 	<string name="dialog_hub_user_setup_required_hint">진행하려면 Hub 사용자 프로필에서 필요한 조치를 완료하십시오.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">프로필로 가기</string>
 	<string name="dialog_hub_check_host_authenticity_title">이 호스트를 신뢰하겠습니까?</string>
-	<string name="permission_snackbar_auth_local_vault">Cryptomator에서 로컬 Vault에 접근하기 위해 저장소 접근 권한이 필요합니다.</string>
-	<string name="permission_snackbar_auth_auto_upload">Cryptomator에서 자동으로 사진을 업로드하기 위해 저장소 접근 권한이 필요합니다.</string>
-	<string name="permission_snackbar_notifications">Cryptomator는 Vault 상태 표시 등의 이유로 알림 권한이 필요합니다</string>
+	<string name="permission_snackbar_auth_local_vault">Latch에서 로컬 Vault에 접근하기 위해 저장소 접근 권한이 필요합니다.</string>
+	<string name="permission_snackbar_auth_auto_upload">Latch에서 자동으로 사진을 업로드하기 위해 저장소 접근 권한이 필요합니다.</string>
+	<string name="permission_snackbar_notifications">Latch는 Vault 상태 표시 등의 이유로 알림 권한이 필요합니다</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

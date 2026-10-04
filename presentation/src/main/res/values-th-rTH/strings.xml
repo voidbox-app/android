@@ -48,7 +48,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">ไม่มีคลาวด์ในรายการ?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">เพิ่มไปยัง Cryptomator</string>
+	<string name="screen_vault_list_actions_title">เพิ่มไปยัง Latch</string>
 	<string name="screen_vault_list_action_create_new_vault">สร้าง Vault ใหม่</string>
 	<string name="screen_vault_list_action_add_existing_vault">เพิ่ม Vault เดิม</string>
 	<string name="screen_vault_list_vault_action_delete">ลบ</string>
@@ -133,7 +133,7 @@
 	<string name="screen_settings_section_auto_photo_upload_toggle">เปิดใช้งาน</string>
 	<string name="screen_settings_section_auto_photo_upload_toggle_instant_upload">อัปโหลดทันที</string>
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">อัปโหลดเฉพาะเมื่อใช้ WIFI</string>
-	<string name="screen_settings_website_label">เว็บไซต์ Cryptomator</string>
+	<string name="screen_settings_website_label">เว็บไซต์ Latch</string>
 	<string name="screen_settings_facebook_label">กดถูกใจเราบน Facebook</string>
 	<string name="screen_settings_section_legal">กฎหมาย</string>
 	<string name="screen_settings_licenses_label">สิทธิ์การใช้งาน</string>
@@ -153,7 +153,7 @@
 	<!-- ## screen: licenses -->
 	<!-- ## screen: authenticate cloud -->
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">รูปแบบต่างๆ ของ Cryptomator</string>
+	<string name="screen_cryptomator_variants_title">รูปแบบต่างๆ ของ Latch</string>
 	<string name="screen_cryptomator_variants_lite_install">ติดตั้ง</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">เพิ่ม</string>
 	<string name="screen_cryptomator_variants_website_title">เว็บไซต์</string>
@@ -205,7 +205,7 @@
 	<string name="dialog_app_is_obscured_info_neutral_button">ปิด</string>
 	<string name="dialog_confirm_delete_multiple_title">ลบ %1$d รายการ?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">การยืนยันตัวตนด้วยไบโอเมตริกซ์ถูกยกเลิก</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">เนื่องจากรหัสการตรวจสอบถูกยกเลิก ฟีเจอร์การตรวจสอบแบบไบโอเมตริกซ์จึงถูกปิดใช้งาน หากต้องการเปิดใช้งานอีกครั้ง โปรดเปิดการตั้งค่า Cryptomator</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">เนื่องจากรหัสการตรวจสอบถูกยกเลิก ฟีเจอร์การตรวจสอบแบบไบโอเมตริกซ์จึงถูกปิดใช้งาน หากต้องการเปิดใช้งานอีกครั้ง โปรดเปิดการตั้งค่า Latch</string>
 	<string name="dialog_enter_license_decline_button">ออก</string>
 	<string name="dialog_update_available_title">มีการอัปเดตพร้อมใช้งาน</string>
 	<string name="dialog_update_available_update">อัปเดตตอนนี้</string>

@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Nėra tinklo ryšio</string>
 	<string name="error_invalid_passphrase">Neteisingas slaptažodis</string>
 	<string name="error_file_or_folder_exists">Failas ar aplankas jau yra.</string>
-	<string name="error_vault_version_not_supported">Slėptuvės versija %1$s yra nepalaikoma. Ši slėptuvė sukurta naudojant senesnę arba naujesnę Cryptomator versiją.</string>
+	<string name="error_vault_version_not_supported">Slėptuvės versija %1$s yra nepalaikoma. Ši slėptuvė sukurta naudojant senesnę arba naujesnę Latch versiją.</string>
 	<string name="error_vault_already_exists">Slėptuvė jau yra.</string>
 	<string name="error_no_such_file">Failo nėra.</string>
 	<string name="error_vault_has_been_locked">Slėptuvė užrakinta.</string>

@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">אין חיבור לרשת</string>
 	<string name="error_invalid_passphrase">סיסמה שגויה</string>
 	<string name="error_file_or_folder_exists">כבר קיימים תיקייה או קובץ בשם זה.</string>
-	<string name="error_vault_version_not_supported">גרסת Vault %1$s אינה נתמכת. גרסא Vault זו נוצרה עם גרסא חדשה או ישנה יותר של Cryptomator.</string>
+	<string name="error_vault_version_not_supported">גרסת Vault %1$s אינה נתמכת. גרסא Vault זו נוצרה עם גרסא חדשה או ישנה יותר של Latch.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">הקובץ %1$s חסר בתיקית הכספת. ודא שהקובץ קיים בתיקית הכספת בענן.</string>
 	<string name="error_vault_already_exists">כספת כבר קיימת.</string>
 	<string name="error_no_such_file">הקובץ לא קיים.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">הגרסה ב %1$s שונה מזו שב %2$s</string>
 	<string name="error_vault_key_invalid">%1$s ו %2$s אינם תואמים</string>
 	<string name="error_vault_config_loading">שגיאה כללית בזמן טעינת הגדרות הכספת</string>
-	<string name="error_file_not_found_after_opening_using_3party">קובץ מקומי לא יופיע לאחר מעבר חזרה ל Cryptomator. שינויים שנעשו עלולים לא להתעדכן בחזרה לענן.</string>
+	<string name="error_file_not_found_after_opening_using_3party">קובץ מקומי לא יופיע לאחר מעבר חזרה ל Latch. שינויים שנעשו עלולים לא להתעדכן בחזרה לענן.</string>
 	<string name="error_no_such_bucket">דלי לא נמצא</string>
 	<string name="error_masterkey_location_not_supported">שינוי מיקום ה Masterkey עדיין לא נתמך</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">כשלון בתקשורת מול ישום F-Droid. האם הוא מותקן?</string>
@@ -63,10 +63,10 @@
 	<string name="cloud_names_local_storage">אחסון מקומי</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Cryptomator זקוק להרשאת גישה לזיכרון המכשיר כדי לייצא קבצים</string>
-	<string name="permission_message_upload_file">Cryptomator זקוק להרשאת גישה לזיכרון המכשיר כדי להעלות קבצים</string>
-	<string name="permission_message_share_file">Cryptomator זקוק להרשאת גישה לזיכרון המכשיר כדי לשתף קבצים</string>
-	<string name="permission_revoked_re_request_permission">Cryptomator איבד את הרשאות הגישה לתיקייה זו. אנא בחר תיקייה זו בשנית כדי להחזיר את הרשאה.</string>
+	<string name="permission_message_export_file">Latch זקוק להרשאת גישה לזיכרון המכשיר כדי לייצא קבצים</string>
+	<string name="permission_message_upload_file">Latch זקוק להרשאת גישה לזיכרון המכשיר כדי להעלות קבצים</string>
+	<string name="permission_message_share_file">Latch זקוק להרשאת גישה לזיכרון המכשיר כדי לשתף קבצים</string>
+	<string name="permission_revoked_re_request_permission">Latch איבד את הרשאות הגישה לתיקייה זו. אנא בחר תיקייה זו בשנית כדי להחזיר את הרשאה.</string>
 	<string name="snack_bar_action_title_settings">הגדרות</string>
 	<string name="snack_bar_action_title_search">חיפוש</string>
 	<string name="snack_bar_action_title_search_previous">הקודם</string>
@@ -82,7 +82,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">ענן לא ברשימה?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">הוסף ל-Cryptomator</string>
+	<string name="screen_vault_list_actions_title">הוסף ל-Latch</string>
 	<string name="screen_vault_list_action_create_new_vault">צור כספת חדשה</string>
 	<string name="screen_vault_list_action_add_existing_vault">הוסף כספת קיימת</string>
 	<string name="screen_vault_list_vault_action_delete">הסר</string>
@@ -208,7 +208,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">העלה רק כאשר המכשיר מחובר ל WiFi</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">העלה סרטוני וידאו</string>
 	<string name="screen_settings_auto_photo_upload_title">שמור קבצים מועלים אוטומטית ל&#8230;</string>
-	<string name="screen_settings_website_label">לאתר Cryptomator</string>
+	<string name="screen_settings_website_label">לאתר Latch</string>
 	<string name="screen_settings_facebook_label">תנו לנו לייק ב-Facebook</string>
 	<string name="screen_settings_section_legal">היבטים משפטיים</string>
 	<string name="screen_settings_licenses_label">רישיונות</string>
@@ -238,15 +238,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">האימות מול \'%1$s\' נכשל.</string>
 	<string name="screen_update_pcloud_connections_title">עדכן את פרטי ההתחברות אל pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">מהדורות שונות של Cryptomator</string>
+	<string name="screen_cryptomator_variants_title">מהדורות שונות של Latch</string>
 	<string name="screen_cryptomator_variants_lite_title">מאגר F-Droid ראשי</string>
 	<string name="screen_cryptomator_variants_lite_description">הוסרו כיוון שהם דורשים מפתחות API.</string>
 	<string name="screen_cryptomator_variants_lite_install">התקנה</string>
-	<string name="screen_cryptomator_variants_fdroid_title">מאגר Cryptomator ב-F-Droid</string>
+	<string name="screen_cryptomator_variants_fdroid_title">מאגר Latch ב-F-Droid</string>
 	<string name="screen_cryptomator_variants_fdroid_description">לא זמין בגלל שהוא כולל רכיבים קנייניים.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">הוספת מאגר Cryptomator לישום F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">הוספת מאגר Latch לישום F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">הוספה</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">התקנת Cryptomator באמצעות F-Droid.\nאם שגיאה של לא נמצא מוצגת, המתן עד שתהליך הסנכרון של F-Droid יסתיים.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">התקנת Latch באמצעות F-Droid.\nאם שגיאה של לא נמצא מוצגת, המתן עד שתהליך הסנכרון של F-Droid יסתיים.</string>
 	<string name="screen_cryptomator_variants_website_title">אתר</string>
 	<string name="screen_cryptomator_variants_website_description">מכיל דרישות קדם קנייניות.</string>
 	<string name="screen_cryptomator_variants_installation_hint">החלפה מ/אל המהדורה של מאגר F-Droid דורשת התקנה נקיה של הישום.</string>
@@ -276,7 +276,7 @@
 	<string name="dialog_replace_title_single_file_exists">להחליף את הקובץ?</string>
 	<string name="dialog_replace_title_multiple_files_exist">להחליף את הקבצים?</string>
 	<string name="dialog_unable_to_share_title">אין אפשרות לשתף את הקבצים</string>
-	<string name="dialog_unable_to_share_message">עדיין לא הגדרת כספת. צור כספת חדשה בעזרת אפליקציית Cryptomator.</string>
+	<string name="dialog_unable_to_share_message">עדיין לא הגדרת כספת. צור כספת חדשה בעזרת אפליקציית Latch.</string>
 	<string name="dialog_unable_to_share_positive_button">אישור</string>
 	<string name="dialog_unable_to_share_negative_button">צור כספת חדשה</string>
 	<string name="dialog_filetype_not_supported_title">הקובץ %1$s לא נתמך</string>
@@ -329,7 +329,7 @@
 	<string name="dialog_debug_mode_positive_button">הפעל</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">שים לב</string>
 	<string name="dialog_disable_app_obscured_positive_button">כבה</string>
-	<string name="dialog_app_is_obscured_info_title">אפליקציה אחרת מציגה מעל Cryptomator</string>
+	<string name="dialog_app_is_obscured_info_title">אפליקציה אחרת מציגה מעל Latch</string>
 	<string name="dialog_app_is_obscured_info_neutral_button">סגור</string>
 	<string name="dialog_vaults_removed_during_migration_title">נא הוסף מחדש את הכספות עבור הענן %1s</string>
 	<string name="dialog_vaults_removed_during_migration_hint">בעת ביצוע הגירה לגרסת הישום, אנו צריכים להסיר את הכספות הבאות מהישום:\n%2s\n\nהכספות האלו לא מוסרות מהענן אלא רק מישום זה. סליחה על אי הנוחות ואנא הוסף מחדש את הכספות כדי להמשיך לעבוד אתם.</string>
@@ -342,9 +342,9 @@
 	<string name="dialog_confirm_delete_file_message">אתה בטוח שברצונך למחוק קובץ זה?</string>
 	<string name="dialog_confirm_delete_folder_message">אתה בטוח שברצונך למחוק תיקייה זו? הפעולה תמחק גם את כל הקבצים שנמצאים בתוך התיקייה.</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">האימות הביומטרי בוטל</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">בגלל שמפתח זה כבר לא חוקי, הזיהו הביומטרי הופסק. להפעלה מחדש יש לפתוח את מסך ההגדרות של Cryptomator.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">בגלל שמפתח זה כבר לא חוקי, הזיהו הביומטרי הופסק. להפעלה מחדש יש לפתוח את מסך ההגדרות של Latch.</string>
 	<string name="dialog_enter_license_title">שימוש במפתח רישיון</string>
-	<string name="dialog_enter_license_content">זיהינו שהתקנת את Cryptomator לא דרך ה-Google Play Store. להפעלת האפליקציה, יש להכניס מפתח רישיון. ניתן לרכוש מפתח ב-<a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">זיהינו שהתקנת את Latch לא דרך ה-Google Play Store. להפעלת האפליקציה, יש להכניס מפתח רישיון. ניתן לרכוש מפתח ב-<a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">המפתח לא אומת. וודא כי הזנת אותו כהלכה.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">המפתח שהוזן הוא תעודת תומך. יש להזין מפתח חוקי.</string>
 	<string name="dialog_enter_license_no_content">לא הוזן מפתח, אנא הזן מפתח רישיון תקין.</string>
@@ -352,12 +352,12 @@
 	<string name="dialog_license_confirmation_title">מפתח הרישיון אומת</string>
 	<string name="dialog_license_confirmation_message">תודה %1$s, על כך שהזנת מפתח רישיון תקין.</string>
 	<string name="dialog_update_available_title">עדכון זמין</string>
-	<string name="dialog_update_available_message">עדכן לגרסה החדשה ביותר של Cryptomator. לאחר שתסכים, העדכון ירד ברקע וכשההורדה תסתיים, תתבקש לבצע את ההתקנה.</string>
+	<string name="dialog_update_available_message">עדכן לגרסה החדשה ביותר של Latch. לאחר שתסכים, העדכון ירד ברקע וכשההורדה תסתיים, תתבקש לבצע את ההתקנה.</string>
 	<string name="dialog_update_available_update">עדכן עכשיו</string>
 	<string name="dialog_update_available_download_site">למעבר לאתר הההורדות</string>
 	<string name="dialog_update_available_cancel">מאוחר יותר</string>
 	<string name="dialog_download_update_title">מוריד</string>
-	<string name="dialog_download_update_message">מוריד את הגרסה העדכנית ביותר של Cryptomator</string>
+	<string name="dialog_download_update_message">מוריד את הגרסה העדכנית ביותר של Latch</string>
 	<string name="dialog_sym_link_title">התיקייה היא קישור סימבולי</string>
 	<string name="dialog_sym_link_message">לא ניתן לנווט אל תוך קישור סימבולי זה</string>
 	<string name="dialog_sym_link_back_button">חזור</string>
@@ -369,9 +369,9 @@
 	<string name="dialog_hub_vault_access_forbidden_title">הגישה נדחתה</string>
 	<string name="dialog_restore_successful_title">שוחזר בהצלחה</string>
 	<string name="dialog_no_full_version_title">אין גרסה מלאה</string>
-	<string name="permission_snackbar_auth_local_vault">Cryptomator זקוק להרשאת גישה לזיכרון המכשיר כדי להשתמש בכספת מקומית</string>
-	<string name="permission_snackbar_auth_auto_upload">Cryptomator זקוק להרשאת גישה לזיכרון המכשיר כדי לבצע העלאה אוטומטית של תמונות</string>
-	<string name="permission_snackbar_notifications">Cryptomator צריך הרשאה לשליחת התראות על מנת, לדוגמה, להציג לכם את מצב הכספת</string>
+	<string name="permission_snackbar_auth_local_vault">Latch זקוק להרשאת גישה לזיכרון המכשיר כדי להשתמש בכספת מקומית</string>
+	<string name="permission_snackbar_auth_auto_upload">Latch זקוק להרשאת גישה לזיכרון המכשיר כדי לבצע העלאה אוטומטית של תמונות</string>
+	<string name="permission_snackbar_notifications">Latch צריך הרשאה לשליחת התראות על מנת, לדוגמה, להציג לכם את מצב הכספת</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

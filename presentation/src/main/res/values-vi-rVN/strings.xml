@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Không có kết nối mạng</string>
 	<string name="error_invalid_passphrase">Sai mật khẩu</string>
 	<string name="error_file_or_folder_exists">Tệp tin hoặc thư mục đã tồn tại.</string>
-	<string name="error_vault_version_not_supported">Phiên bản Vault %1$s không được hỗ trợ. Vault này đã được tạo bằng phiên bản Cryptomator cũ hơn hoặc mới hơn.</string>
+	<string name="error_vault_version_not_supported">Phiên bản Vault %1$s không được hỗ trợ. Vault này đã được tạo bằng phiên bản Latch cũ hơn hoặc mới hơn.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Tệp %1$s bị thiếu trong thư mục vault của bạn. Đảm bảo rằng tệp này tồn tại trong thư mục vault của bạn trong đám mây.</string>
 	<string name="error_vault_already_exists">Vault đã tồn tại.</string>
 	<string name="error_no_such_file">Tệp tin không tồn tại.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">Phiên bản được chỉ định trong %1$s khác với %2$s</string>
 	<string name="error_vault_key_invalid">%1$s không khớp với %2$s</string>
 	<string name="error_vault_config_loading">Lỗi không rõ khi tải cấu hình vault</string>
-	<string name="error_file_not_found_after_opening_using_3party">Tệp cục bộ không còn xuất hiện nữa sau khi chuyển về Cryptomator. Những thay đổi có thể xảy ra không thể được truyền trở lại đám mây.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Tệp cục bộ không còn xuất hiện nữa sau khi chuyển về Latch. Những thay đổi có thể xảy ra không thể được truyền trở lại đám mây.</string>
 	<string name="error_no_such_bucket">Không có vùng lưu trữ như vậy</string>
 	<string name="error_masterkey_location_not_supported">Vị trí tùy chọn của Khoá Chính chưa được hỗ trợ</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Không giao tiếp được với ứng dụng F-Droid. Chưa cài đặt?</string>
@@ -63,10 +63,10 @@
 	<string name="cloud_names_local_storage">Bộ nhớ cục bộ</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Cryptomator cần truy cập nơi lưu trữ để xuất tệp</string>
-	<string name="permission_message_upload_file">Cryptomator cần quyền truy cập nơi lưu trữ để tải tệp lên</string>
-	<string name="permission_message_share_file">Cryptomator cần quyền truy cập bộ nhớ chia sẻ tệp</string>
-	<string name="permission_revoked_re_request_permission">Cryptomator đã mất quyền truy cập vào vị trí này. Vui lòng chọn lại thư mục này để khôi phục quyền.</string>
+	<string name="permission_message_export_file">Latch cần truy cập nơi lưu trữ để xuất tệp</string>
+	<string name="permission_message_upload_file">Latch cần quyền truy cập nơi lưu trữ để tải tệp lên</string>
+	<string name="permission_message_share_file">Latch cần quyền truy cập bộ nhớ chia sẻ tệp</string>
+	<string name="permission_revoked_re_request_permission">Latch đã mất quyền truy cập vào vị trí này. Vui lòng chọn lại thư mục này để khôi phục quyền.</string>
 	<string name="snack_bar_action_title_settings">Các cài đặt</string>
 	<string name="snack_bar_action_title_search">Tìm kiếm</string>
 	<string name="snack_bar_action_title_search_previous">Liền trước</string>
@@ -82,7 +82,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Đám mây không có trong danh sách?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Thêm vào Cryptomator</string>
+	<string name="screen_vault_list_actions_title">Thêm vào Latch</string>
 	<string name="screen_vault_list_action_create_new_vault">Tạo vault mới</string>
 	<string name="screen_vault_list_action_add_existing_vault">Thêm vault hiện có</string>
 	<string name="screen_vault_list_vault_action_delete">Xóa</string>
@@ -205,7 +205,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Tải lên chỉ khi dùng W</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Tải lên video</string>
 	<string name="screen_settings_auto_photo_upload_title">Lưu tệp tải lên tự động vào&#8230;</string>
-	<string name="screen_settings_website_label">Cryptomator website</string>
+	<string name="screen_settings_website_label">Latch website</string>
 	<string name="screen_settings_facebook_label">Hãy like chúng tôi trên Facebook</string>
 	<string name="screen_settings_section_legal">Pháp lý</string>
 	<string name="screen_settings_licenses_label">Giấy phép</string>
@@ -237,15 +237,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s không thể được xác thực.</string>
 	<string name="screen_update_pcloud_connections_title">Cập nhật thông tin đăng nhập pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Các biến thể của Cryptomator</string>
+	<string name="screen_cryptomator_variants_title">Các biến thể của Latch</string>
 	<string name="screen_cryptomator_variants_lite_title">Kho F-Droid Chính</string>
 	<string name="screen_cryptomator_variants_lite_description">Bị loại trừ vì chúng yêu cầu khoá API.</string>
 	<string name="screen_cryptomator_variants_lite_install">Cài đặt</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Kho F-Droid Cryptomator</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Kho F-Droid Latch</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Bị loại trừ vì nó chứa các phụ thuộc độc quyền.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Thêm kho Cryptomator vào ứng dụng F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Thêm kho Latch vào ứng dụng F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Thêm</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Cài đặt Cryptomator bằng F-Droid.\nNếu lỗi không tìm thấy hiển thị, hãy đợi cho đến khi quá trình đồng bộ hoá F-Droid kết thúc.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Cài đặt Latch bằng F-Droid.\nNếu lỗi không tìm thấy hiển thị, hãy đợi cho đến khi quá trình đồng bộ hoá F-Droid kết thúc.</string>
 	<string name="screen_cryptomator_variants_website_title">Website</string>
 	<string name="screen_cryptomator_variants_website_description">Chứa các phụ thuộc độc quyền.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Chuyển đổi từ hoặc đến biến thể trên kho F-Droid chính yêu cầu thiết lập lại ứng dụng.</string>
@@ -275,7 +275,7 @@
 	<string name="dialog_replace_title_single_file_exists">Thay thế tệp tin?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Thay thế tập tin?</string>
 	<string name="dialog_unable_to_share_title">Không thể chia sẻ tệp</string>
-	<string name="dialog_unable_to_share_message">Bạn chưa thiết lập bất kỳ vault nào. Trước tiên, hãy tạo một vault mới bằng ứng dụng Cryptomator.</string>
+	<string name="dialog_unable_to_share_message">Bạn chưa thiết lập bất kỳ vault nào. Trước tiên, hãy tạo một vault mới bằng ứng dụng Latch.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Tạo vault</string>
 	<string name="dialog_filetype_not_supported_title">Không thể mở %1$s</string>
@@ -326,7 +326,7 @@
 	<string name="dialog_debug_mode_disclaimer_hint">Ở chế độ này, dữ liệu nhạy cảm có thể được ghi vào tệp nhật ký trên thiết bị của bạn (ví dụ: tên tệp và đường dẫn). Mật khẩu, cookie, v.v. được loại trừ rõ ràng.\n\nHãy nhớ tắt chế độ gỡ lỗi càng sớm càng tốt.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Chú ý</string>
 	<string name="dialog_debug_mode_positive_button">Bật</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Do lỗi trong các ứng dụng của Microsoft, tệp cần chỉnh sửa phải được chia sẻ với các ứng dụng này trong thư mục phương tiện công cộng trên thiết bị của bạn. Sau khi Cryptomator được tiếp tục, tệp có thể truy cập công khai sẽ bị xoá một lần nữa, nhưng Cryptomator không thể tác động đến những gì đã xảy ra với tệp này trong lúc ấy. Đảm bảo rằng bạn biết hành vi này khi kích hoạt tuỳ chọn này. Điều này sẽ chỉ áp dụng cho các loại tệp của Microsoft.\n\nCryptomator sẽ khởi động lại sau khi kích hoạt.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Do lỗi trong các ứng dụng của Microsoft, tệp cần chỉnh sửa phải được chia sẻ với các ứng dụng này trong thư mục phương tiện công cộng trên thiết bị của bạn. Sau khi Latch được tiếp tục, tệp có thể truy cập công khai sẽ bị xoá một lần nữa, nhưng Latch không thể tác động đến những gì đã xảy ra với tệp này trong lúc ấy. Đảm bảo rằng bạn biết hành vi này khi kích hoạt tuỳ chọn này. Điều này sẽ chỉ áp dụng cho các loại tệp của Microsoft.\n\nLatch sẽ khởi động lại sau khi kích hoạt.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Chú ý</string>
 	<string name="dialog_disable_app_obscured_positive_button">Tắt</string>
 	<string name="dialog_app_is_obscured_info_title">Ứng dụng bị che khuất</string>
@@ -342,9 +342,9 @@
 	<string name="dialog_confirm_delete_file_message">Bạn có chắc chắn muốn xóa file này?</string>
 	<string name="dialog_confirm_delete_folder_message">Thao tác này sẽ xoá tất cả nội dung của thư mục. Bạn có chắc chắn muốn xoá thư mục này?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Đã tắt tính năng xác thực sinh trắc học</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Vì khoá đã bị vô hiệu nên tính năng xác thực sinh trắc học đã bị tắt. Để bật lại, hãy mở cài đặt Cryptomator.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Vì khoá đã bị vô hiệu nên tính năng xác thực sinh trắc học đã bị tắt. Để bật lại, hãy mở cài đặt Latch.</string>
 	<string name="dialog_enter_license_title">Cung cấp giấy phép hợp lệ</string>
-	<string name="dialog_enter_license_content">Chúng tôi phát hiện ra rằng bạn đã cài đặt Cryptomator mà không sử dụng Cửa hàng Google Play. Cung cấp giấy phép hợp lệ, mà bạn có thể mua trên <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Chúng tôi phát hiện ra rằng bạn đã cài đặt Latch mà không sử dụng Cửa hàng Google Play. Cung cấp giấy phép hợp lệ, mà bạn có thể mua trên <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">Giấy phép được cung cấp không hợp lệ. Hãy chắc chắn rằng bạn đã nhập nó một cách chính xác.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Khoá được cung cấp là chứng chỉ người hỗ trợ dành cho máy tính để bàn. Vui lòng nhập giấy phép hợp lệ.</string>
 	<string name="dialog_enter_license_no_content">Không có giấy phép được cung cấp. Vui lòng nhập giấy phép hợp lệ.</string>
@@ -352,12 +352,12 @@
 	<string name="dialog_license_confirmation_title">Xác nhận giấy phép</string>
 	<string name="dialog_license_confirmation_message">Cảm ơn %1$s đã cung cấp giấy phép hợp lệ của bạn.</string>
 	<string name="dialog_update_available_title">Đã có bản cập nhật</string>
-	<string name="dialog_update_available_message">Cập nhật Cryptomator lên phiên bản mới nhất. Bằng cách nhấn OK, chúng tôi sẽ tải xuống ứng dụng ở chế độ nền và sẽ yêu cầu bạn cài đặt ứng dụng đó.</string>
+	<string name="dialog_update_available_message">Cập nhật Latch lên phiên bản mới nhất. Bằng cách nhấn OK, chúng tôi sẽ tải xuống ứng dụng ở chế độ nền và sẽ yêu cầu bạn cài đặt ứng dụng đó.</string>
 	<string name="dialog_update_available_update">Cập nhật ngay</string>
 	<string name="dialog_update_available_download_site">Đến trang tải xuống</string>
 	<string name="dialog_update_available_cancel">Để sau</string>
 	<string name="dialog_download_update_title">Đang tải</string>
-	<string name="dialog_download_update_message">Đang tải phiên bản mới nhất của Cryptomator</string>
+	<string name="dialog_download_update_message">Đang tải phiên bản mới nhất của Latch</string>
 	<string name="dialog_sym_link_title">Thư mục là một liên kết tượng trưng</string>
 	<string name="dialog_sym_link_message">Bạn không thể điều hướng vào liên kết tượng trưng này</string>
 	<string name="dialog_sym_link_back_button">Quay lại</string>
@@ -370,9 +370,9 @@
 	<string name="dialog_restore_successful_title">Khôi phục thành công</string>
 	<string name="dialog_no_full_version_title">Không có bản đầy đủ</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Xem hồ sơ</string>
-	<string name="permission_snackbar_auth_local_vault">Cryptomator cần quyền truy cập bộ nhớ để sử dụng vault cục bộ</string>
-	<string name="permission_snackbar_auth_auto_upload">Cryptomator cần quyền truy cập bộ nhớ để sử dụng tính năng tự động tải ảnh lên</string>
-	<string name="permission_snackbar_notifications">Cryptomator cần quyền thông báo để hiển thị trạng thái vault chẳng hạn</string>
+	<string name="permission_snackbar_auth_local_vault">Latch cần quyền truy cập bộ nhớ để sử dụng vault cục bộ</string>
+	<string name="permission_snackbar_auth_auto_upload">Latch cần quyền truy cập bộ nhớ để sử dụng tính năng tự động tải ảnh lên</string>
+	<string name="permission_snackbar_notifications">Latch cần quyền thông báo để hiển thị trạng thái vault chẳng hạn</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

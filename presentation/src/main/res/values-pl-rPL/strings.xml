@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Brak połączenia z Internetem</string>
 	<string name="error_invalid_passphrase">Błędne hasło</string>
 	<string name="error_file_or_folder_exists">Plik lub folder już istnieje.</string>
-	<string name="error_vault_version_not_supported">Wersja sejfu %1$s jest nieobsługiwana. Ten sejf został utworzony ze starszą lub nowszą wersją Cryptomator.</string>
+	<string name="error_vault_version_not_supported">Wersja sejfu %1$s jest nieobsługiwana. Ten sejf został utworzony ze starszą lub nowszą wersją Latch.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Brak pliku %1$s w folderze sejfu. Upewnij się, że ten plik istnieje w folderze sejfu w chmurze.</string>
 	<string name="error_vault_already_exists">Sejf już istnieje.</string>
 	<string name="error_no_such_file">Plik nie istnieje.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">Wersja zapisana w %1$s różni się od tej w %2$s</string>
 	<string name="error_vault_key_invalid">%1$s nie pasuje do tego %2$s</string>
 	<string name="error_vault_config_loading">Ogólny błąd podczas ładowania konfiguracji sejfu</string>
-	<string name="error_file_not_found_after_opening_using_3party">Lokalny plik nie jest już obecny po przełączeniu się z powrotem na Cryptomator. Możliwe zmiany nie mogą być przeniesione z powrotem do chmury.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Lokalny plik nie jest już obecny po przełączeniu się z powrotem na Latch. Możliwe zmiany nie mogą być przeniesione z powrotem do chmury.</string>
 	<string name="error_no_such_bucket">Nie ma takiego bucketu</string>
 	<string name="error_masterkey_location_not_supported">Niestandardowa lokalizacja klucza głównego jest jeszcze nieobsługiwana</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Nie udało się połączyć z aplikacją F-Droid. Nie ma aplikacji?</string>
@@ -69,10 +69,10 @@
 	<string name="cloud_names_local_storage">Pamięć wewnętrzna</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Cryptomator potrzebuje dostępu do pamięci masowej do eksportu plików</string>
-	<string name="permission_message_upload_file">Cryptomator potrzebuje dostępu do pamięci masowej, aby przesłać pliki</string>
-	<string name="permission_message_share_file">Cryptomator potrzebuje dostępu do pamięci masowej, aby udostępniać pliki</string>
-	<string name="permission_revoked_re_request_permission">Cryptomator stracił uprawnienia do dostępu do tej lokalizacji. Wybierz ten katalog ponownie, aby przywrócić uprawnienia.</string>
+	<string name="permission_message_export_file">Latch potrzebuje dostępu do pamięci masowej do eksportu plików</string>
+	<string name="permission_message_upload_file">Latch potrzebuje dostępu do pamięci masowej, aby przesłać pliki</string>
+	<string name="permission_message_share_file">Latch potrzebuje dostępu do pamięci masowej, aby udostępniać pliki</string>
+	<string name="permission_revoked_re_request_permission">Latch stracił uprawnienia do dostępu do tej lokalizacji. Wybierz ten katalog ponownie, aby przywrócić uprawnienia.</string>
 	<string name="snack_bar_action_title_settings">Ustawienia</string>
 	<string name="snack_bar_action_title_search">Szukaj</string>
 	<string name="snack_bar_action_title_search_previous">Poprzedni</string>
@@ -88,7 +88,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Brak chmury na liście?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Dodaj do aplikacji Cryptomator</string>
+	<string name="screen_vault_list_actions_title">Dodaj do aplikacji Latch</string>
 	<string name="screen_vault_list_action_create_new_vault">Utwórz nowy sejf</string>
 	<string name="screen_vault_list_action_add_existing_vault">Dodaj istniejący sejf</string>
 	<string name="screen_vault_list_vault_action_delete">Usuń</string>
@@ -215,7 +215,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Prześlij tylko przy użyciu WIFI</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Prześlij filmy</string>
 	<string name="screen_settings_auto_photo_upload_title">Zapisz automatycznie przesyłane pliki w&#8230;</string>
-	<string name="screen_settings_website_label">Cryptomator w Internecie</string>
+	<string name="screen_settings_website_label">Latch w Internecie</string>
 	<string name="screen_settings_mastodon_label">Obserwuj nas na Mastodonie</string>
 	<string name="screen_settings_facebook_label">Polub nas na Facebooku</string>
 	<string name="screen_settings_section_legal">Informacje prawne</string>
@@ -248,15 +248,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">Nie można uwierzytelnić %1$s.</string>
 	<string name="screen_update_pcloud_connections_title">Aktualizuj dane logowania pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Warianty Cryptomatora</string>
+	<string name="screen_cryptomator_variants_title">Warianty Latcha</string>
 	<string name="screen_cryptomator_variants_lite_title">Główne repozytorium F-Droid</string>
 	<string name="screen_cryptomator_variants_lite_description">Wykluczone, ponieważ wymagają kluczy API.</string>
 	<string name="screen_cryptomator_variants_lite_install">Instaluj</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Repozytorium Cryptomator F-Droid</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Repozytorium Latch F-Droid</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Wykluczone, ponieważ zawiera zastrzeżone zależności.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Dodaj repozytorium Cryptomator do aplikacji F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Dodaj repozytorium Latch do aplikacji F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Dodaj</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Zainstaluj Cryptomator za pomocą F-Droid.\nJeśli pojawi się błąd braku aplikacji, poczekaj do zakończenia synchronizacji F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Zainstaluj Latch za pomocą F-Droid.\nJeśli pojawi się błąd braku aplikacji, poczekaj do zakończenia synchronizacji F-Droid.</string>
 	<string name="screen_cryptomator_variants_website_title">Strona WWW</string>
 	<string name="screen_cryptomator_variants_website_description">Zawiera zastrzeżone zależności.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Przełączenie z lub na główny wariant repozytorium F-Droid wymaga nowej konfiguracji aplikacji.</string>
@@ -286,7 +286,7 @@
 	<string name="dialog_replace_title_single_file_exists">Zastąp plik?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Zastąp pliki?</string>
 	<string name="dialog_unable_to_share_title">Nie można udostępnić plików</string>
-	<string name="dialog_unable_to_share_message">Nie wczytałeś żadnych sejfów. Proszę najpierw utworzyć nowy sejf z aplikacją Cryptomator.</string>
+	<string name="dialog_unable_to_share_message">Nie wczytałeś żadnych sejfów. Proszę najpierw utworzyć nowy sejf z aplikacją Latch.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Utwórz sejf</string>
 	<string name="dialog_filetype_not_supported_title">Nie można otworzyć %1$s</string>
@@ -337,12 +337,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">W tym trybie poufne dane mogą być zapisywane do pliku dziennika na urządzeniu (np. nazwy plików i ścieżki). Hasła, ciasteczka itp. są wykluczone.\n\nPamiętaj, aby wyłączyć tryb debugowania tak szybko, jak to możliwe.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Uwaga</string>
 	<string name="dialog_debug_mode_positive_button">Włącz</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Z powodu błędu w aplikacjach firmy Microsoft, plik do edycji musi być udostępniony tym aplikacjom w folderze mediów publicznych na Twoim urządzeniu. Po wznowieniu działania Cryptomator ponownie usuwa publicznie dostępny plik, ale Cryptomator nie może wpływać na to, co w międzyczasie stało się z tym plikiem. Upewnij się, że jesteś świadomy tego zachowania podczas aktywowania tej opcji. To będzie dotyczyć tylko typów plików firmy Microsoft.\n\nCryptomator uruchomi się ponownie po aktywacji.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Z powodu błędu w aplikacjach firmy Microsoft, plik do edycji musi być udostępniony tym aplikacjom w folderze mediów publicznych na Twoim urządzeniu. Po wznowieniu działania Latch ponownie usuwa publicznie dostępny plik, ale Latch nie może wpływać na to, co w międzyczasie stało się z tym plikiem. Upewnij się, że jesteś świadomy tego zachowania podczas aktywowania tej opcji. To będzie dotyczyć tylko typów plików firmy Microsoft.\n\nLatch uruchomi się ponownie po aktywacji.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">To zabezpieczenie uniemożliwia innym aplikacjom nakłonienie użytkowników do wykonania niezamierzonych działań.\n\nWyłączając je potwierdzasz, że jesteś <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">świadomy ryzyka</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Uwaga</string>
 	<string name="dialog_disable_app_obscured_positive_button">Wyłącz</string>
 	<string name="dialog_app_is_obscured_info_title">Aplikacja jest zasłonięta inną</string>
-	<string name="dialog_app_is_obscured_info_hint">Inna aplikacja jest wyświetlana nad Cryptomatorem (na przykład filtr niebieskiego światła, tryb nocny). Ze względów bezpieczeństwa Cryptomator jest wyłączony.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Jak włączyć Cryptomator. </a></string>
+	<string name="dialog_app_is_obscured_info_hint">Inna aplikacja jest wyświetlana nad Latchem (na przykład filtr niebieskiego światła, tryb nocny). Ze względów bezpieczeństwa Latch jest wyłączony.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Jak włączyć Latch. </a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Zamknij</string>
 	<string name="dialog_vaults_removed_during_migration_title">Proszę ponownie dodać sejfy dla chmury %1s</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Podczas migracji do tej wersji aplikacji musimy usunąć następujące sejfy z aplikacji:\n%2s \n\nTe sejfy nie są usuwane z chmury, ale tylko z tej aplikacji. Przepraszamy za niedogodności. Dodaj ponownie te sejfy, aby dalej z nich korzystać.</string>
@@ -356,9 +356,9 @@
 	<string name="dialog_confirm_delete_file_message">Na pewno chcesz usunąć ten plik?</string>
 	<string name="dialog_confirm_delete_folder_message">Spowoduje to usunięcie całej zawartości folderu. Czy na pewno chcesz usunąć ten folder?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Funkcja uwierzytelniania biometrycznego jest wyłączona</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Ponieważ klucz został unieważniony, funkcja uwierzytelniania biometrycznego została dezaktywowana. Aby ponownie włączyć, otwórz ustawienia Cryptomator.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Ponieważ klucz został unieważniony, funkcja uwierzytelniania biometrycznego została dezaktywowana. Aby ponownie włączyć, otwórz ustawienia Latch.</string>
 	<string name="dialog_enter_license_title">Podaj poprawną licencję</string>
-	<string name="dialog_enter_license_content">Wykryliśmy, że zainstalowałeś Cryptomator bez korzystania ze sklepu Google Play. Podaj poprawną licencję, którą można kupić na <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Wykryliśmy, że zainstalowałeś Latch bez korzystania ze sklepu Google Play. Podaj poprawną licencję, którą można kupić na <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">Podana licencja jest nieprawidłowa. Upewnij się, że została wprowadzona poprawnie.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Podany klucz jest certyfikatem darczyńcy. Wprowadź prawidłową licencję.</string>
 	<string name="dialog_enter_license_no_content">Nie udzielono licencji. Wprowadź prawidłową licencję.</string>
@@ -366,12 +366,12 @@
 	<string name="dialog_license_confirmation_title">Informacje o licencji</string>
 	<string name="dialog_license_confirmation_message">Dziękujemy %1$s za korzystanie z ważnej licencji.</string>
 	<string name="dialog_update_available_title">Aktualizacja jest dostępna</string>
-	<string name="dialog_update_available_message">Zaktualizuj Cryptomator do najnowszej wersji. Aby pobrać aktualizację potwierdź przyciskiem OK. Następnie zostaniesz poproszony o instalację pobranej aktualizacji.</string>
+	<string name="dialog_update_available_message">Zaktualizuj Latch do najnowszej wersji. Aby pobrać aktualizację potwierdź przyciskiem OK. Następnie zostaniesz poproszony o instalację pobranej aktualizacji.</string>
 	<string name="dialog_update_available_update">Aktualizuj teraz</string>
 	<string name="dialog_update_available_download_site">Otwórz stronę pobierania</string>
 	<string name="dialog_update_available_cancel">Później</string>
 	<string name="dialog_download_update_title">Trwa pobieranie</string>
-	<string name="dialog_download_update_message">Pobieranie najnowszej wersji Cryptomator</string>
+	<string name="dialog_download_update_message">Pobieranie najnowszej wersji Latch</string>
 	<string name="dialog_sym_link_title">Folder jest linkiem symbolicznym</string>
 	<string name="dialog_sym_link_message">Nie możesz przejść do tego linku symbolicznego</string>
 	<string name="dialog_sym_link_back_button">Powrót</string>
@@ -402,9 +402,9 @@
 	<string name="dialog_hub_user_setup_required_title">Wymagana konfiguracja użytkownika</string>
 	<string name="dialog_hub_user_setup_required_hint">Aby kontynuować, wykonaj kroki wymagane w profilu użytkownika Hub.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Przejdź do profilu</string>
-	<string name="permission_snackbar_auth_local_vault">Cryptomator potrzebuje dostępu do pamięci lokalnej, aby uzyskać dostęp do sejfu</string>
-	<string name="permission_snackbar_auth_auto_upload">Cryptomator potrzebuje dostępu do pamięci lokalnej, aby automatycznie przesyłać zdjęcia</string>
-	<string name="permission_snackbar_notifications">Cryptomator potrzebuje uprawnień do powiadomień, aby wyświetlić np. status sejfu</string>
+	<string name="permission_snackbar_auth_local_vault">Latch potrzebuje dostępu do pamięci lokalnej, aby uzyskać dostęp do sejfu</string>
+	<string name="permission_snackbar_auth_auto_upload">Latch potrzebuje dostępu do pamięci lokalnej, aby automatycznie przesyłać zdjęcia</string>
+	<string name="permission_snackbar_notifications">Latch potrzebuje uprawnień do powiadomień, aby wyświetlić np. status sejfu</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

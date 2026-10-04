@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">الإصدار المحدد في %1$s مختلف عن %2$s</string>
 	<string name="error_vault_key_invalid">%1$s لا يتطابق مع هذا %2$s</string>
 	<string name="error_vault_config_loading">خطأ عام أثناء تحميل إعدادات المخزن</string>
-	<string name="error_file_not_found_after_opening_using_3party">بعد إعادة التبديل الي Cryptomator لم يعد الملف المحلي موجود. لايمكن نشر التعديلات الي موفر الخدمة السحابية.</string>
+	<string name="error_file_not_found_after_opening_using_3party">بعد إعادة التبديل الي Latch لم يعد الملف المحلي موجود. لايمكن نشر التعديلات الي موفر الخدمة السحابية.</string>
 	<string name="error_no_such_bucket">لا يوجد مخزن بهذه المعلومات في S3</string>
 	<string name="error_masterkey_location_not_supported">موقع المفتاح الرئيسي غير مدعوم بعد</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">فشل في التواصل مع تطبيق F-Droid. غير مثبت؟</string>
@@ -69,10 +69,10 @@
 	<string name="cloud_names_local_storage">ذاكرة التخزين المحلية</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Cryptomator يحتاج صلاحية الوصول الي التخزين لكي يستطيع تصدير الملفات</string>
-	<string name="permission_message_upload_file">Cryptomator يحتاج صلاحية الوصول الي التخزين لكي يستطيع رفع الملفات</string>
-	<string name="permission_message_share_file">Cryptomator يحتاج صلاحية الوصول الي التخزين لكي تستطيع مشاركة الملفات</string>
-	<string name="permission_revoked_re_request_permission">لقد فقد Cryptomator الإذن للوصول إلى هذا الموقع. الرجاء تحديد هذا المجلد مرة أخرى لاستعادة الإذن.</string>
+	<string name="permission_message_export_file">Latch يحتاج صلاحية الوصول الي التخزين لكي يستطيع تصدير الملفات</string>
+	<string name="permission_message_upload_file">Latch يحتاج صلاحية الوصول الي التخزين لكي يستطيع رفع الملفات</string>
+	<string name="permission_message_share_file">Latch يحتاج صلاحية الوصول الي التخزين لكي تستطيع مشاركة الملفات</string>
+	<string name="permission_revoked_re_request_permission">لقد فقد Latch الإذن للوصول إلى هذا الموقع. الرجاء تحديد هذا المجلد مرة أخرى لاستعادة الإذن.</string>
 	<string name="snack_bar_action_title_settings">الإعدادات</string>
 	<string name="snack_bar_action_title_search">بحث</string>
 	<string name="snack_bar_action_title_search_previous">السابق</string>
@@ -88,7 +88,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">السحابة ليست في اللائحة؟</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">أضف إلى Cryptomator</string>
+	<string name="screen_vault_list_actions_title">أضف إلى Latch</string>
 	<string name="screen_vault_list_action_create_new_vault">إنشاء مخزن جديد</string>
 	<string name="screen_vault_list_action_add_existing_vault">إضافة مخزن موجود مسبقاً</string>
 	<string name="screen_vault_list_vault_action_delete">حذف</string>
@@ -250,15 +250,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">تعذر المصادقة على %1$s.</string>
 	<string name="screen_update_pcloud_connections_title">تحديث بيانات اعتماد pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">اصناف Cryptomator</string>
+	<string name="screen_cryptomator_variants_title">اصناف Latch</string>
 	<string name="screen_cryptomator_variants_lite_title">مستودع تطبيقات F-Droid الرئيسي</string>
 	<string name="screen_cryptomator_variants_lite_description">مستبعد لأنها تتطلب مفاتيح API.</string>
 	<string name="screen_cryptomator_variants_lite_install">تثبيت</string>
-	<string name="screen_cryptomator_variants_fdroid_title">مستودع تطبيقات Cryptomator F-Droid</string>
+	<string name="screen_cryptomator_variants_fdroid_title">مستودع تطبيقات Latch F-Droid</string>
 	<string name="screen_cryptomator_variants_fdroid_description">استبعدت لأنها تعتمد على برامج ملكية خاصة.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">إضافة Cryptomator إلى مستودع تطبيقات F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">إضافة Latch إلى مستودع تطبيقات F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">إضافة</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">تثبيت Cryptomator باستخدام F-Droid.\nإذا ظهر خطأ \"لم يتم العثور\"، انتظر حتى الانتهاء من تحديث قائمة تطبيقات F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">تثبيت Latch باستخدام F-Droid.\nإذا ظهر خطأ \"لم يتم العثور\"، انتظر حتى الانتهاء من تحديث قائمة تطبيقات F-Droid.</string>
 	<string name="screen_cryptomator_variants_website_title">الموقع</string>
 	<string name="screen_cryptomator_variants_website_description">تحتوي برامج ملكية خاصة.</string>
 	<string name="screen_cryptomator_variants_installation_hint">التبديل من أو إلى مستودع تطبيقات F-Droid الرئيسي يستلزم إعداد نسخة جديد من التطبيق.</string>
@@ -288,7 +288,7 @@
 	<string name="dialog_replace_title_single_file_exists">استبدال الملف؟</string>
 	<string name="dialog_replace_title_multiple_files_exist">استبدال الملفات؟</string>
 	<string name="dialog_unable_to_share_title">غير قادر علي مشاركة الملفات</string>
-	<string name="dialog_unable_to_share_message">لم تقم بإعداد أي خزانات. الرجاء إنشاء خزانة جديدة مع تطبيق Cryptomator أولاً.</string>
+	<string name="dialog_unable_to_share_message">لم تقم بإعداد أي خزانات. الرجاء إنشاء خزانة جديدة مع تطبيق Latch أولاً.</string>
 	<string name="dialog_unable_to_share_positive_button">موافق</string>
 	<string name="dialog_unable_to_share_negative_button">إنشاء المخزن</string>
 	<string name="dialog_filetype_not_supported_title">لا يمكن فتح %1$s</string>
@@ -340,12 +340,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">في هذا الوضع، يمكن كتابة البيانات الحساسة إلى ملف تسجيل على جهازك (على سبيل المثال أسماء الملفات والمسارات). كلمة المرور، ملفات تعريف الارتباط، إلخ. مستبعدة صراحة.\n\nتذكر تعطيل وضع التصحيح في أقرب وقت ممكن.</string>
 	<string name="dialog_debug_mode_disclaimer_title">انتباه</string>
 	<string name="dialog_debug_mode_positive_button">تفعيل</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">بسبب خطأ في تطبيقات مايكروسوفت، يجب مشاركة الملف المراد تعديله مع هذه التطبيقات في مجلد وسائط عام على جهازك. بعد استئناف Cryptomator ، يتم حذف هذا الملف مرة أخرى، ولكن Cryptomator لا يمكنه التأثير على ما حدث لهذا الملف في هذه الأثناء. تأكد من أنك على علم بهذا السلوك عند تفعيل هذا الخيار. سيتم تطبيق هذا فقط على ملفات مايكروسوفت.\n\nسيتم إعادة تشغيل Cryptomator بعد التفعيل.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">بسبب خطأ في تطبيقات مايكروسوفت، يجب مشاركة الملف المراد تعديله مع هذه التطبيقات في مجلد وسائط عام على جهازك. بعد استئناف Latch ، يتم حذف هذا الملف مرة أخرى، ولكن Latch لا يمكنه التأثير على ما حدث لهذا الملف في هذه الأثناء. تأكد من أنك على علم بهذا السلوك عند تفعيل هذا الخيار. سيتم تطبيق هذا فقط على ملفات مايكروسوفت.\n\nسيتم إعادة تشغيل Latch بعد التفعيل.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">هذا الإعداد هو ميزة أمنية تمنع التطبيقات الأخرى من استدراج المستخدمين لفعل أشياء لا يريدون القيام بها.\n\nبتعطيليها, أنت تؤكد أنك <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">على علم بالمخاطر</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">انتباه</string>
 	<string name="dialog_disable_app_obscured_positive_button">تعطيل</string>
 	<string name="dialog_app_is_obscured_info_title">التطبيق غامض</string>
-	<string name="dialog_app_is_obscured_info_hint">يقوم تطبيق آخر بعرض شيء فوق Cryptomator (على سبيل المثال فلتر الضوء الأزرق أو تطبيق الوضع الليلي). لأسباب أمنية، تم تعطيل Cryptomator\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">كيفية تمكين Cryptomator</a></string>
+	<string name="dialog_app_is_obscured_info_hint">يقوم تطبيق آخر بعرض شيء فوق Latch (على سبيل المثال فلتر الضوء الأزرق أو تطبيق الوضع الليلي). لأسباب أمنية، تم تعطيل Latch\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">كيفية تمكين Latch</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">إغلاق</string>
 	<string name="dialog_vaults_removed_during_migration_title">رجاءً أعِد إضافَةَ خزائن لسحابة %1s</string>
 	<string name="dialog_vaults_removed_during_migration_hint">أثناء التحول إلى إصدار هذا التطبيق، تتوجب إزالة الخزائن التالية:\n%2s \n\nهذه الخزائن ستحذف فقط من هذا التطبيق وليس من التخزين السحابي. عذرا على الإزعاج قم بإعادة إضافة هذه الخزائن لمواصلة العمل بها.</string>
@@ -359,9 +359,9 @@
 	<string name="dialog_confirm_delete_file_message">هل أنت متأكد من أنك تريد حذف هذا الملف؟</string>
 	<string name="dialog_confirm_delete_folder_message">سيؤدي هذا إلى حذف جميع محتويات المجلد. هل أنت متأكد من أنك تريد حذف هذا المجلد؟</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">تم تعطيل خاصية البصمة</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">لأنه تم تعطيل المفتاح ، تم تعطيل خاصية البصمة. لإعادة التفعيل ،الرجاء فتح إعدادات Cryptomator.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">لأنه تم تعطيل المفتاح ، تم تعطيل خاصية البصمة. لإعادة التفعيل ،الرجاء فتح إعدادات Latch.</string>
 	<string name="dialog_enter_license_title">إدخال الترخيص</string>
-	<string name="dialog_enter_license_content">اكتشفنا أنك قمت بتثبيت Cryptomator دون استخدام متجر Google Play. قم بتقديم ترخيص صالح، يمكن شراؤه على <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">اكتشفنا أنك قمت بتثبيت Latch دون استخدام متجر Google Play. قم بتقديم ترخيص صالح، يمكن شراؤه على <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">الترخيص المقدم غير صالح. تأكد من إدخاله بشكل صحيح.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">المفتاح المقدم هو شهادة داعمة لسطح المكتب. الرجاء إدخال ترخيص صالح.</string>
 	<string name="dialog_enter_license_no_content">لم يتم توفير ترخيص. الرجاء إدخال ترخيص صالح.</string>
@@ -369,12 +369,12 @@
 	<string name="dialog_license_confirmation_title">تأكيد الترخيص</string>
 	<string name="dialog_license_confirmation_message">شكرا %1$s لتقديمك ترخيصك الصالح.</string>
 	<string name="dialog_update_available_title">تحديث جديد متوفّر</string>
-	<string name="dialog_update_available_message">قم بتحديث Cryptomator إلى أحدث إصدار. بالضغط على موافق سوف نقوم بتنزيل التطبيق في الخلفية وسيُطلَبُ منك تثبيته.</string>
+	<string name="dialog_update_available_message">قم بتحديث Latch إلى أحدث إصدار. بالضغط على موافق سوف نقوم بتنزيل التطبيق في الخلفية وسيُطلَبُ منك تثبيته.</string>
 	<string name="dialog_update_available_update">حدّث الآن</string>
 	<string name="dialog_update_available_download_site">انتقل إلى صفحة التحميل</string>
 	<string name="dialog_update_available_cancel">لاحقاً</string>
 	<string name="dialog_download_update_title">جاري التحميل</string>
-	<string name="dialog_download_update_message">تحميل الإصدار الجديد من Cryptomator</string>
+	<string name="dialog_download_update_message">تحميل الإصدار الجديد من Latch</string>
 	<string name="dialog_sym_link_title">المجلد هو رابط رمزي</string>
 	<string name="dialog_sym_link_message">لا يمكنك التنقل إلى هذا الرابط الرمزي</string>
 	<string name="dialog_sym_link_back_button">رجوع</string>
@@ -397,7 +397,7 @@
 	<string name="dialog_hub_vault_access_forbidden_title">تم رفض الوصول</string>
 	<string name="dialog_hub_vault_access_forbidden_hint">لم يسمح للمستخدم الخاص بك بعد بالوصول إلى هذا المخزن. اطلب من مالك المخزن أن يأذن بذلك.\"</string>
 	<string name="dialog_hub_license_upgrade_required_title">تحقق من رخصة Hub</string>
-	<string name="dialog_hub_license_upgrade_required_hint">نموذج Hub Cryptomator الخاص بك لديه ترخيص غير صالح. الرجاء إبلاغ مسؤول Hub لترقية أو تجديد الترخيص.\"</string>
+	<string name="dialog_hub_license_upgrade_required_hint">نموذج Hub Latch الخاص بك لديه ترخيص غير صالح. الرجاء إبلاغ مسؤول Hub لترقية أو تجديد الترخيص.\"</string>
 	<string name="dialog_hub_vault_archived_title">تم أرشفة المخزن</string>
 	<string name="dialog_hub_vault_archived_hint">تم أرشفة هذا المخزن ولا يمكن فتحه. لإلغاء قفله، يجب على مالك المخزن إلغاء أرشفته.</string>
 	<string name="dialog_restore_successful_title">تمت الاستعادة بنجاح</string>
@@ -405,9 +405,9 @@
 	<string name="dialog_hub_user_setup_required_title">إعداد المستخدم مطلوب</string>
 	<string name="dialog_hub_user_setup_required_hint">للمتابعة، يرجى إكمال الخطوات المطلوبة في ملف المستخدم الخاص بك في Hub.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">اذهب إلى الملف الشخصي</string>
-	<string name="permission_snackbar_auth_local_vault">Cryptomator يحتاج صلاحية الوصول إلي التخزين ليستطيع استعمال الخزائن المحلية</string>
-	<string name="permission_snackbar_auth_auto_upload">Cryptomator يحتاج صلاحية الوصول إلي التخزين ليستطيع تحميل الصور تلقائيا</string>
-	<string name="permission_snackbar_notifications">Cryptomator يحتاج إلى صَلاحِيَة إظهار الإشعارات لعرض حالة المخزن على سبيل المثال</string>
+	<string name="permission_snackbar_auth_local_vault">Latch يحتاج صلاحية الوصول إلي التخزين ليستطيع استعمال الخزائن المحلية</string>
+	<string name="permission_snackbar_auth_auto_upload">Latch يحتاج صلاحية الوصول إلي التخزين ليستطيع تحميل الصور تلقائيا</string>
+	<string name="permission_snackbar_notifications">Latch يحتاج إلى صَلاحِيَة إظهار الإشعارات لعرض حالة المخزن على سبيل المثال</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

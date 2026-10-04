@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Chýba sieťové pripojenie</string>
 	<string name="error_invalid_passphrase">Nesprávne heslo</string>
 	<string name="error_file_or_folder_exists">Súbor alebo adresár už existuje.</string>
-	<string name="error_vault_version_not_supported">Verzia trezora %1$s je nepodporovaná. Tento trezor bol vytvorený staršou alebo novšou verziou Cryptomator-a.</string>
+	<string name="error_vault_version_not_supported">Verzia trezora %1$s je nepodporovaná. Tento trezor bol vytvorený staršou alebo novšou verziou Latch-a.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">%1$s súbor chýba vo Vašom adresári trezora. Uistite sa že požadovaný súbor existuje vo Vašom adresári trezora v cloude.</string>
 	<string name="error_vault_already_exists">Trezor už existuje.</string>
 	<string name="error_no_such_file">Súbor neexistuje.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">Verzia definovaná v %1$s je odlišná od %2$s</string>
 	<string name="error_vault_key_invalid">%1$s nezodpovedá s týmto %2$s</string>
 	<string name="error_vault_config_loading">Chyba počas zavádzania konfigurácie trezora</string>
-	<string name="error_file_not_found_after_opening_using_3party">Lokálny súbor nie je viac prezentovaný po prepnutí naspäť do Cryptomator-a. Možné zmeny sa neprenesú späť do cloudu.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Lokálny súbor nie je viac prezentovaný po prepnutí naspäť do Latch-a. Možné zmeny sa neprenesú späť do cloudu.</string>
 	<string name="error_no_such_bucket">Bucket neexistuje</string>
 	<string name="error_masterkey_location_not_supported">Voliteľnost umiestnenia hlavného kľúča zatiaľ nie je podporovaná</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Komunikácia s aplikáciou F-Droid zlyhala. Nie je nainštalovaná?</string>
@@ -66,10 +66,10 @@
 	<string name="cloud_names_local_storage">Lokálne úložisko</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Cryptomator vyžaduje prístup k úložisku pre export súborov</string>
-	<string name="permission_message_upload_file">Cryptomator vyžaduje prístup k úložisku pre nahratie súborov</string>
-	<string name="permission_message_share_file">Cryptomator vyžaduje prístup k úložisku pre zdieľanie súborov</string>
-	<string name="permission_revoked_re_request_permission">Cryptomator stratil oprávnia k prístupu tejto lokality. Prosím vyberte tento akresár znovu pre obnovenie povoleni.</string>
+	<string name="permission_message_export_file">Latch vyžaduje prístup k úložisku pre export súborov</string>
+	<string name="permission_message_upload_file">Latch vyžaduje prístup k úložisku pre nahratie súborov</string>
+	<string name="permission_message_share_file">Latch vyžaduje prístup k úložisku pre zdieľanie súborov</string>
+	<string name="permission_revoked_re_request_permission">Latch stratil oprávnia k prístupu tejto lokality. Prosím vyberte tento akresár znovu pre obnovenie povoleni.</string>
 	<string name="snack_bar_action_title_settings">Nastavenia</string>
 	<string name="snack_bar_action_title_search">Hľadať</string>
 	<string name="snack_bar_action_title_search_previous">Predošlý</string>
@@ -85,7 +85,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Cloud nie je v ponuke?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Pridať do Cryptomator-a</string>
+	<string name="screen_vault_list_actions_title">Pridať do Latch-a</string>
 	<string name="screen_vault_list_action_create_new_vault">Vytvoriť nový trezor</string>
 	<string name="screen_vault_list_action_add_existing_vault">Pridať existujúci trezor</string>
 	<string name="screen_vault_list_vault_action_delete">Odstrániť</string>
@@ -212,7 +212,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Nahrať iba s použitím Wi-Fi</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Nahrať videá</string>
 	<string name="screen_settings_auto_photo_upload_title">Uložiť auto ukladanie súborov do&#8230;</string>
-	<string name="screen_settings_website_label">Webstránky Cryptomator-a</string>
+	<string name="screen_settings_website_label">Webstránky Latch-a</string>
 	<string name="screen_settings_mastodon_label">Sledujte nás na Mastodon-e</string>
 	<string name="screen_settings_facebook_label">Likujte nás na Facebooku</string>
 	<string name="screen_settings_section_legal">Právne informácie</string>
@@ -245,15 +245,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s nemohol byť autentikovaný.</string>
 	<string name="screen_update_pcloud_connections_title">Aktualizovať pCloud prístupy</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Varianty Cryptomatora</string>
+	<string name="screen_cryptomator_variants_title">Varianty Latcha</string>
 	<string name="screen_cryptomator_variants_lite_title">Hlavný F-Droid repozitár</string>
 	<string name="screen_cryptomator_variants_lite_description">Vynechané z dôvodu vyžadovaných API kľúčov.</string>
 	<string name="screen_cryptomator_variants_lite_install">Inštalovať</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Cryptomator F-Droid repozitár</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid repozitár</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Vynechané z dôvodu, že obsahuje proprietárne závislosti.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Pridať Cryptomator depozitár do F-Droid aplikácie.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Pridať Latch depozitár do F-Droid aplikácie.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Pridať</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Inštalovať Cryptomator použitím F-Droid.\nAk sa zobrazí nájdená chyba, počkajte kým sa dokončí synchronizácia F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Inštalovať Latch použitím F-Droid.\nAk sa zobrazí nájdená chyba, počkajte kým sa dokončí synchronizácia F-Droid.</string>
 	<string name="screen_cryptomator_variants_website_title">Webstránka</string>
 	<string name="screen_cryptomator_variants_website_description">Obsahuje proprietárne závislosti.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Prepnutie z alebo do hlavného F-Droid repozitára vyžaduje čerstvé nastavenie aplikácie.</string>
@@ -283,7 +283,7 @@
 	<string name="dialog_replace_title_single_file_exists">Nahradiť súbor?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Nahradiť súbory?</string>
 	<string name="dialog_unable_to_share_title">Nie je možné zdieľať súbory</string>
-	<string name="dialog_unable_to_share_message">Nemáte nastavené žiadne trezory. Prosím vytvorte najprv nový trezor s aplikáciou Cryptomator.</string>
+	<string name="dialog_unable_to_share_message">Nemáte nastavené žiadne trezory. Prosím vytvorte najprv nový trezor s aplikáciou Latch.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Vytvoriť trezor</string>
 	<string name="dialog_filetype_not_supported_title">Nie je možné otvoriť %1$s</string>
@@ -339,7 +339,7 @@
 	<string name="dialog_disable_app_obscured_disclaimer_title">Upozornenie</string>
 	<string name="dialog_disable_app_obscured_positive_button">Zakázať</string>
 	<string name="dialog_app_is_obscured_info_title">Aplikácia je zatmavená</string>
-	<string name="dialog_app_is_obscured_info_hint">Ďalšia aplikácia zobrazuje niečo na vrchu Cryptomator-a (ako napr. modré svetlo alebo nočný režim). Z bezpečnostných dôvodov je Cryptomator zakázaný.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Ako povoliť Cryptomator</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Ďalšia aplikácia zobrazuje niečo na vrchu Latch-a (ako napr. modré svetlo alebo nočný režim). Z bezpečnostných dôvodov je Latch zakázaný.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Ako povoliť Latch</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Zavrieť</string>
 	<string name="dialog_vaults_removed_during_migration_title">Prosím zadajte znovu trezory pre %1s cloud</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Počas migrácie na túto verziu aplikácie potrebujeme odstrániť nasledujúce trezory z aplikácie:\n%2s \n\n Tieto trezory nebudú odstránené z cloudu, ale len z tejto aplikácie. Prepáčte za nepohodlie a prosím znovu zadajte trezory pre pokračovanie ich používania.</string>
@@ -353,9 +353,9 @@
 	<string name="dialog_confirm_delete_file_message">Naozaj chcete odstrániť tento súbor?</string>
 	<string name="dialog_confirm_delete_folder_message">Toto zmaže obsah celého adresára. Ste si istý že chcete zmazať tento adresár?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Funkcia biometrickej autentikácie je deaktivovaná</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Pretože kľúč bol zneplatnený, funkcia biometrickej autentikácie bola deaktivovaná. Pre opätovné povolenie, otvorte nastavenia Cryptomator-a.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Pretože kľúč bol zneplatnený, funkcia biometrickej autentikácie bola deaktivovaná. Pre opätovné povolenie, otvorte nastavenia Latch-a.</string>
 	<string name="dialog_enter_license_title">Zadajte platný licenčný kľúč</string>
-	<string name="dialog_enter_license_content">Detekovali sme že máte nainštalovaný Cryptomator bez použitia Google Play Store. Poskytnite platnú licenciu, ktorá bola zakúpená v <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Detekovali sme že máte nainštalovaný Latch bez použitia Google Play Store. Poskytnite platnú licenciu, ktorá bola zakúpená v <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">Poskytnutá licencia nie je platná. Uistite sa či bola zadaná korektne.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Poskytnuty kľúč je pracovná plocha certifikátu podporovateľa. Prosím zadajte platnú licenciu.</string>
 	<string name="dialog_enter_license_no_content">Licencia neposkytnutá. Prosím zadajte platnú licenciu.</string>
@@ -363,12 +363,12 @@
 	<string name="dialog_license_confirmation_title">Potvrdenie licencie</string>
 	<string name="dialog_license_confirmation_message">Ďakujeme %1$s za poskytnutie Vašej platnej licencie.</string>
 	<string name="dialog_update_available_title">Aktualizácia k dispozícii</string>
-	<string name="dialog_update_available_message">Aktualizujte Cryptomator na najnovšiu verziu. Stlačením OK sa stiahne aplikácia na pozadí a opýta Vás pre inštalovanie.</string>
+	<string name="dialog_update_available_message">Aktualizujte Latch na najnovšiu verziu. Stlačením OK sa stiahne aplikácia na pozadí a opýta Vás pre inštalovanie.</string>
 	<string name="dialog_update_available_update">Aktualizovať teraz</string>
 	<string name="dialog_update_available_download_site">Prejsť na stránku sťahovania</string>
 	<string name="dialog_update_available_cancel">Neskôr</string>
 	<string name="dialog_download_update_title">Prebieha sťahovanie</string>
-	<string name="dialog_download_update_message">Sťahovanie najnovšej verzie Cryptomator-a</string>
+	<string name="dialog_download_update_message">Sťahovanie najnovšej verzie Latch-a</string>
 	<string name="dialog_sym_link_title">Adresár je symbolická linka</string>
 	<string name="dialog_sym_link_message">Nemožno prejsť na túto symbolickú linku</string>
 	<string name="dialog_sym_link_back_button">Späť</string>
@@ -392,9 +392,9 @@
 	<string name="dialog_hub_user_setup_required_hint">Pre pokračovanie, prosím splňte kroky požadované vo Vašom užívateľskom Hub profile.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Prejsť na profil</string>
 	<string name="dialog_hub_check_host_authenticity_title">Veríte tomuto hostovi?</string>
-	<string name="permission_snackbar_auth_local_vault">Cryptomator potrebuje prístup k úložisku pre prácu s lokálnymi trezormy</string>
-	<string name="permission_snackbar_auth_auto_upload">Cryptomator potrebuje prístup k úložisku pre automatické nahrávanie fotografii</string>
-	<string name="permission_snackbar_notifications">Cryptomator potrebuje povolenie notifikácií, napríklad na zobrazenie stavu trezoru</string>
+	<string name="permission_snackbar_auth_local_vault">Latch potrebuje prístup k úložisku pre prácu s lokálnymi trezormy</string>
+	<string name="permission_snackbar_auth_auto_upload">Latch potrebuje prístup k úložisku pre automatické nahrávanie fotografii</string>
+	<string name="permission_snackbar_notifications">Latch potrebuje povolenie notifikácií, napríklad na zobrazenie stavu trezoru</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

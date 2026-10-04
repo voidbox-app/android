@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Селтәр бәйләнеше юҡ</string>
 	<string name="error_invalid_passphrase">Серһүҙ дөрөҫ түгел</string>
 	<string name="error_file_or_folder_exists">Файл йәки папка бар инде.</string>
-	<string name="error_vault_version_not_supported">Һаҡлағыстың терәкһеҙ версияһы: %1$s. Был һаҡлағыс Cryptomator-ҙың башҡа версияһы менән яһалған.</string>
+	<string name="error_vault_version_not_supported">Һаҡлағыстың терәкһеҙ версияһы: %1$s. Был һаҡлағыс Latch-ҙың башҡа версияһы менән яһалған.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">%1$s файлы һаҡлағыс папкаһында юҡ. Файлдың болоттағы һаҡлағыс папкаһында булыуын тикшерегеҙ.</string>
 	<string name="error_vault_already_exists">Һаҡлаығыс бар инде.</string>
 	<string name="error_no_such_file">Файл юҡ.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">Тәғәйенләнгән %1$s версияһы %2$s версияһынан айырала</string>
 	<string name="error_vault_key_invalid">%1$s менән %2$s тап килмәй</string>
 	<string name="error_vault_config_loading">Һаҡлағыс конфигурацияһын йөкләгәндә дөйөм хата</string>
-	<string name="error_file_not_found_after_opening_using_3party">Cryptomator программаһына кире күскәндән һуң урындағы файл юҡ инде. Буласаҡ үҙгәрештәр кире болотҡа күсерелә алмай.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Latch программаһына кире күскәндән һуң урындағы файл юҡ инде. Буласаҡ үҙгәрештәр кире болотҡа күсерелә алмай.</string>
 	<string name="error_no_such_bucket">Бындай bucket юҡ</string>
 	<string name="error_masterkey_location_not_supported">Ирекле Masterkey урыны терәкләнмәй</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">F-Droid ҡушымтаһы менән бәйләнешкә инеп булманы. Ҡуйылмағанмы?</string>
@@ -63,10 +63,10 @@
 	<string name="cloud_names_local_storage">Урындағы һаҡлағыс</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Файлдарҙы экспортлау өсөн Cryptomator-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
-	<string name="permission_message_upload_file">Файлдарҙы тейәү өсөн Cryptomator-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
-	<string name="permission_message_share_file">Файлдарҙы уртаҡлашыу өсөн Cryptomator-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
-	<string name="permission_revoked_re_request_permission">Cryptomator был урынға инеү рөхсәтен юғалтҡан. Рөхсәтте тергеҙеү өсөн был папканы ҡабаттан һайлағыҙ.</string>
+	<string name="permission_message_export_file">Файлдарҙы экспортлау өсөн Latch-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
+	<string name="permission_message_upload_file">Файлдарҙы тейәү өсөн Latch-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
+	<string name="permission_message_share_file">Файлдарҙы уртаҡлашыу өсөн Latch-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
+	<string name="permission_revoked_re_request_permission">Latch был урынға инеү рөхсәтен юғалтҡан. Рөхсәтте тергеҙеү өсөн был папканы ҡабаттан һайлағыҙ.</string>
 	<string name="snack_bar_action_title_settings">Көйләүҙәр</string>
 	<string name="snack_bar_action_title_search">Эҙлә</string>
 	<string name="snack_bar_action_title_search_previous">Алдағы</string>
@@ -82,7 +82,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Болот исемлектә юҡмы?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Cryptomator-ға өҫтә</string>
+	<string name="screen_vault_list_actions_title">Latch-ға өҫтә</string>
 	<string name="screen_vault_list_action_create_new_vault">Яңы һаҡлағыс яһау</string>
 	<string name="screen_vault_list_action_add_existing_vault">Булған һаҡлағыс өҫтәү</string>
 	<string name="screen_vault_list_vault_action_delete">Алып ташлау</string>
@@ -205,7 +205,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">WIFI аша ғына тейәү</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Видео тейәү</string>
 	<string name="screen_settings_auto_photo_upload_title">Автоматик тейәлгән файлдар урыны&#8230;</string>
-	<string name="screen_settings_website_label">Cryptomator сайты</string>
+	<string name="screen_settings_website_label">Latch сайты</string>
 	<string name="screen_settings_facebook_label">Facebook селтәрендә</string>
 	<string name="screen_settings_section_legal">Хоҡуҡи мәғлүмәт</string>
 	<string name="screen_settings_licenses_label">Рөхсәтнамәләр</string>
@@ -237,15 +237,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s аутентикланманы.</string>
 	<string name="screen_update_pcloud_connections_title">pCloud иҫәп яҙыуы мәғлүмәттәрен яңыртыу</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Cryptomator варианттары</string>
+	<string name="screen_cryptomator_variants_title">Latch варианттары</string>
 	<string name="screen_cryptomator_variants_lite_title">Төп F-Droid репозиторийы</string>
 	<string name="screen_cryptomator_variants_lite_description">API асҡыстары кәрәк булғанлыҡтан төшөрөп ҡалдырылды.</string>
 	<string name="screen_cryptomator_variants_lite_install">Ҡор</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Cryptomator F-Droid репозиторийы</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid репозиторийы</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Проприетар бәйлелек булғанлыҡтан төшөрөп ҡалдырылды.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">F-Droid ҡушымтаһына Cryptomator репозиторийы өҫтәү.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">F-Droid ҡушымтаһына Latch репозиторийы өҫтәү.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Өҫтәү</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">F-Droid аша Cryptomator ҡуйыу.\n\"Табылманы\" хатаһы күренгән ваҡытта F-Droid синхронлашыуының тамамланғанын көтөгөҙ.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">F-Droid аша Latch ҡуйыу.\n\"Табылманы\" хатаһы күренгән ваҡытта F-Droid синхронлашыуының тамамланғанын көтөгөҙ.</string>
 	<string name="screen_cryptomator_variants_website_title">Сайт</string>
 	<string name="screen_cryptomator_variants_website_description">Эсендә проприетар бәйлелектәр бар.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Төп F-Droid репозиторийы вариантындан йәки вариантына күсер өсөн ҡушымтаны яңынан ҡуйыу кәрәк.</string>
@@ -275,7 +275,7 @@
 	<string name="dialog_replace_title_single_file_exists">Файлды алмаштырырғамы?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Файлдарҙы алмаштырырғамы?</string>
 	<string name="dialog_unable_to_share_title">Файлдарҙы уртаҡлашып булмай</string>
-	<string name="dialog_unable_to_share_message">Ҡоролған һаҡлағысығыҙ юҡ. Тәүҙә Cryptomator ҡушымтаһы менән яңы һаҡлағыс яһағыҙ.</string>
+	<string name="dialog_unable_to_share_message">Ҡоролған һаҡлағысығыҙ юҡ. Тәүҙә Latch ҡушымтаһы менән яңы һаҡлағыс яһағыҙ.</string>
 	<string name="dialog_unable_to_share_positive_button">Ярай</string>
 	<string name="dialog_unable_to_share_negative_button">Яңы һаҡлағыс яһа</string>
 	<string name="dialog_filetype_not_supported_title">%1$s файлын асып булмай</string>
@@ -326,7 +326,7 @@
 	<string name="dialog_debug_mode_disclaimer_hint">Был режимда нескә мәғлүмәттәрҙең (мәҫәлән, файл исемдәре, юлдар) йыһаздың журнал файлына яҙылыуы ихтимал. Серһүҙҙәр, cookie-файлдар һ.б. тура алып ташлана.\n\nЯйлау (debug) режимын тиҙ арала ябырға онотмағыҙ.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Иғтибар</string>
 	<string name="dialog_debug_mode_positive_button">Ғәмәлгә индер</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Microsoft ҡушымталарындағы хата арҡаһында, төҙәтеләсәк файл йыһазығыҙҙағы дөйөм медиа папкала был ҡушымталар араһында уртаҡлашылырға тейеш. Cryptomator кире асылғандан һуң, уртаҡ файл яңынан юйыла, әммә Cryptomator был файл менән ни булыуына йоғонто яһай алмай. Был параметрҙы активлаштырғанда был хәл тураһында белеүегеҙҙе тикшерегеҙ. Был Microsoft файл төрҙәренә генә ҡағыла.\n\nАктивлаштырғандан һуң Cryptomator яңынан асыла.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Microsoft ҡушымталарындағы хата арҡаһында, төҙәтеләсәк файл йыһазығыҙҙағы дөйөм медиа папкала был ҡушымталар араһында уртаҡлашылырға тейеш. Latch кире асылғандан һуң, уртаҡ файл яңынан юйыла, әммә Latch был файл менән ни булыуына йоғонто яһай алмай. Был параметрҙы активлаштырғанда был хәл тураһында белеүегеҙҙе тикшерегеҙ. Был Microsoft файл төрҙәренә генә ҡағыла.\n\nАктивлаштырғандан һуң Latch яңынан асыла.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Иғтибар</string>
 	<string name="dialog_disable_app_obscured_positive_button">Һүндер</string>
 	<string name="dialog_app_is_obscured_info_title">Ҡушымта йәшерелгән</string>
@@ -342,9 +342,9 @@
 	<string name="dialog_confirm_delete_file_message">Был файлды ысындан да юйырға теләйһегеҙме?</string>
 	<string name="dialog_confirm_delete_folder_message">Был папканың бөтә эстәлеген юясаҡ. Был папканы ысындан да юйырға теләйһегеҙме?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Биометрик аутентиклау үҙенсәлеге ябылған</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Асҡыс ғәмәлдән сығарылғанға күрә, биометрик аутентиклау һүндерелгән. Яңынан активлаштырыу өсөн Cryptomator көйләүҙәрен асығыҙ.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Асҡыс ғәмәлдән сығарылғанға күрә, биометрик аутентиклау һүндерелгән. Яңынан активлаштырыу өсөн Latch көйләүҙәрен асығыҙ.</string>
 	<string name="dialog_enter_license_title">Ғәмәлдә булған рөхсәтнамә яҙығыҙ</string>
-	<string name="dialog_enter_license_content">Google Play Store ҡулланмайынса Cryptomator ҡуйыуығыҙҙы асыҡланыҡ. <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> сайтында һатып алып булған һәм ғәмәлдәге рөхсәтнамә яҙығыҙ.</string>
+	<string name="dialog_enter_license_content">Google Play Store ҡулланмайынса Latch ҡуйыуығыҙҙы асыҡланыҡ. <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> сайтында һатып алып булған һәм ғәмәлдәге рөхсәтнамә яҙығыҙ.</string>
 	<string name="dialog_enter_license_not_valid_content">Бирелгән рөхсәтнамә ғәмәлдә түгел. Уны дөрөҫ яҙғанығыҙҙы тикшерегеҙ.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Бирелгән асҡыс — ярҙамсы сертификаты. Ғәмәлдә булған рөхсәтнамә яҙығыҙ.</string>
 	<string name="dialog_enter_license_no_content">Рөхсәтнамә яҙылмаған. Ғәмәлдә булған рөхсәтнамә яҙығыҙ.</string>
@@ -352,12 +352,12 @@
 	<string name="dialog_license_confirmation_title">Рөхсәтнамә раҫлау</string>
 	<string name="dialog_license_confirmation_message">Ғәмәлдәге рөхсәтнамә биргәнегеҙ өсөн рәхмәт %1$s.</string>
 	<string name="dialog_update_available_title">Яңыртыу бар</string>
-	<string name="dialog_update_available_message">Cryptomator-ҙы һуңғы версияға яңыртыу. ОК төймәһенә баҫҡандан һәм ҡушымта артҡы планда күсереп алынғандан һуң уны ҡуйыуығыҙҙы һораясаҡбыҙ.</string>
+	<string name="dialog_update_available_message">Latch-ҙы һуңғы версияға яңыртыу. ОК төймәһенә баҫҡандан һәм ҡушымта артҡы планда күсереп алынғандан һуң уны ҡуйыуығыҙҙы һораясаҡбыҙ.</string>
 	<string name="dialog_update_available_update">Хәҙер яңырт</string>
 	<string name="dialog_update_available_download_site">Күсереп алыу битен ас</string>
 	<string name="dialog_update_available_cancel">Аҙаҡтан</string>
 	<string name="dialog_download_update_title">Күсереп алыу бара</string>
-	<string name="dialog_download_update_message">Cryptomator-ҙың һуңғы версияһын күсереп алыу бара</string>
+	<string name="dialog_download_update_message">Latch-ҙың һуңғы версияһын күсереп алыу бара</string>
 	<string name="dialog_sym_link_title">Был папка символик һылтанма</string>
 	<string name="dialog_sym_link_message">Был символик һылтанма аша күсә алмайһығыҙ</string>
 	<string name="dialog_sym_link_back_button">Артҡа</string>
@@ -373,9 +373,9 @@
 	<string name="dialog_no_full_version_title">Тулы версия табылманы</string>
 	<string name="dialog_hub_user_setup_required_hint">Артабан барыр өсөн, Hub ҡулланыусылар профилендә кәрәкле аҙымдарҙы тамамлағыҙ.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Профилгә күс</string>
-	<string name="permission_snackbar_auth_local_vault">Урындағы һаҡлағыстарҙы ҡулланыу өсөн Cryptomator-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
-	<string name="permission_snackbar_auth_auto_upload">Автоматик фото тейәү өсөн Cryptomator-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
-	<string name="permission_snackbar_notifications">Cryptomator-ға белдереү ебәреү хоҡуҡтары кәрәк. Мәҫәлән, һаҡлағыс торошо тураһында.</string>
+	<string name="permission_snackbar_auth_local_vault">Урындағы һаҡлағыстарҙы ҡулланыу өсөн Latch-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
+	<string name="permission_snackbar_auth_auto_upload">Автоматик фото тейәү өсөн Latch-ға һаҡлағысҡа инеү рәхсәте кәрәк</string>
+	<string name="permission_snackbar_notifications">Latch-ға белдереү ебәреү хоҡуҡтары кәрәк. Мәҫәлән, һаҡлағыс торошо тураһында.</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

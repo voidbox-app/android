@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">நெட்வொர்க் இணைப்பு இல்லை</string>
 	<string name="error_invalid_passphrase">தவறான கடவுச்சொல்</string>
 	<string name="error_file_or_folder_exists">ஏற்கனவே \'\' என்ற பெயரில் வெறெரு அரம் அல்லது கோப்புறை உள்ளது.</string>
-	<string name="error_vault_version_not_supported">%1$s என்ற பதிப்புரு கொண்ட பெட்டகம் ஆதரவற்றது. இப்பெட்டகம் பழைய அல்லது புதிய பதிப்புரு கொண்ட Cryptomator-ஆல் உருவாக்கபட்டது.</string>
+	<string name="error_vault_version_not_supported">%1$s என்ற பதிப்புரு கொண்ட பெட்டகம் ஆதரவற்றது. இப்பெட்டகம் பழைய அல்லது புதிய பதிப்புரு கொண்ட Latch-ஆல் உருவாக்கபட்டது.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">%1$s என்ற பெயர் கொண்ட கோப்பு உமது vault folder-இல் காணவில்லை. இந்தக் கோப்பு மேகக்கணியில் இருப்பதை உறுதி செய்து கொள்ளவும்.</string>
 	<string name="error_vault_already_exists">பெட்டகம் ஏற்கனவே உள்ளது.</string>
 	<string name="error_no_such_file">கோப்பு இருப்பில் இல்லை.</string>
@@ -26,7 +26,7 @@
 	<string name="error_update_no_internet">புதுப்பிப்பு சரிபார்ப்பு தோல்வியடைந்தது. இணைய இணைப்பு இல்லை.</string>
 	<string name="error_biometric_auth_aborted">உயிரியளவுகள் உறுதிசெய்தல் கைவிடப்பட்டது</string>
 	<string name="error_vault_config_loading">பெட்டகத்தின் உள்ளமைவை ஏற்றும்போது பொதுவான பிழை ஏற்பட்டது</string>
-	<string name="error_file_not_found_after_opening_using_3party">மீண்டும் Cryptomator-இற்கு மாறியபிறகு, உள்ளூர் கோப்பு இல்லை. சாத்தியமான மாற்றங்களை மீண்டும் மேகக்கணிக்கு பரப்ப முடியாது.</string>
+	<string name="error_file_not_found_after_opening_using_3party">மீண்டும் Latch-இற்கு மாறியபிறகு, உள்ளூர் கோப்பு இல்லை. சாத்தியமான மாற்றங்களை மீண்டும் மேகக்கணிக்கு பரப்ப முடியாது.</string>
 	<string name="error_no_such_bucket">இப்பெயருள்ள bucket இல்லை</string>
 	<!-- # read-only & purchases -->
 	<string name="screen_welcome_screen_lock_button">திரைப்பூட்டை அமை</string>
@@ -52,7 +52,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">மேகக்கணி பட்டியலில் இல்லையா?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Cryptomator இல் சேர்</string>
+	<string name="screen_vault_list_actions_title">Latch இல் சேர்</string>
 	<string name="screen_vault_list_action_create_new_vault">புதிய பெட்டகத்தை உருவாக்கவும்</string>
 	<string name="screen_vault_list_action_add_existing_vault">ஏற்கனவே உள்ள பெட்டகத்தைச் சேர்க்கவும்</string>
 	<string name="screen_vault_list_vault_action_delete">நீக்கு</string>

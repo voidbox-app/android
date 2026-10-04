@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Ni omrežne povezave</string>
 	<string name="error_invalid_passphrase">Napačno geslo</string>
 	<string name="error_file_or_folder_exists">Datoteka ali mapa že obstaja.</string>
-	<string name="error_vault_version_not_supported">Trezorji verzije %1$s niso podprti. Ta trezor je bil izdelan s starejšo ali novejšo verzijo Cryptomator-ja.</string>
+	<string name="error_vault_version_not_supported">Trezorji verzije %1$s niso podprti. Ta trezor je bil izdelan s starejšo ali novejšo verzijo Latch-ja.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Datoteka %1$s manjka v vašem trezorju. Poskrbite, da ta datoteka obstaja v trezorju v oblaku.</string>
 	<string name="error_vault_already_exists">Ta trezor že obstaja.</string>
 	<string name="error_no_such_file">Ta datoteka ne obstaja.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">Verzija navedena v %1$s je drugačna od verzije v %2$s</string>
 	<string name="error_vault_key_invalid">%1$s se ne ujema s %2$s</string>
 	<string name="error_vault_config_loading">Napaka pri branju nastavitev trezorja</string>
-	<string name="error_file_not_found_after_opening_using_3party">Lokalna datoteka ni več na voljo potem ko ste preklopili nazaj na Cryptomator. Morebitne spremembe ne moremo zapisati nazaj na oblak.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Lokalna datoteka ni več na voljo potem ko ste preklopili nazaj na Latch. Morebitne spremembe ne moremo zapisati nazaj na oblak.</string>
 	<string name="error_no_such_bucket">Ni takšnega bucket-a</string>
 	<string name="error_masterkey_location_not_supported">Poljubna lokacija glavnega ključa še ni podprta</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Ne uspem komunicirat s F-Droid aplikacijo. Morda ni naložena?</string>
@@ -60,9 +60,9 @@
 	<string name="cloud_names_local_storage">Lokalna shramba</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Za izvoz datotek Cryptomator potrebuje dostop do shrambe</string>
-	<string name="permission_message_upload_file">Za nalaganje datotek Cryptomator potrebuje dostop do shrambe</string>
-	<string name="permission_message_share_file">Za deljenje datotek Cryptomator potrebuje dostop do shrambe</string>
+	<string name="permission_message_export_file">Za izvoz datotek Latch potrebuje dostop do shrambe</string>
+	<string name="permission_message_upload_file">Za nalaganje datotek Latch potrebuje dostop do shrambe</string>
+	<string name="permission_message_share_file">Za deljenje datotek Latch potrebuje dostop do shrambe</string>
 	<string name="permission_revoked_re_request_permission">Crptomator nima več dovoljena za dostop do te lokacije. Prosim ponovno izberite to mapo da boste ponovno dovolili dostop.</string>
 	<string name="snack_bar_action_title_settings">Nastavitve</string>
 	<string name="snack_bar_action_title_search">Iskanje</string>
@@ -79,7 +79,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Oblak ni na seznamu?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Dodaj v Cryptomator</string>
+	<string name="screen_vault_list_actions_title">Dodaj v Latch</string>
 	<string name="screen_vault_list_action_create_new_vault">Ustvari nov trezor</string>
 	<string name="screen_vault_list_action_add_existing_vault">Dodaj obstoječi trezor</string>
 	<string name="screen_vault_list_vault_action_delete">Odstrani</string>
@@ -199,7 +199,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Nalagaj samo preko WIFI</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Naloži videe</string>
 	<string name="screen_settings_auto_photo_upload_title">Shrani samodejno naložene datoteko v&#8230;</string>
-	<string name="screen_settings_website_label">Cryptomatorjeva spletna stran</string>
+	<string name="screen_settings_website_label">Latchjeva spletna stran</string>
 	<string name="screen_settings_facebook_label">Všečkaj nas na Facebooku</string>
 	<string name="screen_settings_section_legal">Pravni podatki</string>
 	<string name="screen_settings_licenses_label">Licence</string>
@@ -229,15 +229,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s nismo mogli overiti.</string>
 	<string name="screen_update_pcloud_connections_title">Posodobi pCloud prijavne informacije</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Različice Cryptomator-ja</string>
+	<string name="screen_cryptomator_variants_title">Različice Latch-ja</string>
 	<string name="screen_cryptomator_variants_lite_title">Glavni F-Droid repozitorij</string>
 	<string name="screen_cryptomator_variants_lite_description">Izločen ker zahteva API ključe.</string>
 	<string name="screen_cryptomator_variants_lite_install">Namesti</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Cryptomator F-Droid repozitorij</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid repozitorij</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Izključeno, ker vsebuje lastniške odvisnosti.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Dodaj Cryptomatorjev repozitorij v F-Droid aplikacijo.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Dodaj Latchjev repozitorij v F-Droid aplikacijo.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Dodaj</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Namestite Cryptomator s F-Droidom.\nČe se prikaže napaka ni najden, počakajte, da se sinhronizacija F-Droid konča.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Namestite Latch s F-Droidom.\nČe se prikaže napaka ni najden, počakajte, da se sinhronizacija F-Droid konča.</string>
 	<string name="screen_cryptomator_variants_website_title">Spletna stran</string>
 	<string name="screen_cryptomator_variants_website_description">Vsebuje lastniške odvisnosti.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Preklop z ali na glavno različico repozitorija F-Droid zahteva novo namestitev aplikacije.</string>
@@ -267,7 +267,7 @@
 	<string name="dialog_replace_title_single_file_exists">Zamenjam datoteko?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Zamenjam datoteke?</string>
 	<string name="dialog_unable_to_share_title">Datotek ni mogoče deliti</string>
-	<string name="dialog_unable_to_share_message">Niste še ustvarili nobenega trezorja. Najprej ustvarite nov trezor z aplikacijo Cryptomator.</string>
+	<string name="dialog_unable_to_share_message">Niste še ustvarili nobenega trezorja. Najprej ustvarite nov trezor z aplikacijo Latch.</string>
 	<string name="dialog_unable_to_share_positive_button">V redu</string>
 	<string name="dialog_unable_to_share_negative_button">Ustvari nov trezor</string>
 	<string name="dialog_filetype_not_supported_title">Ne morem odpreti %1$s</string>
