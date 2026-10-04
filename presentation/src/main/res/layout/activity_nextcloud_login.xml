@@ -16,18 +16,20 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-		android:padding="@dimen/activity_vertical_margin">
+		android:paddingHorizontal="16dp"
+		android:paddingTop="16dp">
 
 		<TextView
 			android:id="@+id/intro_text"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginBottom="24dp"
+			android:layout_marginBottom="16dp"
 			android:text="@string/screen_nextcloud_login_intro"
-			android:textAppearance="?attr/textAppearanceBodyLarge"
+			android:textAppearance="?attr/textAppearanceBodyMedium"
 			android:textColor="?attr/colorOnSurfaceVariant" />
 
 		<com.google.android.material.textfield.TextInputLayout
+			style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:hint="@string/screen_nextcloud_login_server_label"
@@ -39,8 +41,7 @@
 				android:layout_height="wrap_content"
 				android:imeOptions="actionDone"
 				android:inputType="textUri"
-				android:singleLine="true"
-				android:text="https://" />
+				android:singleLine="true" />
 
 		</com.google.android.material.textfield.TextInputLayout>
 
@@ -48,7 +49,8 @@
 			android:id="@+id/sign_in_button"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:layout_marginTop="24dp"
+			android:layout_marginTop="16dp"
+			android:enabled="false"
 			android:text="@string/screen_nextcloud_login_button" />
 
 		<LinearLayout

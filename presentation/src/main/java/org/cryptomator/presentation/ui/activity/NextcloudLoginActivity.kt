@@ -10,7 +10,9 @@ import org.cryptomator.presentation.databinding.ActivityNextcloudLoginBinding
 import org.cryptomator.presentation.presenter.NextcloudLoginPresenter
 import org.cryptomator.presentation.ui.activity.view.NextcloudLoginView
 import org.cryptomator.presentation.ui.layout.applySystemBarsPadding
+import androidx.core.widget.doAfterTextChanged
 import javax.inject.Inject
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 
 @Activity
 class NextcloudLoginActivity : BaseActivity<ActivityNextcloudLoginBinding>(ActivityNextcloudLoginBinding::inflate), NextcloudLoginView {
@@ -21,6 +23,7 @@ class NextcloudLoginActivity : BaseActivity<ActivityNextcloudLoginBinding>(Activ
 	override fun setupView() {
 		binding.mtToolbar.toolbar.setTitle(R.string.screen_nextcloud_login_title)
 		setSupportActionBar(binding.mtToolbar.toolbar)
+		supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
 		binding.signInButton.setOnClickListener { signIn() }
 		binding.cancelButton.setOnClickListener { presenter.cancelLogin() }
@@ -30,7 +33,15 @@ class NextcloudLoginActivity : BaseActivity<ActivityNextcloudLoginBinding>(Activ
 			}
 			false
 		}
+		binding.serverEditText.doAfterTextChanged { text ->
+			binding.signInButton.isEnabled = text?.toString()?.trim()?.toHttpUrlOrNull() != null
+		}
 		binding.content.applySystemBarsPadding(bottom = true)
+	}
+
+	override fun onSupportNavigateUp(): Boolean {
+		finish()
+		return true
 	}
 
 	private fun signIn() {
