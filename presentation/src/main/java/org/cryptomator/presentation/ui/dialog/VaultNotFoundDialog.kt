@@ -3,7 +3,7 @@ package org.cryptomator.presentation.ui.dialog
 import android.content.Context
 import android.content.DialogInterface
 import android.view.KeyEvent
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.cryptomator.domain.Vault
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.util.ResourceHelper
@@ -20,7 +20,7 @@ class VaultNotFoundDialog private constructor(private val context: Context) {
 	}
 
 	fun show(vault: Vault) {
-		AlertDialog.Builder(context) //
+		MaterialAlertDialogBuilder(context) //
 			.setTitle(String.format(ResourceHelper.getString(R.string.dialog_vault_not_found_title), vault.name)) //
 			.setMessage(ResourceHelper.getString(R.string.dialog_vault_not_found_message)) //
 			.setPositiveButton(ResourceHelper.getString(R.string.dialog_vault_not_found_positive_button_text)) { _: DialogInterface, _: Int -> callback.onDeleteMissingVaultClicked(vault) } //

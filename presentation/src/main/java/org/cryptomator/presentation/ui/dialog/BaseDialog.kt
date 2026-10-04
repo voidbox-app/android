@@ -14,6 +14,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.FragmentManager
 import androidx.viewbinding.ViewBinding
@@ -47,7 +48,7 @@ abstract class BaseDialog<Callback, VB : ViewBinding>(val bindingFactory: (Layou
 		val inflater = LayoutInflater.from(context)
 		binding = bindingFactory(inflater, null, false)
 
-		val builder = AlertDialog.Builder(requireActivity())
+		val builder = MaterialAlertDialogBuilder(requireActivity())
 		builder.setView(binding.root)
 		setupDialog(builder)
 

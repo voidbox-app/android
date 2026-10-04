@@ -2,7 +2,7 @@ package org.cryptomator.presentation.ui.dialog
 
 import android.content.Context
 import android.content.DialogInterface
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.cryptomator.presentation.R
 
 class UnsavedChangesDialog private constructor(private val context: Context) {
@@ -16,7 +16,7 @@ class UnsavedChangesDialog private constructor(private val context: Context) {
 	}
 
 	fun show() {
-		AlertDialog.Builder(context) //
+		MaterialAlertDialogBuilder(context) //
 			.setCancelable(false) //
 			.setTitle(R.string.dialog_unsaved_changes_title) //
 			.setMessage(R.string.dialog_unsaved_changes_message) //

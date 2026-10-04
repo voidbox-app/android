@@ -2,7 +2,7 @@ package org.cryptomator.presentation.ui.dialog
 
 import android.content.Context
 import android.content.DialogInterface
-import androidx.appcompat.app.AlertDialog
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.util.ResourceHelper
 
@@ -19,7 +19,7 @@ class ReplaceDialog private constructor(private val context: Context) {
 
 	fun show(existingFiles: List<String>, uploadingFilesCount: Int) {
 		val existingFilesCount = existingFiles.size
-		val alertDialogBuilder = AlertDialog.Builder(context) //
+		val alertDialogBuilder = MaterialAlertDialogBuilder(context) //
 			.setTitle(effectiveReplaceDialogTitle(existingFilesCount)) //
 			.setMessage(effectiveReplaceDialogMessage(existingFiles, uploadingFilesCount))
 			.setPositiveButton(effectiveReplaceDialogPositiveButton(existingFilesCount, uploadingFilesCount)) { _: DialogInterface, _: Int -> callback.onReplacePositiveClicked() } //

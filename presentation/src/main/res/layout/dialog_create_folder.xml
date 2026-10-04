@@ -13,7 +13,7 @@
 			android:id="@+id/til_folder"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			app:startIconDrawable="@drawable/node_folder">
+			android:hint="@string/dialog_create_folder_hint">
 
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/et_folder_name"

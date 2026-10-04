@@ -532,4 +532,5 @@
 	<string name="dark">Тёмная</string>
 	<!-- update interval names -->
 	<string name="update_interval_1d">Раз в день</string>
+	<string name="dialog_create_folder_hint">Имя папки</string>
 </resources>

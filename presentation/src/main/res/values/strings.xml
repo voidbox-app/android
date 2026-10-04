@@ -394,6 +394,7 @@
 
 	<string name="dialog_create_folder_title" translatable="false">@string/screen_file_browser_action_create_folder</string>
 	<string name="dialog_create_folder_positive_button" translatable="false">@string/screen_enter_vault_name_button_text</string>
+	<string name="dialog_create_folder_hint">Folder name</string>
 
 	<string name="dialog_enter_password_password_label" translatable="false">@string/screen_webdav_settings_password_label</string>
 	<string name="dialog_enter_password_positive_button">Unlock</string>
