@@ -110,8 +110,7 @@ android {
 		lite {
 			dimension "version"
 
-			applicationIdSuffix ".lite"
-			resValue "string", "app_id", androidApplicationId + applicationIdSuffix
+			resValue "string", "app_id", androidApplicationId
 		}
 
 		accrescent {

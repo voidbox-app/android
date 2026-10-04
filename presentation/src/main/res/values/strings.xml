@@ -4,7 +4,7 @@
 	<string name="empty" translatable="false"></string>
 
 	<!-- # app -->
-	<string name="app_name" translatable="false">Cryptomator</string>
+	<string name="app_name" translatable="false">Latch</string>
 	<string name="download_subdirectory_name" translatable="false">@string/app_name</string>
 	<string name="vault_cryptomator" translatable="false">vault.cryptomator</string>
 	<string name="masterkey_cryptomator" translatable="false">masterkey.cryptomator</string>
