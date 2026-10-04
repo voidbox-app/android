@@ -128,6 +128,7 @@ constructor(
 		}
 
 		private fun internalBind(node: CloudNodeModel<*>) {
+			itemView.isActivated = false
 			bindNodeImage(node)
 			bindSettings(node)
 			bindLongNodeClick(node)
@@ -142,7 +143,7 @@ constructor(
 			if (cloudNodeModel is CloudFileModel) {
 				return FileIcon.fileIconFor(cloudNodeModel.name, fileUtil).iconResource
 			} else if (cloudNodeModel is CloudFolderModel) {
-				return R.drawable.node_folder
+				return R.drawable.ic_folder_filled
 			}
 			throw IllegalStateException("Could not identify the CloudNodeModel type")
 		}
@@ -240,11 +241,13 @@ constructor(
 		private fun bindNodeSelection(cloudNodeModel: CloudNodeModel<*>) {
 			binding.itemCheckBox.setOnCheckedChangeListener { _, isChecked ->
 				cloudNodeModel.isSelected = isChecked
+				itemView.isActivated = isChecked
 				callback.onSelectedNodesChanged(selectedCloudNodes().size)
 			}
 			enableNodeClick { binding.itemCheckBox.toggle() }
 
 			binding.itemCheckBox.isChecked = cloudNodeModel.isSelected
+			itemView.isActivated = cloudNodeModel.isSelected
 		}
 
 		private fun fileDetails(cloudFile: CloudFileModel): String {
@@ -328,6 +331,7 @@ constructor(
 
 		fun selectNode(checked: Boolean) {
 			binding.itemCheckBox.isChecked = checked
+			itemView.isActivated = checked
 		}
 
 		abstract inner class UiStateTest(val isForFile: Boolean) {

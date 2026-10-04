@@ -8,7 +8,11 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:orientation="vertical"
-		android:paddingBottom="8dp">
+		android:paddingBottom="16dp">
+
+		<com.google.android.material.bottomsheet.BottomSheetDragHandleView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content" />
 
 		<RelativeLayout
 			android:layout_width="match_parent"
@@ -23,7 +27,7 @@
 				android:layout_centerVertical="true"
 				android:layout_marginStart="16dp"
 				android:layout_marginEnd="16dp"
-				android:src="@drawable/node_folder" />
+				android:src="@drawable/ic_folder_filled" />
 
 			<LinearLayout
 				android:layout_width="match_parent"
@@ -55,12 +59,6 @@
 
 		</RelativeLayout>
 
-		<TextView
-			android:layout_width="match_parent"
-			android:layout_height="1dp"
-			android:layout_alignParentBottom="true"
-			android:layout_marginBottom="16dp"
-			android:background="@color/list_divider" />
 
 		<TextView
 			android:id="@+id/share_folder"

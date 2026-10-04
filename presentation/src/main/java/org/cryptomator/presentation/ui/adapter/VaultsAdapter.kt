@@ -1,8 +1,11 @@
 package org.cryptomator.presentation.ui.adapter
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.google.android.material.color.MaterialColors
+import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.ItemVaultBinding
 import org.cryptomator.presentation.model.VaultModel
 import org.cryptomator.presentation.model.comparator.VaultPositionComparator
@@ -35,6 +38,7 @@ internal constructor() : RecyclerViewBaseAdapter<VaultModel, VaultsAdapter.OnIte
 
 	fun deleteVault(vaultID: Long) {
 		deleteItem(getVault(vaultID))
+		notifyItemRangeChanged(0, itemCount)
 	}
 
 	fun addOrUpdateVault(vault: VaultModel?) {
@@ -43,6 +47,7 @@ internal constructor() : RecyclerViewBaseAdapter<VaultModel, VaultsAdapter.OnIte
 		} else {
 			addItem(vault)
 		}
+		notifyItemRangeChanged(0, itemCount)
 	}
 
 	private fun getVault(vaultId: Long): VaultModel? {
@@ -56,26 +61,47 @@ internal constructor() : RecyclerViewBaseAdapter<VaultModel, VaultsAdapter.OnIte
 
 			binding.vaultName.text = vaultModel.name
 			binding.vaultPath.text = vaultModel.path
+			bindLeadingIcon(vaultModel)
+			bindGroupShape(position)
 
-			binding.cloudImage.setImageResource(vaultModel.cloudType.vaultImageResource)
+			binding.unlockedImage.visibility = if (vaultModel.isLocked) View.GONE else View.VISIBLE
 
-			if (vaultModel.isLocked) {
-				binding.unlockedImage.visibility = View.GONE
-			} else {
-				binding.unlockedImage.visibility = View.VISIBLE
-			}
-
-			itemView.setOnClickListener {
-				binding.cloudImage.setImageResource(vaultModel.cloudType.vaultSelectedImageResource)
-				callback.onVaultClicked(vaultModel)
-			}
+			itemView.setOnClickListener { callback.onVaultClicked(vaultModel) }
 
 			binding.unlockedImage.setOnClickListener { callback.onVaultLockClicked(vaultModel) }
 
-			binding.settings.setOnClickListener {
-				binding.cloudImage.setImageResource(vaultModel.cloudType.vaultSelectedImageResource)
-				callback.onVaultSettingsClicked(vaultModel)
+			binding.settings.setOnClickListener { callback.onVaultSettingsClicked(vaultModel) }
+		}
+
+		/** Locked: the cloud icon on a neutral container. Unlocked: an open lock on primaryContainer. */
+		private fun bindLeadingIcon(vaultModel: VaultModel) {
+			if (vaultModel.isLocked) {
+				binding.cloudImage.setImageResource(vaultModel.cloudImageResource)
+				// brand logos keep their own colors, symbols take the theme's
+				binding.cloudImage.imageTintList = if (vaultModel.cloudImageResource == R.drawable.nextcloud) null else themeColor(com.google.android.material.R.attr.colorOnSurfaceVariant)
+				binding.cloudImageContainer.backgroundTintList = themeColor(com.google.android.material.R.attr.colorSurfaceContainerHighest)
+			} else {
+				binding.cloudImage.setImageResource(R.drawable.ic_lock_open_filled)
+				binding.cloudImage.imageTintList = themeColor(com.google.android.material.R.attr.colorOnPrimaryContainer)
+				binding.cloudImageContainer.backgroundTintList = themeColor(com.google.android.material.R.attr.colorPrimaryContainer)
 			}
+		}
+
+		/** Rows form one group: 20dp corners at the group's ends, 4dp between neighbours. */
+		private fun bindGroupShape(position: Int) {
+			val card = binding.root
+			val outer = card.resources.getDimension(R.dimen.list_group_corner)
+			val inner = card.resources.getDimension(R.dimen.list_group_inner_corner)
+			val top = if (position == 0) outer else inner
+			val bottom = if (position == itemCount - 1) outer else inner
+			card.shapeAppearanceModel = card.shapeAppearanceModel.toBuilder() //
+				.setTopLeftCornerSize(top).setTopRightCornerSize(top) //
+				.setBottomLeftCornerSize(bottom).setBottomRightCornerSize(bottom) //
+				.build()
+		}
+
+		private fun themeColor(attr: Int): ColorStateList {
+			return ColorStateList.valueOf(MaterialColors.getColor(binding.root, attr))
 		}
 	}
 

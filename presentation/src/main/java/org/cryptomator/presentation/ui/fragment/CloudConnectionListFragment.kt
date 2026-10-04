@@ -11,6 +11,7 @@ import org.cryptomator.presentation.model.CloudTypeModel
 import org.cryptomator.presentation.presenter.CloudConnectionListPresenter
 import org.cryptomator.presentation.ui.adapter.CloudConnectionListAdapter
 import javax.inject.Inject
+import org.cryptomator.presentation.R
 
 @Fragment
 class CloudConnectionListFragment : BaseFragment<FragmentBrowseCloudConnectionsBinding>(FragmentBrowseCloudConnectionsBinding::inflate) {
@@ -35,6 +36,7 @@ class CloudConnectionListFragment : BaseFragment<FragmentBrowseCloudConnectionsB
 
 	override fun setupView() {
 		setupRecyclerView()
+		binding.floatingActionButton.floatingActionButton.setText(R.string.screen_cloud_connections_add_location)
 		binding.floatingActionButton.floatingActionButton.setOnClickListener { cloudConnectionListPresenter.onAddConnectionClicked() }
 	}
 

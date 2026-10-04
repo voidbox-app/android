@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:layout_width="match_parent"
 	android:layout_height="72dp"
-	android:background="?android:attr/selectableItemBackground"
+	android:background="@drawable/bg_list_row"
 	android:foreground="@drawable/item_browse_files_node_selector">
 
 	<ImageView
 		android:id="@+id/cloud_node_image"
-		android:layout_width="@dimen/thumbnail_size"
-		android:layout_height="@dimen/thumbnail_size"
+		android:layout_width="40dp"
+		android:layout_height="40dp"
 		android:layout_centerVertical="true"
-		android:layout_marginStart="16dp" />
+		android:layout_marginStart="16dp"
+		android:contentDescription="@null"
+		android:padding="8dp" />
 
 	<include
 		android:id="@+id/ll_cloud_folder_content"
@@ -19,7 +22,7 @@
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
 		android:layout_marginStart="16dp"
-		android:layout_marginEnd="16dp"
+		android:layout_marginEnd="4dp"
 		android:layout_toStartOf="@id/controls"
 		android:layout_toEndOf="@id/cloud_node_image" />
 
@@ -30,8 +33,7 @@
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
 		android:layout_marginStart="16dp"
-		android:layout_marginTop="16dp"
-		android:layout_marginEnd="16dp"
+		android:layout_marginEnd="4dp"
 		android:layout_toStartOf="@id/controls"
 		android:layout_toEndOf="@id/cloud_node_image" />
 
@@ -40,30 +42,23 @@
 		android:layout_width="48dp"
 		android:layout_height="48dp"
 		android:layout_alignParentEnd="true"
-		android:layout_centerVertical="true">
+		android:layout_centerVertical="true"
+		android:layout_marginEnd="4dp">
 
 		<ImageView
 			android:id="@+id/settings"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
+			android:background="?attr/selectableItemBackgroundBorderless"
+			android:contentDescription="@string/screen_settings_title"
 			android:padding="12dp"
-			android:src="@drawable/ic_expand_more" />
+			app:srcCompat="@drawable/ic_more_vert"
+			app:tint="?attr/colorOnSurfaceVariant" />
 
 		<CheckBox
 			android:id="@+id/item_check_box"
 			android:layout_width="match_parent"
 			android:layout_height="match_parent"
 			android:visibility="gone" />
-
 	</RelativeLayout>
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:layout_alignParentBottom="true"
-		android:layout_marginStart="16dp"
-		android:layout_toEndOf="@id/cloud_node_image"
-		android:background="@color/list_divider" />
-
-
 </RelativeLayout>

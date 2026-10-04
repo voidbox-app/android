@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.cryptomator.presentation.ui.layout.FloatingActionButtonLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<org.cryptomator.presentation.ui.layout.ExtendedFloatingActionButtonLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/floating_action_button"
 	android:layout_width="wrap_content"
@@ -7,6 +7,6 @@
 	android:layout_gravity="bottom|end"
 	android:layout_marginEnd="@dimen/fab_margin"
 	android:layout_marginBottom="@dimen/fab_margin"
-	android:contentDescription="@string/screen_file_browser_actions_title"
-	app:layout_anchorGravity="bottom|right|end"
-	app:srcCompat="@drawable/ic_add_white" />
+	android:text="@string/screen_vault_list_add_vault"
+	app:icon="@drawable/ic_add_white"
+	app:layout_anchorGravity="bottom|right|end" />

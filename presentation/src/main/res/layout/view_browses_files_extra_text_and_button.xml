@@ -3,35 +3,30 @@
 	android:id="@+id/extra_text_and_button_layout"
 	android:layout_width="match_parent"
 	android:layout_height="wrap_content"
-	android:minHeight="?attr/actionBarSize"
+	android:background="?attr/colorSurfaceContainer"
+	android:minHeight="56dp"
+	android:paddingStart="16dp"
+	android:paddingTop="8dp"
+	android:paddingEnd="16dp"
+	android:paddingBottom="8dp"
 	android:visibility="gone">
-
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="1dp"
-		android:layout_alignParentTop="true"
-		android:layout_toStartOf="@id/extra_text"
-		android:background="@color/list_divider" />
 
 	<TextView
 		android:id="@+id/extra_text"
 		android:layout_width="wrap_content"
 		android:layout_height="wrap_content"
 		android:layout_centerVertical="true"
+		android:layout_marginEnd="8dp"
 		android:layout_toStartOf="@id/choose_location_button"
 		android:ellipsize="middle"
 		android:singleLine="true"
-		android:textSize="16sp" />
-	<!-- using android:singleLine to fix https://code.google.com/p/android/issues/detail?id=33868 -->
+		android:textAppearance="?attr/textAppearanceBodyMedium"
+		android:textColor="?attr/colorOnSurfaceVariant" />
 
-	<Button
+	<com.google.android.material.button.MaterialButton
 		android:id="@+id/choose_location_button"
 		android:layout_width="wrap_content"
-		android:layout_height="35dp"
+		android:layout_height="wrap_content"
 		android:layout_alignParentEnd="true"
-		android:layout_margin="10dp"
-		android:background="?attr/colorPrimary"
-		android:padding="5dp"
-		android:textColor="@color/textColorWhite" />
-
+		android:layout_centerVertical="true" />
 </RelativeLayout>

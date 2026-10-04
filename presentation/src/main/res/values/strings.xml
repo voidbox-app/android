@@ -156,6 +156,9 @@
 	<string name="screen_vault_list_vault_action_rename" translatable="false">@string/screen_file_browser_node_action_rename</string>
 	<string name="screen_vault_list_vault_action_delete">Remove</string>
 	<string name="screen_vault_list_vault_creation_hint">Tap here to create a new vault</string>
+	<string name="screen_vault_list_empty_title">No vaults yet</string>
+	<string name="screen_vault_list_empty_body">A vault keeps your files encrypted in a cloud you choose. Create a new one or add a vault you already have.</string>
+	<string name="screen_vault_list_add_vault">Add vault</string>
 	<string name="screen_vault_list_change_password_successful">Password successfully changed</string>
 
 	<!-- # screen: file browser -->
@@ -238,6 +241,9 @@
 	<string name="screen_cloud_settings_option_edit" translatable="false">@string/screen_file_browser_node_action_edit_text</string>
 	<string name="screen_cloud_settings_option_delete" translatable="false">@string/screen_vault_list_vault_action_delete</string>
 	<string name="screen_cloud_connections_no_connections">Tap here to add locations</string>
+	<string name="screen_cloud_connections_empty_title">No locations yet</string>
+	<string name="screen_cloud_connections_empty_body">Add a connection, then pick it here to keep the vault on it.</string>
+	<string name="screen_cloud_connections_add_location">Add location</string>
 	<string name="screen_cloud_error_webdav_not_supported">Server doesn\'t seem to be WebDAV compatible</string>
 	<string name="screen_cloud_local_error_no_content_provider">No file manager found that supports opening directories</string>
 
@@ -399,6 +405,7 @@
 
 	<string name="dialog_enter_password_password_label" translatable="false">@string/screen_webdav_settings_password_label</string>
 	<string name="dialog_enter_password_positive_button">Unlock</string>
+	<string name="dialog_enter_password_location">%1$s · %2$s</string>
 
 	<string name="dialog_change_password_old_password_label">Old Password</string>
 	<string name="dialog_change_password_new_password_label">New Password</string>

@@ -26,7 +26,7 @@
 			android:layout_height="wrap_content"
 			android:ellipsize="middle"
 			android:singleLine="true"
-			android:textColor="@color/textColorLight"
+			android:textColor="?attr/colorOnSurfaceVariant"
 			android:textSize="14sp" />
 		<!-- using android:singleLine to fix https://code.google.com/p/android/issues/detail?id=33868 -->
 

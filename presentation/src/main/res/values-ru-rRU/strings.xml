@@ -533,4 +533,23 @@
 	<!-- update interval names -->
 	<string name="update_interval_1d">Раз в день</string>
 	<string name="dialog_create_folder_hint">Имя папки</string>
+	<string name="screen_vault_list_empty_title">Хранилищ пока нет</string>
+	<string name="screen_vault_list_empty_body">Хранилище держит ваши файлы зашифрованными в выбранном облаке. Создайте новое или добавьте уже существующее.</string>
+	<string name="screen_vault_list_add_vault">Добавить хранилище</string>
+	<string name="screen_cloud_connections_empty_title">Локаций пока нет</string>
+	<string name="screen_cloud_connections_empty_body">Добавьте подключение и выберите его здесь, чтобы держать в нём хранилище.</string>
+	<string name="screen_cloud_connections_add_location">Добавить локацию</string>
+	<string name="dialog_enter_password_location">%1$s · %2$s</string>
+	<string name="screen_settings_cryptomator_variants_summary">Показать варианты этого приложения</string>
+	<!-- # nextcloud sign-in -->
+	<string name="screen_nextcloud_login_title">Nextcloud</string>
+	<string name="screen_nextcloud_login_intro">Latch откроет ваш Nextcloud в браузере. Подтвердите вход там и вернитесь: сервер сам создаст пароль приложения для Latch.</string>
+	<string name="screen_nextcloud_login_server_label">Адрес сервера</string>
+	<string name="screen_nextcloud_login_server_helper">Например, https://cloud.example.com</string>
+	<string name="screen_nextcloud_login_button">Войти через Nextcloud</string>
+	<string name="screen_nextcloud_login_waiting">Ожидание подтверждения в браузере…</string>
+	<string name="screen_nextcloud_login_cancel">Отмена</string>
+	<string name="screen_nextcloud_login_msg_server_invalid">Введите правильный адрес сервера</string>
+	<string name="screen_nextcloud_login_msg_server_unreachable">Не удалось связаться с сервером Nextcloud</string>
+	<string name="screen_nextcloud_login_msg_timeout">Вход не был подтверждён, попробуйте ещё раз</string>
 </resources>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<org.cryptomator.presentation.ui.layout.ArcAwareCoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
 	android:id="@+id/coordinator_layout"
 	android:layout_width="match_parent"
@@ -15,7 +15,7 @@
 
 	<include
 		android:id="@+id/floating_action_button"
-		layout="@layout/floating_action_button_layout"
+		layout="@layout/extended_floating_action_button_layout"
 		app:layout_anchor="@id/recycler_view" />
 
-</org.cryptomator.presentation.ui.layout.ArcAwareCoordinatorLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
