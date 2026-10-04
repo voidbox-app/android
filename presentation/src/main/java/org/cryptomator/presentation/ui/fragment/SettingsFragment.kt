@@ -42,6 +42,7 @@ import java.text.DecimalFormat
 import java.util.function.Consumer
 import kotlin.math.log10
 import timber.log.Timber
+import org.cryptomator.presentation.ui.layout.PreferenceGroupDecoration
 
 class SettingsFragment : PreferenceFragmentCompatLayout() {
 
@@ -52,6 +53,10 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 		super.onViewCreated(view, savedInstanceState)
 		setDivider(null)
 		setDividerHeight(0)
+		val inset = resources.getDimensionPixelSize(R.dimen.global_padding)
+		listView.setPadding(inset, 0, inset, listView.paddingBottom)
+		listView.clipToPadding = false
+		listView.addItemDecoration(PreferenceGroupDecoration(preferenceScreen, listView))
 	}
 
 	override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
