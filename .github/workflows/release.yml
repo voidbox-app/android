@@ -1,0 +1,99 @@
+name: Release
+
+# Builds the Latch APK (Cryptomator lite flavor with the Latch patch set) for a given
+# upstream tag and publishes it as a GitHub release so Obtainium can install it.
+#
+# Manual:   Actions -> Release -> Run workflow -> upstream tag (e.g. 2.0.2)
+# Scheduled: once a day; picks the newest upstream tag that has no release yet.
+#
+# The patch set lives on branch `latch` as commits on top of the upstream tag recorded
+# in UPSTREAM_TAG. The job rebases that branch onto the new tag; a conflict fails the job.
+
+on:
+  workflow_dispatch:
+    inputs:
+      upstream_tag:
+        description: "Upstream cryptomator/android tag to build"
+        required: true
+  schedule:
+    - cron: "17 5 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: latch
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Resolve upstream tag
+        id: tag
+        run: |
+          git remote add upstream https://github.com/cryptomator/android.git
+          git fetch --tags upstream
+          if [ -n "${{ github.event.inputs.upstream_tag }}" ]; then
+            tag="${{ github.event.inputs.upstream_tag }}"
+          else
+            tag=$(git tag --list '[0-9]*.[0-9]*.[0-9]*' | sort -V | tail -1)
+          fi
+          echo "tag=$tag" >> "$GITHUB_OUTPUT"
+          if gh release view "$tag-latch" >/dev/null 2>&1; then
+            echo "release $tag-latch already exists"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Rebase patch set onto the tag
+        if: steps.tag.outputs.skip != 'true'
+        run: |
+          git config user.name "latch-ci"
+          git config user.email "latch-ci@users.noreply.github.com"
+          base=$(cat UPSTREAM_TAG)
+          tag="${{ steps.tag.outputs.tag }}"
+          if [ "$base" != "$tag" ]; then
+            git rebase --onto "$tag" "$base" latch
+            echo "$tag" > UPSTREAM_TAG
+            git commit -am "Rebase Latch onto upstream $tag"
+            git push origin latch
+          fi
+
+      - uses: actions/setup-java@v4
+        if: steps.tag.outputs.skip != 'true'
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - name: Build lite release APK
+        if: steps.tag.outputs.skip != 'true'
+        run: ./gradlew --no-daemon :presentation:assembleLiteRelease
+
+      - name: Sign APK
+        if: steps.tag.outputs.skip != 'true'
+        env:
+          KEYSTORE_B64: ${{ secrets.LATCH_KEYSTORE_B64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.LATCH_KEYSTORE_PASSWORD }}
+        run: |
+          echo "$KEYSTORE_B64" | base64 -d > latch.jks
+          tools=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
+          unsigned=$(ls presentation/build/outputs/apk/lite/release/*.apk | head -1)
+          "$tools/apksigner" sign --ks latch.jks --ks-key-alias latch \
+            --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEYSTORE_PASSWORD \
+            --out "latch-${{ steps.tag.outputs.tag }}.apk" "$unsigned"
+          "$tools/apksigner" verify --print-certs "latch-${{ steps.tag.outputs.tag }}.apk"
+          rm -f latch.jks
+
+      - name: Publish release
+        if: steps.tag.outputs.skip != 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${{ steps.tag.outputs.tag }}"
+          gh release create "$tag-latch" "latch-$tag.apk" \
+            --title "Latch $tag" \
+            --notes "Cryptomator lite $tag with the Latch patch set. Upstream: https://github.com/cryptomator/android/releases/tag/$tag"
