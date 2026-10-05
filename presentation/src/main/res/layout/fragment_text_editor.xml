@@ -15,9 +15,13 @@
 			android:id="@+id/text_editor"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
+			android:background="@null"
 			android:gravity="top"
 			android:imeOptions="flagNoPersonalizedLearning"
-			android:inputType="textMultiLine" />
+			android:inputType="textMultiLine"
+			android:padding="16dp"
+			android:textAppearance="?attr/textAppearanceBodyLarge"
+			android:textColor="?attr/colorOnSurface" />
 	</ScrollView>
 
 	<View

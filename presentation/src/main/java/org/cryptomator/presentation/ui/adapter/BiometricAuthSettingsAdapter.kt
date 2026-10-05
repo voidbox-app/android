@@ -2,7 +2,7 @@ package org.cryptomator.presentation.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Switch
+import android.widget.CompoundButton
 import org.cryptomator.presentation.databinding.ItemBiometricAuthVaultBinding
 import org.cryptomator.presentation.model.VaultModel
 import org.cryptomator.presentation.model.comparator.VaultPositionComparator
@@ -52,7 +52,7 @@ constructor() : RecyclerViewBaseAdapter<VaultModel, BiometricAuthSettingsAdapter
 
 			//itemView.toggleBiometricAuth.setOnCheckedChangeListener doesn't work because bind can be executed multiple times
 			binding.toggleBiometricAuth.setOnClickListener { switch ->
-				onVaultBiometricAuthSettingsChanged?.onVaultBiometricAuthSettingsChanged(vaultModel, (switch as Switch).isChecked)
+				onVaultBiometricAuthSettingsChanged?.onVaultBiometricAuthSettingsChanged(vaultModel, (switch as CompoundButton).isChecked)
 			}
 		}
 	}
