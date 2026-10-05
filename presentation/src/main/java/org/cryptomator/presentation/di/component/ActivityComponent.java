@@ -17,6 +17,7 @@ import org.cryptomator.presentation.ui.activity.CreateVaultActivity;
 import org.cryptomator.presentation.ui.activity.CryptomatorVariantsActivity;
 import org.cryptomator.presentation.ui.activity.ImagePreviewActivity;
 import org.cryptomator.presentation.ui.activity.MediaPreviewActivity;
+import org.cryptomator.presentation.ui.activity.PdfPreviewActivity;
 import org.cryptomator.presentation.ui.activity.LicenseCheckActivity;
 import org.cryptomator.presentation.ui.activity.LicensesActivity;
 import org.cryptomator.presentation.ui.activity.S3AddOrChangeActivity;
@@ -117,6 +118,8 @@ public interface ActivityComponent {
 	void inject(ImagePreviewActivity imagePreviewActivity);
 
 	void inject(MediaPreviewActivity mediaPreviewActivity);
+
+	void inject(PdfPreviewActivity pdfPreviewActivity);
 
 	void inject(ImagePreviewFragment imagePreviewFragment);
 

@@ -559,4 +559,5 @@
 	<string name="screen_media_preview_seek_forward">+10 с</string>
 	<string name="screen_media_preview_seek_back">\u221210 с</string>
 	<string name="screen_media_preview_error">Latch не может воспроизвести этот файл.</string>
+	<string name="screen_pdf_preview_error">Latch не может открыть этот PDF. Если он защищён паролем, экспортируйте его и откройте в другом приложении.</string>
 </resources>

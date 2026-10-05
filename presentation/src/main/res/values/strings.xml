@@ -185,6 +185,8 @@
 	<string name="screen_media_preview_seek_forward">+10 s</string>
 	<string name="screen_media_preview_seek_back">\u221210 s</string>
 	<string name="screen_media_preview_error">Latch can\u2019t play this file.</string>
+	<string name="screen_pdf_preview_error">Latch can\u2019t open this PDF. If it is password-protected, export it and open it elsewhere.</string>
+	<string name="screen_pdf_preview_page" translatable="false">%1$d / %2$d</string>
 	<string name="screen_file_browser_file_info_label_size" translatable="false">%1$s</string>
 	<string name="screen_file_browser_file_info_label_date">modified %1$s ago</string>
 

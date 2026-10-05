@@ -514,6 +514,8 @@ class BrowseFilesPresenter @Inject constructor( //
 				.withHubWriteAllowed(licenseEnforcer.hasWriteAccessForVault(view?.folder?.vault()))
 				.build(this)
 			startIntent(intent)
+		} else if (lowerFileName.endsWith(".pdf")) {
+			startIntent(Intents.pdfPreviewIntent().withPdfFile(cloudFile).build(this))
 		} else if (isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) {
 			startIntent(Intents.mediaPreviewIntent().withMediaFile(cloudFile).build(this))
 		} else if (!lowerFileName.endsWith(".gif") && isImageMediaType(cloudFile.name)) {
