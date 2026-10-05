@@ -1,10 +1,13 @@
 package org.cryptomator.presentation.ui.activity
 
 import android.annotation.SuppressLint
+import android.content.pm.ActivityInfo
 import android.view.GestureDetector
 import android.view.MotionEvent
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
@@ -22,6 +25,8 @@ import javax.inject.Inject
 import timber.log.Timber
 
 /** In-app video and audio player: a stock Media3 PlayerView over the decrypted copy, nothing handed to other apps. */
+// seek increments and controller visibility are still marked unstable in Media3 1.4
+@androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 @Activity
 class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityMediaPreviewBinding::inflate), MediaPreviewView {
 
@@ -43,9 +48,14 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 		supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_clear)
 		binding.toolbar.applySystemBarsPadding(left = true, top = true, right = true)
 		window.statusBarColor = ContextCompat.getColor(this, R.color.colorBlack)
+		// one file at a time, so there is nothing for "previous" and "next" to do
+		binding.playerView.setShowPreviousButton(false)
+		binding.playerView.setShowNextButton(false)
+		// setting a listener is what makes Media3 show its fullscreen button
+		binding.playerView.setFullscreenButtonClickListener { fullscreen -> setFullscreen(fullscreen) }
 		// the toolbar comes and goes with the player's own controls
 		binding.playerView.setControllerVisibilityListener(PlayerView.ControllerVisibilityListener { visibility -> binding.toolbar.visibility = visibility })
-		setupDoubleTapSeek()
+		setupTouches()
 	}
 
 	override fun onStart() {
@@ -73,8 +83,6 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 		else -> super.onMenuItemSelected(itemId)
 	}
 
-	// the seek increments are still marked unstable in Media3 1.4
-	@androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 	private fun startPlayer() {
 		if (player != null) {
 			return
@@ -108,10 +116,30 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 		player = null
 	}
 
-	// Double-tap on the left or right half of the picture seeks like the ±10 s buttons do.
+	/** Landscape with the system bars tucked away; the same button brings everything back. */
+	private fun setFullscreen(enabled: Boolean) {
+		requestedOrientation = if (enabled) ActivityInfo.SCREEN_ORIENTATION_SENSOR_LANDSCAPE else ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED
+		WindowInsetsControllerCompat(window, binding.root).apply {
+			systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+			if (enabled) hide(WindowInsetsCompat.Type.systemBars()) else show(WindowInsetsCompat.Type.systemBars())
+		}
+	}
+
+	// A single tap toggles the controls once the double-tap window has passed; a double tap on the
+	// left or right half seeks like the ±10 s buttons and leaves the controls as they are. The
+	// detector consumes every touch on the picture, so PlayerView does not toggle on its own as well.
 	@SuppressLint("ClickableViewAccessibility")
-	private fun setupDoubleTapSeek() {
+	private fun setupTouches() {
 		val detector = GestureDetector(this, object : GestureDetector.SimpleOnGestureListener() {
+			override fun onSingleTapConfirmed(event: MotionEvent): Boolean {
+				if (binding.playerView.isControllerFullyVisible) {
+					binding.playerView.hideController()
+				} else {
+					binding.playerView.showController()
+				}
+				return true
+			}
+
 			override fun onDoubleTap(event: MotionEvent): Boolean {
 				val forward = event.x > binding.playerView.width / 2f
 				player?.let { if (forward) it.seekForward() else it.seekBack() }
@@ -119,19 +147,17 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 				return true
 			}
 		})
-		binding.playerView.setOnTouchListener { view, event ->
+		binding.playerView.setOnTouchListener { _, event ->
 			detector.onTouchEvent(event)
-			if (event.action == MotionEvent.ACTION_UP) {
-				view.performClick()
-			}
-			false
+			true
 		}
 	}
 
 	private fun showSeekHint(textId: Int, forward: Boolean) {
 		binding.seekHint.setText(textId)
-		// the hint sits over the half that was tapped, clear of the centre controls
+		// over the half that was tapped and above the row of buttons, so it covers none of them
 		binding.seekHint.translationX = binding.playerView.width / 4f * (if (forward) 1 else -1)
+		binding.seekHint.translationY = -binding.playerView.height / 5f
 		binding.seekHint.animate().cancel()
 		binding.seekHint.alpha = 1f
 		binding.seekHint.visibility = View.VISIBLE
