@@ -80,4 +80,14 @@
 		<item>ppsm</item>
 		<item>mdb</item>
 	</string-array>
+	<string-array name="thumbnails_entries">
+		<item>@string/screen_settings_thumbnails_never</item>
+		<item>@string/screen_settings_thumbnails_wifi</item>
+		<item>@string/screen_settings_thumbnails_always</item>
+	</string-array>
+	<string-array name="thumbnails_values" translatable="false">
+		<item>never</item>
+		<item>wifi</item>
+		<item>always</item>
+	</string-array>
 </resources>

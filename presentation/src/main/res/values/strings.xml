@@ -726,6 +726,10 @@
 	<string name="notification_cleared_trusted_hosts">Cleared trusted hosts</string>
 
 	<string name="screen_settings_lru_cache">Cache</string>
+	<string name="screen_settings_thumbnails">Thumbnails</string>
+	<string name="screen_settings_thumbnails_never">Never</string>
+	<string name="screen_settings_thumbnails_wifi">Only on Wi\u2011Fi</string>
+	<string name="screen_settings_thumbnails_always">Always</string>
 	<string name="screen_settings_lru_cache_toggle" translatable="false">@string/screen_settings_section_auto_photo_upload_toggle</string>
 	<string name="screen_settings_lru_cache_toggle_summary">Cache recently accessed files encrypted locally on the device for later reuse when reopened</string>
 	<string name="screen_settings_lru_cache_size">Total cache size</string>

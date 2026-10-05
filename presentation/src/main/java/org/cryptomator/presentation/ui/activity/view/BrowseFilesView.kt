@@ -1,5 +1,6 @@
 package org.cryptomator.presentation.ui.activity.view
 
+import android.graphics.Bitmap
 import org.cryptomator.domain.CloudNode
 import org.cryptomator.presentation.model.CloudFileModel
 import org.cryptomator.presentation.model.CloudFolderModel
@@ -18,6 +19,7 @@ interface BrowseFilesView : View {
 	fun showProgress(node: CloudNodeModel<*>, progress: ProgressModel)
 	fun showProgress(nodes: List<CloudNodeModel<*>>, progress: ProgressModel)
 	fun hideProgress(node: CloudNodeModel<*>)
+	fun showThumbnail(file: CloudFileModel, thumbnail: Bitmap)
 	fun hideProgress(nodes: List<CloudNodeModel<*>>)
 	fun showFileTypeNotSupportedDialog(file: CloudFileModel)
 	fun showReplaceDialog(existingFiles: List<String>, size: Int)

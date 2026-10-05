@@ -560,4 +560,8 @@
 	<string name="screen_media_preview_seek_back">\u221210 с</string>
 	<string name="screen_media_preview_error">Latch не может воспроизвести этот файл.</string>
 	<string name="screen_pdf_preview_error">Latch не может открыть этот PDF. Если он защищён паролем, экспортируйте его и откройте в другом приложении.</string>
+	<string name="screen_settings_thumbnails">Миниатюры</string>
+	<string name="screen_settings_thumbnails_never">Никогда</string>
+	<string name="screen_settings_thumbnails_wifi">Только по Wi\u2011Fi</string>
+	<string name="screen_settings_thumbnails_always">Всегда</string>
 </resources>

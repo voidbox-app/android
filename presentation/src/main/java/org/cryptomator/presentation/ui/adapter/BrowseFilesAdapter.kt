@@ -31,13 +31,17 @@ import org.cryptomator.presentation.util.FileUtil
 import org.cryptomator.presentation.util.ResourceHelper.Companion.getDrawable
 import org.cryptomator.util.SharedPreferencesHandler
 import javax.inject.Inject
+import android.graphics.Bitmap
+import android.widget.ImageView
+import org.cryptomator.presentation.util.ThumbnailCache
 
 class BrowseFilesAdapter @Inject
 constructor(
 	private val dateHelper: DateHelper, //
 	private val fileSizeHelper: FileSizeHelper, //
 	private val fileUtil: FileUtil, //
-	private val sharedPreferencesHandler: SharedPreferencesHandler
+	private val sharedPreferencesHandler: SharedPreferencesHandler, //
+	private val thumbnailCache: ThumbnailCache
 ) : RecyclerViewBaseAdapter<CloudNodeModel<*>, BrowseFilesAdapter.ItemClickListener, VaultContentViewHolder, ItemBrowseFilesNodeBinding>(CloudNodeModelNameAZComparator()), FastScrollRecyclerView.SectionedAdapter {
 
 	private var chooseCloudNodeSettings: ChooseCloudNodeSettings? = null
@@ -136,7 +140,25 @@ constructor(
 		}
 
 		private fun bindNodeImage(node: CloudNodeModel<*>) {
-			binding.cloudNodeImage.setImageResource(bindCloudNodeImage(node))
+			if (node is CloudFileModel && node.icon == FileIcon.IMAGE) {
+				thumbnailCache.peek(thumbnailCache.key(node))?.let {
+					showThumbnail(it)
+					return
+				}
+				callback.onThumbnailRequested(node)
+			}
+			showIcon(bindCloudNodeImage(node))
+		}
+
+		// icons keep their 24dp intrinsic size centred in the 40dp slot; thumbnails fill it
+		private fun showIcon(icon: Int) {
+			binding.cloudNodeImage.scaleType = ImageView.ScaleType.CENTER
+			binding.cloudNodeImage.setImageResource(icon)
+		}
+
+		fun showThumbnail(thumbnail: Bitmap) {
+			binding.cloudNodeImage.scaleType = ImageView.ScaleType.CENTER_CROP
+			binding.cloudNodeImage.setImageBitmap(thumbnail)
 		}
 
 		private fun bindCloudNodeImage(cloudNodeModel: CloudNodeModel<*>): Int {
@@ -473,6 +495,8 @@ constructor(
 		fun onNodeLongClicked()
 
 		fun onSelectedNodesChanged(selectedNodes: Int)
+
+		fun onThumbnailRequested(file: CloudFileModel)
 	}
 
 	override fun getSectionName(position: Int): String {

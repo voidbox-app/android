@@ -12,6 +12,7 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import org.cryptomator.data.cloud.crypto.Cryptors;
 import org.cryptomator.presentation.util.FileUtil;
+import org.cryptomator.presentation.util.ThumbnailCache;
 import org.cryptomator.util.LockTimeout;
 import org.cryptomator.util.SharedPreferencesHandler;
 
@@ -58,6 +59,7 @@ public class CryptorsService extends Service {
 	});
 	private BroadcastReceiver screenLockReceiver;
 	private FileUtil fileUtil;
+	private ThumbnailCache thumbnailCache;
 
 	public static Intent lockAllIntent(Context context) {
 		Intent lockAllIntent = new Intent(context, CryptorsService.class);
@@ -130,6 +132,9 @@ public class CryptorsService extends Service {
 			if (fileUtil != null) {
 				fileUtil.cleanupDecryptedFiles();
 			}
+			if (thumbnailCache != null) {
+				thumbnailCache.clearMemory();
+			}
 		}
 		notification.setUnlockedCount(unlocked);
 		notification.update();
@@ -198,6 +203,10 @@ public class CryptorsService extends Service {
 
 		public void setFileUtil(FileUtil mfileUtil) {
 			fileUtil = mfileUtil;
+		}
+
+		public void setThumbnailCache(ThumbnailCache cache) {
+			thumbnailCache = cache;
 		}
 	}
 

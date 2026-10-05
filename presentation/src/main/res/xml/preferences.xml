@@ -124,6 +124,15 @@
 
 	<PreferenceCategory android:title="@string/screen_settings_lru_cache">
 
+		<ListPreference
+			android:defaultValue="wifi"
+			android:dialogTitle="@string/screen_settings_thumbnails"
+			android:entries="@array/thumbnails_entries"
+			android:entryValues="@array/thumbnails_values"
+			android:key="thumbnails"
+			android:summary="%s"
+			android:title="@string/screen_settings_thumbnails" />
+
 		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="lruCache"

@@ -6,14 +6,15 @@
 	android:background="@drawable/bg_list_row"
 	android:foreground="@drawable/item_browse_files_node_selector">
 
-	<ImageView
+	<com.google.android.material.imageview.ShapeableImageView
 		android:id="@+id/cloud_node_image"
 		android:layout_width="40dp"
 		android:layout_height="40dp"
 		android:layout_centerVertical="true"
 		android:layout_marginStart="16dp"
 		android:contentDescription="@null"
-		android:padding="8dp" />
+		android:scaleType="center"
+		app:shapeAppearanceOverlay="@style/ShapeAppearance.Latch.Thumbnail" />
 
 	<include
 		android:id="@+id/ll_cloud_folder_content"

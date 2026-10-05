@@ -121,6 +121,7 @@ class CryptomatorApp : MultiDexApplication(), HasComponent<ApplicationComponent>
 				cryptoServiceBinder?.let {
 					appCryptors.setDelegate(it.cryptors())
 					it.setFileUtil(applicationComponent.fileUtil())
+					it.setThumbnailCache(applicationComponent.thumbnailCache())
 				}
 				updateService()
 			}

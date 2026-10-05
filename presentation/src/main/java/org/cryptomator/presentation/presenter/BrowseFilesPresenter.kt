@@ -91,6 +91,18 @@ import java.util.function.Supplier
 import javax.inject.Inject
 import kotlin.reflect.KClass
 import timber.log.Timber
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.schedulers.Schedulers
+import java.io.ByteArrayOutputStream
+import java.util.Optional
+import org.cryptomator.domain.CloudType
+import org.cryptomator.presentation.util.FileIcon
+import org.cryptomator.presentation.util.ThumbnailCache
 
 @PerView
 class BrowseFilesPresenter @Inject constructor( //
@@ -127,8 +139,12 @@ class BrowseFilesPresenter @Inject constructor( //
 	private val downloadFileUtil: DownloadFileUtil,  //
 	private val sharedPreferencesHandler: SharedPreferencesHandler,  //
 	private val licenseEnforcer: LicenseEnforcer, //
+	private val thumbnailCache: ThumbnailCache, //
 	exceptionMappings: ExceptionHandlers
 ) : Presenter<BrowseFilesView>(exceptionMappings) {
+
+	private val pendingThumbnails = ArrayDeque<CloudFileModel>()
+	private var thumbnailInFlight = false
 
 	private val authenticationExceptionHandler: AuthenticationExceptionHandler
 	private lateinit var filesForUpload: MutableMap<String, UploadFile>
@@ -195,6 +211,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private fun getCloudList(cloudFolderModel: CloudFolderModel) {
+		pendingThumbnails.clear()
 		getCloudListUseCase //
 			.withFolder(cloudFolderModel.toCloudNode()) //
 			.run(object : DefaultResultHandler<List<CloudNode>>() {
@@ -531,6 +548,88 @@ class BrowseFilesPresenter @Inject constructor( //
 		} else {
 			viewExternalFile(cloudFile)
 		}
+	}
+
+	// --- thumbnails: fetched one at a time into memory, never written to disk unencrypted
+
+	fun onThumbnailRequested(file: CloudFileModel) {
+		if (!thumbnailsAllowedFor(file) || pendingThumbnails.contains(file)) {
+			return
+		}
+		pendingThumbnails.addLast(file)
+		if (!thumbnailInFlight) {
+			loadNextThumbnail()
+		}
+	}
+
+	private fun thumbnailsAllowedFor(file: CloudFileModel): Boolean {
+		if (file.icon != FileIcon.IMAGE || (file.size ?: 0L) > ThumbnailCache.MAX_IMAGE_BYTES) {
+			return false
+		}
+		if (thumbnailCache.vaultOf(file)?.cloud?.type() == CloudType.LOCAL) {
+			return true
+		}
+		return when (sharedPreferencesHandler.thumbnails()) {
+			"always" -> true
+			"wifi" -> onWifi()
+			else -> false
+		}
+	}
+
+	private fun onWifi(): Boolean {
+		val connectivityManager = context().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+		return connectivityManager.getNetworkCapabilities(connectivityManager.activeNetwork)?.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) == true
+	}
+
+	private fun loadNextThumbnail() {
+		val file = pendingThumbnails.removeFirstOrNull()
+		if (file == null) {
+			thumbnailInFlight = false
+			return
+		}
+		thumbnailInFlight = true
+		val key = thumbnailCache.key(file)
+		val cached = Single.fromCallable { Optional.ofNullable(thumbnailCache.get(key)) } //
+			.subscribeOn(Schedulers.io()) //
+			.observeOn(AndroidSchedulers.mainThread())
+		thumbnailLoads.add(cached.subscribe({ hit ->
+			if (hit.isPresent) {
+				view?.showThumbnail(file, hit.get())
+				loadNextThumbnail()
+			} else {
+				downloadThumbnail(file, key)
+			}
+		}, { loadNextThumbnail() }))
+	}
+
+	private fun downloadThumbnail(file: CloudFileModel, key: String) {
+		val sink = ByteArrayOutputStream()
+		downloadFilesUseCase //
+			.withDownloadFiles(listOf(DownloadFile.Builder().setDownloadFile(file.toCloudNode()).setDataSink(sink).build())) //
+			.run(object : DefaultProgressAwareResultHandler<List<CloudFile>, DownloadState>() {
+				override fun onSuccess(files: List<CloudFile>) {
+					thumbnailLoads.add(Single.fromCallable { Optional.ofNullable(thumbnailCache.decodeAndStore(key, sink.toByteArray())) } //
+						.subscribeOn(Schedulers.io()) //
+						.observeOn(AndroidSchedulers.mainThread()) //
+						.subscribe({ thumbnail -> if (thumbnail.isPresent) view?.showThumbnail(file, thumbnail.get()) }, { e -> Timber.tag("Thumbnails").w(e, "Could not decode %s", file.name) }))
+				}
+
+				override fun onError(e: Throwable) {
+					Timber.tag("Thumbnails").w(e, "Could not fetch %s", file.name)
+				}
+
+				override fun onFinished() {
+					loadNextThumbnail()
+				}
+			})
+	}
+
+	private val thumbnailLoads = CompositeDisposable()
+
+	override fun destroyed() {
+		thumbnailLoads.dispose()
+		pendingThumbnails.clear()
+		super.destroyed()
 	}
 
 	private fun isImageMediaType(filename: String): Boolean {

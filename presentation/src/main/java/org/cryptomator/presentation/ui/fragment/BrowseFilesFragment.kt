@@ -29,6 +29,7 @@ import org.cryptomator.presentation.ui.adapter.BrowseFilesAdapter
 import org.cryptomator.presentation.util.ResourceHelper.Companion.getPixelOffset
 import java.util.Optional
 import javax.inject.Inject
+import android.graphics.Bitmap
 
 @Fragment
 class BrowseFilesFragment : BaseFragment<FragmentBrowseFilesBinding>(FragmentBrowseFilesBinding::inflate) {
@@ -55,6 +56,10 @@ class BrowseFilesFragment : BaseFragment<FragmentBrowseFilesBinding>(FragmentBro
 	private val refreshListener = SwipeRefreshLayout.OnRefreshListener { browseFilesPresenter.onRefreshTriggered(folder) }
 
 	private val nodeClickListener = object : BrowseFilesAdapter.ItemClickListener {
+		override fun onThumbnailRequested(file: CloudFileModel) {
+			browseFilesPresenter.onThumbnailRequested(file)
+		}
+
 		override fun onFolderClicked(cloudFolderModel: CloudFolderModel) {
 			browseFilesPresenter.onFolderClicked(cloudFolderModel)
 			filterText = ""
@@ -234,6 +239,10 @@ class BrowseFilesFragment : BaseFragment<FragmentBrowseFilesBinding>(FragmentBro
 	fun remove(cloudNode: List<CloudNodeModel<*>>?) {
 		cloudNodesAdapter.deleteItems(cloudNode)
 		updateEmptyFolderHint()
+	}
+
+	fun showThumbnail(file: CloudFileModel, thumbnail: Bitmap) {
+		viewHolderFor(file).ifPresent { it.showThumbnail(thumbnail) }
 	}
 
 	private fun viewHolderFor(nodeModel: CloudNodeModel<*>?): Optional<BrowseFilesAdapter.VaultContentViewHolder> {

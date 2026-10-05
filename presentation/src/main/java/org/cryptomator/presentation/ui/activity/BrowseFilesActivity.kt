@@ -53,6 +53,7 @@ import org.cryptomator.presentation.ui.dialog.UploadCloudFileDialog
 import org.cryptomator.presentation.ui.fragment.BrowseFilesFragment
 import java.util.regex.Pattern
 import javax.inject.Inject
+import android.graphics.Bitmap
 
 @Activity
 class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBinding::inflate), //
@@ -557,6 +558,10 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 
 	override fun hideProgress(node: CloudNodeModel<*>) {
 		browseFilesFragment().hideProgress(node)
+	}
+
+	override fun showThumbnail(file: CloudFileModel, thumbnail: Bitmap) {
+		browseFilesFragment().showThumbnail(file, thumbnail)
 	}
 
 	override fun hideProgress(nodes: List<CloudNodeModel<*>>) {

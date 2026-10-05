@@ -162,6 +162,11 @@ constructor(context: Context) : SharedPreferences.OnSharedPreferenceChangeListen
 		return defaultSharedPreferences.getValue(PHOTO_UPLOAD_INCLUDING_VIDEOS, false)
 	}
 
+	/** never, wifi or always: when thumbnails of vault images may be fetched. */
+	fun thumbnails(): String {
+		return defaultSharedPreferences.getValue(THUMBNAILS, "wifi")
+	}
+
 	fun useLruCache(): Boolean {
 		return defaultSharedPreferences.getValue(USE_LRU_CACHE, false)
 	}
@@ -415,6 +420,7 @@ constructor(context: Context) : SharedPreferences.OnSharedPreferenceChangeListen
 		const val PHOTO_UPLOAD_INCLUDING_VIDEOS = "photoUploadIncludingVideos"
 		const val USE_LRU_CACHE = "lruCache"
 		const val LRU_CACHE_SIZE = "lruCacheSize"
+		const val THUMBNAILS = "thumbnails"
 		const val MICROSOFT_WORKAROUND = "shareOfficeFilePublicly"
 		const val MAIL = "mail"
 		const val LICENSE_TOKEN = "licenseToken"
