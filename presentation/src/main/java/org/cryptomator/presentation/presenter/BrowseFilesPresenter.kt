@@ -514,6 +514,8 @@ class BrowseFilesPresenter @Inject constructor( //
 				.withHubWriteAllowed(licenseEnforcer.hasWriteAccessForVault(view?.folder?.vault()))
 				.build(this)
 			startIntent(intent)
+		} else if (isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) {
+			startIntent(Intents.mediaPreviewIntent().withMediaFile(cloudFile).build(this))
 		} else if (!lowerFileName.endsWith(".gif") && isImageMediaType(cloudFile.name)) {
 			val cloudFileNodes = previewCloudFileNodes
 			val imagePreviewStore = ImagePreviewFilesStore( //
@@ -530,7 +532,11 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private fun isImageMediaType(filename: String): Boolean {
-		return (mimeTypes.fromFilename(filename) ?: MimeType.WILDCARD_MIME_TYPE).mediatype == "image"
+		return isMediaType(filename, "image")
+	}
+
+	private fun isMediaType(filename: String, mediatype: String): Boolean {
+		return (mimeTypes.fromFilename(filename) ?: MimeType.WILDCARD_MIME_TYPE).mediatype == mediatype
 	}
 
 	private fun viewExternalFile(cloudFile: CloudFileModel) {

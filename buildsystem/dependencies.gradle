@@ -78,6 +78,7 @@ ext {
 	zxcvbnVersion = '1.9.0'
 
 	scaleImageViewVersion = '3.10.1-dev.0002'
+	media3Version = '1.4.1'
 
 	lruFileCacheVersion = '1.2'
 
@@ -203,6 +204,8 @@ ext {
 			uiAutomator                    : "androidx.test.uiautomator:uiautomator:${uiautomatorVersion}",
 			zxcvbn                         : "com.nulab-inc:zxcvbn:${zxcvbnVersion}",
 			scaleImageView                 : "com.github.cryptomator:subsampling-scale-image-view:${scaleImageViewVersion}",
+			media3Exoplayer                : "androidx.media3:media3-exoplayer:${media3Version}",
+			media3Ui                       : "androidx.media3:media3-ui:${media3Version}",
 			lruFileCache                   : "com.github.solkin:disk-lru-cache:${lruFileCacheVersion}",
 			jsonWebToken                   : "com.auth0:java-jwt:${jsonWebTokenVersion}",
 			billing                        : "com.android.billingclient:billing:${billingclientVersion}"

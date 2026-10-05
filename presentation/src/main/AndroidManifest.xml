@@ -163,6 +163,12 @@
 			android:theme="@style/FullscreenTheme" />
 
 		<activity
+			android:name=".ui.activity.MediaPreviewActivity"
+			android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
+			android:exported="false"
+			android:theme="@style/FullscreenTheme" />
+
+		<activity
 			android:name=".ui.activity.LicenseCheckActivity"
 			android:exported="true"
 			android:launchMode="singleTask">

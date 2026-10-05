@@ -206,6 +206,8 @@ dependencies {
 	implementation dependencies.recyclerView
 	implementation dependencies.design
 	implementation dependencies.scaleImageView
+	implementation dependencies.media3Exoplayer
+	implementation dependencies.media3Ui
 	implementation dependencies.recyclerViewFastScroll
 
 	// android x
