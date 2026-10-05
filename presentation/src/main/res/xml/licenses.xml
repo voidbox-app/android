@@ -30,6 +30,13 @@
 				android:data="https://github.com/cryptomator/cryptolib" />
 		</Preference>
 		<Preference
+			android:summary="GPLv3 \u2014 Latch is a fork of this app"
+			android:title="Cryptomator for Android (Skymatic)">
+			<intent
+				android:action="android.intent.action.VIEW"
+				android:data="https://github.com/cryptomator/android" />
+		</Preference>
+		<Preference
 			android:summary="Apache License v2"
 			android:title="Dagger 2 (Google, Inc.)">
 			<intent

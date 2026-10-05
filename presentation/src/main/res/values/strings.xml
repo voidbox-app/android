@@ -339,10 +339,10 @@
 	<string name="screen_settings_auto_photo_upload_title">Save auto upload files to&#8230;</string>
 
 	<string name="screen_settings_section_social" translatable="false">@string/screen_webdav_settings_done_button_text</string>
-	<string name="screen_settings_website_label">Latch website</string>
+	<string name="screen_settings_website_label">Latch on GitHub</string>
 	<string name="screen_settings_mastodon_label">Follow us on Mastodon</string>
 	<string name="screen_settings_facebook_label">Like us on Facebook</string>
-	<string name="screen_settings_website_uri" translatable="false">https://cryptomator.org</string>
+	<string name="screen_settings_website_uri" translatable="false">https://github.com/vesmirov/latch</string>
 	<string name="screen_settings_facebook_uri" translatable="false">https://facebook.com/Latch</string>
 	<string name="screen_settings_mastodon_uri" translatable="false">https://mastodon.online/@cryptomator</string>
 
@@ -352,12 +352,14 @@
 
 	<string name="screen_settings_section_support">Support</string>
 	<string name="screen_settings_contact_label">Request help</string>
-	<string name="screen_settings_support_uri" translatable="false">https://cryptomator.org/contact/</string>
+	<string name="screen_settings_support_uri" translatable="false">https://github.com/vesmirov/latch/issues</string>
 	<string name="screen_settings_debug_mode_label">Debug mode</string>
 	<string name="screen_settings_error_report_label">Send log file</string>
 	<string name="screen_settings_error_report_failed">Sending failed</string>
 	<string name="screen_settings_security_label">Security hints</string>
 	<string name="screen_settings_security_url" translatable="false">https://docs.cryptomator.org/en/latest/security/best-practices/</string>
+	<string name="screen_settings_source_license_label">Latch license (GPLv3)</string>
+	<string name="screen_settings_source_license_uri" translatable="false">https://github.com/vesmirov/latch/blob/latch/LICENSE.txt</string>
 
 	<string name="screen_settings_section_version">Version</string>
 

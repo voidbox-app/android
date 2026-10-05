@@ -35,7 +35,7 @@ class EmailBuilder private constructor() {
 		validate()
 		val intent = Intent(Intent.ACTION_SEND_MULTIPLE)
 		intent.type = "text/plain"
-		intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(recipient))
+		recipient?.let { intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(it)) }
 		intent.putExtra(Intent.EXTRA_SUBJECT, subject)
 		intent.putExtra(Intent.EXTRA_TEXT, body)
 		intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
@@ -45,7 +45,6 @@ class EmailBuilder private constructor() {
 	}
 
 	private fun validate() {
-		checkNotNull(recipient) { "recipient not set" }
 		checkNotNull(subject) { "subject not set" }
 		checkNotNull(body) { "body not set" }
 	}

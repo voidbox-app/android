@@ -246,7 +246,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Только по Wi-Fi</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Отправка видео</string>
 	<string name="screen_settings_auto_photo_upload_title">Сохранять автозагруженные файлы в&#8230;</string>
-	<string name="screen_settings_website_label">Сайт Latch</string>
+	<string name="screen_settings_website_label">Latch на GitHub</string>
 	<string name="screen_settings_mastodon_label">Подпишитесь на нас в Mastodon</string>
 	<string name="screen_settings_facebook_label">Оцените нас в Facebook</string>
 	<string name="screen_settings_section_legal">Правовая информация</string>
@@ -258,6 +258,7 @@
 	<string name="screen_settings_error_report_label">Отправить файл журнала</string>
 	<string name="screen_settings_error_report_failed">Ошибка отправки</string>
 	<string name="screen_settings_security_label">Советы по безопасности</string>
+	<string name="screen_settings_source_license_label">Лицензия Latch (GPLv3)</string>
 	<string name="screen_settings_section_version">Версия</string>
 	<string name="screen_settings_advanced_settings">Дополнительные настройки</string>
 	<string name="screen_settings_microsoft_apps_workaround_label">Обход открытия файлов Microsoft</string>

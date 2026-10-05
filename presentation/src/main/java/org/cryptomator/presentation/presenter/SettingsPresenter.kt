@@ -68,8 +68,8 @@ class SettingsPresenter @Inject internal constructor(
 	}
 
 	private fun sendErrorReport(attachment: File) {
+		// no fixed recipient: the share sheet lets the user pick where the archive goes
 		EmailBuilder.anEmail() //
-			.to("support@cryptomator.org") //
 			.withSubject(context().getString(R.string.error_report_subject)) //
 			.withBody(errorReportEmailBody()) //
 			.attach(attachment) //
