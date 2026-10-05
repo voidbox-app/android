@@ -73,6 +73,8 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 		else -> super.onMenuItemSelected(itemId)
 	}
 
+	// the seek increments are still marked unstable in Media3 1.4
+	@androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 	private fun startPlayer() {
 		if (player != null) {
 			return
