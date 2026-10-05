@@ -16,6 +16,7 @@ import org.cryptomator.domain.usecases.vault.RenameVaultUseCase
 import org.cryptomator.domain.usecases.vault.SaveVaultUseCase
 import org.cryptomator.domain.usecases.vault.SaveVaultsUseCase
 import org.cryptomator.domain.usecases.vault.UpdateVaultParameterIfChangedRemotelyUseCase
+import org.cryptomator.presentation.util.ThumbnailCache
 import org.cryptomator.presentation.exception.ExceptionHandlers
 import org.cryptomator.presentation.licensing.LicenseEnforcer
 import org.cryptomator.presentation.model.mappers.CloudFolderModelMapper
@@ -46,6 +47,7 @@ class VaultListPresenterFreemiumTest {
 		inTest = VaultListPresenter(
 			Mockito.mock(GetVaultListUseCase::class.java),
 			Mockito.mock(DeleteVaultUseCase::class.java),
+			Mockito.mock(ThumbnailCache::class.java),
 			Mockito.mock(RenameVaultUseCase::class.java),
 			Mockito.mock(LockVaultUseCase::class.java),
 			Mockito.mock(GetDecryptedCloudForVaultUseCase::class.java),

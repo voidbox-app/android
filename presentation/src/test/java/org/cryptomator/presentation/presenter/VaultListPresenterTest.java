@@ -29,6 +29,7 @@ import org.cryptomator.presentation.model.VaultModel;
 import org.cryptomator.presentation.model.mappers.CloudFolderModelMapper;
 import org.cryptomator.presentation.ui.activity.view.VaultListView;
 import org.cryptomator.presentation.util.FileUtil;
+import org.cryptomator.presentation.util.ThumbnailCache;
 import org.cryptomator.presentation.workflow.AddExistingVaultWorkflow;
 import org.cryptomator.presentation.workflow.AuthenticationExceptionHandler;
 import org.cryptomator.presentation.workflow.CreateNewVaultWorkflow;
@@ -92,6 +93,7 @@ public class VaultListPresenterTest {
 	private VaultListView vaultListView = Mockito.mock(VaultListView.class);
 	private GetVaultListUseCase getVaultListUseCase = Mockito.mock(GetVaultListUseCase.class);
 	private DeleteVaultUseCase deleteVaultUseCase = Mockito.mock(DeleteVaultUseCase.class);
+	private ThumbnailCache thumbnailCache = Mockito.mock(ThumbnailCache.class);
 	private DeleteVaultUseCase.Launcher deleteVaultUseCaseLauncher = Mockito.mock(DeleteVaultUseCase.Launcher.class);
 	private RenameVaultUseCase renameVaultUseCase = Mockito.mock(RenameVaultUseCase.class);
 	private RenameVaultUseCase.Launcher renameVaultUseCaseLauncher = Mockito.mock(RenameVaultUseCase.Launcher.class);
@@ -122,6 +124,7 @@ public class VaultListPresenterTest {
 	public void setup() {
 		inTest = new VaultListPresenter(getVaultListUseCase, //
 				deleteVaultUseCase, //
+				thumbnailCache, //
 				renameVaultUseCase, //
 				lockVaultUseCase, //
 				getDecryptedCloudForVaultUseCase, //

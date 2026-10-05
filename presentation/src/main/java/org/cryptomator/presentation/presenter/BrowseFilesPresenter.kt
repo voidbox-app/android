@@ -563,7 +563,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private fun thumbnailsAllowedFor(file: CloudFileModel): Boolean {
-		if (file.icon != FileIcon.IMAGE || (file.size ?: 0L) > ThumbnailCache.MAX_IMAGE_BYTES) {
+		if (file.icon != FileIcon.IMAGE || (file.size ?: 0L) > ThumbnailCache.MAX_IMAGE_BYTES || thumbnailCache.vaultOf(file) == null) {
 			return false
 		}
 		if (thumbnailCache.vaultOf(file)?.cloud?.type() == CloudType.LOCAL) {
@@ -588,8 +588,7 @@ class BrowseFilesPresenter @Inject constructor( //
 			return
 		}
 		thumbnailInFlight = true
-		val key = thumbnailCache.key(file)
-		val cached = Single.fromCallable { Optional.ofNullable(thumbnailCache.get(key)) } //
+		val cached = Single.fromCallable { Optional.ofNullable(thumbnailCache.get(file)) } //
 			.subscribeOn(Schedulers.io()) //
 			.observeOn(AndroidSchedulers.mainThread())
 		thumbnailLoads.add(cached.subscribe({ hit ->
@@ -597,18 +596,18 @@ class BrowseFilesPresenter @Inject constructor( //
 				view?.showThumbnail(file, hit.get())
 				loadNextThumbnail()
 			} else {
-				downloadThumbnail(file, key)
+				downloadThumbnail(file)
 			}
 		}, { loadNextThumbnail() }))
 	}
 
-	private fun downloadThumbnail(file: CloudFileModel, key: String) {
+	private fun downloadThumbnail(file: CloudFileModel) {
 		val sink = ByteArrayOutputStream()
 		downloadFilesUseCase //
 			.withDownloadFiles(listOf(DownloadFile.Builder().setDownloadFile(file.toCloudNode()).setDataSink(sink).build())) //
 			.run(object : DefaultProgressAwareResultHandler<List<CloudFile>, DownloadState>() {
 				override fun onSuccess(files: List<CloudFile>) {
-					thumbnailLoads.add(Single.fromCallable { Optional.ofNullable(thumbnailCache.decodeAndStore(key, sink.toByteArray())) } //
+					thumbnailLoads.add(Single.fromCallable { Optional.ofNullable(thumbnailCache.decodeAndStore(file, sink.toByteArray())) } //
 						.subscribeOn(Schedulers.io()) //
 						.observeOn(AndroidSchedulers.mainThread()) //
 						.subscribe({ thumbnail -> if (thumbnail.isPresent) view?.showThumbnail(file, thumbnail.get()) }, { e -> Timber.tag("Thumbnails").w(e, "Could not decode %s", file.name) }))

@@ -128,12 +128,16 @@ public class CryptorsService extends Service {
 	}
 
 	private void onUnlockCountChanged(int unlocked) {
+		if (thumbnailCache != null) {
+			if (unlocked == 0) {
+				thumbnailCache.clearMemory();
+			} else {
+				thumbnailCache.evictLockedVaults();
+			}
+		}
 		if (unlocked == 0) {
 			if (fileUtil != null) {
 				fileUtil.cleanupDecryptedFiles();
-			}
-			if (thumbnailCache != null) {
-				thumbnailCache.clearMemory();
 			}
 		}
 		notification.setUnlockedCount(unlocked);

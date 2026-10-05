@@ -141,7 +141,7 @@ constructor(
 
 		private fun bindNodeImage(node: CloudNodeModel<*>) {
 			if (node is CloudFileModel && node.icon == FileIcon.IMAGE) {
-				thumbnailCache.peek(thumbnailCache.key(node))?.let {
+				thumbnailCache.peek(node)?.let {
 					showThumbnail(it)
 					return
 				}
