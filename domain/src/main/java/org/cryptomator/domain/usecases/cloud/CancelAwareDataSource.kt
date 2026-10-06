@@ -24,6 +24,9 @@ class CancelAwareDataSource private constructor(private val delegate: DataSource
 		return CancelAwareInputStream.wrap(delegate.open(context), cancelled)
 	}
 
+	/** True once the user cancelled; lets a transport abort a request it is waiting on. */
+	fun isCancelled(): Boolean = cancelled.get()
+
 	override fun decorate(delegate: DataSource): CancelAwareDataSource {
 		return CancelAwareDataSource(delegate, cancelled)
 	}

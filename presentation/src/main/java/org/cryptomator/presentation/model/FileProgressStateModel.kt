@@ -14,6 +14,7 @@ class FileProgressStateModel(file: CloudFile, icon: FileIcon, name: String, imag
 	companion object {
 
 		const val UPLOAD = "UPLOAD"
+		const val FINISHING = "FINISHING"
 		const val ENCRYPTION = "ENCRYPTION"
 		const val DOWNLOAD = "DOWNLOAD"
 		const val DECRYPTION = "DECRYPTION"

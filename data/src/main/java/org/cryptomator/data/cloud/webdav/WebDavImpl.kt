@@ -17,6 +17,7 @@ import org.cryptomator.domain.exception.ParentFolderDoesNotExistException
 import org.cryptomator.domain.exception.ParentFolderIsNullException
 import org.cryptomator.domain.exception.authentication.WebDavNotSupportedException
 import org.cryptomator.domain.usecases.ProgressAware
+import org.cryptomator.domain.usecases.cloud.CancelAwareDataSource
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
 import org.cryptomator.domain.usecases.cloud.Progress
@@ -123,18 +124,21 @@ internal class WebDavImpl(private val cloud: WebDavCloud, private val connection
 		}
 
 		progressAware.onProgress(Progress.started(UploadState.upload(uploadFile)))
+		val cancelled: () -> Boolean = { (data as? CancelAwareDataSource)?.isCancelled() == true }
 		data.open(context)?.use { inputStream ->
 			object : TransferredBytesAwareInputStream(inputStream) {
 				override fun bytesTransferred(transferred: Long) {
+					// once the last byte is out, the bar would freeze at 100 % while the server stores the file
+					val state = if (transferred >= size) UploadState.finishing(uploadFile) else UploadState.upload(uploadFile)
 					progressAware.onProgress( //
-						Progress.progress(UploadState.upload(uploadFile)) //
+						Progress.progress(state) //
 							.between(0) //
 							.and(size) //
 							.withValue(transferred)
 					)
 				}
 			}.use {
-				connectionHandler.writeFile(absoluteUriFrom(uploadFile.path), it, data.modifiedDate(context).orElse(Date()))
+				connectionHandler.writeFile(absoluteUriFrom(uploadFile.path), it, data.modifiedDate(context).orElse(Date()), cancelled)
 			}
 		} ?: throw FatalBackendException("InputStream shouldn't bee null")
 

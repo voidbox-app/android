@@ -493,6 +493,7 @@
 	<string name="dialog_progress_change_password">Changing password&#8230;</string>
 	<string name="dialog_progress_creating_vault">Creating vault&#8230;</string>
 	<string name="dialog_progress_upload_file">Uploading&#8230;</string>
+	<string name="dialog_progress_upload_finishing">Saving on the server&#8230;</string>
 	<string name="dialog_progress_download_file">Downloading&#8230;</string>
 	<string name="dialog_progress_encryption">Encrypting&#8230;</string>
 	<string name="dialog_progress_decryption">Decrypting&#8230;</string>

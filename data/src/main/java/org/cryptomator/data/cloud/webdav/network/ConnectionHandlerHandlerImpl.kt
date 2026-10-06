@@ -28,8 +28,8 @@ class ConnectionHandlerHandlerImpl @Inject internal constructor(httpClient: WebD
 	}
 
 	@Throws(BackendException::class)
-	fun writeFile(url: String, inputStream: InputStream, modifiedDate: Date) {
-		webDavClient.writeFile(url, inputStream, modifiedDate)
+	fun writeFile(url: String, inputStream: InputStream, modifiedDate: Date, cancelled: () -> Boolean) {
+		webDavClient.writeFile(url, inputStream, modifiedDate, cancelled)
 	}
 
 	@Throws(BackendException::class)

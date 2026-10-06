@@ -33,10 +33,20 @@ import timber.log.Timber
 internal class WebDavCompatibleHttpClient(cloud: WebDavCloud, context: Context) {
 
 	private val webDavRedirectHandler: WebDavRedirectHandler
+	private val uploadRedirectHandler: WebDavRedirectHandler
 
 	@Throws(IOException::class)
 	fun execute(requestBuilder: Request.Builder): Response {
 		return execute(requestBuilder.build())
+	}
+
+	/**
+	 * For requests that send a file: the server may take minutes to store a large body before it
+	 * answers, so the response timeout is much longer, and [cancelled] aborts the request at once.
+	 */
+	@Throws(IOException::class)
+	fun executeUpload(requestBuilder: Request.Builder, cancelled: () -> Boolean): Response {
+		return uploadRedirectHandler.executeFollowingRedirects(requestBuilder.build(), cancelled)
 	}
 
 	@Throws(IOException::class)
@@ -45,6 +55,8 @@ internal class WebDavCompatibleHttpClient(cloud: WebDavCloud, context: Context) 
 	}
 
 	companion object {
+
+		private const val UPLOAD_RESPONSE_TIMEOUT_MINUTES = 10L
 
 		private fun httpClientFor(webDavCloud: WebDavCloud, context: Context, useLruCache: Boolean, lruCacheSize: Int): OkHttpClient {
 			val authCache: Map<String, CachingAuthenticator> = ConcurrentHashMap()
@@ -156,6 +168,8 @@ internal class WebDavCompatibleHttpClient(cloud: WebDavCloud, context: Context) 
 
 	init {
 		val sharedPreferencesHandler = SharedPreferencesHandler(context)
-		webDavRedirectHandler = WebDavRedirectHandler(httpClientFor(cloud, context, sharedPreferencesHandler.useLruCache(), sharedPreferencesHandler.lruCacheSize()))
+		val httpClient = httpClientFor(cloud, context, sharedPreferencesHandler.useLruCache(), sharedPreferencesHandler.lruCacheSize())
+		webDavRedirectHandler = WebDavRedirectHandler(httpClient)
+		uploadRedirectHandler = WebDavRedirectHandler(httpClient.newBuilder().readTimeout(UPLOAD_RESPONSE_TIMEOUT_MINUTES, TimeUnit.MINUTES).build())
 	}
 }

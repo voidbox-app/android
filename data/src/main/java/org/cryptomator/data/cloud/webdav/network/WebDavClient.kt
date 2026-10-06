@@ -151,13 +151,13 @@ internal class WebDavClient(private val httpClient: WebDavCompatibleHttpClient) 
 	}
 
 	@Throws(BackendException::class)
-	fun writeFile(url: String, inputStream: InputStream, modifiedDate: Date) {
+	fun writeFile(url: String, inputStream: InputStream, modifiedDate: Date, cancelled: () -> Boolean) {
 		val builder = Request.Builder() //
 			.addHeader("X-OC-Mtime", modifiedDate.toInstant().toEpochMilli().div(1000).toString()) //
 			.put(InputStreamSourceBasedRequestBody.from(inputStream)) //
 			.url(url)
 		try {
-			httpClient.execute(builder).use { response ->
+			httpClient.executeUpload(builder, cancelled).use { response ->
 				if (!response.isSuccessful) {
 					when (response.code) {
 						HttpURLConnection.HTTP_UNAUTHORIZED -> throw UnauthorizedException()

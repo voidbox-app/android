@@ -346,6 +346,7 @@
 	<string name="dialog_progress_change_password">Изменение пароля&#8230;</string>
 	<string name="dialog_progress_creating_vault">Создание хранилища&#8230;</string>
 	<string name="dialog_progress_upload_file">Отправка&#8230;</string>
+	<string name="dialog_progress_upload_finishing">Сервер сохраняет файл&#8230;</string>
 	<string name="dialog_progress_download_file">Загрузка&#8230;</string>
 	<string name="dialog_progress_encryption">Шифрование&#8230;</string>
 	<string name="dialog_progress_decryption">Расшифровка&#8230;</string>

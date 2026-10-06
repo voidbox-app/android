@@ -30,7 +30,12 @@ class ProgressStateModelMapper @Inject internal constructor(private val fileUtil
 	}
 
 	fun toModel(state: UploadState): ProgressStateModel {
-		return if (state.isUpload) {
+		return if (state.isFinishing) {
+			FileProgressStateModel(
+				state.file(), FileIcon.fileIconFor(state.file().name, fileUtil), FileProgressStateModel.FINISHING, ProgressStateModel.image(R.drawable.ic_file_upload),
+				ProgressStateModel.text(R.string.dialog_progress_upload_finishing)
+			)
+		} else if (state.isUpload) {
 			FileProgressStateModel(
 				state.file(), FileIcon.fileIconFor(state.file().name, fileUtil), FileProgressStateModel.UPLOAD, ProgressStateModel.image(R.drawable.ic_file_upload),
 				ProgressStateModel.text(R.string.dialog_progress_upload_file)
