@@ -33,6 +33,7 @@ import org.cryptomator.util.SharedPreferencesHandler
 import javax.inject.Inject
 import android.graphics.Bitmap
 import android.widget.ImageView
+import org.cryptomator.presentation.util.OfflineFiles
 import org.cryptomator.presentation.util.ThumbnailCache
 
 class BrowseFilesAdapter @Inject
@@ -41,7 +42,8 @@ constructor(
 	private val fileSizeHelper: FileSizeHelper, //
 	private val fileUtil: FileUtil, //
 	private val sharedPreferencesHandler: SharedPreferencesHandler, //
-	private val thumbnailCache: ThumbnailCache
+	private val thumbnailCache: ThumbnailCache, //
+	private val offlineFiles: OfflineFiles
 ) : RecyclerViewBaseAdapter<CloudNodeModel<*>, BrowseFilesAdapter.ItemClickListener, VaultContentViewHolder, ItemBrowseFilesNodeBinding>(CloudNodeModelNameAZComparator()), FastScrollRecyclerView.SectionedAdapter {
 
 	private var chooseCloudNodeSettings: ChooseCloudNodeSettings? = null
@@ -140,7 +142,7 @@ constructor(
 		}
 
 		private fun bindNodeImage(node: CloudNodeModel<*>) {
-			if (node is CloudFileModel && node.icon == FileIcon.IMAGE) {
+			if (node is CloudFileModel && (node.icon == FileIcon.IMAGE || node.icon == FileIcon.MOVIE)) {
 				thumbnailCache.peek(node)?.let {
 					showThumbnail(it)
 					return
@@ -201,6 +203,7 @@ constructor(
 		private fun bindFile(file: CloudFileModel) {
 			binding.llCloudFileContent.cloudFileText.text = file.name
 			binding.llCloudFileContent.cloudFileSubText.text = fileDetails(file)
+			binding.llCloudFileContent.offlineBadge.visibility = if (offlineFiles.isOffline(file)) VISIBLE else GONE
 
 			enableNodeClick { callback.onFileClicked(file) }
 		}

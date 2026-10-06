@@ -11,6 +11,7 @@ import org.cryptomator.domain.CloudNode
 import org.cryptomator.domain.exception.BackendException
 import org.cryptomator.domain.exception.authentication.AuthenticationException
 import org.cryptomator.domain.repository.CloudContentRepository
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
@@ -158,6 +159,17 @@ class DispatchingCloudContentRepository @Inject constructor(
 		try {
 			file.cloud?.let { networkConnectionCheck.assertConnectionIsPresent(it) } ?: throw IllegalStateException("Parent's cloud shouldn't be null")
 			delegateFor(file).read(file, encryptedTmpFile, data, progressAware)
+		} catch (e: AuthenticationException) {
+			delegates.remove(file.cloud)
+			throw e
+		}
+	}
+
+	@Throws(BackendException::class)
+	override fun openRandomAccess(file: CloudFile): RandomAccessContent {
+		try {
+			// no network check: offline copies are read without a connection
+			return delegateFor(file).openRandomAccess(file)
 		} catch (e: AuthenticationException) {
 			delegates.remove(file.cloud)
 			throw e

@@ -12,6 +12,7 @@ import org.cryptomator.domain.exception.NetworkConnectionException
 import org.cryptomator.domain.exception.NoSuchBucketException
 import org.cryptomator.domain.exception.authentication.WrongCredentialsException
 import org.cryptomator.domain.repository.CloudContentRepository
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
@@ -152,6 +153,11 @@ internal class S3CloudContentRepository(private val cloud: S3Cloud, client: Mini
 			} catch (e: IOException) {
 				throw FatalBackendException(e)
 			}
+		}
+
+		@Throws(BackendException::class)
+		override fun openRandomAccess(file: S3File): RandomAccessContent {
+			return cloud.openRandomAccess(file)
 		}
 
 		@Throws(BackendException::class)

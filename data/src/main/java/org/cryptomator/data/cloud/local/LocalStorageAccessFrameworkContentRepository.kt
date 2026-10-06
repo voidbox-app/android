@@ -6,6 +6,7 @@ import org.cryptomator.domain.exception.BackendException
 import org.cryptomator.domain.exception.FatalBackendException
 import org.cryptomator.domain.exception.NoSuchCloudFileException
 import org.cryptomator.domain.repository.CloudContentRepository
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
@@ -91,6 +92,14 @@ class LocalStorageAccessFrameworkContentRepository(context: Context, mimeTypes: 
 		} catch (e: IOException) {
 			throw FatalBackendException(e)
 		}
+	}
+
+	@Throws(BackendException::class)
+	override fun openRandomAccess(file: LocalStorageAccessFile): RandomAccessContent {
+		if (file.documentId == null) {
+			throw NoSuchCloudFileException(file.name)
+		}
+		return localStorageAccessFramework.openRandomAccess(file)
 	}
 
 	@Throws(BackendException::class)

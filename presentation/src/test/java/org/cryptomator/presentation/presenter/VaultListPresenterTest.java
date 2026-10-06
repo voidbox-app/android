@@ -29,6 +29,7 @@ import org.cryptomator.presentation.model.VaultModel;
 import org.cryptomator.presentation.model.mappers.CloudFolderModelMapper;
 import org.cryptomator.presentation.ui.activity.view.VaultListView;
 import org.cryptomator.presentation.util.FileUtil;
+import org.cryptomator.presentation.util.OfflineFiles;
 import org.cryptomator.presentation.util.ThumbnailCache;
 import org.cryptomator.presentation.workflow.AddExistingVaultWorkflow;
 import org.cryptomator.presentation.workflow.AuthenticationExceptionHandler;
@@ -125,6 +126,7 @@ public class VaultListPresenterTest {
 		inTest = new VaultListPresenter(getVaultListUseCase, //
 				deleteVaultUseCase, //
 				thumbnailCache, //
+				Mockito.mock(OfflineFiles.class), //
 				renameVaultUseCase, //
 				lockVaultUseCase, //
 				getDecryptedCloudForVaultUseCase, //

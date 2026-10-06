@@ -5,6 +5,7 @@ import org.cryptomator.domain.CloudFile
 import org.cryptomator.domain.CloudFolder
 import org.cryptomator.domain.CloudNode
 import org.cryptomator.domain.exception.BackendException
+import org.cryptomator.domain.exception.RandomAccessNotSupportedException
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
@@ -93,6 +94,12 @@ interface CloudContentRepository<CloudType : Cloud, NodeType : CloudNode, DirTyp
 
 	@Throws(BackendException::class)
 	fun read(file: FileType, encryptedTmpFile: File?, data: OutputStream, progressAware: ProgressAware<DownloadState>)
+
+	/** @throws RandomAccessNotSupportedException if this cloud cannot read part of a file */
+	@Throws(BackendException::class)
+	fun openRandomAccess(file: FileType): RandomAccessContent {
+		throw RandomAccessNotSupportedException()
+	}
 
 	@Throws(BackendException::class)
 	fun delete(node: NodeType)

@@ -155,6 +155,10 @@
 	<string name="screen_file_browser_node_action_rename">Переименовать</string>
 	<string name="screen_file_browser_node_action_edit_text">Изменить</string>
 	<string name="screen_file_browser_node_action_export">Экспортировать</string>
+	<string name="screen_file_browser_node_action_keep_offline">Сохранить офлайн</string>
+	<string name="screen_file_browser_node_action_remove_offline">Удалить офлайн-копию</string>
+	<string name="screen_file_browser_msg_kept_offline">Доступно офлайн</string>
+	<string name="screen_file_browser_msg_offline_removed">Офлайн-копия удалена</string>
 	<string name="screen_file_browser_node_action_delete">Удалить</string>
 	<string name="screen_file_browser_node_action_open_with_text">Открыть с помощью&#8230;</string>
 	<string name="screen_file_browser_selection_mode_title_zero_elements">Выберите элементы</string>
@@ -566,4 +570,8 @@
 	<string name="screen_settings_thumbnails_never">Никогда</string>
 	<string name="screen_settings_thumbnails_wifi">Только по Wi\u2011Fi</string>
 	<string name="screen_settings_thumbnails_always">Всегда</string>
+	<string name="screen_settings_video_thumbnails">Миниатюры видео</string>
+	<string name="screen_settings_video_thumbnails_summary">Показывает кадр из каждого видео в списке. При просмотре папки загружает около 1 МБ на видео; сервер видит, какие файлы — видео</string>
+	<string name="screen_settings_stream_media">Воспроизводить без загрузки</string>
+	<string name="screen_settings_stream_media_summary">Видео и аудио играют прямо из облака, расшифровка в памяти. Если выключено, файл сначала скачивается</string>
 </resources>

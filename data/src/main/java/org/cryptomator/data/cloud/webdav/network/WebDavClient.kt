@@ -10,6 +10,7 @@ import org.cryptomator.domain.exception.FatalBackendException
 import org.cryptomator.domain.exception.ForbiddenException
 import org.cryptomator.domain.exception.NotFoundException
 import org.cryptomator.domain.exception.ParentFolderDoesNotExistException
+import org.cryptomator.domain.exception.RandomAccessNotSupportedException
 import org.cryptomator.domain.exception.TypeMismatchException
 import org.cryptomator.domain.exception.UnauthorizedException
 import org.xmlpull.v1.XmlPullParserException
@@ -148,6 +149,54 @@ internal class WebDavClient(private val httpClient: WebDavCompatibleHttpClient) 
 				response.close()
 			}
 		}
+	}
+
+	/** Only a 206 starting at [offset] is accepted: a server that ignores Range would send the whole file. */
+	@Throws(BackendException::class)
+	fun readRange(url: String, offset: Long, length: Long?): InputStream {
+		val range = if (length == null) "bytes=$offset-" else "bytes=$offset-${offset + length - 1}"
+		val builder = Request.Builder() //
+			.get() //
+			.header("Range", range) //
+			.url(url)
+		var response: Response? = null
+		var success = false
+		return try {
+			response = httpClient.execute(builder)
+			when (response.code) {
+				HttpURLConnection.HTTP_PARTIAL -> {
+					val contentRange = response.header("Content-Range")
+					if (rangeStart(contentRange) != offset) {
+						throw RandomAccessNotSupportedException("Server answered with another range: $contentRange")
+					}
+					success = true
+					response.body?.byteStream() ?: throw FatalBackendException("Response body is null")
+				}
+				HttpURLConnection.HTTP_OK -> {
+					if (offset != 0L || length != null) {
+						throw RandomAccessNotSupportedException("Server ignored the range request")
+					}
+					success = true
+					response.body?.byteStream() ?: throw FatalBackendException("Response body is null")
+				}
+				HttpURLConnection.HTTP_UNAUTHORIZED -> throw UnauthorizedException()
+				HttpURLConnection.HTTP_FORBIDDEN -> throw ForbiddenException()
+				HttpURLConnection.HTTP_NOT_FOUND -> throw NotFoundException()
+				416 -> ByteArrayInputStream(ByteArray(0))
+				else -> throw FatalBackendException("Response code isn't between 200 and 300: " + response.code)
+			}
+		} catch (e: IOException) {
+			throw FatalBackendException(e)
+		} finally {
+			if (response != null && !success) {
+				response.close()
+			}
+		}
+	}
+
+	// "bytes 1000-1999/123456"
+	private fun rangeStart(contentRange: String?): Long? {
+		return contentRange?.trim()?.removePrefix("bytes")?.trim()?.substringBefore('-')?.toLongOrNull()
 	}
 
 	@Throws(BackendException::class)

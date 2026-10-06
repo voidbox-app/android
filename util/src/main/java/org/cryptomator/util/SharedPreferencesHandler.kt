@@ -167,6 +167,14 @@ constructor(context: Context) : SharedPreferences.OnSharedPreferenceChangeListen
 		return defaultSharedPreferences.getValue(THUMBNAILS, "wifi")
 	}
 
+	fun videoThumbnails(): Boolean {
+		return defaultSharedPreferences.getValue(VIDEO_THUMBNAILS, false)
+	}
+
+	fun streamMedia(): Boolean {
+		return defaultSharedPreferences.getValue(STREAM_MEDIA, true)
+	}
+
 	fun useLruCache(): Boolean {
 		return defaultSharedPreferences.getValue(USE_LRU_CACHE, false)
 	}
@@ -418,6 +426,8 @@ constructor(context: Context) : SharedPreferences.OnSharedPreferenceChangeListen
 		const val PHOTO_UPLOAD_VAULT = "photoUploadVault"
 		const val PHOTO_UPLOAD_FOLDER = "photoUploadFolder"
 		const val PHOTO_UPLOAD_INCLUDING_VIDEOS = "photoUploadIncludingVideos"
+		const val VIDEO_THUMBNAILS = "videoThumbnails"
+		const val STREAM_MEDIA = "streamMedia"
 		const val USE_LRU_CACHE = "lruCache"
 		const val LRU_CACHE_SIZE = "lruCacheSize"
 		const val THUMBNAILS = "thumbnails"

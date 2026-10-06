@@ -68,6 +68,7 @@ import org.cryptomator.util.SharedPreferencesHandler
 import org.cryptomator.util.crypto.CryptoMode
 import javax.inject.Inject
 import timber.log.Timber
+import org.cryptomator.presentation.util.OfflineFiles
 import org.cryptomator.presentation.util.ThumbnailCache
 
 @PerView
@@ -75,6 +76,7 @@ class VaultListPresenter @Inject constructor( //
 	private val getVaultListUseCase: GetVaultListUseCase,  //
 	private val deleteVaultUseCase: DeleteVaultUseCase,  //
 	private val thumbnailCache: ThumbnailCache,  //
+	private val offlineFiles: OfflineFiles,  //
 	private val renameVaultUseCase: RenameVaultUseCase,  //
 	private val lockVaultUseCase: LockVaultUseCase,  //
 	private val getDecryptedCloudForVaultUseCase: GetDecryptedCloudForVaultUseCase,  //
@@ -332,6 +334,7 @@ class VaultListPresenter @Inject constructor( //
 			.run(object : DefaultResultHandler<Long>() {
 				override fun onSuccess(vaultId: Long) {
 					thumbnailCache.deleteVault(vaultId)
+					offlineFiles.deleteVault(vaultId)
 					view?.deleteVaultFromAdapter(vaultId)
 				}
 			})

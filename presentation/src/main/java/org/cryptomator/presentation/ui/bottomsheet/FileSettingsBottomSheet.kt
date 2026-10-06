@@ -2,6 +2,8 @@ package org.cryptomator.presentation.ui.bottomsheet
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.widget.TextViewCompat
+import org.cryptomator.data.cloud.crypto.CryptoCloud
 import org.cryptomator.generator.BottomSheet
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.DialogBottomSheetFileSettingsBinding
@@ -19,11 +21,14 @@ class FileSettingsBottomSheet : BaseBottomSheet<FileSettingsBottomSheet.Callback
 		fun onShareFileClicked(cloudFile: CloudFileModel)
 		fun onMoveFileClicked(cloudFile: CloudFileModel)
 		fun onOpenWithTextFileClicked(cloudFile: CloudFileModel)
+		fun onKeepOfflineClicked(cloudFile: CloudFileModel)
+		fun onRemoveOfflineClicked(cloudFile: CloudFileModel)
 	}
 
 	override fun setupView() {
 		val cloudFileModel = requireArguments().getSerializable(FILE_ARG) as CloudFileModel
 		val parentFolderPath = requireArguments().getString(PARENT_FOLDER_PATH_ARG)
+		val offline = requireArguments().getBoolean(OFFLINE_ARG)
 
 		binding.ivFileImage.setImageResource(cloudFileModel.icon.iconResource)
 		binding.tvFileName.text = cloudFileModel.name
@@ -50,6 +55,19 @@ class FileSettingsBottomSheet : BaseBottomSheet<FileSettingsBottomSheet.Callback
 			callback?.onExportFileClicked(cloudFileModel)
 			dismiss()
 		}
+		if (cloudFileModel.toCloudNode().cloud is CryptoCloud) {
+			binding.keepOffline.visibility = View.VISIBLE
+			if (offline) {
+				binding.keepOffline.setText(R.string.screen_file_browser_node_action_remove_offline)
+				TextViewCompat.setCompoundDrawablesRelativeWithIntrinsicBounds(binding.keepOffline, R.drawable.ic_delete, 0, 0, 0)
+			}
+			binding.keepOffline.setOnClickListener {
+				if (offline) callback?.onRemoveOfflineClicked(cloudFileModel) else callback?.onKeepOfflineClicked(cloudFileModel)
+				dismiss()
+			}
+		} else {
+			binding.keepOffline.visibility = View.GONE
+		}
 		binding.renameFile.setOnClickListener {
 			callback?.onRenameFileClicked(cloudFileModel)
 			dismiss()
@@ -64,11 +82,13 @@ class FileSettingsBottomSheet : BaseBottomSheet<FileSettingsBottomSheet.Callback
 
 		private const val FILE_ARG = "file"
 		private const val PARENT_FOLDER_PATH_ARG = "parentFolderPath"
-		fun newInstance(cloudFileModel: CloudFileModel, parentFolderPath: String): FileSettingsBottomSheet {
+		private const val OFFLINE_ARG = "offline"
+		fun newInstance(cloudFileModel: CloudFileModel, parentFolderPath: String, offline: Boolean): FileSettingsBottomSheet {
 			val dialog = FileSettingsBottomSheet()
 			val args = Bundle()
 			args.putSerializable(FILE_ARG, cloudFileModel)
 			args.putString(PARENT_FOLDER_PATH_ARG, parentFolderPath)
+			args.putBoolean(OFFLINE_ARG, offline)
 			dialog.arguments = args
 			return dialog
 		}

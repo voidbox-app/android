@@ -15,7 +15,9 @@ import org.cryptomator.domain.exception.FatalBackendException
 import org.cryptomator.domain.exception.NotFoundException
 import org.cryptomator.domain.exception.ParentFolderDoesNotExistException
 import org.cryptomator.domain.exception.ParentFolderIsNullException
+import org.cryptomator.domain.exception.RandomAccessNotSupportedException
 import org.cryptomator.domain.exception.authentication.WebDavNotSupportedException
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.CancelAwareDataSource
 import org.cryptomator.domain.usecases.cloud.DataSource
@@ -23,6 +25,7 @@ import org.cryptomator.domain.usecases.cloud.DownloadState
 import org.cryptomator.domain.usecases.cloud.Progress
 import org.cryptomator.domain.usecases.cloud.UploadState
 import java.io.IOException
+import java.io.InputStream
 import java.io.OutputStream
 import java.util.Date
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -170,6 +173,19 @@ internal class WebDavImpl(private val cloud: WebDavCloud, private val connection
 			}.use { out -> CopyStream.copyStreamToStream(inputStream, out) }
 		}
 		progressAware.onProgress(Progress.completed(DownloadState.download(file)))
+	}
+
+	@Throws(BackendException::class)
+	fun openRandomAccess(file: CloudFile): RandomAccessContent {
+		val fileSize = file.size ?: throw RandomAccessNotSupportedException("Size of the file is unknown")
+		val url = absoluteUriFrom(file.path)
+		return object : RandomAccessContent {
+			override val size = fileSize
+
+			override fun openStream(offset: Long, length: Long?): InputStream = connectionHandler.readRange(url, offset, length)
+
+			override fun close() = Unit
+		}
 	}
 
 	@Throws(BackendException::class)
