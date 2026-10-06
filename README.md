@@ -53,14 +53,16 @@ Free, with no ads, no tracking and no account.
 **And the essentials**
 - Automatic photo upload, biometric unlock and automatic locking.
 
+## How it works
+
+<p align="center">
+  <img src="docs/how-it-works.gif" width="900" alt="Unlocking a vault, browsing files with thumbnails and playing a video straight from the cloud">
+</p>
+
 ## Screenshots
 
 <p align="center">
-  <img src="docs/screenshots/vaults.png" width="160" alt="Vault list">
-  <img src="docs/screenshots/files.png" width="160" alt="Photos and videos with thumbnails">
-  <img src="docs/demo.gif" width="160" alt="Unlocking a vault, browsing photos and playing a video">
-  <img src="docs/screenshots/clouds.png" width="160" alt="Choosing a cloud">
-  <img src="docs/screenshots/settings.png" width="160" alt="Privacy settings">
+  <img src="docs/screenshots.png" width="900" alt="Voidbox in light and dark themes: vault list, files with thumbnails, choosing a cloud and settings">
 </p>
 
 ## Download
