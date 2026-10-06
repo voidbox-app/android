@@ -1,9 +1,9 @@
 package org.cryptomator.presentation.ui.dialog
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.KeyEvent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -42,15 +42,13 @@ class EnterPasswordDialog : BaseProgressErrorDialog<EnterPasswordDialog.Callback
 		dialog.setCanceledOnTouchOutside(false)
 		dialog.window?.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE or WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE)
 		dialog.window?.decorView?.filterTouchesWhenObscured = disableDialogWhenObscured()
-		dialog.setOnKeyListener { _, keyCode, _ ->
-			if (keyCode == KeyEvent.KEYCODE_BACK) {
-				cancel()
-				true
-			} else {
-				false
-			}
-		}
 		return dialog
+	}
+
+	override fun onCancel(dialog: DialogInterface) {
+		super.onCancel(dialog)
+		callback?.onUnlockCanceled()
+		callback?.closeDialog()
 	}
 
 	// The sheet already holds the content view, so the fragment itself has none.
@@ -80,7 +78,7 @@ class EnterPasswordDialog : BaseProgressErrorDialog<EnterPasswordDialog.Callback
 		binding.tvVaultLocation.text = getString(R.string.dialog_enter_password_location, getString(vaultModel.cloudType.displayNameResource), vaultModel.path)
 		binding.btnUnlock.isEnabled = false
 		binding.btnUnlock.setOnClickListener { unlock() }
-		binding.btnCancel.setOnClickListener { cancel() }
+		binding.btnCancel.setOnClickListener { dialog?.cancel() }
 		registerOnEditorDoneActionAndPerformButtonClick(binding.etPassword) { binding.btnUnlock }
 		binding.etPassword.addTextChangedListener(object : TextWatcher {
 			override fun afterTextChanged(s: Editable) {
@@ -98,12 +96,6 @@ class EnterPasswordDialog : BaseProgressErrorDialog<EnterPasswordDialog.Callback
 		callback?.onUnlockClick(vaultModel(), binding.etPassword.text.toString())
 		onWaitForResponse(binding.etPassword)
 		setButtonsEnabled(false)
-	}
-
-	private fun cancel() {
-		dialog?.dismiss()
-		callback?.onUnlockCanceled()
-		callback?.closeDialog()
 	}
 
 	override fun showError(message: String) {
