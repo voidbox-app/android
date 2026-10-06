@@ -251,7 +251,6 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 			if (isNavigationMode(SELECT_ITEMS)) {
 				browseFilesPresenter.disableSelectionMode()
 			} else if (supportFragmentManager.backStackEntryCount > 0 && !hasCloudNodeSettings()) {
-				// one folder up, like the back gesture
 				onBackPressed()
 			} else {
 				// finish this activity and does not call the onCreate method of the parent activity
@@ -288,7 +287,6 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 		}
 	}
 
-	// Plain browsing: an arrow that goes one folder up, or back to the vault list at the root.
 	private fun showBackArrow() {
 		supportActionBar?.let {
 			it.setDisplayHomeAsUpEnabled(true)
@@ -296,7 +294,7 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 		}
 	}
 
-	/** The folders above [folder] inside the vault, e.g. "Test › Photos", or null at the vault root. */
+	/** E.g. "Vault › Photos"; null at the vault root. */
 	private fun parentPath(folder: CloudFolderModel?): String? {
 		if (folder == null || hasCloudNodeSettings()) {
 			return null
