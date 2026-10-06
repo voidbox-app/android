@@ -1,8 +1,5 @@
 blank_issues_enabled: false
 contact_links:
-  - name: Help & Support
-    url: https://community.cryptomator.org/
-    about: You will find answers in our community forum
-  - name: User Manual
-    url: https://docs.cryptomator.org/
-    about: Read the Cryptomator documentation here
+  - name: Report a security vulnerability
+    url: https://github.com/voidbox-app/android/security/advisories/new
+    about: Report security issues privately, not as public issues.
