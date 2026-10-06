@@ -43,6 +43,7 @@
 
 		<activity
 			android:name=".ui.activity.VaultListActivity"
+			android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
 			android:exported="true"
 			android:theme="@style/AppTheme.Starting"
 			android:windowSoftInputMode="adjustPan">
@@ -65,6 +66,7 @@
 			android:windowSoftInputMode="stateVisible" />
 		<activity
 			android:name=".ui.activity.BrowseFilesActivity"
+			android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
 			android:exported="false"
 			android:windowSoftInputMode="adjustPan" />
 		<activity
@@ -122,6 +124,7 @@
 			android:exported="false" />
 		<activity
 			android:name=".ui.activity.SettingsActivity"
+			android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
 			android:exported="false" />
 		<activity
 			android:name=".ui.activity.WebDavAddOrChangeActivity"
