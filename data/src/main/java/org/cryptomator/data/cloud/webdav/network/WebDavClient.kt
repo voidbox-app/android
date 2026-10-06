@@ -22,6 +22,7 @@ import java.util.Collections
 import java.util.Date
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.Request
+import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
 import okhttp3.Response
 
@@ -200,10 +201,10 @@ internal class WebDavClient(private val httpClient: WebDavCompatibleHttpClient) 
 	}
 
 	@Throws(BackendException::class)
-	fun writeFile(url: String, inputStream: InputStream, modifiedDate: Date, cancelled: () -> Boolean) {
+	fun writeFile(url: String, requestBody: RequestBody, modifiedDate: Date, cancelled: () -> Boolean) {
 		val builder = Request.Builder() //
 			.addHeader("X-OC-Mtime", modifiedDate.toInstant().toEpochMilli().div(1000).toString()) //
-			.put(InputStreamSourceBasedRequestBody.from(inputStream)) //
+			.put(requestBody) //
 			.url(url)
 		try {
 			httpClient.executeUpload(builder, cancelled).use { response ->
