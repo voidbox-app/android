@@ -1,15 +1,21 @@
 # Changelog
 
-All notable changes to Latch. Versions follow [semantic versioning](https://semver.org).
+All notable changes to Voidbox. Versions follow [semantic versioning](https://semver.org).
 
 ## Unreleased
+
+### Changed
+
+- Latch is now called Voidbox and installs as a new app (`com.vesmirov.voidbox`); add your vaults
+  again once after installing it.
+- New icon with a keyhole.
 
 ### Added
 
 - Video and audio in a vault play straight from the cloud, decrypted in memory, without a download
   first (setting *Play without downloading*).
 - Video thumbnails from a frame about 12 % into the video, skipping blank frames (setting *Video
-  thumbnails*, off by default).
+  thumbnails*, off by default); thumbnails pause while a video plays.
 - *Keep offline* keeps a vault file on the device, encrypted, and opens it without a connection.
 - Back arrow and the parent path in the toolbar of vault folders.
 
@@ -30,7 +36,7 @@ All notable changes to Latch. Versions follow [semantic versioning](https://semv
 
 ### Changed
 
-- Links in the settings point to the Latch repository.
+- Links in the settings point to the project's repository.
 
 ## 1.0.2 – 2026-10-05
 
@@ -40,7 +46,7 @@ All notable changes to Latch. Versions follow [semantic versioning](https://semv
 
 ## 1.0.1 – 2026-10-05
 
-First release of Latch, based on Cryptomator for Android 2.0.1.
+First release, then called Latch, based on Cryptomator for Android 2.0.1.
 
 ### Added
 

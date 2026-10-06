@@ -19,9 +19,9 @@ body:
     validations:
       required: true
   - type: input
-    id: latch
+    id: version
     attributes:
-      label: Latch version
+      label: Voidbox version
       description: The release you installed, e.g. 1.0.4.
     validations:
       required: true

@@ -1,11 +1,11 @@
 # Privacy policy
 
-Latch collects no data. It has no analytics, ads, crash reporting or accounts of its own, and the
+Voidbox collects no data. It has no analytics, ads, crash reporting or accounts of its own, and the
 developers receive nothing from it.
 
 ## Network
 
-Latch connects only to the clouds you add: your Nextcloud, WebDAV or S3 server. Files are encrypted
+Voidbox connects only to the clouds you add: your Nextcloud, WebDAV or S3 server. Files are encrypted
 on the device before they are uploaded and decrypted on the device after they are downloaded. The
 cloud sees encrypted files, their sizes and when they are read or written, and which parts of a file
 are read when media is played or a video thumbnail is made.

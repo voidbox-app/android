@@ -1,5 +1,5 @@
 name: Feature request
-description: An idea for Latch
+description: An idea for Voidbox
 labels: [enhancement]
 body:
   - type: textarea
@@ -12,4 +12,4 @@ body:
   - type: textarea
     id: idea
     attributes:
-      label: How Latch could help
+      label: How Voidbox could help

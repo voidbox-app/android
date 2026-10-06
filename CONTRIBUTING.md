@@ -1,11 +1,11 @@
-# Contributing to Latch
+# Contributing to Voidbox
 
 Please follow the [Code of Conduct](.github/CODE_OF_CONDUCT.md).
 
 ## Reporting a bug or asking for a feature
 
-Open an [issue](https://github.com/vesmirov/latch/issues/new/choose) with the matching template.
-For a bug, include the Latch and Android versions, the cloud you use and the steps to reproduce.
+Open an [issue](https://github.com/voidbox-app/android/issues/new/choose) with the matching template.
+For a bug, include the Voidbox and Android versions, the cloud you use and the steps to reproduce.
 Security issues go through [SECURITY.md](SECURITY.md), not public issues.
 
 ## Pull requests

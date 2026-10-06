@@ -3,7 +3,7 @@
 ## Reporting a vulnerability
 
 Report vulnerabilities privately through
-[GitHub's private vulnerability reporting](https://github.com/vesmirov/latch/security/advisories/new)
+[GitHub's private vulnerability reporting](https://github.com/voidbox-app/android/security/advisories/new)
 or by email to dev@vesmirov.com. Do not open a public issue.
 
 Include the affected version, what an attacker can achieve and how to reproduce it. You will get an
@@ -12,7 +12,7 @@ otherwise.
 
 ## Scope
 
-Latch's own code and its build. Flaws in the vault format or the encryption library belong to
+Voidbox's own code and its build. Flaws in the vault format or the encryption library belong to
 Cryptomator: report them to [Skymatic](https://github.com/cryptomator/cryptolib/security) as well.
 
 ## Supported versions

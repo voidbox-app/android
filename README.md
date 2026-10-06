@@ -1,85 +1,118 @@
 <p align="center">
-  <img src="docs/icon.svg" width="128" height="128" alt="Latch">
+  <img src="docs/icon.svg" width="112" height="112" alt="">
 </p>
 
-<h1 align="center">Latch</h1>
-
-<p align="center">A free Android app for Cryptomator vaults</p>
+<h1 align="center">Voidbox</h1>
 
 <p align="center">
-  <a href="https://github.com/vesmirov/latch/releases/latest"><img src="https://img.shields.io/github/v/release/vesmirov/latch?label=release" alt="Latest release"></a>
-  <a href="https://github.com/vesmirov/latch/actions/workflows/ci.yml"><img src="https://github.com/vesmirov/latch/actions/workflows/ci.yml/badge.svg?branch=master" alt="CI"></a>
-  <a href="https://github.com/vesmirov/latch/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/vesmirov/latch/badges/coverage.json" alt="Coverage"></a>
-  <a href="LICENSE.txt"><img src="https://img.shields.io/github/license/vesmirov/latch" alt="License"></a>
+  <b>Your files, encrypted on your phone, kept in your own cloud.</b>
 </p>
 
-Latch encrypts your files on the phone before they reach your cloud. It opens and creates vaults in
-the [Cryptomator](https://cryptomator.org) format, so the same vaults work with Cryptomator on your
-computer. Latch is free, without ads, analytics or paid features.
+<p align="center">
+  <a href="https://github.com/voidbox-app/android/releases/latest"><img src="https://img.shields.io/github/v/release/voidbox-app/android?label=release&color=2357C6" alt="Latest release"></a>
+  <a href="https://github.com/voidbox-app/android/actions/workflows/ci.yml"><img src="https://github.com/voidbox-app/android/actions/workflows/ci.yml/badge.svg?branch=master" alt="CI"></a>
+  <a href="https://github.com/voidbox-app/android/actions/workflows/ci.yml"><img src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/voidbox-app/android/badges/coverage.json" alt="Test coverage"></a>
+  <a href="LICENSE.txt"><img src="https://img.shields.io/github/license/voidbox-app/android?color=2357C6" alt="License: GPLv3"></a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/voidbox-app/android/releases/latest"><b>Download for Android</b></a>
+  &nbsp;·&nbsp;
+  <a href="#features">Features</a>
+  &nbsp;·&nbsp;
+  <a href="PRIVACY.md">Privacy</a>
+</p>
+
+<p align="center">
+  <img src="docs/demo.gif" width="300" alt="Unlocking a vault, browsing photos and playing a video">
+</p>
+
+Voidbox keeps your documents, photos and videos private in the cloud you already use. Every file
+is encrypted on your phone before it leaves it, so your provider only ever stores data it cannot
+read. Vaults use the open Cryptomator format: the same vault opens with Cryptomator on Windows,
+macOS, Linux and iOS.
+
+Free and open source. No ads, no tracking, no account.
+
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/vaults.png" width="200" alt="Vault list">
+  <img src="docs/screenshots/files.png" width="200" alt="Photos and videos with thumbnails">
+  <img src="docs/screenshots/clouds.png" width="200" alt="Choosing a cloud">
+  <img src="docs/screenshots/settings.png" width="200" alt="Privacy settings">
+</p>
 
 ## Features
 
-- **Clouds:** Nextcloud (sign in through the browser), any WebDAV server, S3-compatible storage, and
-  folders on the device or from any app that provides documents.
-- **Built-in viewers:** images, video and audio, PDF and text. Video and audio play straight from the
-  cloud, decrypted in memory; nothing decrypted is written to the disk.
-- **Thumbnails** of images and, optionally, videos, stored encrypted with a key of their vault.
-- **Offline copies:** keep chosen files on the device, still encrypted, and open them without a
-  connection.
-- **Automatic photo upload**, biometric unlock and automatic locking.
+**Private by design**
+- File contents and names are encrypted on the device with AES-256.
+- Nothing leaves the phone except encrypted files, and only to the cloud you chose.
+- Thumbnails and offline copies are stored encrypted too.
+
+**Your cloud, your choice**
+- Nextcloud, with sign-in through your browser.
+- Any WebDAV server and any S3-compatible storage.
+- A folder on the phone, or any app that provides documents.
+
+**Made for photos and videos**
+- Photos, video, audio, PDF and text open right in the app.
+- Videos start playing at once: they stream from the cloud and are decrypted in memory, without a
+  full download and without a decrypted copy on the disk.
+- Thumbnails for photos and, if you like, for videos.
+
+**Ready when you are offline**
+- Keep chosen files on the phone, still encrypted, and open them without a connection.
+
+**And the essentials**
+- Automatic photo upload, biometric unlock and automatic locking.
 
 ## Download
 
-- [GitHub Releases](https://github.com/vesmirov/latch/releases/latest): the signed APK and its
-  SHA-256 checksum.
-- [Obtainium](https://obtainium.imranr.dev): add `https://github.com/vesmirov/latch` to get updates.
+| Source | |
+|---|---|
+| [GitHub Releases](https://github.com/voidbox-app/android/releases/latest) | Signed APK with a SHA-256 checksum |
+| [Obtainium](https://obtainium.imranr.dev) | Add `https://github.com/voidbox-app/android` for automatic updates |
+| F-Droid | Coming soon |
 
-F-Droid is planned.
+Voidbox runs on Android 8.0 and newer.
 
-## Latch and Cryptomator
+## Voidbox and Cryptomator
 
-Latch is based on [Cryptomator for Android](https://github.com/cryptomator/android). It keeps the
-Cryptomator vault format, adds its own features and redesign, and leaves out paid licensing.
-Cryptomator updates are taken over by hand after review, so Latch follows Cryptomator with a delay;
-[RELEASING.md](RELEASING.md) describes how. The Cryptomator version Latch is built on is recorded
-in [UPSTREAM_TAG](UPSTREAM_TAG).
+Voidbox is built on [Cryptomator for Android](https://github.com/cryptomator/android) and keeps its
+vault format, so your vaults stay compatible with every Cryptomator app. On top of it, Voidbox adds
+its own design, streaming playback, offline copies and thumbnails, and makes every feature
+available for free.
 
-Latch is not affiliated with Skymatic GmbH. Cryptomator is their trademark.
+Cryptomator updates are reviewed and taken over by hand, so Voidbox follows Cryptomator with a
+short delay. The Cryptomator version it is based on is recorded in [UPSTREAM_TAG](UPSTREAM_TAG).
 
-## Building
+Voidbox is an independent project, not affiliated with Skymatic GmbH. Cryptomator is their
+trademark.
 
-Requirements: JDK 21 and the Android SDK. The lite flavor needs no API keys.
+## For developers
+
+Build the app with JDK 21 and the Android SDK; no API keys are needed:
 
 ```bash
 ./gradlew :presentation:assembleLiteDebug
 ```
 
-Unit tests with coverage:
+Run the unit tests of all modules with coverage:
 
 ```bash
 ./gradlew :presentation:koverXmlReportLite
 ```
 
-## Verifying a downloaded APK
-
 Releases are signed with a certificate whose SHA-256 fingerprint is
-
-```
-4c1fe944d1ef0f3fc8de7436b08e452cd4500cee5bdacb936504a1a5bb682b1d
-```
-
-Check it with `apksigner verify --print-certs latch-<version>.apk`, and the file itself with the
-`.sha256` checksum published next to it.
+`4c1fe944d1ef0f3fc8de7436b08e452cd4500cee5bdacb936504a1a5bb682b1d`. Check a download with
+`apksigner verify --print-certs voidbox-<version>.apk` and the published `.sha256` checksum.
 
 ## Contributing
 
-Bug reports, ideas and pull requests are welcome: see [CONTRIBUTING.md](CONTRIBUTING.md).
-Report security issues privately, as described in [SECURITY.md](SECURITY.md).
-
-## Privacy
-
-Latch collects no data. See [PRIVACY.md](PRIVACY.md).
+Bug reports, ideas and pull requests are welcome. Start with [CONTRIBUTING.md](CONTRIBUTING.md),
+and report security issues privately as described in [SECURITY.md](SECURITY.md).
 
 ## License
 
-[GNU General Public License v3.0](LICENSE.txt), as Cryptomator for Android.
+Voidbox is free software under the [GNU General Public License v3.0](LICENSE.txt).
