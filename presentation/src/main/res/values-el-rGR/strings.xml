@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Χωρίς σύνδεση δικτύου</string>
 	<string name="error_invalid_passphrase">Λάθος κωδικός πρόσβασης</string>
 	<string name="error_file_or_folder_exists">Υπάρχει ήδη ένα αρχείο ή φάκελος.</string>
-	<string name="error_vault_version_not_supported">Η έκδοση %1$s της κρύπτης δεν υποστηρίζεται. Αυτή η κρύπτη έχει δημιουργηθεί με παλαιότερη ή νεότερη έκδοση του Latch.</string>
+	<string name="error_vault_version_not_supported">Η έκδοση %1$s της κρύπτης δεν υποστηρίζεται. Αυτή η κρύπτη έχει δημιουργηθεί με παλαιότερη ή νεότερη έκδοση του Voidbox.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Το αρχείο %1$s λείπει στο φάκελο της κρύπτης σας. Βεβαιωθείτε ότι αυτό το αρχείο υπάρχει στο φάκελο κρύπτης στο cloud.</string>
 	<string name="error_vault_already_exists">Η κρύπτη υπάρχει ήδη.</string>
 	<string name="error_no_such_file">Το αρχείο δεν υπάρχει.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">Η έκδοση που καθορίστηκε στο %1$s είναι διαφορετική από %2$s</string>
 	<string name="error_vault_key_invalid">%1$s δεν ταιριάζει με αυτό %2$s</string>
 	<string name="error_vault_config_loading">Γενικό σφάλμα κατά τη φόρτωση της ρύθμισης κρύπτης</string>
-	<string name="error_file_not_found_after_opening_using_3party">Το τοπικό αρχείο δεν υπάρχει πλέον μετά την επιστροφή στο Latch. Οι πιθανές αλλαγές δεν μπορούν να μεταδοθούν πίσω στο cloud.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Το τοπικό αρχείο δεν υπάρχει πλέον μετά την επιστροφή στο Voidbox. Οι πιθανές αλλαγές δεν μπορούν να μεταδοθούν πίσω στο cloud.</string>
 	<string name="error_no_such_bucket">Δεν υπάρχει τέτοιος κάδος</string>
 	<string name="error_masterkey_location_not_supported">Η προσαρμοσμένη τοποθεσία Masterkey δεν υποστηρίζεται ακόμα</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Αποτυχία επικοινωνίας με την εφαρμογή F-Droid. Δεν έχει εγκατασταθεί;</string>
@@ -69,10 +69,10 @@
 	<string name="cloud_names_local_storage">Τοπικός αποθηκευτικός χώρος</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Το Latch χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για την εξαγωγή αρχείων</string>
-	<string name="permission_message_upload_file">Το Latch χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για μεταφόρτωση αρχείων</string>
-	<string name="permission_message_share_file">Το Latch χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για κοινή χρήση αρχείων</string>
-	<string name="permission_revoked_re_request_permission">Το Latch έχει χάσει την άδεια πρόσβασης σε αυτήν την τοποθεσία. Παρακαλώ επιλέξτε ξανά αυτόν το φάκελο για να επαναφέρετε το δικαίωμα.</string>
+	<string name="permission_message_export_file">Το Voidbox χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για την εξαγωγή αρχείων</string>
+	<string name="permission_message_upload_file">Το Voidbox χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για μεταφόρτωση αρχείων</string>
+	<string name="permission_message_share_file">Το Voidbox χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για κοινή χρήση αρχείων</string>
+	<string name="permission_revoked_re_request_permission">Το Voidbox έχει χάσει την άδεια πρόσβασης σε αυτήν την τοποθεσία. Παρακαλώ επιλέξτε ξανά αυτόν το φάκελο για να επαναφέρετε το δικαίωμα.</string>
 	<string name="snack_bar_action_title_settings">Ρυθμίσεις</string>
 	<string name="snack_bar_action_title_search">Αναζήτηση</string>
 	<string name="snack_bar_action_title_search_previous">Προηγούμενο</string>
@@ -88,7 +88,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Το Cloud δεν είναι στη λίστα;</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Προσθήκη στο Latch</string>
+	<string name="screen_vault_list_actions_title">Προσθήκη στο Voidbox</string>
 	<string name="screen_vault_list_action_create_new_vault">Δημιουργία νέας κρύπτης</string>
 	<string name="screen_vault_list_action_add_existing_vault">Προσθήκη υπάρχοντος κρύπτης</string>
 	<string name="screen_vault_list_vault_action_delete">Αφαίρεση</string>
@@ -213,7 +213,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Μεταφόρτωση μόνο χρησιμοποιώντας WIFI</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Μεταφόρτωση βίντεο</string>
 	<string name="screen_settings_auto_photo_upload_title">Αποθήκευση αυτόματης μεταφόρτωσης αρχείων στο&#8230;</string>
-	<string name="screen_settings_website_label">Ιστοσελίδα Latch</string>
+	<string name="screen_settings_website_label">Ιστοσελίδα Voidbox</string>
 	<string name="screen_settings_mastodon_label">Ακολουθήστε μας στο Mastodon</string>
 	<string name="screen_settings_facebook_label">Κάντε μας like στο Facebook</string>
 	<string name="screen_settings_section_legal">Νομικό περιεχόμενο</string>
@@ -246,15 +246,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s δεν ήταν δυνατή η ταυτοποίηση.</string>
 	<string name="screen_update_pcloud_connections_title">Ενημέρωση διαπιστευτηρίων pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Παραλλαγές του Latch</string>
+	<string name="screen_cryptomator_variants_title">Παραλλαγές του Voidbox</string>
 	<string name="screen_cryptomator_variants_lite_title">Κύριος Αποθετήριο F-Droid</string>
 	<string name="screen_cryptomator_variants_lite_description">Εξαιρούνται επειδή απαιτούν κλειδιά API.</string>
 	<string name="screen_cryptomator_variants_lite_install">Εγκατάσταση</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Αποθετήριο F-Droid Latch</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Αποθετήριο F-Droid Voidbox</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Εξαιρούνται επειδή περιέχει ιδιόκτητες εξαρτήσεις.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Προσθέστε το αποθετήριο Latch στην εφαρμογή F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Προσθέστε το αποθετήριο Voidbox στην εφαρμογή F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Προσθήκη</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Εγκαταστήστε το Latch χρησιμοποιώντας το F-Droid.\nΕάν εμφανιστεί ότι δε βρήκε σφάλμα, περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός του F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Εγκαταστήστε το Voidbox χρησιμοποιώντας το F-Droid.\nΕάν εμφανιστεί ότι δε βρήκε σφάλμα, περιμένετε μέχρι να ολοκληρωθεί ο συγχρονισμός του F-Droid.</string>
 	<string name="screen_cryptomator_variants_website_title">Ιστοσελίδα</string>
 	<string name="screen_cryptomator_variants_website_description">Περιέχει ιδιόκτητες εξαρτήσεις.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Η εναλλαγή από ή προς την κύρια παραλλαγή του αποθετηρίου F-Droid απαιτεί νέα ρύθμιση της εφαρμογής.</string>
@@ -284,7 +284,7 @@
 	<string name="dialog_replace_title_single_file_exists">Αντικατάσταση αρχείου;</string>
 	<string name="dialog_replace_title_multiple_files_exist">Αντικατάσταση αρχείων;</string>
 	<string name="dialog_unable_to_share_title">Δεν είναι δυνατή η κοινή χρήση αρχείων</string>
-	<string name="dialog_unable_to_share_message">Δεν έχετε ρυθμίσει καμία κρύπτη. Παρακαλώ δημιουργήστε μια νέα κρύπτη με την εφαρμογή Latch.</string>
+	<string name="dialog_unable_to_share_message">Δεν έχετε ρυθμίσει καμία κρύπτη. Παρακαλώ δημιουργήστε μια νέα κρύπτη με την εφαρμογή Voidbox.</string>
 	<string name="dialog_unable_to_share_positive_button">ΟΚ</string>
 	<string name="dialog_unable_to_share_negative_button">Δημιουργία κρύπτης</string>
 	<string name="dialog_filetype_not_supported_title">Δεν είναι δυνατό το άνοιγμα του %1$s</string>
@@ -335,12 +335,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">Σε αυτή τη λειτουργία, μπορεί να γραφτούν ευαίσθητα δεδομένα σε ένα αρχείο καταγραφής στη συσκευή σας (π.χ. ονόματα αρχείων και διαδρομές). Οι κωδικοί πρόσβασης, τα cookies κλπ. αποκλείονται ρητά.\n\nΘυμηθείτε να απενεργοποιήσετε τη λειτουργία εντοπισμού σφαλμάτων το συντομότερο δυνατό.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Προσοχή</string>
 	<string name="dialog_debug_mode_positive_button">Ενεργοποίηση</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Λόγω σφάλματος στις εφαρμογές της Microsoft, το αρχείο που θα επεξεργαστεί πρέπει να μοιραστεί με αυτές τις εφαρμογές σε ένα δημόσιο φάκελο μέσων στη συσκευή σας. Μετά την επανέναρξη του Latch, το δημόσιο προσβάσιμο αρχείο διαγράφεται και πάλι, αλλά το Latch δεν μπορεί να επηρεάσει τι συνέβη σε αυτό το αρχείο εν τω μεταξύ. Βεβαιωθείτε ότι έχετε επίγνωση αυτής της συμπεριφοράς κατά την ενεργοποίηση αυτής της επιλογής. Αυτό θα ισχύει μόνο για τύπους αρχείων Microsoft.\n\nΤο Latch θα κάνει επανεκκίνηση μετά την ενεργοποίηση.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Λόγω σφάλματος στις εφαρμογές της Microsoft, το αρχείο που θα επεξεργαστεί πρέπει να μοιραστεί με αυτές τις εφαρμογές σε ένα δημόσιο φάκελο μέσων στη συσκευή σας. Μετά την επανέναρξη του Voidbox, το δημόσιο προσβάσιμο αρχείο διαγράφεται και πάλι, αλλά το Voidbox δεν μπορεί να επηρεάσει τι συνέβη σε αυτό το αρχείο εν τω μεταξύ. Βεβαιωθείτε ότι έχετε επίγνωση αυτής της συμπεριφοράς κατά την ενεργοποίηση αυτής της επιλογής. Αυτό θα ισχύει μόνο για τύπους αρχείων Microsoft.\n\nΤο Voidbox θα κάνει επανεκκίνηση μετά την ενεργοποίηση.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Αυτή η ρύθμιση είναι μια λειτουργία ασφαλείας και αποτρέπει άλλες εφαρμογές από το να ξεγελάσουν τους χρήστες να κάνουν πράγματα που δεν θέλουν να κάνουν.\n\nΜε την απενεργοποίηση, επιβεβαιώνετε ότι γνωρίζετε <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">τους κινδύνους</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Προσοχή</string>
 	<string name="dialog_disable_app_obscured_positive_button">Απενεργοποίηση</string>
 	<string name="dialog_app_is_obscured_info_title">Η εφαρμογή αποκρύπτεται</string>
-	<string name="dialog_app_is_obscured_info_hint">Μια άλλη εφαρμογή εμφανίζει κάτι πάνω από το Latch (π.χ. ένα φίλτρο μπλε φωτός ή μια εφαρμογή νυχτερινής λειτουργίας). Για λόγους ασφαλείας, το Latch είναι απενεργοποιημένο.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Πώς να ενεργοποιήσετε το Latch</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Μια άλλη εφαρμογή εμφανίζει κάτι πάνω από το Voidbox (π.χ. ένα φίλτρο μπλε φωτός ή μια εφαρμογή νυχτερινής λειτουργίας). Για λόγους ασφαλείας, το Voidbox είναι απενεργοποιημένο.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Πώς να ενεργοποιήσετε το Voidbox</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Κλείσιμο</string>
 	<string name="dialog_vaults_removed_during_migration_title">Παρακαλώ προσθέστε ξανά κρύπτες για %1s cloud</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Κατά τη μετάβαση σε αυτήν την έκδοση της εφαρμογής, πρέπει να αφαιρέσουμε τις ακόλουθες κρύπτες από την εφαρμογή:\n%2s\n\nΑυτές οι κρύπτες δεν έχουν αφαιρεθεί από το cloud αλλά μόνο από αυτήν την εφαρμογή. Λυπούμαστε για την ταλαιπωρία και παρακαλούμε προσθέστε ξανά αυτές τις κρύπτες για να συνεχίσετε να εργάζεστε μαζί τους.</string>
@@ -354,9 +354,9 @@
 	<string name="dialog_confirm_delete_file_message">Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το αρχείο;</string>
 	<string name="dialog_confirm_delete_folder_message">Αυτό θα διαγράψει όλα τα περιεχόμενα του φακέλου. Είστε βέβαιοι ότι θέλετε να διαγράψετε αυτό το φάκελο;</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Η λειτουργία βιομετρικής ταυτοποίησης απενεργοποιήθηκε</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Επειδή το κλειδί έχει ακυρωθεί, η βιομετρική λειτουργία ταυτοποιήσης έχει απενεργοποιηθεί. Για επανενεργοποίηση, ανοίξτε τις ρυθμίσεις Latch.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Επειδή το κλειδί έχει ακυρωθεί, η βιομετρική λειτουργία ταυτοποιήσης έχει απενεργοποιηθεί. Για επανενεργοποίηση, ανοίξτε τις ρυθμίσεις Voidbox.</string>
 	<string name="dialog_enter_license_title">Δώστε μια έγκυρη άδεια</string>
-	<string name="dialog_enter_license_content">Εντοπίσαμε ότι εγκαταστήσατε Latch χωρίς τη χρήση του Google Play Store. Παρέχετε έγκυρη άδεια, η οποία μπορεί να αγοραστεί στο <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Εντοπίσαμε ότι εγκαταστήσατε Voidbox χωρίς τη χρήση του Google Play Store. Παρέχετε έγκυρη άδεια, η οποία μπορεί να αγοραστεί στο <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">Η παρεχόμενη άδεια δεν είναι έγκυρη. Βεβαιωθείτε ότι την εισαγάγατε σωστά.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Το κλειδί που παρέχεται είναι ένα πιστοποιητικό υποστήριξης επιφάνειας εργασίας. Παρακαλώ εισαγάγετε μια έγκυρη άδεια.</string>
 	<string name="dialog_enter_license_no_content">Δεν παρέχεται άδεια. Παρακαλώ εισάγετε μια έγκυρη άδεια.</string>
@@ -364,12 +364,12 @@
 	<string name="dialog_license_confirmation_title">Επιβεβαίωση άδειας</string>
 	<string name="dialog_license_confirmation_message">Ευχαριστούμε %1$s για την παροχή της έγκυρης άδειας χρήσης σας.</string>
 	<string name="dialog_update_available_title">Διαθέσιμη ενημέρωση</string>
-	<string name="dialog_update_available_message">Ενημέρωση Latch στην τελευταία έκδοση. Με το πάτημα OK θα κατεβάσετε την εφαρμογή στο παρασκήνιο και θα σας ζητηθεί να την εγκαταστήσετε.</string>
+	<string name="dialog_update_available_message">Ενημέρωση Voidbox στην τελευταία έκδοση. Με το πάτημα OK θα κατεβάσετε την εφαρμογή στο παρασκήνιο και θα σας ζητηθεί να την εγκαταστήσετε.</string>
 	<string name="dialog_update_available_update">Ενημέρωση τώρα</string>
 	<string name="dialog_update_available_download_site">Μετάβαση στον ιστότοπο λήψεων</string>
 	<string name="dialog_update_available_cancel">Αργότερα</string>
 	<string name="dialog_download_update_title">Εκτελείται λήψη</string>
-	<string name="dialog_download_update_message">Λήψη της τελευταίας έκδοσης του Latch</string>
+	<string name="dialog_download_update_message">Λήψη της τελευταίας έκδοσης του Voidbox</string>
 	<string name="dialog_sym_link_title">Ο φάκελος είναι ένας συμβολικός σύνδεσμος</string>
 	<string name="dialog_sym_link_message">Δεν μπορείτε να περιηγηθείτε σε αυτόν τον συμβολικό σύνδεσμο</string>
 	<string name="dialog_sym_link_back_button">Πίσω</string>
@@ -400,9 +400,9 @@
 	<string name="dialog_hub_user_setup_required_title">Απαιτείται ρύθμιση χρήστη</string>
 	<string name="dialog_hub_user_setup_required_hint">Για να συνεχίσετε, παρακαλούμε συμπληρώστε τα βήματα που απαιτούνται στο προφίλ χρήστη Hub σας.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Πηγαίνετε στο Προφίλ</string>
-	<string name="permission_snackbar_auth_local_vault">Το Latch χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για τη χρήση τοπικών κρυπτών</string>
-	<string name="permission_snackbar_auth_auto_upload">Το Latch χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για να χρησιμοποιηθεί η αυτόματη μεταφόρτωση φωτογραφιών</string>
-	<string name="permission_snackbar_notifications">Το Latch χρειάζεται δικαιώματα ειδοποίησης για να εμφανίσει για παράδειγμα την κατάσταση κρύπτης</string>
+	<string name="permission_snackbar_auth_local_vault">Το Voidbox χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για τη χρήση τοπικών κρυπτών</string>
+	<string name="permission_snackbar_auth_auto_upload">Το Voidbox χρειάζεται πρόσβαση στον αποθηκευτικό χώρο για να χρησιμοποιηθεί η αυτόματη μεταφόρτωση φωτογραφιών</string>
+	<string name="permission_snackbar_notifications">Το Voidbox χρειάζεται δικαιώματα ειδοποίησης για να εμφανίσει για παράδειγμα την κατάσταση κρύπτης</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

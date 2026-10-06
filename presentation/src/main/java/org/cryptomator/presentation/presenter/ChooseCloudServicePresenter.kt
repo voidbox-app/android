@@ -108,7 +108,7 @@ class ChooseCloudServicePresenter @Inject constructor( //
 	}
 
 	fun showCloudMissingSnackbarHintInLiteVariant() {
-		// Latch ships WebDAV, S3 and local storage only; there are no other variants to offer.
+		// Voidbox ships WebDAV, S3 and local storage only; there are no other variants to offer.
 	}
 
 	init {

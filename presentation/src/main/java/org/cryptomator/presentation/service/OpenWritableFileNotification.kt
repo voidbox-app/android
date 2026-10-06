@@ -68,7 +68,7 @@ class OpenWritableFileNotification(private val context: Context, private val uri
 
 		private const val NOTIFICATION_ID = 94875
 		private const val NOTIFICATION_CHANNEL_ID = "65478"
-		private const val NOTIFICATION_CHANNEL_NAME = "Latch"
+		private const val NOTIFICATION_CHANNEL_NAME = "Voidbox"
 		private const val NOTIFICATION_GROUP_KEY = "CryptomatorGroup"
 	}
 }

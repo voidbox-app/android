@@ -4,7 +4,7 @@
 	<string name="empty" translatable="false"></string>
 
 	<!-- # app -->
-	<string name="app_name" translatable="false">Latch</string>
+	<string name="app_name" translatable="false">Voidbox</string>
 	<string name="download_subdirectory_name" translatable="false">@string/app_name</string>
 	<string name="vault_cryptomator" translatable="false">vault.cryptomator</string>
 	<string name="masterkey_cryptomator" translatable="false">masterkey.cryptomator</string>
@@ -18,7 +18,7 @@
 	<string name="error_purchase_not_available">Purchase not available. Please try again later.</string>
 	<string name="error_invalid_passphrase">Wrong password</string>
 	<string name="error_file_or_folder_exists">A file or folder already exists.</string>
-	<string name="error_vault_version_not_supported">Vault version %1$s is unsupported. This vault has been created with an older or newer version of Latch.</string>
+	<string name="error_vault_version_not_supported">Vault version %1$s is unsupported. This vault has been created with an older or newer version of Voidbox.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">%1$s file is missing in your vault folder. Make sure that this file exists in your vault folder in the cloud.</string>
 	<string name="error_vault_already_exists">Vault already exists.</string>
 	<string name="error_no_such_file">File does not exist.</string>
@@ -40,7 +40,7 @@
 	<string name="error_vault_version_mismatch">Version specified in %1$s is different to %2$s</string>
 	<string name="error_vault_key_invalid">%1$s does not match with this %2$s</string>
 	<string name="error_vault_config_loading">General error while loading the vault config</string>
-	<string name="error_file_not_found_after_opening_using_3party">Local file isn\'t present anymore after switching back to Latch. Possible changes cannot be propagated back to the cloud.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Local file isn\'t present anymore after switching back to Voidbox. Possible changes cannot be propagated back to the cloud.</string>
 	<string name="error_no_such_bucket">No such bucket</string>
 	<string name="error_masterkey_location_not_supported">Custom Masterkey location not supported yet</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Failed to communicate with the F-Droid app. Not installed?</string>
@@ -96,17 +96,17 @@
 	<string name="screen_license_check_cancel_subscription_hint">You now have a lifetime license. To avoid future charges, cancel your yearly subscription via the %1$s option in Settings.</string>
 	<string name="screen_welcome_title">Welcome</string>
 	<string name="screen_welcome_notifications_title">Stay notified</string>
-	<string name="screen_welcome_notifications_message">Allow notifications so Latch can inform you about background activity, auto uploads, or other important events.</string>
+	<string name="screen_welcome_notifications_message">Allow notifications so Voidbox can inform you about background activity, auto uploads, or other important events.</string>
 	<string name="screen_welcome_notifications_button">Allow notifications</string>
 	<string name="screen_welcome_notifications_granted">Notifications are enabled.</string>
 	<string name="screen_welcome_continue_button">Continue</string>
 	<string name="screen_welcome_screen_lock_button">Set screen lock</string>
 	<string name="screen_welcome_screen_lock_already_set">Screen lock is already set.</string>
-	<string name="screen_welcome_intro_body">Thanks for choosing Latch to protect your files.\n\nWith Latch, the key to your data is in your hands.\n\nLatch encrypts your data quickly and easily.</string>
-	<string name="screen_welcome_intro_title">Welcome to Latch</string>
-	<string name="screen_welcome_intro_thanks">Thanks for choosing Latch to protect your files.</string>
-	<string name="screen_welcome_intro_feature_key">With Latch, the key to your data is in your hands.</string>
-	<string name="screen_welcome_intro_feature_encrypt">Latch encrypts your data quickly and easily.</string>
+	<string name="screen_welcome_intro_body">Thanks for choosing Voidbox to protect your files.\n\nWith Voidbox, the key to your data is in your hands.\n\nVoidbox encrypts your data quickly and easily.</string>
+	<string name="screen_welcome_intro_title">Welcome to Voidbox</string>
+	<string name="screen_welcome_intro_thanks">Thanks for choosing Voidbox to protect your files.</string>
+	<string name="screen_welcome_intro_feature_key">With Voidbox, the key to your data is in your hands.</string>
+	<string name="screen_welcome_intro_feature_encrypt">Voidbox encrypts your data quickly and easily.</string>
 	<string name="screen_welcome_trial_button" translatable="false">@string/screen_license_check_trial_price</string>
 	<string name="next">Next</string>
 	<string name="back">Back</string>
@@ -127,11 +127,11 @@
 	<!-- # permission -->
 
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch needs storage access to export files</string>
-	<string name="permission_message_upload_file">Latch needs storage access to upload files</string>
-	<string name="permission_message_share_file">Latch needs storage access to share files</string>
+	<string name="permission_message_export_file">Voidbox needs storage access to export files</string>
+	<string name="permission_message_upload_file">Voidbox needs storage access to upload files</string>
+	<string name="permission_message_share_file">Voidbox needs storage access to share files</string>
 
-	<string name="permission_revoked_re_request_permission">Latch has lost permission to access this location. Please select this folder again to restore the permission.</string>
+	<string name="permission_revoked_re_request_permission">Voidbox has lost permission to access this location. Please select this folder again to restore the permission.</string>
 
 	<string name="snack_bar_action_title_settings">Settings</string>
 	<string name="snack_bar_action_title_search">Search</string>
@@ -154,7 +154,7 @@
 	<!-- # screens -->
 
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Add to Latch</string>
+	<string name="screen_vault_list_actions_title">Add to Voidbox</string>
 	<string name="screen_vault_list_action_create_new_vault">Create new vault</string>
 	<string name="screen_vault_list_action_add_existing_vault">Add existing vault</string>
 	<string name="screen_vault_list_vault_action_rename" translatable="false">@string/screen_file_browser_node_action_rename</string>
@@ -184,8 +184,8 @@
 	<string name="screen_file_browser_msg_empty_folder">Empty folder</string>
 	<string name="screen_media_preview_seek_forward">+10 s</string>
 	<string name="screen_media_preview_seek_back">\u221210 s</string>
-	<string name="screen_media_preview_error">Latch can\u2019t play this file.</string>
-	<string name="screen_pdf_preview_error">Latch can\u2019t open this PDF. If it is password-protected, export it and open it elsewhere.</string>
+	<string name="screen_media_preview_error">Voidbox can\u2019t play this file.</string>
+	<string name="screen_pdf_preview_error">Voidbox can\u2019t open this PDF. If it is password-protected, export it and open it elsewhere.</string>
 	<string name="screen_pdf_preview_page" translatable="false">%1$d / %2$d</string>
 	<string name="screen_file_browser_file_info_label_size" translatable="false">%1$s</string>
 	<string name="screen_file_browser_file_info_label_date">modified %1$s ago</string>
@@ -343,11 +343,11 @@
 	<string name="screen_settings_auto_photo_upload_title">Save auto upload files to&#8230;</string>
 
 	<string name="screen_settings_section_social" translatable="false">@string/screen_webdav_settings_done_button_text</string>
-	<string name="screen_settings_website_label">Latch on GitHub</string>
+	<string name="screen_settings_website_label">Voidbox on GitHub</string>
 	<string name="screen_settings_mastodon_label">Follow us on Mastodon</string>
 	<string name="screen_settings_facebook_label">Like us on Facebook</string>
-	<string name="screen_settings_website_uri" translatable="false">https://github.com/vesmirov/latch</string>
-	<string name="screen_settings_facebook_uri" translatable="false">https://facebook.com/Latch</string>
+	<string name="screen_settings_website_uri" translatable="false">https://github.com/voidbox-app/android</string>
+	<string name="screen_settings_facebook_uri" translatable="false">https://facebook.com/Voidbox</string>
 	<string name="screen_settings_mastodon_uri" translatable="false">https://mastodon.online/@cryptomator</string>
 
 	<string name="screen_settings_section_legal">Legal</string>
@@ -356,14 +356,14 @@
 
 	<string name="screen_settings_section_support">Support</string>
 	<string name="screen_settings_contact_label">Request help</string>
-	<string name="screen_settings_support_uri" translatable="false">https://github.com/vesmirov/latch/issues</string>
+	<string name="screen_settings_support_uri" translatable="false">https://github.com/voidbox-app/android/issues</string>
 	<string name="screen_settings_debug_mode_label">Debug mode</string>
 	<string name="screen_settings_error_report_label">Send log file</string>
 	<string name="screen_settings_error_report_failed">Sending failed</string>
 	<string name="screen_settings_security_label">Security hints</string>
 	<string name="screen_settings_security_url" translatable="false">https://docs.cryptomator.org/en/latest/security/best-practices/</string>
-	<string name="screen_settings_source_license_label">Latch license (GPLv3)</string>
-	<string name="screen_settings_source_license_uri" translatable="false">https://github.com/vesmirov/latch/blob/latch/LICENSE.txt</string>
+	<string name="screen_settings_source_license_label">Voidbox license (GPLv3)</string>
+	<string name="screen_settings_source_license_uri" translatable="false">https://github.com/voidbox-app/android/blob/master/LICENSE.txt</string>
 
 	<string name="screen_settings_section_version">Version</string>
 
@@ -396,15 +396,15 @@
 	<string name="screen_update_pcloud_connections_title">Update pCloud credentials</string>
 
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Variants of Latch</string>
+	<string name="screen_cryptomator_variants_title">Variants of Voidbox</string>
 	<string name="screen_cryptomator_variants_lite_title">Main F-Droid Repository</string>
 	<string name="screen_cryptomator_variants_lite_description">Excluded because they require API keys.</string>
 	<string name="screen_cryptomator_variants_lite_install">Install</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid Repository</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidbox F-Droid Repository</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Excluded because it contains proprietary dependencies.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Add Latch repository to the F-Droid app.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Add Voidbox repository to the F-Droid app.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Add</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Install Latch using F-Droid.\nIf a not found error is displayed, wait until the F-Droid synchronisation is finished.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Install Voidbox using F-Droid.\nIf a not found error is displayed, wait until the F-Droid synchronisation is finished.</string>
 	<string name="screen_cryptomator_variants_fdroid_install" translatable="false">@string/screen_cryptomator_variants_lite_install</string>
 	<string name="screen_cryptomator_variants_website_title">Website</string>
 	<string name="screen_cryptomator_variants_website_description">Contains proprietary dependencies.</string>
@@ -450,7 +450,7 @@
 	<string name="dialog_replace_title_multiple_files_exist">Replace files?</string>
 
 	<string name="dialog_unable_to_share_title">Unable to share files</string>
-	<string name="dialog_unable_to_share_message">You haven\'t set up any vaults. Please create a new vault with the Latch app first.</string>
+	<string name="dialog_unable_to_share_message">You haven\'t set up any vaults. Please create a new vault with the Voidbox app first.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Create vault</string>
 
@@ -531,7 +531,7 @@
 	<string name="dialog_debug_mode_positive_button">Enable</string>
 	<string name="dialog_debug_mode_negative_button" translatable="false">@string/dialog_button_cancel</string>
 
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Due to a bug in Microsoft apps, the file to be edited must be shared with these apps in a public media folder on your device. After Latch is resumed, the publicly accessible file is deleted again, but Latch cannot influence what has happened to this file in the meantime. Make sure that you are aware of this behavior when activating this option. This will only apply to Microsoft file types.\n\nLatch will restart after activation.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Due to a bug in Microsoft apps, the file to be edited must be shared with these apps in a public media folder on your device. After Voidbox is resumed, the publicly accessible file is deleted again, but Voidbox cannot influence what has happened to this file in the meantime. Make sure that you are aware of this behavior when activating this option. This will only apply to Microsoft file types.\n\nVoidbox will restart after activation.</string>
 	<string name="dialog_microsoft_workaround_disclaimer_title" translatable="false">@string/dialog_debug_mode_disclaimer_title</string>
 	<string name="dialog_microsoft_workaround_positive_button" translatable="false">@string/screen_settings_section_auto_photo_upload_toggle</string>
 	<string name="dialog_microsoft_workaround_negative_button" translatable="false">@string/dialog_button_cancel</string>
@@ -542,7 +542,7 @@
 	<string name="dialog_disable_app_obscured_negative_button" translatable="false">@string/dialog_button_cancel</string>
 
 	<string name="dialog_app_is_obscured_info_title">App is obscured</string>
-	<string name="dialog_app_is_obscured_info_hint">Another app is displaying something on top of Latch (e.g., a blue light filter or night mode app). For security reasons, Latch is disabled.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">How to enable Latch</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Another app is displaying something on top of Voidbox (e.g., a blue light filter or night mode app). For security reasons, Voidbox is disabled.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">How to enable Voidbox</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Close</string>
 
 	<string name="dialog_vaults_removed_during_migration_title">Please re-add vaults for %1s cloud</string>
@@ -568,7 +568,7 @@
 	<string name="dialog_confirm_delete_folder_message">This will delete all of the folder\'s contents. Are you sure you want to delete this folder?</string>
 
 	<string name="dialog_biometric_auth_key_invalidated_title">Biometric authentication feature deactivated</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Because the key has been invalidated, the biometric authentication feature has been deactivated. To re-enable, open the Latch settings.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Because the key has been invalidated, the biometric authentication feature has been deactivated. To re-enable, open the Voidbox settings.</string>
 	<string name="dialog_biometric_auth_key_invalidated_neutral_button" translatable="false">@string/dialog_unable_to_share_positive_button</string>
 
 	<string name="dialog_enter_license_title">Provide a valid license</string>
@@ -584,13 +584,13 @@
 	<string name="dialog_license_confirmation_ok_btn" translatable="false">@string/dialog_unable_to_share_positive_button</string>
 
 	<string name="dialog_update_available_title">Update available</string>
-	<string name="dialog_update_available_message">Update Latch to the latest version. By pressing OK we will download the app in the background and will ask you to install it.</string>
+	<string name="dialog_update_available_message">Update Voidbox to the latest version. By pressing OK we will download the app in the background and will ask you to install it.</string>
 	<string name="dialog_update_available_update">Update now</string>
 	<string name="dialog_update_available_download_site">Go to downloads site</string>
 	<string name="dialog_update_available_cancel">Later</string>
 
 	<string name="dialog_download_update_title">Download running</string>
-	<string name="dialog_download_update_message">Downloading latest version of Latch</string>
+	<string name="dialog_download_update_message">Downloading latest version of Voidbox</string>
 
 	<string name="dialog_sym_link_title">Folder is a symbolic link</string>
 	<string name="dialog_sym_link_message">You can not navigate into this symbolic link</string>
@@ -655,9 +655,9 @@
 	<string name="dialog_hub_check_host_authenticity_title">Trust this hosts?</string>
 	<string name="dialog_hub_check_host_authenticity_neutral_button" translatable="false">@string/dialog_unable_to_share_positive_button</string>
 
-	<string name="permission_snackbar_auth_local_vault">Latch needs storage access to use local vaults</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch needs storage access to use auto photo upload</string>
-	<string name="permission_snackbar_notifications">Latch needs notification permissions to display vault status for example</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox needs storage access to use local vaults</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox needs storage access to use auto photo upload</string>
+	<string name="permission_snackbar_notifications">Voidbox needs notification permissions to display vault status for example</string>
 
 	<!-- # error reports -->
 	<string name="error_report_subject" translatable="false">Android Error Report</string>
@@ -797,7 +797,7 @@
 
 	<!-- # nextcloud sign-in -->
 	<string name="screen_nextcloud_login_title">Nextcloud</string>
-	<string name="screen_nextcloud_login_intro">Latch opens your Nextcloud in the browser. Approve the login there and come back, the server creates an app password for Latch automatically.</string>
+	<string name="screen_nextcloud_login_intro">Voidbox opens your Nextcloud in the browser. Approve the login there and come back, the server creates an app password for Voidbox automatically.</string>
 	<string name="screen_nextcloud_login_server_label">Server address</string>
 	<string name="screen_nextcloud_login_server_helper">For example https://cloud.example.com</string>
 	<string name="screen_nextcloud_login_button">Sign in with Nextcloud</string>

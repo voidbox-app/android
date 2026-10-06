@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Ei internet-yhteyttä</string>
 	<string name="error_invalid_passphrase">Väärä salasana</string>
 	<string name="error_file_or_folder_exists">Tiedosto tai kansio on jo olemassa.</string>
-	<string name="error_vault_version_not_supported">Holvin versiota %1$s ei tueta. Tämä holvi on luotu Latchin vanhemmalla tai uudemmalla versiolla.</string>
+	<string name="error_vault_version_not_supported">Holvin versiota %1$s ei tueta. Tämä holvi on luotu Voidboxin vanhemmalla tai uudemmalla versiolla.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">%1$s tiedosto puuttuu holvikansiostasi. Varmista, että tämä tiedosto on olemassa holvikansiossa pilvessä.</string>
 	<string name="error_vault_already_exists">Holvi on jo olemassa.</string>
 	<string name="error_no_such_file">Tiedostoa ei ole olemassa.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">%1$s versio poikkeaa %2$s versiosta</string>
 	<string name="error_vault_key_invalid">%1$s ei täsmää %2$s kanssa</string>
 	<string name="error_vault_config_loading">Holvin asetuksia ladatessa tapahtui virhe</string>
-	<string name="error_file_not_found_after_opening_using_3party">Tiedosto ei ole enää saatavilla Latchiin palaamisen jälkeen. Mahdollisia muutoksia ei voida siirtää pilveen.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Tiedosto ei ole enää saatavilla Voidboxiin palaamisen jälkeen. Mahdollisia muutoksia ei voida siirtää pilveen.</string>
 	<string name="error_masterkey_location_not_supported">Mukautettua pääavaimen sijaintia ei vielä tueta</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">F-Droid -sovellukseen yhdistäminen epäonnistui. Onko se asennettu?</string>
 	<string name="error_hub_vault_operation_not_supported">Holvitoimintoa ei tueta Hubille</string>
@@ -48,10 +48,10 @@
 	<string name="cloud_names_local_storage">Paikallinen tallennustila</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch tarvitsee tallennustilan käyttöoikeuden tiedostojen vientiin</string>
-	<string name="permission_message_upload_file">Latch tarvitsee tallennustilan käyttöoikeuden tiedostojen lataamiseen</string>
+	<string name="permission_message_export_file">Voidbox tarvitsee tallennustilan käyttöoikeuden tiedostojen vientiin</string>
+	<string name="permission_message_upload_file">Voidbox tarvitsee tallennustilan käyttöoikeuden tiedostojen lataamiseen</string>
 	<string name="permission_message_share_file">Cryptomtarot tarvitsee tallennustilan käyttöoikeuden tiedostojen jakamiseen</string>
-	<string name="permission_revoked_re_request_permission">Latchilla ei ole enää käyttöikeutta tähän sijaintiin. Valitse tämä hakemisto uudelleen palauttaaksesi käyttöoikeuden.</string>
+	<string name="permission_revoked_re_request_permission">Voidboxilla ei ole enää käyttöikeutta tähän sijaintiin. Valitse tämä hakemisto uudelleen palauttaaksesi käyttöoikeuden.</string>
 	<string name="snack_bar_action_title_settings">Asetukset</string>
 	<string name="snack_bar_action_title_search">Hae</string>
 	<string name="snack_bar_action_title_search_previous">Edellinen</string>
@@ -67,7 +67,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Pilvi ei ole luettelossa?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Lisää Latchiin</string>
+	<string name="screen_vault_list_actions_title">Lisää Voidboxiin</string>
 	<string name="screen_vault_list_action_create_new_vault">Luo uusi holvi</string>
 	<string name="screen_vault_list_action_add_existing_vault">Lisää olemassa oleva holvi</string>
 	<string name="screen_vault_list_vault_action_delete">Poista</string>
@@ -180,15 +180,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s ei voitu todentaa.</string>
 	<string name="screen_update_pcloud_connections_title">Päivitä pCloud käyttäjätiedot</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Latchin muunnokset</string>
+	<string name="screen_cryptomator_variants_title">Voidboxin muunnokset</string>
 	<string name="screen_cryptomator_variants_lite_title">Pää F-Droid -pakettivarasto</string>
 	<string name="screen_cryptomator_variants_lite_description">Poissuljettuja koska ne vaativat API-avaimet.</string>
 	<string name="screen_cryptomator_variants_lite_install">Asenna</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latchin F-Droid -pakettivarasto</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidboxin F-Droid -pakettivarasto</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Poissuljettuja koska ne sisältävät suljettuja riippuvuuksia.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Lisää Latch pakettivarasto F-Droid -sovellukseen.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Lisää Voidbox pakettivarasto F-Droid -sovellukseen.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Lisää</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Asenna Latch F-Droidista.\nJos sitä ei löydy, odota kunnes F-Droidin synkronointi on valmis.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Asenna Voidbox F-Droidista.\nJos sitä ei löydy, odota kunnes F-Droidin synkronointi on valmis.</string>
 	<string name="screen_cryptomator_variants_website_title">Verkkosivusto</string>
 	<string name="screen_cryptomator_variants_website_description">Sisältää suljettuja riippuvuuksia.</string>
 	<!-- # dialogs -->

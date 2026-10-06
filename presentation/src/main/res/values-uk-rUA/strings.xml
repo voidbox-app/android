@@ -10,7 +10,7 @@
 	<string name="error_purchase_not_available">Покупка наразі недоступна. Будь ласка, спробуйте ще раз пізніше.</string>
 	<string name="error_invalid_passphrase">Невірний пароль</string>
 	<string name="error_file_or_folder_exists">Файл чи папка вже існує.</string>
-	<string name="error_vault_version_not_supported">Версія сховища %1$s не підтримується. Це сховище було створено за допомогою старішої або новішої версії Latch.</string>
+	<string name="error_vault_version_not_supported">Версія сховища %1$s не підтримується. Це сховище було створено за допомогою старішої або новішої версії Voidbox.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">У папці вашого сховища відсутній файл «%1$s». Переконайтеся, що цей файл існує в папці вашого сховища в хмарі.</string>
 	<string name="error_vault_already_exists">Сховище вже існує.</string>
 	<string name="error_no_such_file">Файл не існує.</string>
@@ -32,7 +32,7 @@
 	<string name="error_vault_version_mismatch">Версія вказана у %1$s відрізняється від %2$s</string>
 	<string name="error_vault_key_invalid">%1$s не збігається з цим %2$s</string>
 	<string name="error_vault_config_loading">Під час завантаження конфігурації сховища сталася загальна помилка</string>
-	<string name="error_file_not_found_after_opening_using_3party">Локальний файл більше не існує після повернення до Latch. Можливі зміни не можуть бути збережені у хмарі.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Локальний файл більше не існує після повернення до Voidbox. Можливі зміни не можуть бути збережені у хмарі.</string>
 	<string name="error_no_such_bucket">Такого S3-кошика не існує</string>
 	<string name="error_masterkey_location_not_supported">Власне розташування Masterkey ще не підтримується</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Не вдалося зв’язатися зі застосунком F-Droid. Можливо, його не встановлено?</string>
@@ -83,13 +83,13 @@
 	<string name="screen_license_check_cancel_subscription_hint">Тепер ви маєте довічну ліцензію. Щоб уникнути майбутніх списань коштів, скасуйте свою річну підписку за допомогою параметра «%1$s» у налаштуваннях.</string>
 	<string name="screen_welcome_title">Вітаємо</string>
 	<string name="screen_welcome_notifications_title">Отримувати сповіщення</string>
-	<string name="screen_welcome_notifications_message">Дозвольте сповіщення, щоб Latch міг повідомляти вас про фонову активність, автоматичне вивантаження або інші важливі події.</string>
+	<string name="screen_welcome_notifications_message">Дозвольте сповіщення, щоб Voidbox міг повідомляти вас про фонову активність, автоматичне вивантаження або інші важливі події.</string>
 	<string name="screen_welcome_notifications_button">Дозволити сповіщення</string>
 	<string name="screen_welcome_notifications_granted">Сповіщення увімкнені.</string>
 	<string name="screen_welcome_continue_button">Продовжити</string>
 	<string name="screen_welcome_screen_lock_button">Встановити блокування екрану</string>
 	<string name="screen_welcome_screen_lock_already_set">Блокування екрана вже встановлено.</string>
-	<string name="screen_welcome_intro_body">Дякуємо, що обрали Latch для захисту своїх файлів.\n\nЗ Latch ключ до ваших даних у ваших руках.\n\nLatch шифрує ваші дані швидко та легко.</string>
+	<string name="screen_welcome_intro_body">Дякуємо, що обрали Voidbox для захисту своїх файлів.\n\nЗ Voidbox ключ до ваших даних у ваших руках.\n\nVoidbox шифрує ваші дані швидко та легко.</string>
 	<string name="next">Далі</string>
 	<string name="back">Назад</string>
 	<!-- # clouds -->
@@ -97,10 +97,10 @@
 	<string name="cloud_names_local_storage">Локальне сховище</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch потребує доступу до сховища для експорту файлів</string>
-	<string name="permission_message_upload_file">Latch потребує доступу до сховища для завантаження файлів</string>
-	<string name="permission_message_share_file">Latch потребує доступу до сховища, щоб ділитися файлами</string>
-	<string name="permission_revoked_re_request_permission">Latch втратив доступ до цього розташування. Будь ласка, оберіть цю папку знову, щоб відновити дозвіл.</string>
+	<string name="permission_message_export_file">Voidbox потребує доступу до сховища для експорту файлів</string>
+	<string name="permission_message_upload_file">Voidbox потребує доступу до сховища для завантаження файлів</string>
+	<string name="permission_message_share_file">Voidbox потребує доступу до сховища, щоб ділитися файлами</string>
+	<string name="permission_revoked_re_request_permission">Voidbox втратив доступ до цього розташування. Будь ласка, оберіть цю папку знову, щоб відновити дозвіл.</string>
 	<string name="snack_bar_action_title_settings">Налаштування</string>
 	<string name="snack_bar_action_title_search">Пошук</string>
 	<string name="snack_bar_action_title_search_previous">Попередній</string>
@@ -116,7 +116,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Хмара не у списку?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Додати до Latch</string>
+	<string name="screen_vault_list_actions_title">Додати до Voidbox</string>
 	<string name="screen_vault_list_action_create_new_vault">Створити нове сховище</string>
 	<string name="screen_vault_list_action_add_existing_vault">Додати наявне сховище</string>
 	<string name="screen_vault_list_vault_action_delete">Вилучити</string>
@@ -244,7 +244,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Завантажувати лише через Wi-Fi</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Завантажувати відео</string>
 	<string name="screen_settings_auto_photo_upload_title">Зберігати автоматично завантажені файли в&#8230;</string>
-	<string name="screen_settings_website_label">Вебсайт Latch</string>
+	<string name="screen_settings_website_label">Вебсайт Voidbox</string>
 	<string name="screen_settings_mastodon_label">Слідкуйте за нами на Mastodon</string>
 	<string name="screen_settings_facebook_label">Вподобайте нас на Facebook</string>
 	<string name="screen_settings_section_legal">Правова інформація</string>
@@ -277,15 +277,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s не може бути авторизовано.</string>
 	<string name="screen_update_pcloud_connections_title">Оновити облікові дані pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Різновиди Latch</string>
+	<string name="screen_cryptomator_variants_title">Різновиди Voidbox</string>
 	<string name="screen_cryptomator_variants_lite_title">Головний репозиторій F-Droid</string>
 	<string name="screen_cryptomator_variants_lite_description">Виключено, оскільки вони вимагають API-ключі.</string>
 	<string name="screen_cryptomator_variants_lite_install">Встановити</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Репозиторій Latch на F-Droid</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Репозиторій Voidbox на F-Droid</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Виключено, оскільки містить власницькі залежності.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Додати репозиторій Latch у додаток F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Додати репозиторій Voidbox у додаток F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Додати</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Встановіть Latch за допомогою F-Droid.\nЯкщо відображається помилка «не знайдено», зачекайте, доки завершиться синхронізація F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Встановіть Voidbox за допомогою F-Droid.\nЯкщо відображається помилка «не знайдено», зачекайте, доки завершиться синхронізація F-Droid.</string>
 	<string name="screen_cryptomator_variants_website_title">Вебсайт</string>
 	<string name="screen_cryptomator_variants_website_description">Містить власницькі залежності.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Перехід з основного репозиторію F-Droid або на нього вимагає повного перевстановлення програми.</string>
@@ -315,7 +315,7 @@
 	<string name="dialog_replace_title_single_file_exists">Замінити файл?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Замінити файли?</string>
 	<string name="dialog_unable_to_share_title">Неможливо поділитись файлами</string>
-	<string name="dialog_unable_to_share_message">Ви ще не налаштували жодного сховища. Спочатку створіть нове сховище в програмі Latch.</string>
+	<string name="dialog_unable_to_share_message">Ви ще не налаштували жодного сховища. Спочатку створіть нове сховище в програмі Voidbox.</string>
 	<string name="dialog_unable_to_share_positive_button">Гаразд</string>
 	<string name="dialog_unable_to_share_negative_button">Створити сховище</string>
 	<string name="dialog_filetype_not_supported_title">Неможливо відкрити %1$s</string>
@@ -366,12 +366,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">У цьому режимі конфіденційні дані (наприклад, імена та шляхи до файлів) можуть записуватися у файл журналу на вашому пристрої. Але це не стосується паролів, файлів cookie тощо.\n\nНе забудьте якнайшвидше вимкнути режим налагодження.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Увага</string>
 	<string name="dialog_debug_mode_positive_button">Увімкнути</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Через помилку в програмах Microsoft, файл, що редагується, повинен бути наданий цим програмам у загальнодоступній папці на вашому пристрої. Після відновлення роботи Latch цей загальнодоступний файл буде видалено, але Latch не може вплинути на те, що відбувається з цим файлом за цей час. Переконайтеся, що ви усвідомлюєте таку поведінку, перш ніж активувати цю опцію. Це стосуватиметься лише файлів Microsoft.\n\nПісля активації Latch буде перезапущено.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Через помилку в програмах Microsoft, файл, що редагується, повинен бути наданий цим програмам у загальнодоступній папці на вашому пристрої. Після відновлення роботи Voidbox цей загальнодоступний файл буде видалено, але Voidbox не може вплинути на те, що відбувається з цим файлом за цей час. Переконайтеся, що ви усвідомлюєте таку поведінку, перш ніж активувати цю опцію. Це стосуватиметься лише файлів Microsoft.\n\nПісля активації Voidbox буде перезапущено.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Це налаштування є функцією безпеки, що запобігає спробам інших програм змусити користувачів робити те, чого вони не хочуть.\n\nВимкнувши це, ви підтверджуєте, що <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">усвідомлюєте ризики</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Увага</string>
 	<string name="dialog_disable_app_obscured_positive_button">Вимкнути</string>
 	<string name="dialog_app_is_obscured_info_title">Програму перекрито іншими застосунками</string>
-	<string name="dialog_app_is_obscured_info_hint">Інша програма відображається поверх Latch (наприклад, фільтр синього світла або нічний режим). З міркувань безпеки Latch вимкнено.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Як увімкнути Latch</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Інша програма відображається поверх Voidbox (наприклад, фільтр синього світла або нічний режим). З міркувань безпеки Voidbox вимкнено.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Як увімкнути Voidbox</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Закрити</string>
 	<string name="dialog_vaults_removed_during_migration_title">Будь ласка, додайте сховища для хмарного сховища %1s знову</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Під час переходу на цю версію програми нам потрібно видалити з програми такі сховища:\n%2s \n\nЦі сховища не було видалено з хмари, а лише з програми. Просимо вибачення за незручності. Будь ласка, додайте їх знову, щоб продовжити роботу.</string>
@@ -385,7 +385,7 @@
 	<string name="dialog_confirm_delete_file_message">Ви впевнені, що хочете видалити цей файл?</string>
 	<string name="dialog_confirm_delete_folder_message">Це призведе до видалення всього вмісту папки. Ви впевнені, що хочете видалити цю папку?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Функцію біометричної автентифікації вимкнено</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Через анулювання ключа функцію біометричної автентифікації було вимкнено. Щоб увімкнути її знову, відкрийте налаштування Latch.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Через анулювання ключа функцію біометричної автентифікації було вимкнено. Щоб увімкнути її знову, відкрийте налаштування Voidbox.</string>
 	<string name="dialog_enter_license_title">Надайте дійсну ліцензію</string>
 	<string name="dialog_enter_license_content">Придбайте ліцензію на <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> або введіть свій наявний ліцензійний ключ для Android.</string>
 	<string name="dialog_enter_license_not_valid_content">Надана ліцензія недійсна. Переконайтеся, що ви ввели її правильно.</string>
@@ -395,12 +395,12 @@
 	<string name="dialog_license_confirmation_title">Ліцензію підтверджено</string>
 	<string name="dialog_license_confirmation_message">Дякуємо, %1$s, за надану дійсну ліцензію.</string>
 	<string name="dialog_update_available_title">Доступне оновлення</string>
-	<string name="dialog_update_available_message">Оновіть Latch до останньої версії. Після натискання «Гаразд» ми завантажимо програму у фоновому режимі та попросимо вас її встановити.</string>
+	<string name="dialog_update_available_message">Оновіть Voidbox до останньої версії. Після натискання «Гаразд» ми завантажимо програму у фоновому режимі та попросимо вас її встановити.</string>
 	<string name="dialog_update_available_update">Оновити зараз</string>
 	<string name="dialog_update_available_download_site">Перейти на сторінку завантаження</string>
 	<string name="dialog_update_available_cancel">Пізніше</string>
 	<string name="dialog_download_update_title">Виконується завантаження</string>
-	<string name="dialog_download_update_message">Завантаження останньої версії Latch</string>
+	<string name="dialog_download_update_message">Завантаження останньої версії Voidbox</string>
 	<string name="dialog_sym_link_title">Папка є символічним посиланням</string>
 	<string name="dialog_sym_link_message">Ви не можете перейти за цим символічним посиланням</string>
 	<string name="dialog_sym_link_back_button">Назад</string>
@@ -436,9 +436,9 @@
 	<string name="dialog_hub_user_setup_required_hint">Щоб продовжити, будь ласка, виконайте необхідні кроки у вашому профілі користувача Hub.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Перейти до профілю</string>
 	<string name="dialog_hub_check_host_authenticity_title">Довіряти цим хостам?</string>
-	<string name="permission_snackbar_auth_local_vault">Для використання локальних сховищ Latch потрібен доступ до сховища</string>
-	<string name="permission_snackbar_auth_auto_upload">Для автоматичного завантаження фото Latch потрібен доступ до сховища</string>
-	<string name="permission_snackbar_notifications">Latch потрібен дозвіл на сповіщення, щоб, наприклад, відображати статус сховища</string>
+	<string name="permission_snackbar_auth_local_vault">Для використання локальних сховищ Voidbox потрібен доступ до сховища</string>
+	<string name="permission_snackbar_auth_auto_upload">Для автоматичного завантаження фото Voidbox потрібен доступ до сховища</string>
+	<string name="permission_snackbar_notifications">Voidbox потрібен дозвіл на сповіщення, щоб, наприклад, відображати статус сховища</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

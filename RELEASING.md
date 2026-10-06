@@ -1,8 +1,8 @@
-# Releasing Latch
+# Releasing Voidbox
 
 ## Versions
 
-Latch has its own [semantic version](https://semver.org) in the `VERSION` file; the build derives
+Voidbox has its own [semantic version](https://semver.org) in the `VERSION` file; the build derives
 `versionCode` from it. The number says what changed:
 
 - **patch** (1.1.0 → 1.1.1): fixes only;
@@ -19,8 +19,8 @@ GitHub pre-release.
    is green.
 2. A pull request bumps `VERSION` and adds the release notes to `CHANGELOG.md`; merge it.
 3. Run **Actions → Release → Run workflow** (or `gh workflow run release.yml`). It builds the
-   lite release APK from `master`, signs it with the Latch key and publishes the release
-   `v<VERSION>` with `latch-<VERSION>.apk` and its `.sha256` checksum. A version that already has
+   lite release APK from `master`, signs it with the Voidbox key and publishes the release
+   `v<VERSION>` with `voidbox-<VERSION>.apk` and its `.sha256` checksum. A version that already has
    a release is not rebuilt.
 4. Install the published APK on a phone and check that it starts and opens a vault.
 
@@ -30,15 +30,15 @@ Google Play without reinstalling. The repository secrets `LATCH_KEYSTORE_B64` an
 
 ## Following Cryptomator
 
-Latch is based on [cryptomator/android](https://github.com/cryptomator/android); the Cryptomator
-version it is built on is recorded in `UPSTREAM_TAG`. Latch changes a large part of the app, so
+Voidbox is based on [cryptomator/android](https://github.com/cryptomator/android); the Cryptomator
+version it is built on is recorded in `UPSTREAM_TAG`. Voidbox changes a large part of the app, so
 a Cryptomator update can conflict with it or merge cleanly and still break it. Updates are
-never taken over automatically; Latch follows Cryptomator with a delay.
+never taken over automatically; Voidbox follows Cryptomator with a delay.
 
 When Cryptomator publishes a new version:
 
 1. **Decide.** Read its release notes. Security fixes are always taken over; features only if
-   Latch wants them; changes to parts Latch has removed are skipped.
+   Voidbox wants them; changes to parts Voidbox has removed are skipped.
 2. **Merge on a branch.** From `master`, on a branch `upstream/<tag>`:
 
    ```bash
@@ -46,7 +46,7 @@ When Cryptomator publishes a new version:
    git merge --no-ff <tag> -m "Merge Cryptomator <tag>"
    ```
 
-   Resolve conflicts in favour of Latch's behaviour, then write the tag into `UPSTREAM_TAG`.
+   Resolve conflicts in favour of Voidbox's behaviour, then write the tag into `UPSTREAM_TAG`.
 3. **Check.** Run the unit tests, then use the app on a phone or an emulator: unlock a vault,
    browse, upload, download, open images, video, audio and PDF, thumbnails, offline copies,
    Nextcloud sign-in.

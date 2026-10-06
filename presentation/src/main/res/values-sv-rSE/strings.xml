@@ -10,7 +10,7 @@
 	<string name="error_purchase_not_available">Köp är inte tillgängligt. Försök igen senare.</string>
 	<string name="error_invalid_passphrase">Felaktigt lösenord</string>
 	<string name="error_file_or_folder_exists">Filen eller katalogen finns redan.</string>
-	<string name="error_vault_version_not_supported">Valv-version %1$s stöds inte. Detta valv har skapats med en äldre eller nyare version av Latch.</string>
+	<string name="error_vault_version_not_supported">Valv-version %1$s stöds inte. Detta valv har skapats med en äldre eller nyare version av Voidbox.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Filen %1$s saknas i din valvmapp. Se till att den här filen finns i din valvmapp i molnet.</string>
 	<string name="error_vault_already_exists">Valvet finns redan.</string>
 	<string name="error_no_such_file">Filen existerar inte.</string>
@@ -32,7 +32,7 @@
 	<string name="error_vault_version_mismatch">Version som anges i %1$s är annan än %2$s</string>
 	<string name="error_vault_key_invalid">%1$s matchar inte med %2$s</string>
 	<string name="error_vault_config_loading">Allmänt fel vid inläsning av valvkonfiguration</string>
-	<string name="error_file_not_found_after_opening_using_3party">Lokal fil finns inte längre efter att ha bytt tillbaka till Latch. Eventuella ändringar kan inte synkas tillbaka till molnet.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Lokal fil finns inte längre efter att ha bytt tillbaka till Voidbox. Eventuella ändringar kan inte synkas tillbaka till molnet.</string>
 	<string name="error_no_such_bucket">Ingen sådan bucket</string>
 	<string name="error_masterkey_location_not_supported">Anpassad Masterkey-plats stöds inte ännu</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Det gick inte att kommunicera med F-Droid-appen. Inte installerad?</string>
@@ -41,7 +41,7 @@
 	<string name="error_hub_device_already_register_for_other_user">Denna enhet är redan registrerad för en annan användare. Försök att ändra användarkontot eller använda en annan enhet.</string>
 	<string name="error_hub_invalid_setup_code">Kontonyckeln är ogiltig.</string>
 	<string name="error_hub_invalid_version">Hub-versionen stöds inte.</string>
-	<string name="error_hub_unlock_pre_31">Latch navet stöds endast på Android 12 och senare.</string>
+	<string name="error_hub_unlock_pre_31">Voidbox navet stöds endast på Android 12 och senare.</string>
 	<!-- # read-only & purchases -->
 	<string name="read_only_reason_hub_inactive">Uppgradera din Hub-licens för att möjliggöra skrivning till detta valv.</string>
 	<string name="toast_purchase_revoked_refunded">Ditt livstidsköp har återbetalats. Du har nu skrivskyddad tillgång.</string>
@@ -74,10 +74,10 @@
 	<string name="cloud_names_local_storage">Lokal lagring</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch behöver åtkomst till lagringsutrymme för att exportera filer</string>
-	<string name="permission_message_upload_file">Latch behöver åtkomst till lagringsutrymme för att ladda upp filer</string>
-	<string name="permission_message_share_file">Latch behöver åtkomst till lagringsutrymme för att dela filer</string>
-	<string name="permission_revoked_re_request_permission">Latch har förlorat behörighet att komma åt den här platsen. Välj denna mapp igen för att återställa behörigheten.</string>
+	<string name="permission_message_export_file">Voidbox behöver åtkomst till lagringsutrymme för att exportera filer</string>
+	<string name="permission_message_upload_file">Voidbox behöver åtkomst till lagringsutrymme för att ladda upp filer</string>
+	<string name="permission_message_share_file">Voidbox behöver åtkomst till lagringsutrymme för att dela filer</string>
+	<string name="permission_revoked_re_request_permission">Voidbox har förlorat behörighet att komma åt den här platsen. Välj denna mapp igen för att återställa behörigheten.</string>
 	<string name="snack_bar_action_title_settings">Inställningar</string>
 	<string name="snack_bar_action_title_search">Sök</string>
 	<string name="snack_bar_action_title_search_previous">Föregående</string>
@@ -93,7 +93,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Finns inte molnet i listan?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Lägg till i Latch</string>
+	<string name="screen_vault_list_actions_title">Lägg till i Voidbox</string>
 	<string name="screen_vault_list_action_create_new_vault">Skapa nytt valv</string>
 	<string name="screen_vault_list_action_add_existing_vault">Lägg till befintligt valv</string>
 	<string name="screen_vault_list_vault_action_delete">Ta bort</string>
@@ -218,7 +218,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Ladda endast upp med WIFI</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Ladda upp video</string>
 	<string name="screen_settings_auto_photo_upload_title">Spara automatiskt uppladdade filer till&#8230;</string>
-	<string name="screen_settings_website_label">Latch webbplats</string>
+	<string name="screen_settings_website_label">Voidbox webbplats</string>
 	<string name="screen_settings_mastodon_label">Följ oss på Mastodon</string>
 	<string name="screen_settings_facebook_label">Gilla oss på Facebook</string>
 	<string name="screen_settings_section_legal">Juridiskt</string>
@@ -251,15 +251,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s kunde inte autentiseras.</string>
 	<string name="screen_update_pcloud_connections_title">Uppdatera pCloud-uppgifter</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Varianter av Latch</string>
+	<string name="screen_cryptomator_variants_title">Varianter av Voidbox</string>
 	<string name="screen_cryptomator_variants_lite_title">F-Droid Huvudförråd</string>
 	<string name="screen_cryptomator_variants_lite_description">Uteslutna eftersom de kräver API-nycklar.</string>
 	<string name="screen_cryptomator_variants_lite_install">Installera</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid förråd</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidbox F-Droid förråd</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Uteslutet eftersom det innehåller proprietära beroenden.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Lägg till Latchs förråd i F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Lägg till Voidboxs förråd i F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Lägg till</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Installera Latch med F-Droid.\nOm felmeddelandet \"Hittas inte\" visas, vänta tills F-Droid-synkroniseringen är klar.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Installera Voidbox med F-Droid.\nOm felmeddelandet \"Hittas inte\" visas, vänta tills F-Droid-synkroniseringen är klar.</string>
 	<string name="screen_cryptomator_variants_website_title">Webbplats</string>
 	<string name="screen_cryptomator_variants_website_description">Innehåller proprietära beroenden.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Växla från eller till F-Droids huvudförråd kräver ominstallation av appen.</string>
@@ -289,7 +289,7 @@
 	<string name="dialog_replace_title_single_file_exists">Ersätt fil?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Ersätt filer?</string>
 	<string name="dialog_unable_to_share_title">Kunde inte dela filer</string>
-	<string name="dialog_unable_to_share_message">Du har inte konfigurerat några valv. Skapa ett nytt valv med Latch-appen först.</string>
+	<string name="dialog_unable_to_share_message">Du har inte konfigurerat några valv. Skapa ett nytt valv med Voidbox-appen först.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Skapa Valv</string>
 	<string name="dialog_filetype_not_supported_title">Kan inte öppna %1$s</string>
@@ -340,12 +340,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">I detta läge kan känsliga data skrivas till en loggfil på din enhet (t.ex. filnamn och sökvägar). Lösenord, cookies etc. är uttryckligen uteslutna.\n\nKom ihåg att inaktivera felsökningsläge så snart som möjligt.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Observera</string>
 	<string name="dialog_debug_mode_positive_button">Aktivera</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">På grund av ett fel i Microsoft-appar, måste filen som ska redigeras delas med dessa appar i en offentlig mediemapp på din enhet. Efter att Latch återupptas raderas den allmänt tillgängliga filen igen, men Latch kan inte påverka vad som har hänt med filen under tiden. Det är viktigt att du är medveten om detta beteende när du aktiverar detta alternativ. Detta kommer endast att gälla för Microsoft filtyper.\n\nLatch startar om efter aktivering.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">På grund av ett fel i Microsoft-appar, måste filen som ska redigeras delas med dessa appar i en offentlig mediemapp på din enhet. Efter att Voidbox återupptas raderas den allmänt tillgängliga filen igen, men Voidbox kan inte påverka vad som har hänt med filen under tiden. Det är viktigt att du är medveten om detta beteende när du aktiverar detta alternativ. Detta kommer endast att gälla för Microsoft filtyper.\n\nVoidbox startar om efter aktivering.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Den här inställningen är en säkerhetsfunktion som hindrar andra appar från att lura användare att göra saker de inte vill.\n\nGenom att stänga av säkerhetsfunktionen bekräftar du att du är <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">medveten om riskerna</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Observera</string>
 	<string name="dialog_disable_app_obscured_positive_button">Inaktivera</string>
 	<string name="dialog_app_is_obscured_info_title">Appen är täckt</string>
-	<string name="dialog_app_is_obscured_info_hint">Ett annat program visar något ovanpå Latch (t.ex. ett blåljusfilter eller en app för nattläge). Av säkerhetsskäl är Latch inaktiverad.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Så här aktiverar du Latch</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Ett annat program visar något ovanpå Voidbox (t.ex. ett blåljusfilter eller en app för nattläge). Av säkerhetsskäl är Voidbox inaktiverad.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Så här aktiverar du Voidbox</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Stäng</string>
 	<string name="dialog_vaults_removed_during_migration_title">Vänligen lägg till valv igen för %1s molnet</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Medan vi migrerar till den här appversionen måste vi ta bort följande valv från appen:\n%2s \n\nDessa valv tas inte bort från molnet utan endast från den här appen. Ledsen för besväret. Du lägger sedan till dessa valv igen för att fortsätta arbeta med dem.</string>
@@ -359,9 +359,9 @@
 	<string name="dialog_confirm_delete_file_message">Är du säker på att du vill ta bort denna fil?</string>
 	<string name="dialog_confirm_delete_folder_message">Detta kommer att ta bort allt innehåll i mappen. Är du säker på att du vill ta bort denna mapp?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Biometrisk autentiseringsfunktion inaktiverad</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Eftersom nyckeln har ogiltigförklarats har den biometriska autentiseringsfunktionen avaktiverats. För att återaktivera, öppna Latchns inställningar.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Eftersom nyckeln har ogiltigförklarats har den biometriska autentiseringsfunktionen avaktiverats. För att återaktivera, öppna Voidboxns inställningar.</string>
 	<string name="dialog_enter_license_title">Ange en giltig licens</string>
-	<string name="dialog_enter_license_content">Vi upptäckte att du installerade Latch utan att använda Google Play Store. Ange en giltig licens, som kan köpas på <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Vi upptäckte att du installerade Voidbox utan att använda Google Play Store. Ange en giltig licens, som kan köpas på <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">Den angivna licensen är inte giltig. Se till att du angav den korrekt.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Den angivna nyckeln är ett supportercertifikat för skrivbords-versionen. Ange en giltig licens.</string>
 	<string name="dialog_enter_license_no_content">Ingen licens angiven. Ange en giltig licens.</string>
@@ -369,12 +369,12 @@
 	<string name="dialog_license_confirmation_title">Licensinformation</string>
 	<string name="dialog_license_confirmation_message">Tack %1$s för att du angivit din giltiga licens.</string>
 	<string name="dialog_update_available_title">Uppdatering tillgänglig</string>
-	<string name="dialog_update_available_message">Uppdatera Latch till den senaste versionen. Genom att trycka på OK kommer vi att ladda ner appen i bakgrunden och be dig att installera den.</string>
+	<string name="dialog_update_available_message">Uppdatera Voidbox till den senaste versionen. Genom att trycka på OK kommer vi att ladda ner appen i bakgrunden och be dig att installera den.</string>
 	<string name="dialog_update_available_update">Uppdatera nu</string>
 	<string name="dialog_update_available_download_site">Gå till nedladdningssida</string>
 	<string name="dialog_update_available_cancel">Senare</string>
 	<string name="dialog_download_update_title">Nedladdningen körs</string>
-	<string name="dialog_download_update_message">Laddar ner senaste versionen av Latch</string>
+	<string name="dialog_download_update_message">Laddar ner senaste versionen av Voidbox</string>
 	<string name="dialog_sym_link_title">Mappen är en symbolisk länk</string>
 	<string name="dialog_sym_link_message">Du kan inte gå till denna symboliska länk</string>
 	<string name="dialog_sym_link_back_button">Bakåt</string>
@@ -405,9 +405,9 @@
 	<string name="dialog_hub_user_setup_required_title">Användarkonfiguration krävs</string>
 	<string name="dialog_hub_user_setup_required_hint">För att fortsätta, vänligen fyll i de steg som krävs i din Hub-användarprofil.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Gå till profil</string>
-	<string name="permission_snackbar_auth_local_vault">Latch behöver åtkomst till lagringsutrymmet för att använda lokala valv</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch behöver åtkomst till lagringsutrymmet för att kunna använda automatisk uppladdning av foton</string>
-	<string name="permission_snackbar_notifications">Latch behöver aviseringsbehörigheter för att till exempel visa valvstatus</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox behöver åtkomst till lagringsutrymmet för att använda lokala valv</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox behöver åtkomst till lagringsutrymmet för att kunna använda automatisk uppladdning av foton</string>
+	<string name="permission_snackbar_notifications">Voidbox behöver aviseringsbehörigheter för att till exempel visa valvstatus</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

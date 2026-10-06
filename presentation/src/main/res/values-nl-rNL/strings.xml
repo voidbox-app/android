@@ -10,7 +10,7 @@
 	<string name="error_purchase_not_available">Aankoop niet beschikbaar. Probeer het later opnieuw.</string>
 	<string name="error_invalid_passphrase">Fout wachtwoord</string>
 	<string name="error_file_or_folder_exists">Een bestand of map bestaat reeds.</string>
-	<string name="error_vault_version_not_supported">Kluisversie %1$s wordt niet ondersteund. Deze kluis is gemaakt met een oudere of nieuwere versie van Latch.</string>
+	<string name="error_vault_version_not_supported">Kluisversie %1$s wordt niet ondersteund. Deze kluis is gemaakt met een oudere of nieuwere versie van Voidbox.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">%1$s bestand ontbreekt in de kluis map. Zorg ervoor dat dit bestand bestaat in de kluismap in de cloud.</string>
 	<string name="error_vault_already_exists">Kluis bestaat reeds.</string>
 	<string name="error_no_such_file">Bestand bestaat niet.</string>
@@ -32,7 +32,7 @@
 	<string name="error_vault_version_mismatch">Versie gespecificeerd in %1$s is anders dan %2$s</string>
 	<string name="error_vault_key_invalid">%1$s komt niet overeen met deze %2$s</string>
 	<string name="error_vault_config_loading">Algemene fout tijdens het laden van de kluisconfiguratie</string>
-	<string name="error_file_not_found_after_opening_using_3party">Lokaal bestand is niet meer aanwezig na het terugschakelen naar Latch. Mogelijke wijzigingen kunnen niet worden verzonden naar de cloud.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Lokaal bestand is niet meer aanwezig na het terugschakelen naar Voidbox. Mogelijke wijzigingen kunnen niet worden verzonden naar de cloud.</string>
 	<string name="error_no_such_bucket">Deze bucket is niet gevonden</string>
 	<string name="error_masterkey_location_not_supported">Aangepaste Masterkey locatie nog niet ondersteund</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Kan niet communiceren met de F-Droid app. Niet geïnstalleerd?</string>
@@ -85,13 +85,13 @@
 	<string name="screen_license_check_cancel_subscription_hint">Je hebt nu een levenslange licentie. Om toekomstige kosten te voorkomen, moet je je jaarlijkse abonnement annuleren via de %1$s optie in Instellingen.</string>
 	<string name="screen_welcome_title">Welkom</string>
 	<string name="screen_welcome_notifications_title">Blijf op de hoogte</string>
-	<string name="screen_welcome_notifications_message">Sta meldingen toe, zodat Latch je kan informeren over activiteiten op de achtergrond, automatische uploads f andere belangrijke gebeurtenissen.</string>
+	<string name="screen_welcome_notifications_message">Sta meldingen toe, zodat Voidbox je kan informeren over activiteiten op de achtergrond, automatische uploads f andere belangrijke gebeurtenissen.</string>
 	<string name="screen_welcome_notifications_button">Sta meldingen toe</string>
 	<string name="screen_welcome_notifications_granted">Meldingen zijn ingeschakeld.</string>
 	<string name="screen_welcome_continue_button">Doorgaan</string>
 	<string name="screen_welcome_screen_lock_button">Schermvergrendeling instellen</string>
 	<string name="screen_welcome_screen_lock_already_set">Schermvergrendeling is al ingesteld.</string>
-	<string name="screen_welcome_intro_body">Dank voor het kiezen van Latch om uw bestanden te beschermen.\n\nMet Latch ligt de sleutel tot uw gegevens in uw handen.\n\nLatch versleutelt uw gegevens snel en gemakkelijk.</string>
+	<string name="screen_welcome_intro_body">Dank voor het kiezen van Voidbox om uw bestanden te beschermen.\n\nMet Voidbox ligt de sleutel tot uw gegevens in uw handen.\n\nVoidbox versleutelt uw gegevens snel en gemakkelijk.</string>
 	<string name="next">Volgende</string>
 	<string name="back">Terug</string>
 	<!-- # clouds -->
@@ -99,10 +99,10 @@
 	<string name="cloud_names_local_storage">Lokale opslag</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch heeft toegang tot opslag nodig om bestanden te exporteren</string>
-	<string name="permission_message_upload_file">Latch heeft toegang tot opslag nodig om bestanden te uploaden</string>
-	<string name="permission_message_share_file">Latch heeft toegang tot opslag nodig om bestanden te delen</string>
-	<string name="permission_revoked_re_request_permission">Latch heeft geen toegang meer tot deze locatie. Selecteer de map opnieuw om de toegangsrechten te herstellen.</string>
+	<string name="permission_message_export_file">Voidbox heeft toegang tot opslag nodig om bestanden te exporteren</string>
+	<string name="permission_message_upload_file">Voidbox heeft toegang tot opslag nodig om bestanden te uploaden</string>
+	<string name="permission_message_share_file">Voidbox heeft toegang tot opslag nodig om bestanden te delen</string>
+	<string name="permission_revoked_re_request_permission">Voidbox heeft geen toegang meer tot deze locatie. Selecteer de map opnieuw om de toegangsrechten te herstellen.</string>
 	<string name="snack_bar_action_title_settings">Instellingen</string>
 	<string name="snack_bar_action_title_search">Zoeken</string>
 	<string name="snack_bar_action_title_search_previous">Vorige</string>
@@ -118,7 +118,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Cloud niet in de lijst?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Toevoegen aan Latch</string>
+	<string name="screen_vault_list_actions_title">Toevoegen aan Voidbox</string>
 	<string name="screen_vault_list_action_create_new_vault">Nieuwe kluis aanmaken</string>
 	<string name="screen_vault_list_action_add_existing_vault">Bestaande kluis toevoegen</string>
 	<string name="screen_vault_list_vault_action_delete">Verwijderen</string>
@@ -244,7 +244,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Enkel uploaden via WIFI</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Video\'s uploaden</string>
 	<string name="screen_settings_auto_photo_upload_title">Automatisch te uploaden bestanden opslaan in&#8230;</string>
-	<string name="screen_settings_website_label">Latch website</string>
+	<string name="screen_settings_website_label">Voidbox website</string>
 	<string name="screen_settings_mastodon_label">Volg ons op Mastodon</string>
 	<string name="screen_settings_facebook_label">Vind ons leuk op Facebook</string>
 	<string name="screen_settings_section_legal">Juridisch</string>
@@ -277,15 +277,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s kon niet worden geverifieerd.</string>
 	<string name="screen_update_pcloud_connections_title">PCloud inloggegevens bijwerken</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Varianten van Latch</string>
+	<string name="screen_cryptomator_variants_title">Varianten van Voidbox</string>
 	<string name="screen_cryptomator_variants_lite_title">Ga naar de F-Droid opslagplek</string>
 	<string name="screen_cryptomator_variants_lite_description">Uitgesloten omdat deze API-sleutels vereisen.</string>
 	<string name="screen_cryptomator_variants_lite_install">Installeren</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid repository</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidbox F-Droid repository</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Uitgesloten omdat het private afhankelijkheden bevat.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Voeg Latch-repository toe aan de F-Droid app.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Voeg Voidbox-repository toe aan de F-Droid app.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Toevoegen</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Installeer Latch met behulp van F-Droid.\nAls een niet gevonden fout wordt weergegeven, wacht dan tot de F-Droid synchronisatie is voltooid.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Installeer Voidbox met behulp van F-Droid.\nAls een niet gevonden fout wordt weergegeven, wacht dan tot de F-Droid synchronisatie is voltooid.</string>
 	<string name="screen_cryptomator_variants_website_title">Website</string>
 	<string name="screen_cryptomator_variants_website_description">Bevat private afhankelijkheden.</string>
 	<string name="screen_cryptomator_variants_installation_hint">De overgang van of naar de hoofdvariant F-Droid repository vereist een nieuwe installatie van de app.</string>
@@ -315,7 +315,7 @@
 	<string name="dialog_replace_title_single_file_exists">Bestand vervangen?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Bestanden vervangen?</string>
 	<string name="dialog_unable_to_share_title">Kan bestanden niet delen</string>
-	<string name="dialog_unable_to_share_message">U heeft nog geen kluis ingesteld. Maak eerst een nieuwe kluis aan met de Latch-app.</string>
+	<string name="dialog_unable_to_share_message">U heeft nog geen kluis ingesteld. Maak eerst een nieuwe kluis aan met de Voidbox-app.</string>
 	<string name="dialog_unable_to_share_positive_button">Ok</string>
 	<string name="dialog_unable_to_share_negative_button">Kluis aanmaken</string>
 	<string name="dialog_filetype_not_supported_title">Kan %1$s niet openen</string>
@@ -366,12 +366,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">In deze modus kunnen gevoelige gegevens naar een logbestand op je apparaat geschreven worden (bijv. bestandsnamen en paden). Wachtwoorden, cookies, etc. worden expliciet uitgesloten.\n\nVergeet niet om de foutopsporingsmodus zo snel mogelijk uit te schakelen.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Aandacht</string>
 	<string name="dialog_debug_mode_positive_button">Inschakelen</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Door een bug in Microsoft apps moet het te bewerken bestand gedeeld worden met deze apps in een publieke mediamap op je apparaat. Nadat Latch is hervat, wordt het publiek toegankelijke bestand weer verwijderd, maar Latch kan niet controleren wat er in de tussentijd met dit bestand is gebeurd. Zorg ervoor dat u zich bewust bent van dit effect wanneer u deze optie activeert. Dit geldt alleen voor Microsoft bestandstypen.\n\nLatch zal herstarten na activering.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Door een bug in Microsoft apps moet het te bewerken bestand gedeeld worden met deze apps in een publieke mediamap op je apparaat. Nadat Voidbox is hervat, wordt het publiek toegankelijke bestand weer verwijderd, maar Voidbox kan niet controleren wat er in de tussentijd met dit bestand is gebeurd. Zorg ervoor dat u zich bewust bent van dit effect wanneer u deze optie activeert. Dit geldt alleen voor Microsoft bestandstypen.\n\nVoidbox zal herstarten na activering.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Deze instelling is een beveiligingsfunctie en voorkomt dat andere apps gebruikers misleiden en hen dingen laten doen die ze niet willen doen.\n\nDoor deze instelling uit te schakelen, bevestigt u dat u <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">op de hoogte bent van de risico\'s</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Aandacht</string>
 	<string name="dialog_disable_app_obscured_positive_button">Uitschakelen</string>
 	<string name="dialog_app_is_obscured_info_title">App is naar de achtergrond gewezen</string>
-	<string name="dialog_app_is_obscured_info_hint">Een andere app geeft iets weer boven Latch (bijvoorbeeld een blauwlichtfilter of nachtmodus app). Om veiligheidsredenen is Latch uitgeschakeld.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Hoe Latch in te schakelen</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Een andere app geeft iets weer boven Voidbox (bijvoorbeeld een blauwlichtfilter of nachtmodus app). Om veiligheidsredenen is Voidbox uitgeschakeld.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Hoe Voidbox in te schakelen</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Sluiten</string>
 	<string name="dialog_vaults_removed_during_migration_title">Voeg de kluis voor %1\'s cloud opnieuw toe</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Tijdens het migreren naar deze app versie moeten we de volgende kluizen verwijderen uit de app:\n%2s \n\nDe kluizen worden niet uit de cloud verwijderd, maar alleen uit deze app. Sorry voor het ongemak, voeg deze kluizen opnieuw toe om deze te blijven gebruiken.</string>
@@ -385,9 +385,9 @@
 	<string name="dialog_confirm_delete_file_message">Weet u zeker dat u dit bestand wilt verwijderen?</string>
 	<string name="dialog_confirm_delete_folder_message">Dit zal alle inhoud van de map verwijderen. Weet u zeker dat u deze map wilt verwijderen?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Biometrische authenticatie functie gedeactiveerd</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Omdat de sleutel niet geldig is, is de biometrische authenticatie functie gedeactiveerd. Open de Latch instellingen om deze opnieuw in te schakelen.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Omdat de sleutel niet geldig is, is de biometrische authenticatie functie gedeactiveerd. Open de Voidbox instellingen om deze opnieuw in te schakelen.</string>
 	<string name="dialog_enter_license_title">Geef een geldige licentie op</string>
-	<string name="dialog_enter_license_content">U heeft Latch gedownload zonder Google Play Store te gebruiken. Geef een geldige licentie in. Een geldige licentie kan worden gekocht op <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">U heeft Voidbox gedownload zonder Google Play Store te gebruiken. Geef een geldige licentie in. Een geldige licentie kan worden gekocht op <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">De opgegeven licentie is niet geldig. Zorg ervoor dat u deze correct hebt ingevoerd.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">De verstrekte sleutel is een desktop supportercertificaat. Voer een geldige licentie in.</string>
 	<string name="dialog_enter_license_no_content">Geen licentie ingegeven. Voer een geldige licentie in.</string>
@@ -395,12 +395,12 @@
 	<string name="dialog_license_confirmation_title">Licentie bevestiging</string>
 	<string name="dialog_license_confirmation_message">Bedankt %1$s voor het ingeven van uw geldige licentie.</string>
 	<string name="dialog_update_available_title">Update beschikbaar</string>
-	<string name="dialog_update_available_message">Werk Latch bij naar de laatste versie. Door op OK te drukken, downloaden we de app op de achtergrond en vragen we je om deze te installeren.</string>
+	<string name="dialog_update_available_message">Werk Voidbox bij naar de laatste versie. Door op OK te drukken, downloaden we de app op de achtergrond en vragen we je om deze te installeren.</string>
 	<string name="dialog_update_available_update">Nu bijwerken</string>
 	<string name="dialog_update_available_download_site">Ga naar Download pagina</string>
 	<string name="dialog_update_available_cancel">Later</string>
 	<string name="dialog_download_update_title">Bezig met downloaden</string>
-	<string name="dialog_download_update_message">Laatste versie van Latch downloaden</string>
+	<string name="dialog_download_update_message">Laatste versie van Voidbox downloaden</string>
 	<string name="dialog_sym_link_title">Map is een symbolische link</string>
 	<string name="dialog_sym_link_message">U kunt niet naar deze symbolische link navigeren</string>
 	<string name="dialog_sym_link_back_button">Terug</string>
@@ -436,9 +436,9 @@
 	<string name="dialog_hub_user_setup_required_hint">Om verder te gaan, gelieve de stappen te voltooien in uw Hub-gebruikersprofiel.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Ga naar Profiel</string>
 	<string name="dialog_hub_check_host_authenticity_title">Deze hosts vertrouwen?</string>
-	<string name="permission_snackbar_auth_local_vault">Latch heeft toegang tot opslag nodig om lokale kluizen te kunnen gebruiken</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch heeft toegang tot opslag nodig om automatisch uploaden van foto\'s te kunnen gebruiken</string>
-	<string name="permission_snackbar_notifications">Latch heeft notificatie toegang nodig om een voorbeeld van de kluis status weer te geven</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox heeft toegang tot opslag nodig om lokale kluizen te kunnen gebruiken</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox heeft toegang tot opslag nodig om automatisch uploaden van foto\'s te kunnen gebruiken</string>
+	<string name="permission_snackbar_notifications">Voidbox heeft notificatie toegang nodig om een voorbeeld van de kluis status weer te geven</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

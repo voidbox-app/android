@@ -37,7 +37,7 @@ def getVersionCode = { ->
 
 allprojects {
 	ext {
-		androidApplicationId = 'com.vesmirov.latch'
+		androidApplicationId = 'com.vesmirov.voidbox'
 		androidVersionCode = 3132 // must be getVersionCode(). only at release tag set the actual value
 		androidVersionName = '2.0.1'
 	}

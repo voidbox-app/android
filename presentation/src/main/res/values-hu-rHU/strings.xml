@@ -10,7 +10,7 @@
 	<string name="error_purchase_not_available">A vásárlás nem elérhető. Próbálja meg később.</string>
 	<string name="error_invalid_passphrase">Helytelen jelszó</string>
 	<string name="error_file_or_folder_exists">Ez a fájl vagy mappa már létezik.</string>
-	<string name="error_vault_version_not_supported">A titkosított tároló verziója: %1$s, amely nem támogatott. Ezt a tárolót a Latch egy régebbi vagy újabb verziójával hozták létre.</string>
+	<string name="error_vault_version_not_supported">A titkosított tároló verziója: %1$s, amely nem támogatott. Ezt a tárolót a Voidbox egy régebbi vagy újabb verziójával hozták létre.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">A %1$s fájl hiányzik a tároló mappájából. Kérem, győződjön meg, hogy ez a fájl létezik a felhőben lévő tároló mappájában.</string>
 	<string name="error_vault_already_exists">A titkosított tároló már létezik.</string>
 	<string name="error_no_such_file">Fájl nem létezik.</string>
@@ -32,7 +32,7 @@
 	<string name="error_vault_version_mismatch">A %1$s -ban megadott verzió eltér a %2$s -tól</string>
 	<string name="error_vault_key_invalid">A(z) %1$s nem egyezik a következővel: %2$s</string>
 	<string name="error_vault_config_loading">Általános hiba a tároló konfigjának betöltése közben</string>
-	<string name="error_file_not_found_after_opening_using_3party">A Latchra való visszaváltás után a helyi fájl már nem elérhető. Az esetleges változások nem frissíthetik a felhőben lévő fájlt.</string>
+	<string name="error_file_not_found_after_opening_using_3party">A Voidboxra való visszaváltás után a helyi fájl már nem elérhető. Az esetleges változások nem frissíthetik a felhőben lévő fájlt.</string>
 	<string name="error_no_such_bucket">Nem található ilyen adat</string>
 	<string name="error_masterkey_location_not_supported">Az egyéni Masterkey hely választása még nem támogatott</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Nem sikerült kommunikálni az F-Droid alkalmazással. Nincs telepítve?</string>
@@ -83,13 +83,13 @@
 	<string name="screen_license_check_cancel_subscription_hint">Élethosszig tartó licenccel rendelkezik. A jövőbeli díjak elkerülése érdekében a Beállítások menüben található %1$s opció segítségével mondja le éves előfizetését.</string>
 	<string name="screen_welcome_title">Üdvözöljük</string>
 	<string name="screen_welcome_notifications_title">Maradjon naprakész</string>
-	<string name="screen_welcome_notifications_message">Engedélyezze az értesítéseket, hogy a Latch tájékoztathassa a háttérben zajló tevékenységekről, az automatikus feltöltésekről vagy egyéb fontos eseményekről.</string>
+	<string name="screen_welcome_notifications_message">Engedélyezze az értesítéseket, hogy a Voidbox tájékoztathassa a háttérben zajló tevékenységekről, az automatikus feltöltésekről vagy egyéb fontos eseményekről.</string>
 	<string name="screen_welcome_notifications_button">Értesítések engedélyezése</string>
 	<string name="screen_welcome_notifications_granted">Értesítések engedélyezve.</string>
 	<string name="screen_welcome_continue_button">Tovább</string>
 	<string name="screen_welcome_screen_lock_button">Képernyőzár beállítása</string>
 	<string name="screen_welcome_screen_lock_already_set">Zárolási képernyő már beállítva.</string>
-	<string name="screen_welcome_intro_body">Köszönjük, hogy a Latch-t választotta fájljai védelmére.\n\nA Latch segítségével az adatokhoz tartozó kulcs a saját kezében van.\n\nA Latch gyorsan és egyszerűen titkosítja az adatait.</string>
+	<string name="screen_welcome_intro_body">Köszönjük, hogy a Voidbox-t választotta fájljai védelmére.\n\nA Voidbox segítségével az adatokhoz tartozó kulcs a saját kezében van.\n\nA Voidbox gyorsan és egyszerűen titkosítja az adatait.</string>
 	<string name="next">Következő</string>
 	<string name="back">Vissza</string>
 	<!-- # clouds -->
@@ -97,10 +97,10 @@
 	<string name="cloud_names_local_storage">Helyi tároló</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">A Latchnak tárhely-hozzáférésre van szüksége a fájlok exportálásához</string>
-	<string name="permission_message_upload_file">A Latchnak tárhely-hozzáférésre van szüksége a fájlok feltöltéséhez</string>
-	<string name="permission_message_share_file">A Latchnak tárhely-hozzáférésre van szüksége a fájlok megosztásához</string>
-	<string name="permission_revoked_re_request_permission">A Latch elvesztette a hozzáférési jogosultságát ehhez a forráshoz. Kérjük, válassza ki újra ezt a mappát az engedély visszaállításához.</string>
+	<string name="permission_message_export_file">A Voidboxnak tárhely-hozzáférésre van szüksége a fájlok exportálásához</string>
+	<string name="permission_message_upload_file">A Voidboxnak tárhely-hozzáférésre van szüksége a fájlok feltöltéséhez</string>
+	<string name="permission_message_share_file">A Voidboxnak tárhely-hozzáférésre van szüksége a fájlok megosztásához</string>
+	<string name="permission_revoked_re_request_permission">A Voidbox elvesztette a hozzáférési jogosultságát ehhez a forráshoz. Kérjük, válassza ki újra ezt a mappát az engedély visszaállításához.</string>
 	<string name="snack_bar_action_title_settings">Beállítások</string>
 	<string name="snack_bar_action_title_search">Keresés</string>
 	<string name="snack_bar_action_title_search_previous">Előző</string>
@@ -116,7 +116,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Nincs a felhő a listában?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Latch-hoz adás</string>
+	<string name="screen_vault_list_actions_title">Voidbox-hoz adás</string>
 	<string name="screen_vault_list_action_create_new_vault">Új titkosított tároló készítése</string>
 	<string name="screen_vault_list_action_add_existing_vault">Meglévő tárolóhoz adás</string>
 	<string name="screen_vault_list_vault_action_delete">Eltávolítás</string>
@@ -242,7 +242,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Feltöltés WIFI hálózaton</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Videó feltöltése</string>
 	<string name="screen_settings_auto_photo_upload_title">Automatikus feltöltések helye: &#8230;</string>
-	<string name="screen_settings_website_label">Latch weboldala</string>
+	<string name="screen_settings_website_label">Voidbox weboldala</string>
 	<string name="screen_settings_mastodon_label">Kövess minket a Mastodonon</string>
 	<string name="screen_settings_facebook_label">Lájkolj minket a Facebookon</string>
 	<string name="screen_settings_section_legal">Jogi nyilatkozat</string>
@@ -275,15 +275,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">A %1$s hitelesítése sikertelen.</string>
 	<string name="screen_update_pcloud_connections_title">pCloud hitelesítő adatainak frissítése</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">A Latch változatai</string>
+	<string name="screen_cryptomator_variants_title">A Voidbox változatai</string>
 	<string name="screen_cryptomator_variants_lite_title">Fő F-Droid tároló</string>
 	<string name="screen_cryptomator_variants_lite_description">Nincsenek benne, mert API kulcsokra van szükségük.</string>
 	<string name="screen_cryptomator_variants_lite_install">Telepítés</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid tároló</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidbox F-Droid tároló</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Kizárva, mert saját függőségeket tartalmaz.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">A Latch tároló hozzáadása az F-Droid apphoz.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">A Voidbox tároló hozzáadása az F-Droid apphoz.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Hozzáadás</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Latch telepítése F-Droid segítségével.\nHa egy nem talált hiba jelenik meg, várjon amíg az F-Droid szinkronizáció befejeződik.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Voidbox telepítése F-Droid segítségével.\nHa egy nem talált hiba jelenik meg, várjon amíg az F-Droid szinkronizáció befejeződik.</string>
 	<string name="screen_cryptomator_variants_website_title">Weboldal</string>
 	<string name="screen_cryptomator_variants_website_description">Zárt forráskódú függőségeket tartalmaz.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Az alkalmazás fő F-Droid tároló verziójára vagy verziójáról váltáshoz szükséges az alkalmazás teljes újratelepítése.</string>
@@ -313,7 +313,7 @@
 	<string name="dialog_replace_title_single_file_exists">Leceréli a fájlt?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Lecseréli a fájlokat?</string>
 	<string name="dialog_unable_to_share_title">Nem lehet fájlokat megosztani</string>
-	<string name="dialog_unable_to_share_message">Nem állított még be titkosított tárolókat. Kérjük, először hozzon létre egy új tárolót a Latch alkalmazással.</string>
+	<string name="dialog_unable_to_share_message">Nem állított még be titkosított tárolókat. Kérjük, először hozzon létre egy új tárolót a Voidbox alkalmazással.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Új titkosított tároló létrehozása</string>
 	<string name="dialog_filetype_not_supported_title">A(z) %1$s nem nyitható meg</string>
@@ -364,12 +364,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">Ebben a módban érzékeny adatok kerülhetnek az eszközön lévő naplófájlba (pl. fájlnevek és -útvonalak). Ez jelszavakra és sütikre nem vonatkozik.\n\n Ne felejtse el minél hamarabb kikapcsolni a fejlesztői módot.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Figyelem</string>
 	<string name="dialog_debug_mode_positive_button">Engedélyezés</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">A Microsoft-alkalmazások egy hibája miatt a szerkesztendő fájlt meg kell osztani ezekkel az alkalmazásokkal az eszközön lévő nyilvános médiamappában. Miután a Latch végzett, a nyilvánosan elérhető fájl ismét törlődik, de a Latchnak nincs befolyása arra, hogy mi történik időközben ezzel a fájlal. Győződjön meg róla, hogy tisztában van ezzel a viselkedéssel, amikor bekapcsolja ezt az opciót. Ez csak a Microsoft fájltípusokra vonatkozik.\n\nAz bekapcsolás után a Latch újraindul.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">A Microsoft-alkalmazások egy hibája miatt a szerkesztendő fájlt meg kell osztani ezekkel az alkalmazásokkal az eszközön lévő nyilvános médiamappában. Miután a Voidbox végzett, a nyilvánosan elérhető fájl ismét törlődik, de a Voidboxnak nincs befolyása arra, hogy mi történik időközben ezzel a fájlal. Győződjön meg róla, hogy tisztában van ezzel a viselkedéssel, amikor bekapcsolja ezt az opciót. Ez csak a Microsoft fájltípusokra vonatkozik.\n\nAz bekapcsolás után a Voidbox újraindul.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Ez a beállítás egy biztonsági funkció, amely megakadályozza, hogy más alkalmazások megtévesszék a felhasználókat, és olyan dolgokat tegyenek, amelyeket nem akarnak.\n\nA letiltással megerősíti, hogy <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">tisztában van a kockázatokkal</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Figyelem</string>
 	<string name="dialog_disable_app_obscured_positive_button">Letiltás</string>
 	<string name="dialog_app_is_obscured_info_title">Az app el van takarva</string>
-	<string name="dialog_app_is_obscured_info_hint">Egy másik alkalmazás jelenít meg valamit a Latch fölött (pl. egy kékfényszűrő vagy éjszakai mód alkalmazás). Biztonsági okokból a Latch le van tiltva.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Hogyan engedélyezze a Latch-t</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Egy másik alkalmazás jelenít meg valamit a Voidbox fölött (pl. egy kékfényszűrő vagy éjszakai mód alkalmazás). Biztonsági okokból a Voidbox le van tiltva.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Hogyan engedélyezze a Voidbox-t</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Bezár</string>
 	<string name="dialog_vaults_removed_during_migration_title">Kérem, adja hozzá újra a tárolókat a felhőhöz: %1s</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Az alkalmazás ezen verziójára történő frissítés során el kell távolítanunk a következő tárolókat az alkalmazásból:\n%2s \n\nEzek a titkosított tárolók nem kerülnek eltávolításra a felhőből, csak az alkalmazásból. Elnézést a kellemetlenségért, és kérem, adja hozzá újra ezeket a tárolókat, hogy folytathassa a munkát velük.</string>
@@ -383,9 +383,9 @@
 	<string name="dialog_confirm_delete_file_message">Biztosan törli ezt a fájlt?</string>
 	<string name="dialog_confirm_delete_folder_message">Ezzel a mappa teljes tartalma törlődik. Biztos, hogy törölni szeretné ezt a mappát?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">A biometrikus hitelesítési funkció inaktiválva</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Mivel a kulcs érvénytelenítve lett, a biometrikus hitelesítési funkció inaktiválva lett. Az újbóli engedélyezéshez nyissa meg a Latch beállításait.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Mivel a kulcs érvénytelenítve lett, a biometrikus hitelesítési funkció inaktiválva lett. Az újbóli engedélyezéshez nyissa meg a Voidbox beállításait.</string>
 	<string name="dialog_enter_license_title">Adjon meg egy érvényes licencet</string>
-	<string name="dialog_enter_license_content">Úgy érzékeltük, hogy a Latcht a Google Play áruházon kívül telepítette. Adjon meg egy érvényes licencet, amit meg tud vásárolni itt: <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a>.</string>
+	<string name="dialog_enter_license_content">Úgy érzékeltük, hogy a Voidboxt a Google Play áruházon kívül telepítette. Adjon meg egy érvényes licencet, amit meg tud vásárolni itt: <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a>.</string>
 	<string name="dialog_enter_license_not_valid_content">A megadott licenc nem érvényes. Győződjön meg arról, hogy jól írta be.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">A megadott kulcs egy asztali támogatói igazolás. Kérem, adjon meg egy érvényes licencet.</string>
 	<string name="dialog_enter_license_no_content">Nincs licenc megadva. Kérem, adjon meg egy érvényes licencet.</string>
@@ -393,12 +393,12 @@
 	<string name="dialog_license_confirmation_title">Licenc megerősítése</string>
 	<string name="dialog_license_confirmation_message">Köszönöm %1$s, hogy megadta érvényes licencét.</string>
 	<string name="dialog_update_available_title">Frissítés elérhető</string>
-	<string name="dialog_update_available_message">Frissítse a Latch-t a legújabb verzióra. Az OK gomb megnyomásával a háttérben letöltjük az alkalmazást, és kérni fogjuk, hogy telepítse.</string>
+	<string name="dialog_update_available_message">Frissítse a Voidbox-t a legújabb verzióra. Az OK gomb megnyomásával a háttérben letöltjük az alkalmazást, és kérni fogjuk, hogy telepítse.</string>
 	<string name="dialog_update_available_update">Frissítés most</string>
 	<string name="dialog_update_available_download_site">Ugrás a Letöltési oldalra</string>
 	<string name="dialog_update_available_cancel">Később</string>
 	<string name="dialog_download_update_title">Letöltés folyamatban</string>
-	<string name="dialog_download_update_message">A Latch legújabb verziójának letöltése folyamatban</string>
+	<string name="dialog_download_update_message">A Voidbox legújabb verziójának letöltése folyamatban</string>
 	<string name="dialog_sym_link_title">A mappa egy szimbolikus link</string>
 	<string name="dialog_sym_link_message">Nem tud navigálni erre a szimbolikus linkre</string>
 	<string name="dialog_sym_link_back_button">Vissza</string>
@@ -434,9 +434,9 @@
 	<string name="dialog_hub_user_setup_required_hint">A folytatáshoz kérjük, hajtsa végre a Hub felhasználói profiljában megadott lépéseket.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Ugrás a Profilhoz</string>
 	<string name="dialog_hub_check_host_authenticity_title">Megbízik ebben a gazdagépben?</string>
-	<string name="permission_snackbar_auth_local_vault">A Latchnak tárhely-hozzáférésre van szüksége a titkosított tárolók használatához</string>
-	<string name="permission_snackbar_auth_auto_upload">A Latchnak tárhely-hozzáférésre van szüksége az automatikus fotófeltöltés használatához</string>
-	<string name="permission_snackbar_notifications">A Latchnak értesítési engedélyekre van szüksége például a tároló állapotának megjelenítéséhez</string>
+	<string name="permission_snackbar_auth_local_vault">A Voidboxnak tárhely-hozzáférésre van szüksége a titkosított tárolók használatához</string>
+	<string name="permission_snackbar_auth_auto_upload">A Voidboxnak tárhely-hozzáférésre van szüksége az automatikus fotófeltöltés használatához</string>
+	<string name="permission_snackbar_notifications">A Voidboxnak értesítési engedélyekre van szüksége például a tároló állapotának megjelenítéséhez</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

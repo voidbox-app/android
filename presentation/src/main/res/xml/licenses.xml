@@ -30,7 +30,7 @@
 				android:data="https://github.com/cryptomator/cryptolib" />
 		</Preference>
 		<Preference
-			android:summary="GPLv3 \u2014 Latch is a fork of this app"
+			android:summary="GPLv3 \u2014 Voidbox is a fork of this app"
 			android:title="Cryptomator for Android (Skymatic)">
 			<intent
 				android:action="android.intent.action.VIEW"

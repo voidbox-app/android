@@ -8,46 +8,46 @@
 	<style name="AppTheme.Base" parent="Theme.Material3.DayNight.NoActionBar">
 		<!-- Material 3 color roles; see values/colors.xml and values-night/colors.xml.
 		     DynamicColors.applyToActivitiesIfAvailable replaces them with Material You. -->
-		<item name="colorPrimary">@color/latch_primary</item>
-		<item name="colorOnPrimary">@color/latch_on_primary</item>
-		<item name="colorPrimaryContainer">@color/latch_primary_container</item>
-		<item name="colorOnPrimaryContainer">@color/latch_on_primary_container</item>
-		<item name="colorPrimaryInverse">@color/latch_primary_inverse</item>
-		<item name="colorSecondary">@color/latch_secondary</item>
-		<item name="colorOnSecondary">@color/latch_on_secondary</item>
-		<item name="colorSecondaryContainer">@color/latch_secondary_container</item>
-		<item name="colorOnSecondaryContainer">@color/latch_on_secondary_container</item>
-		<item name="colorTertiary">@color/latch_tertiary</item>
-		<item name="colorOnTertiary">@color/latch_on_tertiary</item>
-		<item name="colorTertiaryContainer">@color/latch_tertiary_container</item>
-		<item name="colorOnTertiaryContainer">@color/latch_on_tertiary_container</item>
-		<item name="colorError">@color/latch_error</item>
-		<item name="colorOnError">@color/latch_on_error</item>
-		<item name="colorErrorContainer">@color/latch_error_container</item>
-		<item name="colorOnErrorContainer">@color/latch_on_error_container</item>
-		<item name="android:colorBackground">@color/latch_surface</item>
-		<item name="colorOnBackground">@color/latch_on_surface</item>
-		<item name="colorSurface">@color/latch_surface</item>
-		<item name="colorOnSurface">@color/latch_on_surface</item>
-		<item name="colorSurfaceVariant">@color/latch_surface_variant</item>
-		<item name="colorOnSurfaceVariant">@color/latch_on_surface_variant</item>
-		<item name="colorSurfaceInverse">@color/latch_surface_inverse</item>
-		<item name="colorOnSurfaceInverse">@color/latch_on_surface_inverse</item>
-		<item name="colorSurfaceDim">@color/latch_surface_dim</item>
-		<item name="colorSurfaceBright">@color/latch_surface_bright</item>
-		<item name="colorSurfaceContainerLowest">@color/latch_surface_container_lowest</item>
-		<item name="colorSurfaceContainerLow">@color/latch_surface_container_low</item>
-		<item name="colorSurfaceContainer">@color/latch_surface_container</item>
-		<item name="colorSurfaceContainerHigh">@color/latch_surface_container_high</item>
-		<item name="colorSurfaceContainerHighest">@color/latch_surface_container_highest</item>
-		<item name="colorOutline">@color/latch_outline</item>
-		<item name="colorOutlineVariant">@color/latch_outline_variant</item>
+		<item name="colorPrimary">@color/voidbox_primary</item>
+		<item name="colorOnPrimary">@color/voidbox_on_primary</item>
+		<item name="colorPrimaryContainer">@color/voidbox_primary_container</item>
+		<item name="colorOnPrimaryContainer">@color/voidbox_on_primary_container</item>
+		<item name="colorPrimaryInverse">@color/voidbox_primary_inverse</item>
+		<item name="colorSecondary">@color/voidbox_secondary</item>
+		<item name="colorOnSecondary">@color/voidbox_on_secondary</item>
+		<item name="colorSecondaryContainer">@color/voidbox_secondary_container</item>
+		<item name="colorOnSecondaryContainer">@color/voidbox_on_secondary_container</item>
+		<item name="colorTertiary">@color/voidbox_tertiary</item>
+		<item name="colorOnTertiary">@color/voidbox_on_tertiary</item>
+		<item name="colorTertiaryContainer">@color/voidbox_tertiary_container</item>
+		<item name="colorOnTertiaryContainer">@color/voidbox_on_tertiary_container</item>
+		<item name="colorError">@color/voidbox_error</item>
+		<item name="colorOnError">@color/voidbox_on_error</item>
+		<item name="colorErrorContainer">@color/voidbox_error_container</item>
+		<item name="colorOnErrorContainer">@color/voidbox_on_error_container</item>
+		<item name="android:colorBackground">@color/voidbox_surface</item>
+		<item name="colorOnBackground">@color/voidbox_on_surface</item>
+		<item name="colorSurface">@color/voidbox_surface</item>
+		<item name="colorOnSurface">@color/voidbox_on_surface</item>
+		<item name="colorSurfaceVariant">@color/voidbox_surface_variant</item>
+		<item name="colorOnSurfaceVariant">@color/voidbox_on_surface_variant</item>
+		<item name="colorSurfaceInverse">@color/voidbox_surface_inverse</item>
+		<item name="colorOnSurfaceInverse">@color/voidbox_on_surface_inverse</item>
+		<item name="colorSurfaceDim">@color/voidbox_surface_dim</item>
+		<item name="colorSurfaceBright">@color/voidbox_surface_bright</item>
+		<item name="colorSurfaceContainerLowest">@color/voidbox_surface_container_lowest</item>
+		<item name="colorSurfaceContainerLow">@color/voidbox_surface_container_low</item>
+		<item name="colorSurfaceContainer">@color/voidbox_surface_container</item>
+		<item name="colorSurfaceContainerHigh">@color/voidbox_surface_container_high</item>
+		<item name="colorSurfaceContainerHighest">@color/voidbox_surface_container_highest</item>
+		<item name="colorOutline">@color/voidbox_outline</item>
+		<item name="colorOutlineVariant">@color/voidbox_outline_variant</item>
 		<item name="elevationOverlayEnabled">false</item>
 
 		<!-- Legacy attributes still read by AppCompat views. -->
 		<item name="colorPrimaryDark">@color/colorPrimary</item>
 		<item name="colorAccent">?attr/colorPrimary</item>
-		<item name="android:textColorHighlight">@color/latch_primary_container</item>
+		<item name="android:textColorHighlight">@color/voidbox_primary_container</item>
 
 		<item name="android:statusBarColor">@android:color/transparent</item>
 		<item name="android:windowLightStatusBar">@bool/light_system_bars</item>
@@ -140,7 +140,7 @@
 	</style>
 
 	<style name="ModalBottomSheet" parent="Widget.Material3.BottomSheet.Modal">
-		<item name="backgroundTint">@color/latch_sheet</item>
+		<item name="backgroundTint">@color/voidbox_sheet</item>
 	</style>
 
 	<style name="AppTheme.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
@@ -148,10 +148,10 @@
 	</style>
 
 	<style name="AppTheme.DialogBackground" parent="MaterialAlertDialog.Material3">
-		<item name="backgroundTint">@color/latch_dialog</item>
+		<item name="backgroundTint">@color/voidbox_dialog</item>
 	</style>
 
-	<style name="ShapeAppearance.Latch.Thumbnail" parent="">
+	<style name="ShapeAppearance.Voidbox.Thumbnail" parent="">
 		<item name="cornerFamily">rounded</item>
 		<item name="cornerSize">8dp</item>
 	</style>
