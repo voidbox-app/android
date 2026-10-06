@@ -102,6 +102,7 @@ import java.io.ByteArrayOutputStream
 import java.util.Optional
 import org.cryptomator.domain.CloudType
 import org.cryptomator.presentation.util.FileIcon
+import org.cryptomator.presentation.util.FolderListingCache
 import org.cryptomator.presentation.util.ThumbnailCache
 
 @PerView
@@ -140,6 +141,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	private val sharedPreferencesHandler: SharedPreferencesHandler,  //
 	private val licenseEnforcer: LicenseEnforcer, //
 	private val thumbnailCache: ThumbnailCache, //
+	private val folderListingCache: FolderListingCache, //
 	exceptionMappings: ExceptionHandlers
 ) : Presenter<BrowseFilesView>(exceptionMappings) {
 
@@ -200,6 +202,8 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onFolderDisplayed(folder: CloudFolderModel) {
+		// what the folder looked like last time appears at once; the fresh listing replaces it
+		folderListingCache.get(folder)?.let { view?.showCloudNodes(it) }
 		view?.showLoading(true)
 		getCloudList(folder)
 		view?.updateTitle(folder)
@@ -217,9 +221,9 @@ class BrowseFilesPresenter @Inject constructor( //
 			.run(object : DefaultResultHandler<List<CloudNode>>() {
 				override fun onSuccess(cloudNodes: List<CloudNode>) {
 					if (cloudNodes.isEmpty()) {
-						clearCloudList()
+						clearCloudList(cloudFolderModel)
 					} else {
-						showCloudNodesCollectionInView(cloudNodes)
+						showCloudNodesCollectionInView(cloudFolderModel, cloudNodes)
 					}
 					view?.showLoading(false)
 				}
@@ -294,7 +298,7 @@ class BrowseFilesPresenter @Inject constructor( //
 			.andFolderName(folderName) //
 			.run(object : DefaultResultHandler<CloudFolder>() {
 				override fun onSuccess(cloudFolder: CloudFolder) {
-					view?.addOrUpdateCloudNode(cloudFolderModelMapper.toModel(cloudFolder))
+					addOrUpdateCloudNodeInView(cloudFolderModelMapper.toModel(cloudFolder))
 					view?.closeDialog()
 				}
 			})
@@ -322,9 +326,27 @@ class BrowseFilesPresenter @Inject constructor( //
 		}
 	}
 
-	private fun showCloudNodesCollectionInView(cloudNodes: List<CloudNode>) {
+	private fun showCloudNodesCollectionInView(folder: CloudFolderModel, cloudNodes: List<CloudNode>) {
 		val cloudNodeModels = cloudNodeModelMapper.toModels(cloudNodes).filter { cloudNode -> !isBlacklistedCloudNode(cloudNode) }
+		folderListingCache.put(folder, cloudNodeModels)
 		view?.showCloudNodes(cloudNodeModels)
+	}
+
+	// Changes made from the app go to the adapter directly; the cached listing is dropped so the
+	// next visit loads the folder instead of showing the old one.
+	private fun addOrUpdateCloudNodeInView(node: CloudNodeModel<*>) {
+		folderListingCache.invalidate(view?.folder)
+		view?.addOrUpdateCloudNode(node)
+	}
+
+	private fun deleteCloudNodesInView(nodes: List<CloudNodeModel<*>>) {
+		folderListingCache.invalidate(view?.folder)
+		view?.deleteCloudNodesFromAdapter(nodes)
+	}
+
+	private fun replaceRenamedCloudNodeInView(node: CloudNodeModel<out CloudNode>) {
+		folderListingCache.invalidate(view?.folder)
+		view?.replaceRenamedCloudNode(node)
 	}
 
 	private fun isBlacklistedCloudNode(cloudNode: CloudNodeModel<*>): Boolean {
@@ -446,7 +468,7 @@ class BrowseFilesPresenter @Inject constructor( //
 					}
 
 					override fun onSuccess(files: List<CloudFile>) {
-						files.forEach { file -> view?.addOrUpdateCloudNode(cloudFileModelMapper.toModel(file)) }
+						files.forEach { file -> addOrUpdateCloudNodeInView(cloudFileModelMapper.toModel(file)) }
 						onFileUploadCompleted()
 					}
 
@@ -472,7 +494,8 @@ class BrowseFilesPresenter @Inject constructor( //
 		view?.showReplaceDialog(listOf(fileNameAlreadyExists), filesForUpload.size)
 	}
 
-	private fun clearCloudList() {
+	private fun clearCloudList(folder: CloudFolderModel) {
+		folderListingCache.put(folder, emptyList())
 		view?.showCloudNodes(ArrayList())
 	}
 
@@ -490,7 +513,7 @@ class BrowseFilesPresenter @Inject constructor( //
 			.andNewName(newCloudFolderName) //
 			.run(object : DefaultResultHandler<ResultRenamed<CloudFolder>>() {
 				override fun onSuccess(cloudFolderResultRenamed: ResultRenamed<CloudFolder>) {
-					view?.replaceRenamedCloudNode(cloudNodeModelMapper.toModel(cloudFolderResultRenamed))
+					replaceRenamedCloudNodeInView(cloudNodeModelMapper.toModel(cloudFolderResultRenamed))
 					view?.closeDialog()
 				}
 			})
@@ -502,7 +525,7 @@ class BrowseFilesPresenter @Inject constructor( //
 			.andNewName(newCloudFileName) //
 			.run(object : DefaultResultHandler<ResultRenamed<CloudFile>>() {
 				override fun onSuccess(cloudFileResultRenamed: ResultRenamed<CloudFile>) {
-					view?.replaceRenamedCloudNode(cloudNodeModelMapper.toModel(cloudFileResultRenamed))
+					replaceRenamedCloudNodeInView(cloudNodeModelMapper.toModel(cloudFileResultRenamed))
 					view?.closeDialog()
 				}
 			})
@@ -518,7 +541,7 @@ class BrowseFilesPresenter @Inject constructor( //
 			.withCloudNodes(cloudNodeModelMapper.fromModels(nodes)) //
 			.run(object : DefaultResultHandler<List<CloudNode>>() {
 				override fun onSuccess(cloudNodes: List<CloudNode>) {
-					view?.deleteCloudNodesFromAdapter(cloudNodeModelMapper.toModels(cloudNodes))
+					deleteCloudNodesInView(cloudNodeModelMapper.toModels(cloudNodes))
 				}
 			})
 	}
@@ -759,7 +782,7 @@ class BrowseFilesPresenter @Inject constructor( //
 
 							override fun onSuccess(files: List<CloudFile>) {
 								files.forEach { file ->
-									view?.addOrUpdateCloudNode(cloudFileModelMapper.toModel(file))
+									addOrUpdateCloudNodeInView(cloudFileModelMapper.toModel(file))
 								}
 								deleteFileIfMicrosoftWorkaround(openFileType, uriToOpenedFile)
 								onFileUploadCompleted()
@@ -893,7 +916,8 @@ class BrowseFilesPresenter @Inject constructor( //
 			.andSourceFiles(cloudFileModelMapper.fromModels(sourceFiles)) //
 			.run(object : DefaultResultHandler<List<CloudFile>>() {
 				override fun onSuccess(cloudFiles: List<CloudFile>) {
-					view?.deleteCloudNodesFromAdapter(sourceFiles)
+					folderListingCache.invalidate(targetFolder)
+					deleteCloudNodesInView(sourceFiles)
 				}
 			})
 	}
@@ -905,7 +929,8 @@ class BrowseFilesPresenter @Inject constructor( //
 			.andSourceFolders(cloudFolderModelMapper.fromModels(sourceFolders)) //
 			.run(object : DefaultResultHandler<List<CloudFolder>>() {
 				override fun onSuccess(cloudFolder: List<CloudFolder>) {
-					view?.deleteCloudNodesFromAdapter(sourceFolders)
+					folderListingCache.invalidate(targetFolder)
+					deleteCloudNodesInView(sourceFolders)
 				}
 			})
 	}
@@ -1286,7 +1311,7 @@ class BrowseFilesPresenter @Inject constructor( //
 			.run(object : DefaultProgressAwareResultHandler<List<CloudFile>, UploadState>() {
 				override fun onSuccess(cloudFile: List<CloudFile>) {
 					val cloudFileModel = cloudFileModelMapper.toModel(cloudFile[0])
-					view?.addOrUpdateCloudNode(cloudFileModel)
+					addOrUpdateCloudNodeInView(cloudFileModel)
 					onOpenWithTextFileClicked(cloudFileModel, newlyCreated = true, internalEditor = true)
 					view?.closeDialog()
 				}

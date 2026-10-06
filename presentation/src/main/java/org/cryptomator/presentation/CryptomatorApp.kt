@@ -122,6 +122,7 @@ class CryptomatorApp : MultiDexApplication(), HasComponent<ApplicationComponent>
 					appCryptors.setDelegate(it.cryptors())
 					it.setFileUtil(applicationComponent.fileUtil())
 					it.setThumbnailCache(applicationComponent.thumbnailCache())
+					it.setFolderListingCache(applicationComponent.folderListingCache())
 				}
 				updateService()
 			}
