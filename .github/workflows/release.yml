@@ -1,11 +1,7 @@
 name: Release
 
-# Builds the Latch APK (the Cryptomator lite flavor with the Latch changes) from master and
-# publishes it as a GitHub release named after VERSION, with its SHA-256 checksum.
-#
-# Actions -> Release -> Run workflow. A release whose tag already exists is not rebuilt: bump
-# VERSION first. The workflow never changes the branch; RELEASING.md describes the whole
-# process, including how Cryptomator updates are taken over.
+# Publishes master as release v<VERSION> with the signed APK and its checksum; an existing
+# release is not rebuilt. See RELEASING.md.
 
 on:
   workflow_dispatch:

@@ -32,7 +32,7 @@ Google Play without reinstalling. The repository secrets `LATCH_KEYSTORE_B64` an
 Latch is based on [cryptomator/android](https://github.com/cryptomator/android); the Cryptomator
 version it is built on is recorded in `UPSTREAM_TAG`. Latch changes a large part of the app, so
 a Cryptomator update can conflict with it or merge cleanly and still break it. Updates are
-therefore never taken over automatically, and Latch follows Cryptomator with a delay.
+never taken over automatically; Latch follows Cryptomator with a delay.
 
 When Cryptomator publishes a new version:
 

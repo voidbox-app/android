@@ -1,7 +1,6 @@
 name: CI
 
-# Runs the unit tests and builds the debug APK for every pull request and every push to master.
-# The APK is kept for a week, so a pull request can be tried on a phone before it is merged.
+# Unit tests and a debug APK, kept for a week to try on a phone, for every PR and push to master.
 
 on:
   pull_request:
