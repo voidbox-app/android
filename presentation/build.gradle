@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'de.mannodermaus.android-junit5'
+apply plugin: 'org.jetbrains.kotlinx.kover'
 
 if (!liteFlavor()) {
 	apply from: 'prebuild.gradle'
@@ -370,4 +371,27 @@ project.afterEvaluate {
 			}
 		}
 	}
+}
+
+// unit test coverage of the shipped lite flavor, across all modules: koverXmlReportLite
+kover {
+	currentProject {
+		createVariant("lite") {
+			add(["liteDebug"] as String[], false)
+		}
+	}
+	reports {
+		filters {
+			excludes {
+				classes("*.BuildConfig", "*.R", "*.R\$*", "*_Factory", "*_Factory\$*", "*_MembersInjector", "*Dagger*", "*.databinding.*")
+				annotatedBy("javax.annotation.processing.Generated", "javax.annotation.Generated")
+			}
+		}
+	}
+}
+
+dependencies {
+	kover project(':data')
+	kover project(':domain')
+	kover project(':util')
 }
