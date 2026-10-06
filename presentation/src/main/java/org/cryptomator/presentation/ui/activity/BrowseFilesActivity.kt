@@ -337,6 +337,14 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 		browseFilesPresenter.onExportFileClicked(cloudFile, BrowseFilesPresenter.EXPORT_TRIGGERED_BY_USER)
 	}
 
+	override fun onKeepOfflineClicked(cloudFile: CloudFileModel) {
+		browseFilesPresenter.onKeepOfflineClicked(cloudFile)
+	}
+
+	override fun onRemoveOfflineClicked(cloudFile: CloudFileModel) {
+		browseFilesPresenter.onRemoveOfflineClicked(cloudFile)
+	}
+
 	override fun onExportFileAfterAppChooserClicked(cloudFile: CloudFileModel) {
 		browseFilesPresenter.onExportFileClicked(cloudFile, BrowseFilesPresenter.EXPORT_AFTER_APP_CHOOSER)
 	}
@@ -374,7 +382,7 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 		val cloudNodeSettingDialog: DialogFragment = if (node.isFolder) {
 			FolderSettingsBottomSheet.newInstance(node as CloudFolderModel, currentFolderPath())
 		} else {
-			FileSettingsBottomSheet.newInstance(node as CloudFileModel, currentFolderPath())
+			FileSettingsBottomSheet.newInstance(node as CloudFileModel, currentFolderPath(), browseFilesPresenter.isOffline(node))
 		}
 		cloudNodeSettingDialog.show(supportFragmentManager, "CloudNodeSettings")
 	}

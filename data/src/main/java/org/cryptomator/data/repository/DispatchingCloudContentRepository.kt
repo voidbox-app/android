@@ -168,7 +168,7 @@ class DispatchingCloudContentRepository @Inject constructor(
 	@Throws(BackendException::class)
 	override fun openRandomAccess(file: CloudFile): RandomAccessContent {
 		try {
-			file.cloud?.let { networkConnectionCheck.assertConnectionIsPresent(it) } ?: throw IllegalStateException("Parent's cloud shouldn't be null")
+			// no network check: a vault file kept offline is read from the device, and the cloud is only asked when a range is opened
 			return delegateFor(file).openRandomAccess(file)
 		} catch (e: AuthenticationException) {
 			delegates.remove(file.cloud)

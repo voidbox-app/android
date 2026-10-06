@@ -155,6 +155,10 @@
 	<string name="screen_file_browser_node_action_rename">Переименовать</string>
 	<string name="screen_file_browser_node_action_edit_text">Изменить</string>
 	<string name="screen_file_browser_node_action_export">Экспортировать</string>
+	<string name="screen_file_browser_node_action_keep_offline">Сохранить офлайн</string>
+	<string name="screen_file_browser_node_action_remove_offline">Удалить офлайн-копию</string>
+	<string name="screen_file_browser_msg_kept_offline">Доступно офлайн</string>
+	<string name="screen_file_browser_msg_offline_removed">Офлайн-копия удалена</string>
 	<string name="screen_file_browser_node_action_delete">Удалить</string>
 	<string name="screen_file_browser_node_action_open_with_text">Открыть с помощью&#8230;</string>
 	<string name="screen_file_browser_selection_mode_title_zero_elements">Выберите элементы</string>

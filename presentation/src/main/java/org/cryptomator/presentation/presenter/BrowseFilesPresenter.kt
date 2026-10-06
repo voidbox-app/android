@@ -106,6 +106,8 @@ import org.cryptomator.presentation.util.FolderListingCache
 import org.cryptomator.presentation.util.ThumbnailCache
 import org.cryptomator.presentation.util.RandomAccessMediaDataSource
 import org.cryptomator.presentation.util.VaultMedia
+import org.cryptomator.presentation.util.OfflineFiles
+import io.reactivex.Completable
 import java.util.concurrent.TimeUnit
 
 @PerView
@@ -145,6 +147,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	private val licenseEnforcer: LicenseEnforcer, //
 	private val thumbnailCache: ThumbnailCache, //
 	private val vaultMedia: VaultMedia, //
+	private val offlineFiles: OfflineFiles, //
 	private val folderListingCache: FolderListingCache, //
 	exceptionMappings: ExceptionHandlers
 ) : Presenter<BrowseFilesView>(exceptionMappings) {
@@ -901,6 +904,38 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private val streamProbes = CompositeDisposable()
+
+	// --- offline copies: the ciphertext kept on the device, read instead of the cloud from then on
+
+	fun isOffline(file: CloudFileModel): Boolean = offlineFiles.isOffline(file)
+
+	fun onKeepOfflineClicked(file: CloudFileModel) {
+		val state = progressStateModelMapper.toModel(DownloadState.download(file.toCloudNode()))
+		view?.showProgress(file, ProgressModel(state, 0))
+		streamProbes.add(Completable.fromAction {
+			offlineFiles.keep(file) { progress ->
+				if (!progress.isOverallComplete) {
+					AndroidSchedulers.mainThread().scheduleDirect { view?.showProgress(file, ProgressModel(state, progress.asPercentage())) }
+				}
+			}
+		} //
+			.subscribeOn(Schedulers.io()) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({
+				view?.hideProgress(file)
+				view?.addOrUpdateCloudNode(file)
+				view?.showMessage(R.string.screen_file_browser_msg_kept_offline)
+			}, { e ->
+				view?.hideProgress(file)
+				showError(e)
+			}))
+	}
+
+	fun onRemoveOfflineClicked(file: CloudFileModel) {
+		offlineFiles.remove(file)
+		view?.addOrUpdateCloudNode(file)
+		view?.showMessage(R.string.screen_file_browser_msg_offline_removed)
+	}
 
 	fun onShareNodesClicked(nodes: List<CloudNodeModel<*>?>) {
 		val filesToShare: MutableList<CloudFileModel> = ArrayList()

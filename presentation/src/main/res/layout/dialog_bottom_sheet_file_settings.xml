@@ -90,6 +90,12 @@
 			app:drawableStartCompat="@drawable/ic_export" />
 
 		<TextView
+			android:id="@+id/keep_offline"
+			style="@style/AppTheme.ListItem"
+			android:text="@string/screen_file_browser_node_action_keep_offline"
+			app:drawableStartCompat="@drawable/ic_cloud_download" />
+
+		<TextView
 			android:id="@+id/delete_file"
 			style="@style/AppTheme.ListItem"
 			android:text="@string/screen_file_browser_node_action_delete"

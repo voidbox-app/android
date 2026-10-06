@@ -212,6 +212,10 @@
 	<string name="screen_file_browser_node_action_edit_text">Edit</string>
 	<string name="screen_file_browser_node_action_move" translatable="false">@string/screen_file_browser_move_button_text</string>
 	<string name="screen_file_browser_node_action_export">Export</string>
+	<string name="screen_file_browser_node_action_keep_offline">Keep offline</string>
+	<string name="screen_file_browser_node_action_remove_offline">Remove offline copy</string>
+	<string name="screen_file_browser_msg_kept_offline">Available offline</string>
+	<string name="screen_file_browser_msg_offline_removed">Offline copy removed</string>
 	<string name="screen_file_browser_node_action_delete">Delete</string>
 	<string name="screen_file_browser_node_action_open_with_text">Open with&#8230;</string>
 

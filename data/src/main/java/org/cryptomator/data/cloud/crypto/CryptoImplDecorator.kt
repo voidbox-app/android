@@ -5,6 +5,8 @@ import org.cryptomator.cryptolib.api.Cryptor
 import org.cryptomator.cryptolib.common.DecryptingReadableByteChannel
 import org.cryptomator.cryptolib.common.EncryptingWritableByteChannel
 import org.cryptomator.data.cloud.crypto.DirIdCache.DirIdInfo
+import org.cryptomator.data.util.FileRandomAccessContent
+import org.cryptomator.data.util.OfflineCopies
 import org.cryptomator.domain.Cloud
 import org.cryptomator.domain.CloudFile
 import org.cryptomator.domain.CloudFolder
@@ -343,15 +345,21 @@ abstract class CryptoImplDecorator(
 		}
 	}
 
-	/** The cleartext of [cryptoFile] in pieces, each piece fetched and decrypted on request. */
+	/** The cleartext of [cryptoFile] in pieces, each piece decrypted on request from the offline copy or fetched from the cloud. */
 	@Throws(BackendException::class)
 	fun openRandomAccess(cryptoFile: CryptoFile): RandomAccessContent {
-		return CryptoRandomAccessContent(cloudContentRepository.openRandomAccess(cryptoFile.cloudFile), cryptor())
+		val ciphertext = OfflineCopies.of(context).find(cryptoFile.cloudFile)?.let { FileRandomAccessContent(it) } ?: cloudContentRepository.openRandomAccess(cryptoFile.cloudFile)
+		return CryptoRandomAccessContent(ciphertext, cryptor())
 	}
 
 	@Throws(BackendException::class, IOException::class)
 	private fun readToTmpFile(cryptoFile: CryptoFile, file: CloudFile, progressAware: ProgressAware<DownloadState>): File {
 		val encryptedTmpFile = File.createTempFile(UUID.randomUUID().toString(), ".crypto", internalCache)
+		OfflineCopies.of(context).find(file)?.let { offlineCopy ->
+			// the ciphertext is already here, so there is nothing to download
+			offlineCopy.copyTo(encryptedTmpFile, overwrite = true)
+			return encryptedTmpFile
+		}
 		FileOutputStream(encryptedTmpFile).use { encryptedData ->
 			cloudContentRepository.read(file, encryptedTmpFile, encryptedData, DownloadFileReplacingProgressAware(cryptoFile, progressAware))
 			return encryptedTmpFile
