@@ -593,7 +593,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private fun thumbnailsAllowedFor(file: CloudFileModel): Boolean {
-		// a video is read in pieces, so its size does not matter; an image is downloaded whole
+		// videos are read by range, so only images are limited by size
 		val eligible = (file.icon == FileIcon.MOVIE && sharedPreferencesHandler.videoThumbnails()) || (file.icon == FileIcon.IMAGE && (file.size ?: 0L) <= ThumbnailCache.MAX_IMAGE_BYTES)
 		if (!eligible || thumbnailCache.vaultOf(file) == null) {
 			return false
@@ -635,8 +635,7 @@ class BrowseFilesPresenter @Inject constructor( //
 		}, { loadNextThumbnail() }))
 	}
 
-	// A frame from the video, fetched in pieces: the extractor reads only the index and one
-	// keyframe. Giving up on time closes the source, which fails any read the extractor is stuck in.
+	// the timeout closes the source, which fails a read the extractor is stuck in
 	private fun extractVideoThumbnail(file: CloudFileModel) {
 		thumbnailLoads.add(Single.using({ RandomAccessMediaDataSource(vaultMedia.open(file)) }, { source ->
 			Single.fromCallable { Optional.ofNullable(vaultMedia.frame(source)?.let { thumbnailCache.store(file, it) }) }
@@ -882,8 +881,6 @@ class BrowseFilesPresenter @Inject constructor( //
 		}
 	}
 
-	// Vault media plays straight from the cloud when the server serves ranges; a quick probe of
-	// the first piece decides, and a server that cannot is handled the old way, by downloading.
 	private fun streamOrDownload(cloudFile: CloudFileModel) {
 		val files = listOf(cloudFile)
 		view?.showProgress(files, ProgressModel(progressStateModelMapper.toModel(DownloadState.download(cloudFile.toCloudNode())), 0))
@@ -905,7 +902,7 @@ class BrowseFilesPresenter @Inject constructor( //
 
 	private val streamProbes = CompositeDisposable()
 
-	// --- offline copies: the ciphertext kept on the device, read instead of the cloud from then on
+	// --- offline copies
 
 	fun isOffline(file: CloudFileModel): Boolean = offlineFiles.isOffline(file)
 

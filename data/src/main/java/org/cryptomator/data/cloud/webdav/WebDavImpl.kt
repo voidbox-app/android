@@ -184,9 +184,7 @@ internal class WebDavImpl(private val cloud: WebDavCloud, private val connection
 
 			override fun openStream(offset: Long, length: Long?): InputStream = connectionHandler.readRange(url, offset, length)
 
-			override fun close() {
-				// every range is a request of its own, nothing stays open in between
-			}
+			override fun close() = Unit
 		}
 	}
 

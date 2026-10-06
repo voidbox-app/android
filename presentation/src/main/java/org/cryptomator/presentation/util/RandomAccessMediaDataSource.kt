@@ -7,16 +7,10 @@ import java.io.IOException
 import java.io.InputStream
 import java.util.TreeMap
 
-/**
- * Feeds the system's frame extractor from a vault file without downloading it. The head and the
- * tail of every file are fetched up front in the same fixed amounts, so the server sees the same
- * pair of requests whatever the file is; the extractor usually finds the index and the first
- * keyframe in there. Anything else it asks for is fetched block by block, and the whole thing is
- * given up once [budget] bytes have been fetched.
- */
+/** MediaDataSource for the frame extractor. Head and tail are prefetched in fixed sizes; reading stops after [budget] bytes. */
 class RandomAccessMediaDataSource(private val content: RandomAccessContent, private val budget: Long = DEFAULT_BUDGET) : MediaDataSource() {
 
-	// fetched pieces by their start offset; they never overlap
+	// by start offset; pieces never overlap
 	private val pieces = TreeMap<Long, ByteArray>()
 	private var fetched = 0L
 
@@ -62,7 +56,7 @@ class RandomAccessMediaDataSource(private val content: RandomAccessContent, priv
 		synchronized(pieces) {
 			pieces.floorEntry(position)?.let { if (position < it.key + it.value.size) return it.key to it.value }
 		}
-		// a whole block around the position, cut short where an existing piece begins
+		// one block around the position, ending where a fetched piece begins
 		val from = position / BLOCK * BLOCK
 		val to = synchronized(pieces) { minOf(from + BLOCK, content.size, pieces.ceilingKey(position) ?: Long.MAX_VALUE) }
 		val start = synchronized(pieces) { pieces.floorEntry(from)?.let { maxOf(from, it.key + it.value.size) } ?: from }

@@ -10,7 +10,7 @@ public interface MediaPreviewIntent {
 
 	CloudFileModel mediaFile();
 
-	/** True to play straight from the cloud; otherwise the decrypted copy is expected on disk. */
+	/** False or absent: the decrypted copy is expected on disk. */
 	@Optional
 	Boolean streamed();
 

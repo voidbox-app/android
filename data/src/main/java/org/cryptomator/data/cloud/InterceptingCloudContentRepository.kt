@@ -190,7 +190,7 @@ abstract class InterceptingCloudContentRepository<CloudType : Cloud, NodeType : 
 		}
 	}
 
-	// ranges are requested long after the file was opened, so their errors get the same translation
+	// ranges are opened later, outside the try above
 	private inner class InterceptedRandomAccessContent(private val content: RandomAccessContent) : RandomAccessContent by content {
 
 		@Throws(BackendException::class)

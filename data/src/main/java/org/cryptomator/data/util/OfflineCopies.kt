@@ -8,15 +8,11 @@ import java.security.MessageDigest
 import java.util.concurrent.ConcurrentHashMap
 
 /**
- * Vault files the user asked to keep on the device: the ciphertext exactly as the cloud holds it,
- * under `files/offline/<vaultId>/`, so it is as unreadable without the vault's password as the
- * cloud copy. A copy is keyed by the ciphertext's path, size and modification date and is simply
- * missed once the file changes in the cloud. Lives in the app's files, not its cache, so neither
- * Android nor "Clear cache" throws it away.
+ * Vault files kept offline: the ciphertext as the cloud holds it, under `files/offline/<vaultId>/`,
+ * keyed by path, size and date. In files, not cache, so clearing the cache keeps them.
  */
 class OfflineCopies private constructor(private val directory: File?) {
 
-	// key -> the stored copy, whichever vault it belongs to
 	private val index = ConcurrentHashMap<String, File>()
 
 	init {
@@ -24,7 +20,7 @@ class OfflineCopies private constructor(private val directory: File?) {
 		directory?.listFiles()?.forEach { vault -> vault.listFiles()?.forEach { copy -> if (!copy.name.endsWith(PART)) index[copy.name] = copy } }
 	}
 
-	/** The stored copy of [ciphertext], or null when there is none or it no longer matches the cloud file. */
+	/** Null when there is no copy or the cloud file has changed. */
 	fun find(ciphertext: CloudFile): File? {
 		val copy = index[key(ciphertext)] ?: return null
 		if (!copy.exists() || (ciphertext.size != null && copy.length() != ciphertext.size)) {
@@ -35,7 +31,7 @@ class OfflineCopies private constructor(private val directory: File?) {
 		return copy
 	}
 
-	/** Lets [write] fill a temporary file and keeps it as the copy of [ciphertext] once it is complete. */
+	/** [write] fills a temporary file that becomes the copy only when complete. */
 	@Throws(IOException::class)
 	fun store(vaultId: Long, ciphertext: CloudFile, write: (File) -> Unit): File {
 		directory ?: throw IOException("There is no storage for offline copies")
@@ -76,7 +72,7 @@ class OfflineCopies private constructor(private val directory: File?) {
 		@Volatile
 		private var instance: OfflineCopies? = null
 
-		// a bare context without app storage (unit tests) keeps nothing offline
+		// unit tests pass a context without app storage
 		private val DISABLED = OfflineCopies(null)
 
 		fun of(context: Context): OfflineCopies {

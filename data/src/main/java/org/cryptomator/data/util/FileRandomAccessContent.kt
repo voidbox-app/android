@@ -7,7 +7,6 @@ import java.io.FileInputStream
 import java.io.IOException
 import java.io.InputStream
 
-/** A file on this device read in ranges. */
 class FileRandomAccessContent(private val file: File) : RandomAccessContent {
 
 	override val size: Long = file.length()
@@ -22,7 +21,5 @@ class FileRandomAccessContent(private val file: File) : RandomAccessContent {
 		}
 	}
 
-	override fun close() {
-		// nothing is held between ranges
-	}
+	override fun close() = Unit
 }

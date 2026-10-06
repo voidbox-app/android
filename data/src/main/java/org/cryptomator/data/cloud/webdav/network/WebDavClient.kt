@@ -151,11 +151,7 @@ internal class WebDavClient(private val httpClient: WebDavCompatibleHttpClient) 
 		}
 	}
 
-	/**
-	 * Part of a file: [length] bytes from [offset], or up to the end when [length] is null. Only a
-	 * 206 answer starting exactly at [offset] is accepted. A server that ignores the range would
-	 * send the whole file instead, so such an answer is dropped unread.
-	 */
+	/** Only a 206 starting at [offset] is accepted: a server that ignores Range would send the whole file. */
 	@Throws(BackendException::class)
 	fun readRange(url: String, offset: Long, length: Long?): InputStream {
 		val range = if (length == null) "bytes=$offset-" else "bytes=$offset-${offset + length - 1}"

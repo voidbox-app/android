@@ -95,11 +95,7 @@ interface CloudContentRepository<CloudType : Cloud, NodeType : CloudNode, DirTyp
 	@Throws(BackendException::class)
 	fun read(file: FileType, encryptedTmpFile: File?, data: OutputStream, progressAware: ProgressAware<DownloadState>)
 
-	/**
-	 * Opens [file] for reading parts of it without downloading it whole.
-	 *
-	 * @throws RandomAccessNotSupportedException if this cloud cannot read from the middle of a file
-	 */
+	/** @throws RandomAccessNotSupportedException if this cloud cannot read part of a file */
 	@Throws(BackendException::class)
 	fun openRandomAccess(file: FileType): RandomAccessContent {
 		throw RandomAccessNotSupportedException()

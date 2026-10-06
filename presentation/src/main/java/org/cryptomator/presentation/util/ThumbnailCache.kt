@@ -86,7 +86,7 @@ class ThumbnailCache @Inject constructor(private val context: Context, private v
 		return thumbnail
 	}
 
-	/** Stores an already decoded picture, e.g. a video frame, as the thumbnail of [file]. Call off the main thread. */
+	/** Stores a decoded picture, such as a video frame. Call off the main thread. */
 	fun store(file: CloudFileModel, picture: Bitmap): Bitmap? {
 		val vault = vaultOf(file) ?: return null
 		val thumbnail = shrink(picture)
@@ -103,7 +103,6 @@ class ThumbnailCache @Inject constructor(private val context: Context, private v
 		return thumbnail
 	}
 
-	// down to the size the list shows, so a full video frame does not sit in memory
 	private fun shrink(picture: Bitmap): Bitmap {
 		val scale = SIZE_PX.toFloat() / minOf(picture.width, picture.height)
 		if (scale >= 1f) {

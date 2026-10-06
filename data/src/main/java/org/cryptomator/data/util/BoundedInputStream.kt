@@ -3,7 +3,7 @@ package org.cryptomator.data.util
 import java.io.FilterInputStream
 import java.io.InputStream
 
-/** Ends after [limit] bytes of the wrapped stream, or never when [limit] is null. */
+/** Ends after [limit] bytes; null means no limit. */
 open class BoundedInputStream(delegate: InputStream, private val limit: Long?) : FilterInputStream(delegate) {
 
 	private var consumed = 0L

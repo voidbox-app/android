@@ -11,23 +11,17 @@ import javax.inject.Inject
 import javax.inject.Singleton
 import timber.log.Timber
 
-/**
- * Vault media read in pieces straight from the cloud: what the player and the thumbnail
- * extractor need, and nothing more, is fetched and decrypted in memory.
- */
+/** Ranged access to vault media for the player and the thumbnail extractor. */
 @Singleton
 class VaultMedia @Inject constructor(private val cloudContentRepository: DispatchingCloudContentRepository) {
 
-	/** Opens [file] for ranged reads. Nothing is fetched until a range is asked for. Call off the main thread. */
+	/** Call off the main thread. */
 	@Throws(BackendException::class)
 	fun open(file: CloudFileModel): RandomAccessContent {
 		return cloudContentRepository.openRandomAccess(file.toCloudNode())
 	}
 
-	/**
-	 * Whether [file] can be played without downloading it: the cloud must honour ranged reads and
-	 * the first piece must decrypt. Costs the file header and one chunk. Call off the main thread.
-	 */
+	/** Fetches the header and one chunk. Call off the main thread. */
 	fun supportsStreaming(file: CloudFileModel): Boolean {
 		return try {
 			open(file).use { content -> content.openStream(0, 1).use { it.read() >= 0 } }
@@ -37,10 +31,7 @@ class VaultMedia @Inject constructor(private val cloudContentRepository: Dispatc
 		}
 	}
 
-	/**
-	 * A frame from a little way into the video, where the picture has usually settled, or the first
-	 * keyframe of a very short clip. Null when the extractor does not understand the data.
-	 */
+	/** A frame one second in, where the picture has settled; null when the format is not understood. */
 	fun frame(source: RandomAccessMediaDataSource): Bitmap? {
 		val retriever = MediaMetadataRetriever()
 		try {

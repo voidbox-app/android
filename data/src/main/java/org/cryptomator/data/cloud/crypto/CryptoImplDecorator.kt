@@ -345,7 +345,7 @@ abstract class CryptoImplDecorator(
 		}
 	}
 
-	/** The cleartext of [cryptoFile] in pieces, each piece decrypted on request from the offline copy or fetched from the cloud. */
+	/** Reads the offline copy when there is one, otherwise the cloud. */
 	@Throws(BackendException::class)
 	fun openRandomAccess(cryptoFile: CryptoFile): RandomAccessContent {
 		val ciphertext = OfflineCopies.of(context).find(cryptoFile.cloudFile)?.let { FileRandomAccessContent(it) } ?: cloudContentRepository.openRandomAccess(cryptoFile.cloudFile)
@@ -356,7 +356,6 @@ abstract class CryptoImplDecorator(
 	private fun readToTmpFile(cryptoFile: CryptoFile, file: CloudFile, progressAware: ProgressAware<DownloadState>): File {
 		val encryptedTmpFile = File.createTempFile(UUID.randomUUID().toString(), ".crypto", internalCache)
 		OfflineCopies.of(context).find(file)?.let { offlineCopy ->
-			// the ciphertext is already here, so there is nothing to download
 			offlineCopy.copyTo(encryptedTmpFile, overwrite = true)
 			return encryptedTmpFile
 		}

@@ -26,11 +26,7 @@ import org.cryptomator.presentation.util.RandomAccessDataSource
 import javax.inject.Inject
 import timber.log.Timber
 
-/**
- * In-app video and audio player: a stock Media3 PlayerView, nothing handed to other apps. A
- * streamed file is fetched and decrypted piece by piece as the player asks for it; otherwise
- * the decrypted copy on disk is played.
- */
+/** In-app video and audio player over a streamed source or the decrypted copy. */
 // seek increments and controller visibility are still marked unstable in Media3 1.4
 @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 @Activity
@@ -100,7 +96,7 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 			.setSeekBackIncrementMs(SEEK_STEP_MS) //
 			.setSeekForwardIncrementMs(SEEK_STEP_MS)
 		if (streamed) {
-			// opened on the player's loading thread, the first time it asks for bytes
+			// opened lazily on the player's loading thread
 			val factory = RandomAccessDataSource.Factory { presenter.openStream(file) }
 			sourceFactory = factory
 			builder.setMediaSourceFactory(DefaultMediaSourceFactory(factory))

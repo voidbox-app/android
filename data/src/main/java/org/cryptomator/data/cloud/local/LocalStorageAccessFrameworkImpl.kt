@@ -373,7 +373,6 @@ internal class LocalStorageAccessFrameworkImpl(private val context: Context, pri
 		progressAware.onProgress(Progress.completed(DownloadState.download(file)))
 	}
 
-	/** The document is a real file on disk, so every range is a fresh stream positioned at the offset. */
 	@Throws(BackendException::class)
 	fun openRandomAccess(file: LocalStorageAccessFile): RandomAccessContent {
 		val fileSize = file.size ?: throw RandomAccessNotSupportedException("Size of the file is unknown")
@@ -399,9 +398,7 @@ internal class LocalStorageAccessFrameworkImpl(private val context: Context, pri
 				}
 			}
 
-			override fun close() {
-				// nothing is held between ranges
-			}
+			override fun close() = Unit
 		}
 	}
 

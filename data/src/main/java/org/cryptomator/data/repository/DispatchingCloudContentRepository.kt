@@ -168,7 +168,7 @@ class DispatchingCloudContentRepository @Inject constructor(
 	@Throws(BackendException::class)
 	override fun openRandomAccess(file: CloudFile): RandomAccessContent {
 		try {
-			// no network check: a vault file kept offline is read from the device, and the cloud is only asked when a range is opened
+			// no network check: offline copies are read without a connection
 			return delegateFor(file).openRandomAccess(file)
 		} catch (e: AuthenticationException) {
 			delegates.remove(file.cloud)

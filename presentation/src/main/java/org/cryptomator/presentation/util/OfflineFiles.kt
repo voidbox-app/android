@@ -14,22 +14,19 @@ import java.io.IOException
 import javax.inject.Inject
 import javax.inject.Singleton
 
-/**
- * Vault files kept on the device as the cloud holds them, encrypted. The player, the thumbnails
- * and exports then read the copy instead of the cloud, so the file works without a connection.
- */
+/** Vault files kept on the device as ciphertext; readers use the copy instead of the cloud. */
 @Singleton
 class OfflineFiles @Inject constructor(context: Context, private val cloudContentRepository: DispatchingCloudContentRepository) {
 
 	private val copies = OfflineCopies.of(context)
 
-	/** Cheap enough for list rows: a lookup in memory. */
+	/** In-memory lookup; safe on the main thread. */
 	fun isOffline(file: CloudFileModel): Boolean {
 		val cryptoFile = file.toCloudNode() as? CryptoFile ?: return false
 		return copies.find(cryptoFile.cloudFile) != null
 	}
 
-	/** Downloads the ciphertext of [file] and keeps it. Call off the main thread. */
+	/** Call off the main thread. */
 	@Throws(BackendException::class, IOException::class)
 	fun keep(file: CloudFileModel, progressAware: ProgressAware<DownloadState>) {
 		val cryptoFile = file.toCloudNode() as? CryptoFile ?: throw IllegalArgumentException("${file.name} is not in a vault")

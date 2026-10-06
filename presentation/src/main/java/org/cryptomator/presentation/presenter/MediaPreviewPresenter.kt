@@ -12,11 +12,7 @@ import org.cryptomator.presentation.util.VaultMedia
 import javax.inject.Inject
 import timber.log.Timber
 
-/**
- * Plays video and audio inside the app: straight from the cloud when the file can be read in
- * pieces, otherwise from the decrypted copy inside the app's cache directory, which is removed as
- * soon as the player closes.
- */
+/** Plays streamed media, or the decrypted copy, which is deleted when the player closes. */
 @PerView
 class MediaPreviewPresenter @Inject constructor( //
 	exceptionMappings: ExceptionHandlers,  //
@@ -28,7 +24,7 @@ class MediaPreviewPresenter @Inject constructor( //
 		return Uri.fromFile(fileUtil.fileFor(file))
 	}
 
-	/** Only a name for the player; the bytes come from [openStream]. The extension tells Media3 which container to expect. */
+	/** A placeholder; its extension tells Media3 the container. */
 	fun streamUri(file: CloudFileModel): Uri {
 		return Uri.parse("vault:///" + Uri.encode(file.name))
 	}

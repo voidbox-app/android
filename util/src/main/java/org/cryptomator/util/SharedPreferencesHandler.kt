@@ -167,12 +167,10 @@ constructor(context: Context) : SharedPreferences.OnSharedPreferenceChangeListen
 		return defaultSharedPreferences.getValue(THUMBNAILS, "wifi")
 	}
 
-	/** Whether vault videos get a thumbnail from one of their frames; costs a couple of requests per video while browsing. */
 	fun videoThumbnails(): Boolean {
 		return defaultSharedPreferences.getValue(VIDEO_THUMBNAILS, false)
 	}
 
-	/** Whether vault video and audio play straight from the cloud instead of being downloaded first. */
 	fun streamMedia(): Boolean {
 		return defaultSharedPreferences.getValue(STREAM_MEDIA, true)
 	}

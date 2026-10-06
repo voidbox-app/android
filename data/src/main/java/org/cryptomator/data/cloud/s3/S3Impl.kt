@@ -286,7 +286,6 @@ internal class S3Impl(private val cloud: S3Cloud, private val client: MinioClien
 		progressAware.onProgress(Progress.completed(DownloadState.download(file)))
 	}
 
-	/** S3 serves a byte range natively; the response is the ranged body itself. */
 	@Throws(BackendException::class)
 	fun openRandomAccess(file: S3File): RandomAccessContent {
 		val fileSize = file.size ?: throw RandomAccessNotSupportedException("Size of the file is unknown")
@@ -304,9 +303,7 @@ internal class S3Impl(private val cloud: S3Cloud, private val client: MinioClien
 				}
 			}
 
-			override fun close() {
-				// every range is a request of its own
-			}
+			override fun close() = Unit
 		}
 	}
 

@@ -11,11 +11,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.nio.ByteBuffer
 
-/**
- * Cleartext of a vault file read in pieces: every chunk of the vault format is encrypted on its
- * own, so a range of cleartext costs only the header plus the chunks that overlap the range,
- * fetched from the cloud as one contiguous ciphertext range.
- */
+/** Cleartext of a vault file by range: only the header and the chunks overlapping a range are fetched. */
 internal class CryptoRandomAccessContent(private val ciphertext: RandomAccessContent, private val cryptor: Cryptor) : RandomAccessContent {
 
 	private val headerSize = cryptor.fileHeaderCryptor().headerSize()
@@ -68,7 +64,7 @@ internal class CryptoRandomAccessContent(private val ciphertext: RandomAccessCon
 		}
 	}
 
-	/** Decrypts chunk after chunk from the ciphertext stream, dropping [skip] cleartext bytes first and stopping after [remaining]. */
+	/** Drops [skip] bytes of the first chunk and ends after [remaining] bytes. */
 	private inner class DecryptingStream(private val chunks: InputStream, private val header: FileHeader, firstChunk: Long, skip: Long, private var remaining: Long) : InputStream() {
 
 		private var chunkNumber = firstChunk
@@ -99,7 +95,6 @@ internal class CryptoRandomAccessContent(private val ciphertext: RandomAccessCon
 			return count
 		}
 
-		// one ciphertext chunk in, its cleartext out, minus whatever lies before the requested offset
 		private fun nextChunk(): Boolean {
 			encrypted.clear()
 			readFully(chunks, encrypted)

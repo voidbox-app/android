@@ -27,7 +27,7 @@ class CryptoRandomAccessContentTest {
 	@BeforeEach
 	fun setup() {
 		cryptor = CryptorProvider.forScheme(CryptorProvider.Scheme.SIV_GCM).provide(Masterkey(ByteArray(64)), SecureRandom())
-		// three and a half chunks, so the last chunk is short and offsets cross chunk borders
+		// 3.5 chunks: a short last chunk and offsets across chunk borders
 		cleartext = ByteArray(cryptor.fileContentCryptor().cleartextChunkSize() * 7 / 2).also { Random(1).nextBytes(it) }
 		val out = ByteArrayOutputStream()
 		EncryptingWritableByteChannel(Channels.newChannel(out), cryptor).use { it.write(ByteBuffer.wrap(cleartext)) }

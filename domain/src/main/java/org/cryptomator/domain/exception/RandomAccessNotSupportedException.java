@@ -1,9 +1,6 @@
 package org.cryptomator.domain.exception;
 
-/**
- * The cloud cannot read part of a file: the backend has no ranged reads, or the server ignored
- * the requested range. Callers fall back to downloading the whole file.
- */
+/** The cloud cannot read part of a file; callers download it whole instead. */
 public class RandomAccessNotSupportedException extends BackendException {
 
 	public RandomAccessNotSupportedException() {

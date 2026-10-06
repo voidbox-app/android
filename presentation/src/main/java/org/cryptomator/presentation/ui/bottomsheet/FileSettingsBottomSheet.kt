@@ -55,7 +55,6 @@ class FileSettingsBottomSheet : BaseBottomSheet<FileSettingsBottomSheet.Callback
 			callback?.onExportFileClicked(cloudFileModel)
 			dismiss()
 		}
-		// only vault files can be kept: outside a vault there is nothing to decrypt later
 		if (cloudFileModel.toCloudNode().cloud is CryptoCloud) {
 			binding.keepOffline.visibility = View.VISIBLE
 			if (offline) {

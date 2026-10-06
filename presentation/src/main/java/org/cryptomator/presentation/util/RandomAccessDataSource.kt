@@ -10,11 +10,7 @@ import org.cryptomator.domain.repository.RandomAccessContent
 import java.io.IOException
 import java.io.InputStream
 
-/**
- * Lets Media3 play a vault file straight from the cloud: each range the player asks for is
- * fetched and decrypted on the spot, so nothing decrypted touches the disk and playback starts
- * before the file is downloaded.
- */
+/** Media3 source over a [RandomAccessContent]. */
 @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 class RandomAccessDataSource(private val content: RandomAccessContent) : BaseDataSource(true) {
 
@@ -70,7 +66,7 @@ class RandomAccessDataSource(private val content: RandomAccessContent) : BaseDat
 		}
 	}
 
-	/** Opens the content on the player's loading thread, the first time a source is created, and shares it between sources. */
+	/** Opens the content once, lazily, and shares it between sources. */
 	class Factory(private val open: () -> RandomAccessContent) : DataSource.Factory {
 
 		private var content: RandomAccessContent? = null
