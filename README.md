@@ -5,7 +5,7 @@
 <h1 align="center">Voidbox</h1>
 
 <p align="center">
-  <b>Your files, encrypted on your phone, kept in your own cloud.</b>
+  <b>Open-source file encryption for cloud storage.</b>
 </p>
 
 <p align="center">
@@ -27,12 +27,11 @@
   <img src="docs/demo.gif" width="300" alt="Unlocking a vault, browsing photos and playing a video">
 </p>
 
-Voidbox keeps your documents, photos and videos private in the cloud you already use. Every file
-is encrypted on your phone before it leaves it, so your provider only ever stores data it cannot
-read. Vaults use the open Cryptomator format: the same vault opens with Cryptomator on Windows,
-macOS, Linux and iOS.
+Voidbox for Android keeps your documents, photos and videos private in the cloud you already use.
+Every file is encrypted on your phone before it leaves it, so your provider only ever stores data
+it cannot read.
 
-Free and open source. No ads, no tracking, no account.
+Free, with no ads, no tracking and no account.
 
 ## Screenshots
 
@@ -80,9 +79,8 @@ Voidbox runs on Android 8.0 and newer.
 ## Voidbox and Cryptomator
 
 Voidbox is built on [Cryptomator for Android](https://github.com/cryptomator/android) and keeps its
-vault format, so your vaults stay compatible with every Cryptomator app. On top of it, Voidbox adds
-its own design, streaming playback, offline copies and thumbnails, and makes every feature
-available for free.
+vault format, so existing vaults open in Voidbox. On top of it, Voidbox adds its own design,
+streaming playback, offline copies and thumbnails, and makes every feature available for free.
 
 Cryptomator updates are reviewed and taken over by hand, so Voidbox follows Cryptomator with a
 short delay. The Cryptomator version it is based on is recorded in [UPSTREAM_TAG](UPSTREAM_TAG).
