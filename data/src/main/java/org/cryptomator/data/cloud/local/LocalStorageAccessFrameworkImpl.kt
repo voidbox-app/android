@@ -11,6 +11,7 @@ import org.cryptomator.data.cloud.local.LocalStorageAccessFrameworkNodeFactory.f
 import org.cryptomator.data.cloud.local.LocalStorageAccessFrameworkNodeFactory.folder
 import org.cryptomator.data.cloud.local.LocalStorageAccessFrameworkNodeFactory.from
 import org.cryptomator.data.cloud.local.LocalStorageAccessFrameworkNodeFactory.getNodePath
+import org.cryptomator.data.util.BoundedInputStream
 import org.cryptomator.data.util.CopyStream
 import org.cryptomator.data.util.TransferredBytesAwareInputStream
 import org.cryptomator.data.util.TransferredBytesAwareOutputStream
@@ -21,7 +22,9 @@ import org.cryptomator.domain.exception.FatalBackendException
 import org.cryptomator.domain.exception.NoSuchCloudFileException
 import org.cryptomator.domain.exception.NotFoundException
 import org.cryptomator.domain.exception.ParentFolderIsNullException
+import org.cryptomator.domain.exception.RandomAccessNotSupportedException
 import org.cryptomator.domain.exception.authentication.NoAuthenticationProvidedException
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
@@ -29,9 +32,11 @@ import org.cryptomator.domain.usecases.cloud.Progress
 import org.cryptomator.domain.usecases.cloud.UploadState
 import org.cryptomator.util.file.MimeType
 import org.cryptomator.util.file.MimeTypes
+import java.io.FileInputStream
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.InputStream
 import java.io.OutputStream
 import java.util.function.Supplier
 
@@ -366,6 +371,38 @@ internal class LocalStorageAccessFrameworkImpl(private val context: Context, pri
 			}.use { out -> CopyStream.copyStreamToStream(inputStream, out) }
 		} ?: throw FatalBackendException("InputStream shouldn't bee null")
 		progressAware.onProgress(Progress.completed(DownloadState.download(file)))
+	}
+
+	/** The document is a real file on disk, so every range is a fresh stream positioned at the offset. */
+	@Throws(BackendException::class)
+	fun openRandomAccess(file: LocalStorageAccessFile): RandomAccessContent {
+		val fileSize = file.size ?: throw RandomAccessNotSupportedException("Size of the file is unknown")
+		val uri = file.uri
+		return object : RandomAccessContent {
+			override val size = fileSize
+
+			override fun openStream(offset: Long, length: Long?): InputStream {
+				try {
+					val descriptor = contentResolver().openFileDescriptor(uri, "r") ?: throw FatalBackendException("File descriptor shouldn't be null")
+					val stream = FileInputStream(descriptor.fileDescriptor)
+					stream.channel.position(offset)
+					return object : BoundedInputStream(stream, length) {
+						override fun close() {
+							super.close()
+							descriptor.close()
+						}
+					}
+				} catch (e: FileNotFoundException) {
+					throw NoSuchCloudFileException(file.name)
+				} catch (e: IOException) {
+					throw FatalBackendException(e)
+				}
+			}
+
+			override fun close() {
+				// nothing is held between ranges
+			}
+		}
 	}
 
 	@Throws(NoSuchCloudFileException::class)

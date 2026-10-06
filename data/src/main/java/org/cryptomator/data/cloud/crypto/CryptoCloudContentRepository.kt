@@ -10,6 +10,7 @@ import org.cryptomator.domain.exception.BackendException
 import org.cryptomator.domain.exception.CloudNodeAlreadyExistsException
 import org.cryptomator.domain.exception.FatalBackendException
 import org.cryptomator.domain.repository.CloudContentRepository
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
@@ -93,6 +94,11 @@ internal class CryptoCloudContentRepository(context: Context, cloudContentReposi
 	@Throws(BackendException::class)
 	override fun read(file: CryptoFile, encryptedTmpFile: File?, data: OutputStream, progressAware: ProgressAware<DownloadState>) {
 		cryptoImpl.read(file, data, progressAware)
+	}
+
+	@Throws(BackendException::class)
+	override fun openRandomAccess(file: CryptoFile): RandomAccessContent {
+		return cryptoImpl.openRandomAccess(file)
 	}
 
 	@Throws(BackendException::class)

@@ -16,6 +16,7 @@ import org.cryptomator.domain.exception.FatalBackendException
 import org.cryptomator.domain.exception.NoDirFileException
 import org.cryptomator.domain.exception.ParentFolderIsNullException
 import org.cryptomator.domain.repository.CloudContentRepository
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.DownloadFileReplacingProgressAware
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.UploadFileReplacingProgressAware
@@ -340,6 +341,12 @@ abstract class CryptoImplDecorator(
 		} catch (e: IOException) {
 			throw FatalBackendException(e)
 		}
+	}
+
+	/** The cleartext of [cryptoFile] in pieces, each piece fetched and decrypted on request. */
+	@Throws(BackendException::class)
+	fun openRandomAccess(cryptoFile: CryptoFile): RandomAccessContent {
+		return CryptoRandomAccessContent(cloudContentRepository.openRandomAccess(cryptoFile.cloudFile), cryptor())
 	}
 
 	@Throws(BackendException::class, IOException::class)

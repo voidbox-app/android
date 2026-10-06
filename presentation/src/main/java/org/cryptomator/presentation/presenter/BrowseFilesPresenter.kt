@@ -104,6 +104,9 @@ import org.cryptomator.domain.CloudType
 import org.cryptomator.presentation.util.FileIcon
 import org.cryptomator.presentation.util.FolderListingCache
 import org.cryptomator.presentation.util.ThumbnailCache
+import org.cryptomator.presentation.util.RandomAccessMediaDataSource
+import org.cryptomator.presentation.util.VaultMedia
+import java.util.concurrent.TimeUnit
 
 @PerView
 class BrowseFilesPresenter @Inject constructor( //
@@ -141,6 +144,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	private val sharedPreferencesHandler: SharedPreferencesHandler,  //
 	private val licenseEnforcer: LicenseEnforcer, //
 	private val thumbnailCache: ThumbnailCache, //
+	private val vaultMedia: VaultMedia, //
 	private val folderListingCache: FolderListingCache, //
 	exceptionMappings: ExceptionHandlers
 ) : Presenter<BrowseFilesView>(exceptionMappings) {
@@ -586,7 +590,9 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private fun thumbnailsAllowedFor(file: CloudFileModel): Boolean {
-		if (file.icon != FileIcon.IMAGE || (file.size ?: 0L) > ThumbnailCache.MAX_IMAGE_BYTES || thumbnailCache.vaultOf(file) == null) {
+		// a video is read in pieces, so its size does not matter; an image is downloaded whole
+		val eligible = file.icon == FileIcon.MOVIE || (file.icon == FileIcon.IMAGE && (file.size ?: 0L) <= ThumbnailCache.MAX_IMAGE_BYTES)
+		if (!eligible || thumbnailCache.vaultOf(file) == null) {
 			return false
 		}
 		if (thumbnailCache.vaultOf(file)?.cloud?.type() == CloudType.LOCAL) {
@@ -618,10 +624,30 @@ class BrowseFilesPresenter @Inject constructor( //
 			if (hit.isPresent) {
 				view?.showThumbnail(file, hit.get())
 				loadNextThumbnail()
+			} else if (file.icon == FileIcon.MOVIE) {
+				extractVideoThumbnail(file)
 			} else {
 				downloadThumbnail(file)
 			}
 		}, { loadNextThumbnail() }))
+	}
+
+	// A frame from the video, fetched in pieces: the extractor reads only the index and one
+	// keyframe. Giving up on time closes the source, which fails any read the extractor is stuck in.
+	private fun extractVideoThumbnail(file: CloudFileModel) {
+		thumbnailLoads.add(Single.using({ RandomAccessMediaDataSource(vaultMedia.open(file)) }, { source ->
+			Single.fromCallable { Optional.ofNullable(vaultMedia.frame(source)?.let { thumbnailCache.store(file, it) }) }
+		}, { it.close() }) //
+			.subscribeOn(Schedulers.io()) //
+			.timeout(VIDEO_THUMBNAIL_TIMEOUT_SECONDS, TimeUnit.SECONDS) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({ thumbnail ->
+				if (thumbnail.isPresent) view?.showThumbnail(file, thumbnail.get())
+				loadNextThumbnail()
+			}, { e ->
+				Timber.tag("Thumbnails").w(e, "No frame for %s", file.name)
+				loadNextThumbnail()
+			}))
 	}
 
 	private fun downloadThumbnail(file: CloudFileModel) {
@@ -650,6 +676,7 @@ class BrowseFilesPresenter @Inject constructor( //
 
 	override fun destroyed() {
 		thumbnailLoads.dispose()
+		streamProbes.dispose()
 		pendingThumbnails.clear()
 		super.destroyed()
 	}
@@ -845,8 +872,35 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onFileClicked(cloudFile: CloudFileModel) {
-		readFilesWithProgress(listOf(cloudFile), Intent.ACTION_VIEW)
+		if ((isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) && thumbnailCache.vaultOf(cloudFile) != null) {
+			streamOrDownload(cloudFile)
+		} else {
+			readFilesWithProgress(listOf(cloudFile), Intent.ACTION_VIEW)
+		}
 	}
+
+	// Vault media plays straight from the cloud when the server serves ranges; a quick probe of
+	// the first piece decides, and a server that cannot is handled the old way, by downloading.
+	private fun streamOrDownload(cloudFile: CloudFileModel) {
+		val files = listOf(cloudFile)
+		view?.showProgress(files, ProgressModel(progressStateModelMapper.toModel(DownloadState.download(cloudFile.toCloudNode())), 0))
+		streamProbes.add(Single.fromCallable { vaultMedia.supportsStreaming(cloudFile) } //
+			.subscribeOn(Schedulers.io()) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({ streamable ->
+				view?.hideProgress(files)
+				if (streamable) {
+					startIntent(Intents.mediaPreviewIntent().withMediaFile(cloudFile).withStreamed(true).build(this))
+				} else {
+					readFilesWithProgress(files, Intent.ACTION_VIEW)
+				}
+			}, {
+				view?.hideProgress(files)
+				readFilesWithProgress(files, Intent.ACTION_VIEW)
+			}))
+	}
+
+	private val streamProbes = CompositeDisposable()
 
 	fun onShareNodesClicked(nodes: List<CloudNodeModel<*>?>) {
 		val filesToShare: MutableList<CloudFileModel> = ArrayList()
@@ -1401,6 +1455,8 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	companion object {
+
+		private const val VIDEO_THUMBNAIL_TIMEOUT_SECONDS = 30L
 
 		const val OPEN_FILE_FINISHED = 12
 

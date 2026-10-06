@@ -12,6 +12,7 @@ import androidx.media3.common.MediaItem
 import androidx.media3.common.PlaybackException
 import androidx.media3.common.Player
 import androidx.media3.exoplayer.ExoPlayer
+import androidx.media3.exoplayer.source.DefaultMediaSourceFactory
 import androidx.media3.ui.PlayerView
 import org.cryptomator.generator.Activity
 import org.cryptomator.generator.InjectIntent
@@ -21,10 +22,15 @@ import org.cryptomator.presentation.intent.MediaPreviewIntent
 import org.cryptomator.presentation.presenter.MediaPreviewPresenter
 import org.cryptomator.presentation.ui.activity.view.MediaPreviewView
 import org.cryptomator.presentation.ui.layout.applySystemBarsPadding
+import org.cryptomator.presentation.util.RandomAccessDataSource
 import javax.inject.Inject
 import timber.log.Timber
 
-/** In-app video and audio player: a stock Media3 PlayerView over the decrypted copy, nothing handed to other apps. */
+/**
+ * In-app video and audio player: a stock Media3 PlayerView, nothing handed to other apps. A
+ * streamed file is fetched and decrypted piece by piece as the player asks for it; otherwise
+ * the decrypted copy on disk is played.
+ */
 // seek increments and controller visibility are still marked unstable in Media3 1.4
 @androidx.annotation.OptIn(androidx.media3.common.util.UnstableApi::class)
 @Activity
@@ -37,6 +43,7 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 	lateinit var mediaPreviewIntent: MediaPreviewIntent
 
 	private var player: ExoPlayer? = null
+	private var sourceFactory: RandomAccessDataSource.Factory? = null
 	private var resumePosition = 0L
 	private var resumePlayWhenReady = true
 	private val hideSeekHint = Runnable { binding.seekHint.animate().alpha(0f).setDuration(200).start() }
@@ -87,10 +94,18 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 		if (player != null) {
 			return
 		}
-		val exoPlayer = ExoPlayer.Builder(this) //
+		val file = mediaPreviewIntent.mediaFile()
+		val streamed = mediaPreviewIntent.streamed() == true
+		val builder = ExoPlayer.Builder(this) //
 			.setSeekBackIncrementMs(SEEK_STEP_MS) //
-			.setSeekForwardIncrementMs(SEEK_STEP_MS) //
-			.build()
+			.setSeekForwardIncrementMs(SEEK_STEP_MS)
+		if (streamed) {
+			// opened on the player's loading thread, the first time it asks for bytes
+			val factory = RandomAccessDataSource.Factory { presenter.openStream(file) }
+			sourceFactory = factory
+			builder.setMediaSourceFactory(DefaultMediaSourceFactory(factory))
+		}
+		val exoPlayer = builder.build()
 		exoPlayer.addListener(object : Player.Listener {
 			override fun onPlayerError(error: PlaybackException) {
 				Timber.tag("MediaPreview").e(error, "Playback failed")
@@ -98,7 +113,7 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 				finish()
 			}
 		})
-		exoPlayer.setMediaItem(MediaItem.fromUri(presenter.mediaUri(mediaPreviewIntent.mediaFile())))
+		exoPlayer.setMediaItem(MediaItem.fromUri(if (streamed) presenter.streamUri(file) else presenter.mediaUri(file)))
 		exoPlayer.seekTo(resumePosition)
 		exoPlayer.playWhenReady = resumePlayWhenReady
 		exoPlayer.prepare()
@@ -114,6 +129,8 @@ class MediaPreviewActivity : BaseActivity<ActivityMediaPreviewBinding>(ActivityM
 			it.release()
 		}
 		player = null
+		sourceFactory?.release()
+		sourceFactory = null
 	}
 
 	/** Landscape with the system bars tucked away; the same button brings everything back. */

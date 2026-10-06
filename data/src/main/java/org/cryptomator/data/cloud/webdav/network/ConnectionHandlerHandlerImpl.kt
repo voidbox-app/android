@@ -48,6 +48,11 @@ class ConnectionHandlerHandlerImpl @Inject internal constructor(httpClient: WebD
 	}
 
 	@Throws(BackendException::class)
+	fun readRange(url: String, offset: Long, length: Long?): InputStream {
+		return webDavClient.readRange(url, offset, length)
+	}
+
+	@Throws(BackendException::class)
 	fun checkAuthenticationAndServerCompatibility(url: String) {
 		webDavClient.checkAuthenticationAndServerCompatibility(url)
 	}

@@ -6,11 +6,13 @@ import org.cryptomator.domain.CloudFolder
 import org.cryptomator.domain.CloudNode
 import org.cryptomator.domain.exception.BackendException
 import org.cryptomator.domain.repository.CloudContentRepository
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
 import org.cryptomator.domain.usecases.cloud.UploadState
 import java.io.File
+import java.io.InputStream
 import java.io.OutputStream
 
 abstract class InterceptingCloudContentRepository<CloudType : Cloud, NodeType : CloudNode, DirType : CloudFolder, FileType : CloudFile> protected constructor(private val delegate: CloudContentRepository<CloudType, NodeType, DirType, FileType>) :
@@ -172,6 +174,36 @@ abstract class InterceptingCloudContentRepository<CloudType : Cloud, NodeType : 
 		} catch (e: RuntimeException) {
 			throwWrappedIfRequired(e)
 			throw e
+		}
+	}
+
+	@Throws(BackendException::class)
+	override fun openRandomAccess(file: FileType): RandomAccessContent {
+		return try {
+			InterceptedRandomAccessContent(delegate.openRandomAccess(file))
+		} catch (e: BackendException) {
+			throwWrappedIfRequired(e)
+			throw e
+		} catch (e: RuntimeException) {
+			throwWrappedIfRequired(e)
+			throw e
+		}
+	}
+
+	// ranges are requested long after the file was opened, so their errors get the same translation
+	private inner class InterceptedRandomAccessContent(private val content: RandomAccessContent) : RandomAccessContent by content {
+
+		@Throws(BackendException::class)
+		override fun openStream(offset: Long, length: Long?): InputStream {
+			return try {
+				content.openStream(offset, length)
+			} catch (e: BackendException) {
+				throwWrappedIfRequired(e)
+				throw e
+			} catch (e: RuntimeException) {
+				throwWrappedIfRequired(e)
+				throw e
+			}
 		}
 	}
 

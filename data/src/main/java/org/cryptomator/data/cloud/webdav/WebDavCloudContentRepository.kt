@@ -19,6 +19,7 @@ import org.cryptomator.domain.exception.authentication.WebDavNotSupportedExcepti
 import org.cryptomator.domain.exception.authentication.WebDavServerNotFoundException
 import org.cryptomator.domain.exception.authentication.WrongCredentialsException
 import org.cryptomator.domain.repository.CloudContentRepository
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
@@ -202,6 +203,11 @@ internal class WebDavCloudContentRepository(private val cloud: WebDavCloud, conn
 					throw NoSuchCloudFileException(file.name)
 				}
 			}
+		}
+
+		@Throws(BackendException::class)
+		override fun openRandomAccess(file: WebDavFile): RandomAccessContent {
+			return webDavImpl.openRandomAccess(file)
 		}
 
 		@Throws(BackendException::class)

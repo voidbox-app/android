@@ -18,6 +18,7 @@ import org.cryptomator.presentation.util.ContentResolverUtil;
 import org.cryptomator.presentation.util.FileUtil;
 import org.cryptomator.presentation.util.FolderListingCache;
 import org.cryptomator.presentation.util.ThumbnailCache;
+import org.cryptomator.presentation.util.VaultMedia;
 
 import javax.inject.Singleton;
 
@@ -46,6 +47,8 @@ public interface ApplicationComponent {
 	FileUtil fileUtil();
 
 	ThumbnailCache thumbnailCache();
+
+	VaultMedia vaultMedia();
 
 	FolderListingCache folderListingCache();
 

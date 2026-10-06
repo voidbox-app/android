@@ -13,7 +13,9 @@ import org.cryptomator.domain.exception.ForbiddenException
 import org.cryptomator.domain.exception.NoSuchBucketException
 import org.cryptomator.domain.exception.NoSuchCloudFileException
 import org.cryptomator.domain.exception.ParentFolderIsNullException
+import org.cryptomator.domain.exception.RandomAccessNotSupportedException
 import org.cryptomator.domain.exception.authentication.WrongCredentialsException
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DataSource
 import org.cryptomator.domain.usecases.cloud.DownloadState
@@ -21,6 +23,7 @@ import org.cryptomator.domain.usecases.cloud.Progress
 import org.cryptomator.domain.usecases.cloud.UploadState
 import java.io.ByteArrayInputStream
 import java.io.IOException
+import java.io.InputStream
 import java.io.OutputStream
 import java.util.Date
 import java.util.LinkedList
@@ -281,6 +284,30 @@ internal class S3Impl(private val cloud: S3Cloud, private val client: MinioClien
 			throw handleApiError(e, file.path)
 		}
 		progressAware.onProgress(Progress.completed(DownloadState.download(file)))
+	}
+
+	/** S3 serves a byte range natively; the response is the ranged body itself. */
+	@Throws(BackendException::class)
+	fun openRandomAccess(file: S3File): RandomAccessContent {
+		val fileSize = file.size ?: throw RandomAccessNotSupportedException("Size of the file is unknown")
+		return object : RandomAccessContent {
+			override val size = fileSize
+
+			override fun openStream(offset: Long, length: Long?): InputStream {
+				val args = GetObjectArgs.builder().bucket(cloud.s3Bucket()).`object`(file.key).offset(offset).length(length).build()
+				return try {
+					client.getObject(args)
+				} catch (e: ErrorResponseException) {
+					throw handleApiError(e, file.path)
+				} catch (e: IOException) {
+					throw FatalBackendException(e)
+				}
+			}
+
+			override fun close() {
+				// every range is a request of its own
+			}
+		}
 	}
 
 	@Throws(IOException::class, BackendException::class)
