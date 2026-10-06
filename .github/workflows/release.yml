@@ -1,18 +1,14 @@
 name: Release
 
-# Builds the Latch APK (the Cryptomator lite flavor with the Latch patch set) and publishes it
-# as a GitHub release named after VERSION, so Obtainium can install it.
+# Builds the Latch APK (the Cryptomator lite flavor with the Latch changes) from master and
+# publishes it as a GitHub release named after VERSION, with its SHA-256 checksum.
 #
-# Actions -> Release -> Run workflow. The optional upstream tag rebases the `latch` branch onto
-# that cryptomator/android tag first (UPSTREAM_TAG records the current base); a conflict fails
-# the job. A release whose tag already exists is not rebuilt: bump VERSION first.
+# Actions -> Release -> Run workflow. A release whose tag already exists is not rebuilt: bump
+# VERSION first. Cryptomator updates are merged separately (see upstream.yml); this workflow
+# never changes the branch.
 
 on:
   workflow_dispatch:
-    inputs:
-      upstream_tag:
-        description: "Rebase onto this cryptomator/android tag first (optional)"
-        required: false
 
 permissions:
   contents: write
@@ -27,25 +23,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
-          ref: latch
-          fetch-depth: 0
-          token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: Rebase patch set onto the upstream tag
-        if: github.event.inputs.upstream_tag != ''
-        run: |
-          git config user.name "latch-ci"
-          git config user.email "latch-ci@users.noreply.github.com"
-          git remote add upstream https://github.com/cryptomator/android.git
-          git fetch --tags upstream
-          base=$(cat UPSTREAM_TAG)
-          tag="${{ github.event.inputs.upstream_tag }}"
-          if [ "$base" != "$tag" ]; then
-            git rebase --onto "$tag" "$base" latch
-            echo "$tag" > UPSTREAM_TAG
-            git commit -am "Rebase Latch onto upstream $tag"
-            git push origin latch
-          fi
+          ref: master
 
       - name: Resolve version
         id: version
@@ -87,6 +65,7 @@ jobs:
             --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEYSTORE_PASSWORD \
             --out "latch-${{ steps.version.outputs.version }}.apk" "$unsigned"
           "$tools/apksigner" verify --print-certs "latch-${{ steps.version.outputs.version }}.apk"
+          sha256sum "latch-${{ steps.version.outputs.version }}.apk" > "latch-${{ steps.version.outputs.version }}.apk.sha256"
           rm -f latch.jks
 
       - name: Publish release
@@ -98,6 +77,6 @@ jobs:
           upstream="${{ steps.version.outputs.upstream }}"
           prerelease=""
           if [ "${{ steps.version.outputs.prerelease }}" = "true" ]; then prerelease="--prerelease"; fi
-          gh release create "v$version" "latch-$version.apk" --repo "$GITHUB_REPOSITORY" $prerelease \
+          gh release create "v$version" "latch-$version.apk" "latch-$version.apk.sha256" --repo "$GITHUB_REPOSITORY" $prerelease \
             --title "Latch $version" \
             --notes "Latch $version, built on Cryptomator $upstream: https://github.com/cryptomator/android/releases/tag/$upstream"

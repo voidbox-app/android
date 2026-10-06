@@ -1,0 +1,51 @@
+name: CI
+
+# Runs the unit tests and builds the debug APK for every pull request and every push to master.
+# The APK is kept for a week, so a pull request can be tried on a phone before it is merged.
+
+on:
+  pull_request:
+  push:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+
+      - uses: gradle/actions/setup-gradle@v4
+
+      - name: Unit tests
+        run: ./gradlew --no-daemon :domain:testLiteDebugUnitTest :data:testLiteDebugUnitTest :presentation:testLiteDebugUnitTest :util:testLiteDebugUnitTest
+
+      - name: Build the debug APK
+        run: ./gradlew --no-daemon :presentation:assembleLiteDebug
+
+      - name: Keep the debug APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: latch-debug-apk
+          path: presentation/build/outputs/apk/lite/debug/*.apk
+          retention-days: 7
+
+      - name: Keep the test reports
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: "**/build/reports/tests/"
+          retention-days: 7
