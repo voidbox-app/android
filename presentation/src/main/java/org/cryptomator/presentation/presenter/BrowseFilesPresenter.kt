@@ -196,6 +196,9 @@ class BrowseFilesPresenter @Inject constructor( //
 				.run(DefaultResultHandler())
 		}
 		setRefreshOnBackPressEnabled(enableRefreshOnBackpressSupplier.setInAction(false))
+		if (!thumbnailInFlight) {
+			loadNextThumbnail()
+		}
 	}
 
 	fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -614,7 +617,8 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private fun loadNextThumbnail() {
-		val file = pendingThumbnails.removeFirstOrNull()
+		// paused while another screen, such as the player, may need the decoder; resumed() continues
+		val file = if (isPaused) null else pendingThumbnails.removeFirstOrNull()
 		if (file == null) {
 			thumbnailInFlight = false
 			return
