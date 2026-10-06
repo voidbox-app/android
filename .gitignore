@@ -41,21 +41,6 @@ build/
 # Local configuration file (sdk path, etc)
 local.properties
 
-# fastlane
-**/fastlane/.env
-**/fastlane/report.xml
-
-# fdroid
-**/fastlane/repo/**
-**/fastlane/tmp/**
-**/fastlane/izzyscript/iod-scan-apk.php
-**/fastlane/izzyscript/current_iod-scan-apk.php
-**/fastlane/izzyscript/current_result_*.json
-
-# Fluid Attacks
-**/fastlane/fluidattacks/results.csv
-**/fastlane/fluidattacks/apks/**
-
 ###Voidbox###
 .secrets/
 *.jks
