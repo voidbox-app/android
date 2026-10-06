@@ -56,7 +56,7 @@ local.properties
 **/fastlane/fluidattacks/results.csv
 **/fastlane/fluidattacks/apks/**
 
-###Latch###
+###Voidbox###
 .secrets/
 *.jks
 dist/

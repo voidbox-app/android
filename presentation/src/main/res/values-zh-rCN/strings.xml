@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">无网络连接</string>
 	<string name="error_invalid_passphrase">密码错误</string>
 	<string name="error_file_or_folder_exists">文件(夹)已存在</string>
-	<string name="error_vault_version_not_supported">不支持的保险库版本 %1$s。这可能是使用太新或太旧的 Latch 版本创建的保险库。</string>
+	<string name="error_vault_version_not_supported">不支持的保险库版本 %1$s。这可能是使用太新或太旧的 Voidbox 版本创建的保险库。</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">您的保险库文件夹中缺少 %1$s 文件。请确保您的云端的保险库文件夹中存在该文件。</string>
 	<string name="error_vault_already_exists">保险库已存在</string>
 	<string name="error_no_such_file">文件不存在</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">%1$s 中指定的版本与 %2$s 中的不同</string>
 	<string name="error_vault_key_invalid">%1$s 与此 %2$s 不匹配</string>
 	<string name="error_vault_config_loading">加载保险库配置时发生常规错误</string>
-	<string name="error_file_not_found_after_opening_using_3party">切换回 Latch 后，本地文件不再存在。期间所做可能的改动无法传回云端。</string>
+	<string name="error_file_not_found_after_opening_using_3party">切换回 Voidbox 后，本地文件不再存在。期间所做可能的改动无法传回云端。</string>
 	<string name="error_no_such_bucket">没有这样的 bucket</string>
 	<string name="error_masterkey_location_not_supported">尚不支持自定义 Masterkey 路径</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">无法找到 F-Droid 应用程序。可能未安装？</string>
@@ -69,10 +69,10 @@
 	<string name="cloud_names_local_storage">本地存储</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch 需要存储权限以导出文件</string>
-	<string name="permission_message_upload_file">Latch 需要存储权限以上传文件</string>
-	<string name="permission_message_share_file">Latch 需要存储权限以共享文件</string>
-	<string name="permission_revoked_re_request_permission">Latch 已失去此位置的访问权限，请重新选择此文件夹以恢复。</string>
+	<string name="permission_message_export_file">Voidbox 需要存储权限以导出文件</string>
+	<string name="permission_message_upload_file">Voidbox 需要存储权限以上传文件</string>
+	<string name="permission_message_share_file">Voidbox 需要存储权限以共享文件</string>
+	<string name="permission_revoked_re_request_permission">Voidbox 已失去此位置的访问权限，请重新选择此文件夹以恢复。</string>
 	<string name="snack_bar_action_title_settings">设置</string>
 	<string name="snack_bar_action_title_search">搜索</string>
 	<string name="snack_bar_action_title_search_previous">上一个</string>
@@ -245,15 +245,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s 无法通过身份验证</string>
 	<string name="screen_update_pcloud_connections_title">更新 pCloud 凭证</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Latch变体</string>
+	<string name="screen_cryptomator_variants_title">Voidbox变体</string>
 	<string name="screen_cryptomator_variants_lite_title">F-Droid 主仓库</string>
 	<string name="screen_cryptomator_variants_lite_description">已被排除，因为他们需要 API 密钥</string>
 	<string name="screen_cryptomator_variants_lite_install">安装</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid 仓库</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidbox F-Droid 仓库</string>
 	<string name="screen_cryptomator_variants_fdroid_description">已被排除，因为它包含专有依赖项。</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">将 Latch 仓库添加到 F-Droid 应用程序</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">将 Voidbox 仓库添加到 F-Droid 应用程序</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">添加</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">使用 F-Droid 安装 Latch \n如果未发现错误，请等待 F-Droid 同步完成。</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">使用 F-Droid 安装 Voidbox \n如果未发现错误，请等待 F-Droid 同步完成。</string>
 	<string name="screen_cryptomator_variants_website_title">网站</string>
 	<string name="screen_cryptomator_variants_website_description">包含专有依赖项</string>
 	<string name="screen_cryptomator_variants_installation_hint">在F-Droid主仓库的变体之间切换需要重新设置应用</string>
@@ -334,12 +334,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">在此模式下，敏感数据可能会写入您设备上的日志文件 (例如文件名和路径)。密码、cookies等除外。\n\n请记得要尽快关闭调试模式。</string>
 	<string name="dialog_debug_mode_disclaimer_title">请注意</string>
 	<string name="dialog_debug_mode_positive_button">启用</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">由于 Microsoft 应用中的 bug，要将文件共享到公共文件夹中才能对其进行编辑。一旦 Latch 继续运行，可公开访问的相应文件将再次被删除，但 Latch 无法影响此文件在此期间发生的情况。请确保您在激活此选项时了解此行为。该问题仅适用于 Microsoft 文件类型\n\nLatch 将在激活选项后重新启动</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">由于 Microsoft 应用中的 bug，要将文件共享到公共文件夹中才能对其进行编辑。一旦 Voidbox 继续运行，可公开访问的相应文件将再次被删除，但 Voidbox 无法影响此文件在此期间发生的情况。请确保您在激活此选项时了解此行为。该问题仅适用于 Microsoft 文件类型\n\nVoidbox 将在激活选项后重新启动</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">此设置是一项安全功能，可防止其他应用程序诱骗用户进行他们不希望进行的操作。\n\n禁用此设置，即表示您确认<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">已了解风险</a>。</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">请注意</string>
 	<string name="dialog_disable_app_obscured_positive_button">关闭</string>
 	<string name="dialog_app_is_obscured_info_title">应用被遮盖</string>
-	<string name="dialog_app_is_obscured_info_hint">另一个应用正在 Latch 上显示某些内容(例如蓝光滤镜或夜间模式应用)。出于安全原因，Latch 已停用。\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">如何启用 Latch</a></string>
+	<string name="dialog_app_is_obscured_info_hint">另一个应用正在 Voidbox 上显示某些内容(例如蓝光滤镜或夜间模式应用)。出于安全原因，Voidbox 已停用。\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">如何启用 Voidbox</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">关闭</string>
 	<string name="dialog_vaults_removed_during_migration_title">请重新添加 %1s 的保险库</string>
 	<string name="dialog_vaults_removed_during_migration_hint">在进行应用版本迁移前，我们需要从应用中移除下列保险库：\n%2s \n\n这些保险库并不会从云端移除，仅仅在当前应用的列表中移除。抱歉给您带来不便，请重新添加这些保险库以便继续使用它们。</string>
@@ -353,9 +353,9 @@
 	<string name="dialog_confirm_delete_file_message">您确定要删除此文件吗？</string>
 	<string name="dialog_confirm_delete_folder_message">这将删除文件夹的所有内容，您确定要删除此文件夹吗？</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">生物识别认证功能已停用</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">由于密钥已失效，生物识别认证功能已停用。重新启用请打开 Latch 设置</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">由于密钥已失效，生物识别认证功能已停用。重新启用请打开 Voidbox 设置</string>
 	<string name="dialog_enter_license_title">请提供有效许可证</string>
-	<string name="dialog_enter_license_content">我们检测到您在没有使用 Google Play 商店的情况下安装了 Latch。请提供有效许可证，可前往 <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> 购买</string>
+	<string name="dialog_enter_license_content">我们检测到您在没有使用 Google Play 商店的情况下安装了 Voidbox。请提供有效许可证，可前往 <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> 购买</string>
 	<string name="dialog_enter_license_not_valid_content">提供的许可证无效，请确保输入正确。</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">提供的密钥为桌面版支持者证书。请输入有效的许可证。</string>
 	<string name="dialog_enter_license_no_content">未提供许可证，请输入有效许可证。</string>
@@ -363,7 +363,7 @@
 	<string name="dialog_license_confirmation_title">授权通过</string>
 	<string name="dialog_license_confirmation_message">感谢 %1$s 提供您的有效许可证</string>
 	<string name="dialog_update_available_title">发现新版本</string>
-	<string name="dialog_update_available_message">请更新 Latch 到最新版本。点击确定后，我们将在后台下载应用并提醒您安装。</string>
+	<string name="dialog_update_available_message">请更新 Voidbox 到最新版本。点击确定后，我们将在后台下载应用并提醒您安装。</string>
 	<string name="dialog_update_available_update">立即更新</string>
 	<string name="dialog_update_available_download_site">转到下载站点</string>
 	<string name="dialog_update_available_cancel">稍后再说</string>
@@ -399,9 +399,9 @@
 	<string name="dialog_hub_user_setup_required_title">需要用户设置</string>
 	<string name="dialog_hub_user_setup_required_hint">要继续，请完成 Hub 用户中心所需的步骤</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">前往个人中心</string>
-	<string name="permission_snackbar_auth_local_vault">Latch 需要存储权限以使用本地保险库</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch 需要存储权限以自动上传图片</string>
-	<string name="permission_snackbar_notifications">Latch 需要通知权限以显示保险库状态等</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox 需要存储权限以使用本地保险库</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox 需要存储权限以自动上传图片</string>
+	<string name="permission_snackbar_notifications">Voidbox 需要通知权限以显示保险库状态等</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

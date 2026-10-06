@@ -86,6 +86,31 @@ class ThumbnailCache @Inject constructor(private val context: Context, private v
 		return thumbnail
 	}
 
+	/** Stores a decoded picture, such as a video frame. Call off the main thread. */
+	fun store(file: CloudFileModel, picture: Bitmap): Bitmap? {
+		val vault = vaultOf(file) ?: return null
+		val thumbnail = shrink(picture)
+		memory.put(key(vault, file), thumbnail)
+		val vaultKey = vaultKey(vault) ?: return thumbnail
+		try {
+			val folder = vaultDirectory(vault).also { it.mkdirs() }
+			val jpeg = ByteArrayOutputStream().also { thumbnail.compress(Bitmap.CompressFormat.JPEG, 85, it) }.toByteArray()
+			File(folder, hash(file)).writeBytes(encrypt(vaultKey, jpeg))
+			trimDisk()
+		} catch (e: Exception) {
+			Timber.tag("Thumbnails").w(e, "Could not store thumbnail")
+		}
+		return thumbnail
+	}
+
+	private fun shrink(picture: Bitmap): Bitmap {
+		val scale = SIZE_PX.toFloat() / minOf(picture.width, picture.height)
+		if (scale >= 1f) {
+			return picture
+		}
+		return Bitmap.createScaledBitmap(picture, (picture.width * scale).toInt().coerceAtLeast(1), (picture.height * scale).toInt().coerceAtLeast(1), true)
+	}
+
 	/** Forgets every decoded bitmap; the encrypted files stay for the next unlock. */
 	fun clearMemory() {
 		memory.evictAll()
@@ -187,7 +212,7 @@ class ThumbnailCache @Inject constructor(private val context: Context, private v
 	companion object {
 
 		const val MAX_IMAGE_BYTES = 20L * 1024L * 1024L
-		private const val KEY_LABEL = "latch-thumbnails-v1"
+		private const val KEY_LABEL = "voidbox-thumbnails-v1"
 		private const val CIPHER = "AES/GCM/NoPadding"
 		private const val IV_BYTES = 12
 		private const val TAG_BITS = 128

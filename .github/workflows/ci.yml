@@ -1,6 +1,6 @@
 name: CI
 
-# Unit tests and a debug APK, kept for a week to try on a phone, for every PR and push to master.
+# Unit tests with coverage and a debug APK, kept a week to try on a phone, for every PR and push to master.
 
 on:
   pull_request:
@@ -28,8 +28,29 @@ jobs:
 
       - uses: gradle/actions/setup-gradle@v4
 
-      - name: Unit tests
-        run: ./gradlew --no-daemon :domain:testLiteDebugUnitTest :data:testLiteDebugUnitTest :presentation:testLiteDebugUnitTest :util:testLiteDebugUnitTest
+      - name: Unit tests and coverage
+        run: ./gradlew --no-daemon :presentation:koverXmlReportLite
+
+      - name: Coverage summary
+        run: |
+          python3 - <<'PY'
+          import json, os, xml.etree.ElementTree as ET
+          root = ET.parse("presentation/build/reports/kover/reportLite.xml").getroot()
+          line = next(c for c in root.findall("counter") if c.get("type") == "LINE")
+          covered, missed = int(line.get("covered")), int(line.get("missed"))
+          percent = covered * 100 / (covered + missed)
+          color = "brightgreen" if percent >= 80 else "yellow" if percent >= 50 else "orange" if percent >= 25 else "red"
+          json.dump({"schemaVersion": 1, "label": "coverage", "message": f"{percent:.1f}%", "color": color}, open("coverage.json", "w"))
+          with open(os.environ["GITHUB_STEP_SUMMARY"], "a") as summary:
+              summary.write(f"Line coverage of the lite flavor: **{percent:.1f}%** ({covered} of {covered + missed} lines)\n")
+          PY
+
+      - name: Keep the coverage badge
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-badge
+          path: coverage.json
+          retention-days: 1
 
       - name: Build the debug APK
         run: ./gradlew --no-daemon :presentation:assembleLiteDebug
@@ -37,7 +58,7 @@ jobs:
       - name: Keep the debug APK
         uses: actions/upload-artifact@v4
         with:
-          name: latch-debug-apk
+          name: voidbox-debug-apk
           path: presentation/build/outputs/apk/lite/debug/*.apk
           retention-days: 7
 
@@ -48,3 +69,24 @@ jobs:
           name: test-reports
           path: "**/build/reports/tests/"
           retention-days: 7
+
+  # the README badge reads coverage.json from the `badges` branch
+  badge:
+    if: github.event_name == 'push'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: coverage-badge
+
+      - name: Publish the coverage badge
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git init -q -b badges
+          git add coverage.json
+          git -c user.name=voidbox-ci -c user.email=voidbox-ci@users.noreply.github.com commit -q -m "Update the coverage badge"
+          git push -q --force "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" badges

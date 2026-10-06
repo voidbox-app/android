@@ -10,7 +10,7 @@
 	<string name="error_purchase_not_available">Kauf nicht verfügbar. Bitte versuche es später erneut.</string>
 	<string name="error_invalid_passphrase">Falsches Passwort</string>
 	<string name="error_file_or_folder_exists">Die Datei oder der Ordner existiert bereits.</string>
-	<string name="error_vault_version_not_supported">Tresorversion %1$s wird nicht unterstützt. Dieser Tresor wurde mit einer älteren oder neueren Version von Latch erstellt.</string>
+	<string name="error_vault_version_not_supported">Tresorversion %1$s wird nicht unterstützt. Dieser Tresor wurde mit einer älteren oder neueren Version von Voidbox erstellt.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Die Datei %1$s fehlt in deinem Tresor-Ordner. Stelle sicher, dass diese Datei in deinem Tresor-Ordner in der Cloud vorhanden ist.</string>
 	<string name="error_vault_already_exists">Tresor existiert bereits.</string>
 	<string name="error_no_such_file">Datei wurde nicht gefunden.</string>
@@ -32,7 +32,7 @@
 	<string name="error_vault_version_mismatch">Die in %1$s angegebene Version ist nicht identisch mit der Version in %2$s</string>
 	<string name="error_vault_key_invalid">%1$s stimmt nicht mit %2$s überein</string>
 	<string name="error_vault_config_loading">Allgemeiner Fehler beim Laden der Tresorkonfiguration</string>
-	<string name="error_file_not_found_after_opening_using_3party">Lokale Datei ist nach dem Zurückwechseln zu Latch nicht mehr vorhanden. Mögliche Änderungen können nicht in die Cloud übertragen werden.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Lokale Datei ist nach dem Zurückwechseln zu Voidbox nicht mehr vorhanden. Mögliche Änderungen können nicht in die Cloud übertragen werden.</string>
 	<string name="error_no_such_bucket">Bucket existiert nicht</string>
 	<string name="error_masterkey_location_not_supported">Benutzerdefinierter Ort der Masterkey-Datei wird noch nicht unterstützt</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Fehler bei der Kommunikation mit der F-Droid-App. Nicht installiert?</string>
@@ -84,13 +84,13 @@
 	<string name="screen_license_check_cancel_subscription_hint">Sie haben jetzt eine lebenslange Lizenz. Um zukünftige Gebühren zu vermeiden, kündigen Sie Ihr jährliches Abonnement über die %1$s Option in den Einstellungen.</string>
 	<string name="screen_welcome_title">Willkommen</string>
 	<string name="screen_welcome_notifications_title">Bleib informiert</string>
-	<string name="screen_welcome_notifications_message">Erlaube Benachrichtigungen, damit Latch dich über Hintergrundaktivitäten, automatische Uploads oder andere wichtige Ereignisse informieren kann.</string>
+	<string name="screen_welcome_notifications_message">Erlaube Benachrichtigungen, damit Voidbox dich über Hintergrundaktivitäten, automatische Uploads oder andere wichtige Ereignisse informieren kann.</string>
 	<string name="screen_welcome_notifications_button">Benachrichtigungen erlauben</string>
 	<string name="screen_welcome_notifications_granted">Benachrichtigungen sind aktiviert.</string>
 	<string name="screen_welcome_continue_button">Weiter</string>
 	<string name="screen_welcome_screen_lock_button">Sperrbildschirm setzen</string>
 	<string name="screen_welcome_screen_lock_already_set">Sperrbildschirm ist bereits eingerichtet.</string>
-	<string name="screen_welcome_intro_body">Danke, dass du dich für Latch entschieden hast, um deine Dateien zu schützen.\n\nMit Latch liegt der Schlüssel zu deinen Daten in deinen Händen.\n\nLatch verschlüsselt deine Daten schnell und einfach.</string>
+	<string name="screen_welcome_intro_body">Danke, dass du dich für Voidbox entschieden hast, um deine Dateien zu schützen.\n\nMit Voidbox liegt der Schlüssel zu deinen Daten in deinen Händen.\n\nVoidbox verschlüsselt deine Daten schnell und einfach.</string>
 	<string name="next">Weiter</string>
 	<string name="back">Zurück</string>
 	<!-- # clouds -->
@@ -98,10 +98,10 @@
 	<string name="cloud_names_local_storage">Lokaler Speicher</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Zum Exportieren von Dateien benötigt Latch Speicherzugriff</string>
-	<string name="permission_message_upload_file">Zum Hochladen von Dateien benötigt Latch Speicherzugriff</string>
-	<string name="permission_message_share_file">Zum Teilen von Dateien benötigt Latch Speicherzugriff</string>
-	<string name="permission_revoked_re_request_permission">Latch hat die Berechtigung zum Zugriff auf diesen Ort verloren. Bitte wähle diesen Ordner erneut aus, um die Berechtigung wiederherzustellen.</string>
+	<string name="permission_message_export_file">Zum Exportieren von Dateien benötigt Voidbox Speicherzugriff</string>
+	<string name="permission_message_upload_file">Zum Hochladen von Dateien benötigt Voidbox Speicherzugriff</string>
+	<string name="permission_message_share_file">Zum Teilen von Dateien benötigt Voidbox Speicherzugriff</string>
+	<string name="permission_revoked_re_request_permission">Voidbox hat die Berechtigung zum Zugriff auf diesen Ort verloren. Bitte wähle diesen Ordner erneut aus, um die Berechtigung wiederherzustellen.</string>
 	<string name="snack_bar_action_title_settings">Einstellungen</string>
 	<string name="snack_bar_action_title_search">Suche</string>
 	<string name="snack_bar_action_title_search_previous">Vorheriges</string>
@@ -117,7 +117,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Cloud nicht in der Liste?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Zu Latch hinzufügen</string>
+	<string name="screen_vault_list_actions_title">Zu Voidbox hinzufügen</string>
 	<string name="screen_vault_list_action_create_new_vault">Neuen Tresor anlegen</string>
 	<string name="screen_vault_list_action_add_existing_vault">Bestehenden Tresor hinzufügen</string>
 	<string name="screen_vault_list_vault_action_delete">Entfernen</string>
@@ -243,7 +243,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Nur mit WLAN hochladen</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Videos hochladen</string>
 	<string name="screen_settings_auto_photo_upload_title">Bilder abspeichern in&#8230;</string>
-	<string name="screen_settings_website_label">Latch-Website</string>
+	<string name="screen_settings_website_label">Voidbox-Website</string>
 	<string name="screen_settings_mastodon_label">Folge uns auf Mastodon</string>
 	<string name="screen_settings_facebook_label">Gib uns auf Facebook ein Like</string>
 	<string name="screen_settings_section_legal">Rechtliches</string>
@@ -276,15 +276,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s-Authentifizierung fehlgeschlagen.</string>
 	<string name="screen_update_pcloud_connections_title">pCloud-Anmeldedaten aktualisieren</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Varianten von Latch</string>
+	<string name="screen_cryptomator_variants_title">Varianten von Voidbox</string>
 	<string name="screen_cryptomator_variants_lite_title">Haupt-Repository von F-Droid</string>
 	<string name="screen_cryptomator_variants_lite_description">Ausgeschlossen, da dieses Feature einen API-Schlüssel benötigt.</string>
 	<string name="screen_cryptomator_variants_lite_install">Installieren</string>
-	<string name="screen_cryptomator_variants_fdroid_title">F-Droid-Repository von Latch</string>
+	<string name="screen_cryptomator_variants_fdroid_title">F-Droid-Repository von Voidbox</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Ausgeschlossen, weil es proprietäre Abhängigkeiten enthält.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Füge das Latch-Repository zur F-Droid App hinzu.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Füge das Voidbox-Repository zur F-Droid App hinzu.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Hinzufügen</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Installiere Latch über F-Droid.\nWenn der Fehler \"nicht gefunden\" angezeigt wird, warte bis die F-Droid-Synchronisation abgeschlossen ist.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Installiere Voidbox über F-Droid.\nWenn der Fehler \"nicht gefunden\" angezeigt wird, warte bis die F-Droid-Synchronisation abgeschlossen ist.</string>
 	<string name="screen_cryptomator_variants_website_title">Website</string>
 	<string name="screen_cryptomator_variants_website_description">Enthält proprietäre Abhängigkeiten.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Ein Wechsel von oder zu der Hauptvariante des F-Droid-Repository erfordert eine neue Einrichtung der App.</string>
@@ -314,7 +314,7 @@
 	<string name="dialog_replace_title_single_file_exists">Datei ersetzen?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Dateien ersetzen?</string>
 	<string name="dialog_unable_to_share_title">Teilen nicht möglich</string>
-	<string name="dialog_unable_to_share_message">Du hast keinen Tresor eingerichtet. Bitte lege zuerst einen Tresor mit der Latch-App an.</string>
+	<string name="dialog_unable_to_share_message">Du hast keinen Tresor eingerichtet. Bitte lege zuerst einen Tresor mit der Voidbox-App an.</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">Tresor erstellen</string>
 	<string name="dialog_filetype_not_supported_title">%1$s kann nicht geöffnet werden</string>
@@ -365,12 +365,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">In diesem Modus könnten sensible Daten in eine Log-Datei auf diesem Gerät geschrieben werden (z.B. Dateinamen und Pfade). Ausgeschlossen davon sind u.a. Passwörter und Cookies.\n\nDenke daran, den Debug-Modus so schnell wie möglich wieder zu deaktivieren.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Achtung</string>
 	<string name="dialog_debug_mode_positive_button">Aktivieren</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Aufgrund eines Fehlers in Microsoft-Apps muss die zu bearbeitende Datei in einem öffentlichen Medienordner deines Gerät für diese Apps bereitgestellt werden. Nach dem Fortsetzen von Latch wird die öffentlich zugängliche Datei wieder gelöscht; allerdings kann Latch nicht beeinflussen, was in der Zwischenzeit mit dieser Datei geschehen ist. Achte beim Aktivieren dieser Option darauf, dass du dir dieses Verhaltens bewusst bist. Dies gilt nur für Microsoft-Dateitypen.\n\nLatch wird nach der Aktivierung neu gestartet.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Aufgrund eines Fehlers in Microsoft-Apps muss die zu bearbeitende Datei in einem öffentlichen Medienordner deines Gerät für diese Apps bereitgestellt werden. Nach dem Fortsetzen von Voidbox wird die öffentlich zugängliche Datei wieder gelöscht; allerdings kann Voidbox nicht beeinflussen, was in der Zwischenzeit mit dieser Datei geschehen ist. Achte beim Aktivieren dieser Option darauf, dass du dir dieses Verhaltens bewusst bist. Dies gilt nur für Microsoft-Dateitypen.\n\nVoidbox wird nach der Aktivierung neu gestartet.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Dies ist eine Sicherheitsfunktion und verhindert, dass andere Apps Nutzer dazu bringen, Dinge zu tun, die sie nicht tun wollen.\n\nDurch die Deaktivierung bestätigst du, dass du dich <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">der Risiken bewusst</a> bist.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Achtung</string>
 	<string name="dialog_disable_app_obscured_positive_button">Deaktivieren</string>
 	<string name="dialog_app_is_obscured_info_title">App wird verdeckt</string>
-	<string name="dialog_app_is_obscured_info_hint">Eine App zeigt etwas über Latch an (z.B. ein Blaulichtfilter oder eine Nachtmodus-App). Aus Sicherheitsgründen ist Latch deaktiviert.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Wie Latch aktiviert werden kann</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Eine App zeigt etwas über Voidbox an (z.B. ein Blaulichtfilter oder eine Nachtmodus-App). Aus Sicherheitsgründen ist Voidbox deaktiviert.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Wie Voidbox aktiviert werden kann</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Schließen</string>
 	<string name="dialog_vaults_removed_during_migration_title">Bitte Tresore für die %1s-Cloud erneut hinzufügen</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Während der Migration auf diese App-Version müssen wir folgende Tresore aus der App entfernen:\n%2s \n\nDiese Tresore werden nicht aus der Cloud entfernt, sondern nur aus dieser App. Entschuldigung für die Unannehmlichkeiten. Füge diese Tresore bitte erneut hinzu, um weiter mit ihnen zu arbeiten.</string>
@@ -384,9 +384,9 @@
 	<string name="dialog_confirm_delete_file_message">Möchtest du dieses Element wirklich löschen?</string>
 	<string name="dialog_confirm_delete_folder_message">Dieser Vorgang wird den gesamten Ordnerinhalt löschen. Bist du sicher, dass du diesen Ordner löschen möchtest?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Biometrischer Login deaktiviert</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Da der Schlüssel nicht mehr zur Verfügung steht, wurde der biometrische Login deaktiviert. Zur Reaktivierung öffne die Latch-Einstellungen.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Da der Schlüssel nicht mehr zur Verfügung steht, wurde der biometrische Login deaktiviert. Zur Reaktivierung öffne die Voidbox-Einstellungen.</string>
 	<string name="dialog_enter_license_title">APK-Store Lizenz</string>
-	<string name="dialog_enter_license_content">Latch wurde nicht über den Google Play Store installiert; gib daher eine gültige Lizenz ein. Diese kann auf <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> erworben werden.</string>
+	<string name="dialog_enter_license_content">Voidbox wurde nicht über den Google Play Store installiert; gib daher eine gültige Lizenz ein. Diese kann auf <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> erworben werden.</string>
 	<string name="dialog_enter_license_not_valid_content">Die eingegebene Lizenz ist ungültig. Stelle sicher, dass sie korrekt eingegeben wurde.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Der angegebene Schlüssel ist ein Desktop-Unterstützer-Zertifikat. Bitte gib eine gültige Lizenz an.</string>
 	<string name="dialog_enter_license_no_content">Keine Lizenz vorhanden. Gib eine gültige Lizenz ein.</string>
@@ -394,12 +394,12 @@
 	<string name="dialog_license_confirmation_title">Lizenzbestätigung</string>
 	<string name="dialog_license_confirmation_message">Danke für die Eingabe deiner gültigen Lizenz, %1$s.</string>
 	<string name="dialog_update_available_title">Neue Version verfügbar</string>
-	<string name="dialog_update_available_message">Latch auf die neuste Version aktualisieren. Mit OK wird die neueste Version im Hintergrund heruntergeladen und du wirst aufgefordert, diese zu installieren.</string>
+	<string name="dialog_update_available_message">Voidbox auf die neuste Version aktualisieren. Mit OK wird die neueste Version im Hintergrund heruntergeladen und du wirst aufgefordert, diese zu installieren.</string>
 	<string name="dialog_update_available_update">Jetzt aktualisieren</string>
 	<string name="dialog_update_available_download_site">Download-Seite öffnen</string>
 	<string name="dialog_update_available_cancel">Später</string>
 	<string name="dialog_download_update_title">Download in Ausführung</string>
-	<string name="dialog_download_update_message">Lade die aktuelle Version von Latch herunter</string>
+	<string name="dialog_download_update_message">Lade die aktuelle Version von Voidbox herunter</string>
 	<string name="dialog_sym_link_title">Dieser Ordner ist ein symbolischer Link</string>
 	<string name="dialog_sym_link_message">Du kannst nicht in diesen symbolischen Link navigieren</string>
 	<string name="dialog_sym_link_back_button">Zurück</string>
@@ -422,7 +422,7 @@
 	<string name="dialog_hub_vault_access_forbidden_title">Zugriff verweigert</string>
 	<string name="dialog_hub_vault_access_forbidden_hint">Dein Benutzer ist noch nicht für den Zugriff auf diesen Tresor berechtigt. Bitte den Tresorbesitzer, dich zu berechtigen</string>
 	<string name="dialog_hub_license_upgrade_required_title">Überprüfe die Hublizenz</string>
-	<string name="dialog_hub_license_upgrade_required_hint">Die Lizenz deines Latch-Hubs ist ungültig. Bitte informiere den Hubadministrator, damit er die Lizenz erweitert oder erneuert.</string>
+	<string name="dialog_hub_license_upgrade_required_hint">Die Lizenz deines Voidbox-Hubs ist ungültig. Bitte informiere den Hubadministrator, damit er die Lizenz erweitert oder erneuert.</string>
 	<string name="dialog_hub_vault_archived_title">Hubtresor archiviert</string>
 	<string name="dialog_hub_vault_archived_hint">Dieser Hubtresor wurde archiviert und kann daher nicht mehr entsperrt werden. Der Besitzer des Tresors muss ihn wieder aktivieren, damit der Tresor entsperrt werden kann.</string>
 	<string name="dialog_restore_successful_title">Wiederherstellung erfolgreich</string>
@@ -435,9 +435,9 @@
 	<string name="dialog_hub_user_setup_required_hint">Schließe bitte die erforderlichen Schritte in deinem Hub-Benutzerprofil ab, um fortzufahren.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Zum Profil</string>
 	<string name="dialog_hub_check_host_authenticity_title">Diesem Host vertrauen?</string>
-	<string name="permission_snackbar_auth_local_vault">Latch benötigt Speicherzugriff, um lokale Tresore nutzen zu können</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch benötigt Zugriff auf den Speicher um den automatischen Foto-Upload zu nutzen</string>
-	<string name="permission_snackbar_notifications">Latch benötigt die Berechtigung zur Anzeige von Benachrichtigungen, um beispielsweise den Status des Tresors anzeigen zu können</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox benötigt Speicherzugriff, um lokale Tresore nutzen zu können</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox benötigt Zugriff auf den Speicher um den automatischen Foto-Upload zu nutzen</string>
+	<string name="permission_snackbar_notifications">Voidbox benötigt die Berechtigung zur Anzeige von Benachrichtigungen, um beispielsweise den Status des Tresors anzeigen zu können</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

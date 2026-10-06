@@ -14,7 +14,7 @@
 		android:layout_marginStart="16dp"
 		android:contentDescription="@null"
 		android:scaleType="center"
-		app:shapeAppearanceOverlay="@style/ShapeAppearance.Latch.Thumbnail" />
+		app:shapeAppearanceOverlay="@style/ShapeAppearance.Voidbox.Thumbnail" />
 
 	<include
 		android:id="@+id/ll_cloud_folder_content"

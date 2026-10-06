@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Nav tīkla savienojuma</string>
 	<string name="error_invalid_passphrase">Nepareiza parole</string>
 	<string name="error_file_or_folder_exists">Datne vai mape jau pastāv.</string>
-	<string name="error_vault_version_not_supported">Glabātavas versija %1$s nav atbalstīta. Šī glabātava tika izveidota vecākā vai jaunākā Latch versijā.</string>
+	<string name="error_vault_version_not_supported">Glabātavas versija %1$s nav atbalstīta. Šī glabātava tika izveidota vecākā vai jaunākā Voidbox versijā.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Glabātavas mapē trūkst datnes %1$s. Jānodrošina, ka glabātavas mapē mākonī pastāv šī datne.</string>
 	<string name="error_vault_already_exists">Glabātava jau pastāv.</string>
 	<string name="error_no_such_file">Datne nepastāv.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">%1$s norādītā versija atšķiras no %2$s</string>
 	<string name="error_vault_key_invalid">%1$s neatbilst %2$s</string>
 	<string name="error_vault_config_loading">Vispārēja kļūda glabātavas konfigurācijas ielādēšanā</string>
-	<string name="error_file_not_found_after_opening_using_3party">Pēc pārslēgšanās atpakaļ uz Latch vietējā datne vairs nav klātesoša. Iespējamās izmaiņas nevar nogādāt atpakaļ mākonī.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Pēc pārslēgšanās atpakaļ uz Voidbox vietējā datne vairs nav klātesoša. Iespējamās izmaiņas nevar nogādāt atpakaļ mākonī.</string>
 	<string name="error_no_such_bucket">Nav šāda krājuma</string>
 	<string name="error_masterkey_location_not_supported">Pielāgota galvenās atslēgas atrašanās vieta vēl netiek nodrošināta</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Neizdevās sazināties ar F-Droid lietotni. Nav uzstādīta?</string>
@@ -74,10 +74,10 @@
 	<string name="cloud_names_local_storage">Vietēja krātuve</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch ir nepieciešama piekļuve krātuvei, lai izgūtu datnes</string>
-	<string name="permission_message_upload_file">Latch ir nepieciešama piekļuve krātuvei, lai augšupielādētu datnes</string>
-	<string name="permission_message_share_file">Latch ir nepieciešama piekļuve krātuvei, lai kopīgotu datnes</string>
-	<string name="permission_revoked_re_request_permission">Latch zaudēja atļauju piekļūt šai atrašanās vietai. Lūgums vēlreiz atlasīt šo mapi, lai atjaunotu atļauju.</string>
+	<string name="permission_message_export_file">Voidbox ir nepieciešama piekļuve krātuvei, lai izgūtu datnes</string>
+	<string name="permission_message_upload_file">Voidbox ir nepieciešama piekļuve krātuvei, lai augšupielādētu datnes</string>
+	<string name="permission_message_share_file">Voidbox ir nepieciešama piekļuve krātuvei, lai kopīgotu datnes</string>
+	<string name="permission_revoked_re_request_permission">Voidbox zaudēja atļauju piekļūt šai atrašanās vietai. Lūgums vēlreiz atlasīt šo mapi, lai atjaunotu atļauju.</string>
 	<string name="snack_bar_action_title_settings">Iestatījumi</string>
 	<string name="snack_bar_action_title_search">Meklēt</string>
 	<string name="snack_bar_action_title_search_previous">Atpakaļ</string>
@@ -93,7 +93,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Mākonis nav sarakstā?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Pievienot Latch</string>
+	<string name="screen_vault_list_actions_title">Pievienot Voidbox</string>
 	<string name="screen_vault_list_action_create_new_vault">Izveidot jaunu glabātavu</string>
 	<string name="screen_vault_list_action_add_existing_vault">Pievienot esošu glabātavu</string>
 	<string name="screen_vault_list_vault_action_delete">Noņemt</string>
@@ -219,7 +219,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Augšupielādēt tikai tad, kad tiek izmantots Wi-Fi</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Augšupielādēt video</string>
 	<string name="screen_settings_auto_photo_upload_title">Saglabāt automātiski augšupielādētās datnes&#8230;</string>
-	<string name="screen_settings_website_label">Latch tīmekļvietne</string>
+	<string name="screen_settings_website_label">Voidbox tīmekļvietne</string>
 	<string name="screen_settings_mastodon_label">Sekot mums Mastodon</string>
 	<string name="screen_settings_facebook_label">Sekot mums Facebook</string>
 	<string name="screen_settings_section_legal">Juridiski</string>
@@ -252,15 +252,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s nevarēja autentificēt.</string>
 	<string name="screen_update_pcloud_connections_title">Atjaunināt pCloud pieteikšanās datus</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Latch paveidi</string>
+	<string name="screen_cryptomator_variants_title">Voidbox paveidi</string>
 	<string name="screen_cryptomator_variants_lite_title">Galvenā F-Droid glabātava</string>
 	<string name="screen_cryptomator_variants_lite_description">Nav iekļauti, jo tiem ir nepieciešamas API atslēgas.</string>
 	<string name="screen_cryptomator_variants_lite_install">Uzstādīt</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid glabātava</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidbox F-Droid glabātava</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Nav iekļauts, jo tas satur slēgtas atkarības.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Pievienot Latch glabātavu F-Droid lietotnē.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Pievienot Voidbox glabātavu F-Droid lietotnē.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Pievienot</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Uzstādīt Latch ar F-Droid.\nJa netiks atrasta, tiks attēlota kļūda. Jāgaida līdz F-Droid sinhronizēšana būs pabeigta.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Uzstādīt Voidbox ar F-Droid.\nJa netiks atrasta, tiks attēlota kļūda. Jāgaida līdz F-Droid sinhronizēšana būs pabeigta.</string>
 	<string name="screen_cryptomator_variants_website_title">Tīmekļvietne</string>
 	<string name="screen_cryptomator_variants_website_description">Satur īpašumatkarības.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Ir nepieciešama lietotnes iestatīšana no jauna, lai pārslēgtos no vai uz galveno F-Droid glabātavu.</string>
@@ -290,7 +290,7 @@
 	<string name="dialog_replace_title_single_file_exists">Aizstāt datni?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Aizstāt datnes?</string>
 	<string name="dialog_unable_to_share_title">Nebija iespējams kopīgot datnes</string>
-	<string name="dialog_unable_to_share_message">Nav iestatīta neviena glabātava. Lūgums vispirms izveidot jaunu glabātavu Latch lietotnē.</string>
+	<string name="dialog_unable_to_share_message">Nav iestatīta neviena glabātava. Lūgums vispirms izveidot jaunu glabātavu Voidbox lietotnē.</string>
 	<string name="dialog_unable_to_share_positive_button">Labi</string>
 	<string name="dialog_unable_to_share_negative_button">Izveidot glabātavu</string>
 	<string name="dialog_filetype_not_supported_title">Nevar atvērt %1$s</string>
@@ -341,12 +341,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">Ar atkļūdošanu jūtīgi dati var tikt ierakstīti žurnāla datnē šajā ierīcē (piemēram, datņu nosaukumi un ceļi). Paroles, sīkdatnes utt. noteikti netiek iekļautas.\n\nJāatceras atspējot atkļūdošanu, tiklīdz tas ir iespējams.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Uzmanību</string>
 	<string name="dialog_debug_mode_positive_button">Iespējot</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Kļūdas Microsoft lietotnēs dēļ labojamā datne ir jākopīgo ar šīm lietotnēm ierīcē esošā publiskā datu nesēju mapē. Pēc Latch atsākšanas publiski pieejamā datne tiek izdzēsta, bet Latch nevar ietekmēt, kas šajā laikā ir noticis ar šo datni. Jāapzinās šāda uzvedība, kad šī iespēja tiek aktivēta. Tas attieksies tikai uz Microsoft datņu veidiem.\n\nLatch pēc aktivēšanas atkārtoti palaidīsies.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Kļūdas Microsoft lietotnēs dēļ labojamā datne ir jākopīgo ar šīm lietotnēm ierīcē esošā publiskā datu nesēju mapē. Pēc Voidbox atsākšanas publiski pieejamā datne tiek izdzēsta, bet Voidbox nevar ietekmēt, kas šajā laikā ir noticis ar šo datni. Jāapzinās šāda uzvedība, kad šī iespēja tiek aktivēta. Tas attieksies tikai uz Microsoft datņu veidiem.\n\nVoidbox pēc aktivēšanas atkārtoti palaidīsies.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Šis iestatījums ir drošības iespēja un liedz citām lietotnēm ar viltu pamudināt lietotājus veikt darbības, kuras viņi nevēlas darīt.\n\nAr atspējošanu tiek apliecināts, ka tiek <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">apzināti riski</a>.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Uzmanību</string>
 	<string name="dialog_disable_app_obscured_positive_button">Atspējot</string>
 	<string name="dialog_app_is_obscured_info_title">Lietotne ir aizsegta</string>
-	<string name="dialog_app_is_obscured_info_hint">Cita lietotne kaut ko attēlo virs Latch (piemēram, zilās gaismas aizturēšanas vai nakts krāsu lietotne). Drošības iemeslu dēļ Latch ir atspējota.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Kā iespējot Latch</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Cita lietotne kaut ko attēlo virs Voidbox (piemēram, zilās gaismas aizturēšanas vai nakts krāsu lietotne). Drošības iemeslu dēļ Voidbox ir atspējota.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Kā iespējot Voidbox</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Aizvērt</string>
 	<string name="dialog_vaults_removed_during_migration_title">Lūgums no jauna pievienot glabātavas %1s mākonim</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Lai arī pārietu uz šo lietotnes versiju, mums ir nepieciešams noņemt no lietotnes zemāk esošās glabātavas:\n%2s\n\nTās netiks noņemts no mākoņa, bet tikai no šīs lietotnes. Atvainojamies par sagādātajām neērtībām un lūdzam no jauna pievienot šīs glabātavas, lai turpinātu ar tām darboties.</string>
@@ -360,9 +360,9 @@
 	<string name="dialog_confirm_delete_file_message">Vai tiešām izdzēst šo datni?</string>
 	<string name="dialog_confirm_delete_folder_message">Šī darbība izdzēsīs visu mapes saturu. Vai tiešām izdzēst šo mapi?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Autentificēšana ar biometriju deaktivēta</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Tā kā atslēga ir padarīta par nederīgu, autentificēšanās ar biometriju tika deaktivēta. Lai iespējotu no jauna, jāatver Latch iestatījumi.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Tā kā atslēga ir padarīta par nederīgu, autentificēšanās ar biometriju tika deaktivēta. Lai iespējotu no jauna, jāatver Voidbox iestatījumi.</string>
 	<string name="dialog_enter_license_title">Iesniegt derīgu licenci</string>
-	<string name="dialog_enter_license_content">Mēs noteicām, ka Latch ir uzstādīta bez Google Play veikala izmantošanas. Jāiesniedz derīga licence, ko var iegādāties <a href="https://cryptomator.org/android/">https://cryptomator.org/android</a></string>
+	<string name="dialog_enter_license_content">Mēs noteicām, ka Voidbox ir uzstādīta bez Google Play veikala izmantošanas. Jāiesniedz derīga licence, ko var iegādāties <a href="https://cryptomator.org/android/">https://cryptomator.org/android</a></string>
 	<string name="dialog_enter_license_not_valid_content">Iesniegtā licence nav derīga. Jāpārliecinās, ka tā ir pareizi ievadīta.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Iesniegtā atslēga ir darbvirsmas atbalstītāja sertifikāts. Lūgums ievadīt derīgu licenci.</string>
 	<string name="dialog_enter_license_no_content">Nav iesniegta licence Lūgums ievadīt derīgu licenci.</string>
@@ -370,12 +370,12 @@
 	<string name="dialog_license_confirmation_title">Licences apstiprinājums</string>
 	<string name="dialog_license_confirmation_message">Paldies, %1$s, par derīgas licences iesniegšanu!</string>
 	<string name="dialog_update_available_title">Pieejams atjauninājums</string>
-	<string name="dialog_update_available_message">Latch jāatjaunina uz jaunāko versiju. Pēc \"Labi\" nospiešanas mēs fonā lejupielādēsim lietotni un vaicāsim to uzstadīt.</string>
+	<string name="dialog_update_available_message">Voidbox jāatjaunina uz jaunāko versiju. Pēc \"Labi\" nospiešanas mēs fonā lejupielādēsim lietotni un vaicāsim to uzstadīt.</string>
 	<string name="dialog_update_available_update">Atjaunināt tagad</string>
 	<string name="dialog_update_available_download_site">Doties uz lejupielāžu vietni</string>
 	<string name="dialog_update_available_cancel">Vēlāk</string>
 	<string name="dialog_download_update_title">Notiek lejupielāde</string>
-	<string name="dialog_download_update_message">Lejupielādē jaunāko Latch versiju</string>
+	<string name="dialog_download_update_message">Lejupielādē jaunāko Voidbox versiju</string>
 	<string name="dialog_sym_link_title">Mape ir simboliska saite</string>
 	<string name="dialog_sym_link_message">Šajā simboliskajā saitē nevar ieiet</string>
 	<string name="dialog_sym_link_back_button">Atpakaļ</string>
@@ -406,9 +406,9 @@
 	<string name="dialog_hub_user_setup_required_title">Nepieciešama lietotāja iestatīšana</string>
 	<string name="dialog_hub_user_setup_required_hint">Lai turpinātu, lūgums pabeigt nepieciešamos soļus savā Hub lietotāja profilā.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Doties uz profilu</string>
-	<string name="permission_snackbar_auth_local_vault">Latch ir nepieciešama piekļuve krātuvei, lai izmantotu vietējās krātuves</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch ir nepieciešama piekļuve krātuvei, lai izmantotu automātiski augšupielādētu fotoattēlus</string>
-	<string name="permission_snackbar_notifications">Latch ir nepieciešamas paziņojumu atļaujas, lai, piemēram, attēlotu glabātavas stāvokli</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox ir nepieciešama piekļuve krātuvei, lai izmantotu vietējās krātuves</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox ir nepieciešama piekļuve krātuvei, lai izmantotu automātiski augšupielādētu fotoattēlus</string>
+	<string name="permission_snackbar_notifications">Voidbox ir nepieciešamas paziņojumu atļaujas, lai, piemēram, attēlotu glabātavas stāvokli</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

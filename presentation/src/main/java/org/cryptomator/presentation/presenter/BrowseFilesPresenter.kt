@@ -104,6 +104,11 @@ import org.cryptomator.domain.CloudType
 import org.cryptomator.presentation.util.FileIcon
 import org.cryptomator.presentation.util.FolderListingCache
 import org.cryptomator.presentation.util.ThumbnailCache
+import org.cryptomator.presentation.util.RandomAccessMediaDataSource
+import org.cryptomator.presentation.util.VaultMedia
+import org.cryptomator.presentation.util.OfflineFiles
+import io.reactivex.Completable
+import java.util.concurrent.TimeUnit
 
 @PerView
 class BrowseFilesPresenter @Inject constructor( //
@@ -141,6 +146,8 @@ class BrowseFilesPresenter @Inject constructor( //
 	private val sharedPreferencesHandler: SharedPreferencesHandler,  //
 	private val licenseEnforcer: LicenseEnforcer, //
 	private val thumbnailCache: ThumbnailCache, //
+	private val vaultMedia: VaultMedia, //
+	private val offlineFiles: OfflineFiles, //
 	private val folderListingCache: FolderListingCache, //
 	exceptionMappings: ExceptionHandlers
 ) : Presenter<BrowseFilesView>(exceptionMappings) {
@@ -189,6 +196,9 @@ class BrowseFilesPresenter @Inject constructor( //
 				.run(DefaultResultHandler())
 		}
 		setRefreshOnBackPressEnabled(enableRefreshOnBackpressSupplier.setInAction(false))
+		if (!thumbnailInFlight) {
+			loadNextThumbnail()
+		}
 	}
 
 	fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -586,7 +596,9 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private fun thumbnailsAllowedFor(file: CloudFileModel): Boolean {
-		if (file.icon != FileIcon.IMAGE || (file.size ?: 0L) > ThumbnailCache.MAX_IMAGE_BYTES || thumbnailCache.vaultOf(file) == null) {
+		// videos are read by range, so only images are limited by size
+		val eligible = (file.icon == FileIcon.MOVIE && sharedPreferencesHandler.videoThumbnails()) || (file.icon == FileIcon.IMAGE && (file.size ?: 0L) <= ThumbnailCache.MAX_IMAGE_BYTES)
+		if (!eligible || thumbnailCache.vaultOf(file) == null) {
 			return false
 		}
 		if (thumbnailCache.vaultOf(file)?.cloud?.type() == CloudType.LOCAL) {
@@ -605,7 +617,8 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	private fun loadNextThumbnail() {
-		val file = pendingThumbnails.removeFirstOrNull()
+		// paused while another screen, such as the player, may need the decoder; resumed() continues
+		val file = if (isPaused) null else pendingThumbnails.removeFirstOrNull()
 		if (file == null) {
 			thumbnailInFlight = false
 			return
@@ -618,10 +631,29 @@ class BrowseFilesPresenter @Inject constructor( //
 			if (hit.isPresent) {
 				view?.showThumbnail(file, hit.get())
 				loadNextThumbnail()
+			} else if (file.icon == FileIcon.MOVIE) {
+				extractVideoThumbnail(file)
 			} else {
 				downloadThumbnail(file)
 			}
 		}, { loadNextThumbnail() }))
+	}
+
+	// the timeout closes the source, which fails a read the extractor is stuck in
+	private fun extractVideoThumbnail(file: CloudFileModel) {
+		thumbnailLoads.add(Single.using({ RandomAccessMediaDataSource(vaultMedia.open(file)) }, { source ->
+			Single.fromCallable { Optional.ofNullable(vaultMedia.frame(source)?.let { thumbnailCache.store(file, it) }) }
+		}, { it.close() }) //
+			.subscribeOn(Schedulers.io()) //
+			.timeout(VIDEO_THUMBNAIL_TIMEOUT_SECONDS, TimeUnit.SECONDS) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({ thumbnail ->
+				if (thumbnail.isPresent) view?.showThumbnail(file, thumbnail.get())
+				loadNextThumbnail()
+			}, { e ->
+				Timber.tag("Thumbnails").w(e, "No frame for %s", file.name)
+				loadNextThumbnail()
+			}))
 	}
 
 	private fun downloadThumbnail(file: CloudFileModel) {
@@ -650,6 +682,7 @@ class BrowseFilesPresenter @Inject constructor( //
 
 	override fun destroyed() {
 		thumbnailLoads.dispose()
+		streamProbes.dispose()
 		pendingThumbnails.clear()
 		super.destroyed()
 	}
@@ -845,7 +878,64 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onFileClicked(cloudFile: CloudFileModel) {
-		readFilesWithProgress(listOf(cloudFile), Intent.ACTION_VIEW)
+		if ((isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) && thumbnailCache.vaultOf(cloudFile) != null && sharedPreferencesHandler.streamMedia()) {
+			streamOrDownload(cloudFile)
+		} else {
+			readFilesWithProgress(listOf(cloudFile), Intent.ACTION_VIEW)
+		}
+	}
+
+	private fun streamOrDownload(cloudFile: CloudFileModel) {
+		val files = listOf(cloudFile)
+		view?.showProgress(files, ProgressModel(progressStateModelMapper.toModel(DownloadState.download(cloudFile.toCloudNode())), 0))
+		streamProbes.add(Single.fromCallable { vaultMedia.supportsStreaming(cloudFile) } //
+			.subscribeOn(Schedulers.io()) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({ streamable ->
+				view?.hideProgress(files)
+				if (streamable) {
+					startIntent(Intents.mediaPreviewIntent().withMediaFile(cloudFile).withStreamed(true).build(this))
+				} else {
+					readFilesWithProgress(files, Intent.ACTION_VIEW)
+				}
+			}, {
+				view?.hideProgress(files)
+				readFilesWithProgress(files, Intent.ACTION_VIEW)
+			}))
+	}
+
+	private val streamProbes = CompositeDisposable()
+
+	// --- offline copies
+
+	fun isOffline(file: CloudFileModel): Boolean = offlineFiles.isOffline(file)
+
+	fun onKeepOfflineClicked(file: CloudFileModel) {
+		val state = progressStateModelMapper.toModel(DownloadState.download(file.toCloudNode()))
+		view?.showProgress(file, ProgressModel(state, 0))
+		streamProbes.add(Completable.fromAction {
+			offlineFiles.keep(file) { progress ->
+				if (!progress.isOverallComplete) {
+					AndroidSchedulers.mainThread().scheduleDirect { view?.showProgress(file, ProgressModel(state, progress.asPercentage())) }
+				}
+			}
+		} //
+			.subscribeOn(Schedulers.io()) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({
+				view?.hideProgress(file)
+				view?.addOrUpdateCloudNode(file)
+				view?.showMessage(R.string.screen_file_browser_msg_kept_offline)
+			}, { e ->
+				view?.hideProgress(file)
+				showError(e)
+			}))
+	}
+
+	fun onRemoveOfflineClicked(file: CloudFileModel) {
+		offlineFiles.remove(file)
+		view?.addOrUpdateCloudNode(file)
+		view?.showMessage(R.string.screen_file_browser_msg_offline_removed)
 	}
 
 	fun onShareNodesClicked(nodes: List<CloudNodeModel<*>?>) {
@@ -1401,6 +1491,8 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	companion object {
+
+		private const val VIDEO_THUMBNAIL_TIMEOUT_SECONDS = 30L
 
 		const val OPEN_FILE_FINISHED = 12
 

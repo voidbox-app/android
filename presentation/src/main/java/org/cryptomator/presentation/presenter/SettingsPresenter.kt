@@ -99,7 +99,7 @@ class SettingsPresenter @Inject internal constructor(
 			.append("### ").append(context().getString(R.string.error_report_section_summary)).append('\n') //
 			.append(context().getString(R.string.error_report_summary_description)).append("\n\n") //
 			.append("### ").append(context().getString(R.string.error_report_section_device)).append("\n") //
-			.append("Latch v").append(BuildConfig.VERSION_NAME).append(" (").append(BuildConfig.VERSION_CODE).append(") ").append(variant).append("\n") //
+			.append("Voidbox v").append(BuildConfig.VERSION_NAME).append(" (").append(BuildConfig.VERSION_CODE).append(") ").append(variant).append("\n") //
 			.append("Android ").append(Build.VERSION.RELEASE).append(" / API").append(Build.VERSION.SDK_INT).append("\n") //
 			.append("Device ").append(Build.MODEL) //
 			.toString()

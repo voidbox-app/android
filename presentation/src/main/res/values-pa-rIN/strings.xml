@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">ਕੋਈ ਨੈੱਟਵਰਕ ਕਨੈਕਸ਼ਨ ਨਹੀਂ</string>
 	<string name="error_invalid_passphrase">ਗ਼ਲਤ ਪਾਸਵਰਡ</string>
 	<string name="error_file_or_folder_exists">ਫਾਇਲ ਜਾਂ ਫੋਲਡਰ ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
-	<string name="error_vault_version_not_supported">ਵਾਲਟ ਵਰਜ਼ਨ %1$s ਗ਼ੈਰ-ਸਹਾਇਕ ਹੈ। ਇਹ ਵਾਲਟ ਨੂੰ Latch ਦੇ ਪੁਰਾਣੇ ਜਾਂ ਨਵੇਂ ਵਰਜ਼ਨ ਨਾਲ ਬਣਾਇਆ ਗਿਆ ਹੈ।</string>
+	<string name="error_vault_version_not_supported">ਵਾਲਟ ਵਰਜ਼ਨ %1$s ਗ਼ੈਰ-ਸਹਾਇਕ ਹੈ। ਇਹ ਵਾਲਟ ਨੂੰ Voidbox ਦੇ ਪੁਰਾਣੇ ਜਾਂ ਨਵੇਂ ਵਰਜ਼ਨ ਨਾਲ ਬਣਾਇਆ ਗਿਆ ਹੈ।</string>
 	<string name="error_vault_already_exists">\"%@\" ਪਹਿਲਾਂ ਹੀ ਮੌਜੂਦ ਹੈ।</string>
 	<string name="error_no_such_file">ਫਾਇਲ ਮੌਜੂਦ ਨਹੀਂ ਹੈ।</string>
 	<string name="error_vault_has_been_locked">ਵਾਲਟ ਨੂੰ ਲਾਕ ਕੀਤਾ ਗਿਆ ਹੈ।</string>
@@ -52,10 +52,10 @@
 	<string name="cloud_names_local_storage">ਲੋਕਲ ਸਟੋਰੇਜ਼</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch ਨੂੰ ਫ਼ਾਇਲਾਂ ਐਕਸਪੋਰਟ ਕਰਨ ਲਈ ਸਟੋਰੇਜ਼ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
-	<string name="permission_message_upload_file">Latch ਨੂੰ ਫ਼ਾਇਲਾਂ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਸਟੋਰੇਜ਼ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
-	<string name="permission_message_share_file">Latch ਨੂੰ ਫ਼ਾਇਲਾਂ ਸਾਂਝੀਆਂ ਕਰਨ ਲਈ ਸਟੋਰੇਜ਼ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
-	<string name="permission_revoked_re_request_permission">Latch ਨੇ ਇਸ ਟਿਕਾਣੇ ਲਈ ਪਹੁੰਚ ਦੀ ਮਨਜ਼ੂਰ ਗੁਆ ਦਿੱਤੀ ਹੈ। ਮਨਜ਼ੂਰੀ ਨੂੰ ਬਹਾਲ ਕਰਨ ਵਾਸਤੇ ਇਸ ਫੋਲਡਰ ਨੂੰ ਮੁੜ ਚੁਣੋ।</string>
+	<string name="permission_message_export_file">Voidbox ਨੂੰ ਫ਼ਾਇਲਾਂ ਐਕਸਪੋਰਟ ਕਰਨ ਲਈ ਸਟੋਰੇਜ਼ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
+	<string name="permission_message_upload_file">Voidbox ਨੂੰ ਫ਼ਾਇਲਾਂ ਅੱਪਲੋਡ ਕਰਨ ਲਈ ਸਟੋਰੇਜ਼ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
+	<string name="permission_message_share_file">Voidbox ਨੂੰ ਫ਼ਾਇਲਾਂ ਸਾਂਝੀਆਂ ਕਰਨ ਲਈ ਸਟੋਰੇਜ਼ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ</string>
+	<string name="permission_revoked_re_request_permission">Voidbox ਨੇ ਇਸ ਟਿਕਾਣੇ ਲਈ ਪਹੁੰਚ ਦੀ ਮਨਜ਼ੂਰ ਗੁਆ ਦਿੱਤੀ ਹੈ। ਮਨਜ਼ੂਰੀ ਨੂੰ ਬਹਾਲ ਕਰਨ ਵਾਸਤੇ ਇਸ ਫੋਲਡਰ ਨੂੰ ਮੁੜ ਚੁਣੋ।</string>
 	<string name="snack_bar_action_title_settings">ਸੈਟਿੰਗਾਂ</string>
 	<string name="snack_bar_action_title_search">ਖੋਜੋ</string>
 	<string name="snack_bar_action_title_search_previous">ਪਿਛਲਾ</string>
@@ -71,7 +71,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">ਕਲਾਉਡ ਸੂਚੀ ਵਿੱਚ ਨਹੀਂ ਹੈ?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Latch ਵਿੱਚ ਜੋੜੋ</string>
+	<string name="screen_vault_list_actions_title">Voidbox ਵਿੱਚ ਜੋੜੋ</string>
 	<string name="screen_vault_list_action_create_new_vault">ਨਵਾਂ ਵਾਲਟ ਬਣਾਓ</string>
 	<string name="screen_vault_list_action_add_existing_vault">ਮੌਜੂਦਾ ਵਾਲਟ ਨੂੰ ਜੋੜੋ</string>
 	<string name="screen_vault_list_vault_action_delete">ਹਟਾਓ</string>
@@ -185,7 +185,7 @@
 	<string name="screen_settings_section_auto_photo_upload_toggle_instant_upload_summary">ਜਦੋਂ ਵੀ ਵਾਲਟ ਅਣ-ਲਾਕ ਹੋਵੇ ਤਾਂ ਸਿੱਧਾ ਅੱਪਲੋਡ ਕਰੋ</string>
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">ਸਿਰਫ਼ WIFI ਵਰਤ ਕੇ ਅੱਪਲੋਡ ਕਰੋ</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">ਵੀਡੀਓ ਨੂੰ ਅੱਪਲੋਡ ਕਰੋ</string>
-	<string name="screen_settings_website_label">Latch ਦੀ ਵੈੱਬਸਾਈਟ</string>
+	<string name="screen_settings_website_label">Voidbox ਦੀ ਵੈੱਬਸਾਈਟ</string>
 	<string name="screen_settings_facebook_label">ਫੇਸਬੁੱਕ ਉੱਤੇ ਸਾਨੂੰ ਪਸੰਦ ਕਰੋ</string>
 	<string name="screen_settings_section_legal">ਕਨੂੰਨੀ</string>
 	<string name="screen_settings_licenses_label">ਲਸੰਸ</string>
@@ -297,7 +297,7 @@
 	<string name="dialog_update_available_download_site">ਡਾਊਨਲੋਡ ਸਾਈਟ ਉੱਤੇ ਜਾਓ</string>
 	<string name="dialog_update_available_cancel">ਬਾਅਦ ਵਿੱਚ</string>
 	<string name="dialog_download_update_title">ਡਾਊਨਲੋਡ ਚੱਲ ਰਿਹਾ ਹੈ</string>
-	<string name="dialog_download_update_message">Latch ਨਵਾਂ ਵਰਜ਼ਨ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
+	<string name="dialog_download_update_message">Voidbox ਨਵਾਂ ਵਰਜ਼ਨ ਡਾਊਨਲੋਡ ਕੀਤਾ ਜਾ ਰਿਹਾ ਹੈ</string>
 	<string name="dialog_sym_link_back_button">ਪਿੱਛੇ</string>
 	<string name="dialog_no_dir_file_title">ਡਾਇਰੈਕਟਰੀ ਦੀ ਸਮੱਗਰੀ ਨੂੰ ਲੋਡ ਕਰਨ ਲਈ ਅਸਮਰੱਥ ਹੈ</string>
 	<string name="dialog_pcloud_credentials_updated_title">\'%1$s\' ਲਈ ਸਨਦਾਂ ਨੂੰ ਅੱਪਡੇਟ ਕੀਤਾ</string>

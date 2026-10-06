@@ -5,6 +5,8 @@ import org.cryptomator.cryptolib.api.Cryptor
 import org.cryptomator.cryptolib.common.DecryptingReadableByteChannel
 import org.cryptomator.cryptolib.common.EncryptingWritableByteChannel
 import org.cryptomator.data.cloud.crypto.DirIdCache.DirIdInfo
+import org.cryptomator.data.util.FileRandomAccessContent
+import org.cryptomator.data.util.OfflineCopies
 import org.cryptomator.domain.Cloud
 import org.cryptomator.domain.CloudFile
 import org.cryptomator.domain.CloudFolder
@@ -16,6 +18,7 @@ import org.cryptomator.domain.exception.FatalBackendException
 import org.cryptomator.domain.exception.NoDirFileException
 import org.cryptomator.domain.exception.ParentFolderIsNullException
 import org.cryptomator.domain.repository.CloudContentRepository
+import org.cryptomator.domain.repository.RandomAccessContent
 import org.cryptomator.domain.usecases.DownloadFileReplacingProgressAware
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.UploadFileReplacingProgressAware
@@ -342,9 +345,20 @@ abstract class CryptoImplDecorator(
 		}
 	}
 
+	/** Reads the offline copy when there is one, otherwise the cloud. */
+	@Throws(BackendException::class)
+	fun openRandomAccess(cryptoFile: CryptoFile): RandomAccessContent {
+		val ciphertext = OfflineCopies.of(context).find(cryptoFile.cloudFile)?.let { FileRandomAccessContent(it) } ?: cloudContentRepository.openRandomAccess(cryptoFile.cloudFile)
+		return CryptoRandomAccessContent(ciphertext, cryptor())
+	}
+
 	@Throws(BackendException::class, IOException::class)
 	private fun readToTmpFile(cryptoFile: CryptoFile, file: CloudFile, progressAware: ProgressAware<DownloadState>): File {
 		val encryptedTmpFile = File.createTempFile(UUID.randomUUID().toString(), ".crypto", internalCache)
+		OfflineCopies.of(context).find(file)?.let { offlineCopy ->
+			offlineCopy.copyTo(encryptedTmpFile, overwrite = true)
+			return encryptedTmpFile
+		}
 		FileOutputStream(encryptedTmpFile).use { encryptedData ->
 			cloudContentRepository.read(file, encryptedTmpFile, encryptedData, DownloadFileReplacingProgressAware(cryptoFile, progressAware))
 			return encryptedTmpFile

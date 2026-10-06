@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Hakuna muunganisho wa mtandao</string>
 	<string name="error_invalid_passphrase">Neno la siri si sahihi</string>
 	<string name="error_file_or_folder_exists">Faili au folda tayari imekuwepo.</string>
-	<string name="error_vault_version_not_supported">Toleo la kuba %1$s haikubaliki. Kuba hii imeundwa na toleo la zamani au jipya zaidi Latch.</string>
+	<string name="error_vault_version_not_supported">Toleo la kuba %1$s haikubaliki. Kuba hii imeundwa na toleo la zamani au jipya zaidi Voidbox.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">%1$s faili halipo kwenye folda yako ya kuba. Hakikisha kuwa faili hili lipo kwenye folda yako kwenye wingu.</string>
 	<string name="error_vault_already_exists">Kuba tayari ipo.</string>
 	<string name="error_no_such_file">Faili haipo.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">Toleo lililobainishwa katika %1$s ni tofati na %2$s</string>
 	<string name="error_vault_key_invalid">%1$s hailingani na hii %2$s</string>
 	<string name="error_vault_config_loading">Kosa la jumla wakati wa kupakia conf ya kuba</string>
-	<string name="error_file_not_found_after_opening_using_3party">Faili ya ndani haipo tena baada ya kurudi kwenye Latch. Mabadiliko yanayowezekana hayawezi kuenezwa tena kwenye wingu.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Faili ya ndani haipo tena baada ya kurudi kwenye Voidbox. Mabadiliko yanayowezekana hayawezi kuenezwa tena kwenye wingu.</string>
 	<string name="error_no_such_bucket">Hakuna ndoo ya utafutaji</string>
 	<string name="error_masterkey_location_not_supported">Mahali maalumu pa Masterkey bado haijategemezwa bado</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Imeshindwa kuwasiliana na programu ya F-Droid. Je, haijasakinishwa?</string>
@@ -63,10 +63,10 @@
 	<string name="cloud_names_local_storage">Hifadhi ya ndani</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch inahitaji ufikiaji wa kuhifadhi ili kuhamisha mafaili</string>
-	<string name="permission_message_upload_file">Latch inahitaji ufikiaji wa kuhifadhi ili kupakia mafaili</string>
-	<string name="permission_message_share_file">Latch inahitaji ufikiaji wa kuhifadhi ili kusiriki mafaili</string>
-	<string name="permission_revoked_re_request_permission">Latch imepoteza ruhusa ya kufikia mahali hapa. Tafadhali teua kabrasha hili tena ili kurejesha kibali.</string>
+	<string name="permission_message_export_file">Voidbox inahitaji ufikiaji wa kuhifadhi ili kuhamisha mafaili</string>
+	<string name="permission_message_upload_file">Voidbox inahitaji ufikiaji wa kuhifadhi ili kupakia mafaili</string>
+	<string name="permission_message_share_file">Voidbox inahitaji ufikiaji wa kuhifadhi ili kusiriki mafaili</string>
+	<string name="permission_revoked_re_request_permission">Voidbox imepoteza ruhusa ya kufikia mahali hapa. Tafadhali teua kabrasha hili tena ili kurejesha kibali.</string>
 	<string name="snack_bar_action_title_settings">Kipimo</string>
 	<string name="snack_bar_action_title_search">Tafuta</string>
 	<string name="snack_bar_action_title_search_previous">Iliyotangulia</string>
@@ -82,7 +82,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Wingu haipo kwenye orodha?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Ongeza kwenye Latch</string>
+	<string name="screen_vault_list_actions_title">Ongeza kwenye Voidbox</string>
 	<string name="screen_vault_list_action_create_new_vault">Unda kuba mpya</string>
 	<string name="screen_vault_list_action_add_existing_vault">Ongeza kuba iliyopo</string>
 	<string name="screen_vault_list_vault_action_delete">Ondoa</string>
@@ -202,7 +202,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Pakia tu kwa kutumia WIFI</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Pakia video</string>
 	<string name="screen_settings_auto_photo_upload_title">Hifadhi faili za kupakia kiotomatiki kwenye &#8230;</string>
-	<string name="screen_settings_website_label">Tovuti ya Latch</string>
+	<string name="screen_settings_website_label">Tovuti ya Voidbox</string>
 	<string name="screen_settings_facebook_label">Tupende sisi kwenye Facebook</string>
 	<string name="screen_settings_section_legal">Kisheria</string>
 	<string name="screen_settings_licenses_label">Leseni</string>
@@ -232,15 +232,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s haikuweza kuthibitishwa.</string>
 	<string name="screen_update_pcloud_connections_title">Sasisha hati za utambulisho za pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Lahaja za Latch</string>
+	<string name="screen_cryptomator_variants_title">Lahaja za Voidbox</string>
 	<string name="screen_cryptomator_variants_lite_title">Hazina kuu ya F-Droid</string>
 	<string name="screen_cryptomator_variants_lite_description">Haijajumuishwa kwa sababu zinahitaji funguo za API.</string>
 	<string name="screen_cryptomator_variants_lite_install">Sakinisha</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Hazina ya Latch F-Droid</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Hazina ya Voidbox F-Droid</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Haijajumuishwa kwa sababu ina vitegemezi vya umiliki.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Ongeza hazina ya Latch kwenye programu ya F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Ongeza hazina ya Voidbox kwenye programu ya F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Ongeza</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Sakinisha Latch ukitumia F-Droid.\n iwapo hitilafu ambayo haijapatikana itaonyeshwa, subiri hadi ulandanishi wa F-Droid ukamilike. Contextrequest.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Sakinisha Voidbox ukitumia F-Droid.\n iwapo hitilafu ambayo haijapatikana itaonyeshwa, subiri hadi ulandanishi wa F-Droid ukamilike. Contextrequest.</string>
 	<string name="screen_cryptomator_variants_website_title">Tovuti</string>
 	<string name="screen_cryptomator_variants_website_description">Ina tegemezi za umiliki.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Kubadilisha kutoka au kwenda kwa lahaja kuu ya hazina ya F-Droid kunahitaji usanidi mpya wa programu.</string>
@@ -270,7 +270,7 @@
 	<string name="dialog_replace_title_single_file_exists">Badilisha faili?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Badilisha faili?</string>
 	<string name="dialog_unable_to_share_title">Haiwezi kugawiza mafaili</string>
-	<string name="dialog_unable_to_share_message">Hujasanidi kuba yoyote. Tafadhali unda kuba mpya na programu ya Latch kwanza.</string>
+	<string name="dialog_unable_to_share_message">Hujasanidi kuba yoyote. Tafadhali unda kuba mpya na programu ya Voidbox kwanza.</string>
 	<string name="dialog_unable_to_share_positive_button">Sawa</string>
 	<string name="dialog_unable_to_share_negative_button">Unda kuba</string>
 	<string name="dialog_filetype_not_supported_title">Haiwezi fungua%1$s</string>
@@ -336,9 +336,9 @@
 	<string name="dialog_confirm_delete_file_message">Una hakika unataka kufuta faili hili?</string>
 	<string name="dialog_confirm_delete_folder_message">Hii itafuta yaliyomo kwenye folda yote. Una hakika unataka kufuta kabrasha hili?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Kipengele cha uthibitishaji wa Biometriska kimezimwa</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Kwa sababu ufunguo umebatilishwa, kipengele cha uthibitishaji wa biometriska kimezimwa. Ili kuwezesha tena, fungua mipangilio ya Latch.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Kwa sababu ufunguo umebatilishwa, kipengele cha uthibitishaji wa biometriska kimezimwa. Ili kuwezesha tena, fungua mipangilio ya Voidbox.</string>
 	<string name="dialog_enter_license_title">Toa leseni halali</string>
-	<string name="dialog_enter_license_content">Tuligundua kuwa ulisakinisha Latch bila kutumia Duka la Google Play. Toa leseni halali, ambayo inaweza kununuliwa kwenye <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Tuligundua kuwa ulisakinisha Voidbox bila kutumia Duka la Google Play. Toa leseni halali, ambayo inaweza kununuliwa kwenye <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">Leseni iliyotolewa sio halali. Hakikisha umeiingiza kwa usahihi.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Ufunguo uliotolewa ni cheti cha msaidizi wa eneo-kazi. Tafadhali ingiza leseni halali.</string>
 	<string name="dialog_enter_license_no_content">Hakuna leseni iliyotolewa. Tafadhali ingiza leseni halali.</string>
@@ -346,12 +346,12 @@
 	<string name="dialog_license_confirmation_title">Uthibitisho wa leseni</string>
 	<string name="dialog_license_confirmation_message">Asante %1$s kwa kutoa leseni yako halali.</string>
 	<string name="dialog_update_available_title">Sasisha inapatikana</string>
-	<string name="dialog_update_available_message">Sasisha Latch hadi toleo la hivi karibuni. Kwa kubonyeza Sawa tutapakua programu chinichini na tutakuuliza uikinishe.</string>
+	<string name="dialog_update_available_message">Sasisha Voidbox hadi toleo la hivi karibuni. Kwa kubonyeza Sawa tutapakua programu chinichini na tutakuuliza uikinishe.</string>
 	<string name="dialog_update_available_update">Sasisha sasa</string>
 	<string name="dialog_update_available_download_site">Nenda kwenye tovuti ya kupakua</string>
 	<string name="dialog_update_available_cancel">Baadae</string>
 	<string name="dialog_download_update_title">Upakuaji unaendesha</string>
-	<string name="dialog_download_update_message">Inapakua toleo la hivi karibuni la Latch</string>
+	<string name="dialog_download_update_message">Inapakua toleo la hivi karibuni la Voidbox</string>
 	<string name="dialog_sym_link_title">Kabrasha ni kiungo cha mfano</string>
 	<string name="dialog_sym_link_message">Huwezi kuingia kwenye kiungo hiki cha mfano</string>
 	<string name="dialog_sym_link_back_button">Rudi</string>
@@ -363,9 +363,9 @@
 	<string name="dialog_hub_vault_access_forbidden_title">Ufikiaji umekataliwa</string>
 	<string name="dialog_restore_successful_title">Urejeshi Imefanikiwa</string>
 	<string name="dialog_no_full_version_title">Hakuna Toleo Kamili</string>
-	<string name="permission_snackbar_auth_local_vault">Latch inahitaji ufikiaji wa kuhifadhi ili kutumia kuba za ndani</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch inahitaji ufikiaji wa kuhifadhi ili kutumia upakiaji wa picha kiotomatiki</string>
-	<string name="permission_snackbar_notifications">Latch inahitaji ruhusa za taarifa ili kuonyesha hali ya kuba kwa mfano</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox inahitaji ufikiaji wa kuhifadhi ili kutumia kuba za ndani</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox inahitaji ufikiaji wa kuhifadhi ili kutumia upakiaji wa picha kiotomatiki</string>
+	<string name="permission_snackbar_notifications">Voidbox inahitaji ruhusa za taarifa ili kuonyesha hali ya kuba kwa mfano</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

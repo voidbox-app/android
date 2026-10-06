@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">ネットワーク接続がありません</string>
 	<string name="error_invalid_passphrase">パスワードが正しくありません</string>
 	<string name="error_file_or_folder_exists">ファイルかフォルダーが既に存在します。</string>
-	<string name="error_vault_version_not_supported">バージョン %1$s の金庫には対応していません。この金庫は、現在のものより古いか新しいバージョンの Latch で作成されています。</string>
+	<string name="error_vault_version_not_supported">バージョン %1$s の金庫には対応していません。この金庫は、現在のものより古いか新しいバージョンの Voidbox で作成されています。</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">%1$s ファイルが金庫のフォルダーに見つかりませんでした。クラウドの金庫フォルダーにこのファイルが存在することを確認してください。</string>
 	<string name="error_vault_already_exists">金庫が既に存在します。</string>
 	<string name="error_no_such_file">ファイルが存在しません。</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">%1$s で指定されたバージョンが %2$s と異なります</string>
 	<string name="error_vault_key_invalid">%1$s はこの %2$s と一致しません</string>
 	<string name="error_vault_config_loading">金庫の設定を読み込み中に失敗しました</string>
-	<string name="error_file_not_found_after_opening_using_3party">Latchに切り替えた後、ローカルファイルは存在しなくなりました。変更をクラウドに戻すことはできません。</string>
+	<string name="error_file_not_found_after_opening_using_3party">Voidboxに切り替えた後、ローカルファイルは存在しなくなりました。変更をクラウドに戻すことはできません。</string>
 	<string name="error_no_such_bucket">バケットがありません</string>
 	<string name="error_masterkey_location_not_supported">好きな場所に Masterkey を置くことはまだできません</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">F-Droidアプリと通信ができません。インストールしてありませんか？</string>
@@ -70,10 +70,10 @@
 	<string name="cloud_names_local_storage">ローカルストレージ</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">ファイルをエクスポートするには、Latch がストレージにアクセスする許可が必要です</string>
-	<string name="permission_message_upload_file">ファイルをアップロードするには、Latch がストレージにアクセスする許可が必要です</string>
-	<string name="permission_message_share_file">ファイルを共有するには、Latch がストレージにアクセスする許可が必要です</string>
-	<string name="permission_revoked_re_request_permission">Latch がこの場所にアクセスする権限がなくなりました。このフォルダーを再度選択して権限を再度取得してください。</string>
+	<string name="permission_message_export_file">ファイルをエクスポートするには、Voidbox がストレージにアクセスする許可が必要です</string>
+	<string name="permission_message_upload_file">ファイルをアップロードするには、Voidbox がストレージにアクセスする許可が必要です</string>
+	<string name="permission_message_share_file">ファイルを共有するには、Voidbox がストレージにアクセスする許可が必要です</string>
+	<string name="permission_revoked_re_request_permission">Voidbox がこの場所にアクセスする権限がなくなりました。このフォルダーを再度選択して権限を再度取得してください。</string>
 	<string name="snack_bar_action_title_settings">設定</string>
 	<string name="snack_bar_action_title_search">検索</string>
 	<string name="snack_bar_action_title_search_previous">戻る</string>
@@ -89,7 +89,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">クラウドがリストにありませんか？</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Latch に追加</string>
+	<string name="screen_vault_list_actions_title">Voidbox に追加</string>
 	<string name="screen_vault_list_action_create_new_vault">新しい金庫を作成</string>
 	<string name="screen_vault_list_action_add_existing_vault">既存の金庫を追加</string>
 	<string name="screen_vault_list_vault_action_delete">削除</string>
@@ -214,7 +214,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">WIFI を使用しているときのみアップロード</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">動画をアップロード</string>
 	<string name="screen_settings_auto_photo_upload_title">&#8230; へのファイルの自動アップロードを保存</string>
-	<string name="screen_settings_website_label">Latch のウェブサイト</string>
+	<string name="screen_settings_website_label">Voidbox のウェブサイト</string>
 	<string name="screen_settings_mastodon_label">Mastodonでフォロー</string>
 	<string name="screen_settings_facebook_label">Facebook でいいねする</string>
 	<string name="screen_settings_section_legal">法的事項</string>
@@ -247,15 +247,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s は認証できませんでした。</string>
 	<string name="screen_update_pcloud_connections_title">pCloud アカウント情報を更新</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Latchの種類</string>
+	<string name="screen_cryptomator_variants_title">Voidboxの種類</string>
 	<string name="screen_cryptomator_variants_lite_title">F-Droid のメインリポジトリ</string>
 	<string name="screen_cryptomator_variants_lite_description">APIキーが必要なため除外しています。</string>
 	<string name="screen_cryptomator_variants_lite_install">インストール</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid リポジトリ</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidbox F-Droid リポジトリ</string>
 	<string name="screen_cryptomator_variants_fdroid_description">独自の依存関係が含まれているため除外します。</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">F-Droid アプリに Latch リポジトリを追加します。</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">F-Droid アプリに Voidbox リポジトリを追加します。</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">追加</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">F-Droidを使用してLatchをインストールします。\n見つかりませんとエラーが表示される場合は、F-Droidの同期が完了するまでお待ちください。</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">F-Droidを使用してVoidboxをインストールします。\n見つかりませんとエラーが表示される場合は、F-Droidの同期が完了するまでお待ちください。</string>
 	<string name="screen_cryptomator_variants_website_title">ウェブサイト</string>
 	<string name="screen_cryptomator_variants_website_description">独自の依存関係が含まれています。</string>
 	<string name="screen_cryptomator_variants_installation_hint">F-Droid リポジトリのバリアントに切り替えるには、アプリの再インストールが必要です。</string>
@@ -285,7 +285,7 @@
 	<string name="dialog_replace_title_single_file_exists">ファイルを置き換えますか?</string>
 	<string name="dialog_replace_title_multiple_files_exist">ファイルを置き換えますか?</string>
 	<string name="dialog_unable_to_share_title">ファイルを共有できません</string>
-	<string name="dialog_unable_to_share_message">金庫のセットアップが完了していません。最初に Latch から新しい金庫を作成してください。</string>
+	<string name="dialog_unable_to_share_message">金庫のセットアップが完了していません。最初に Voidbox から新しい金庫を作成してください。</string>
 	<string name="dialog_unable_to_share_positive_button">OK</string>
 	<string name="dialog_unable_to_share_negative_button">金庫を作成</string>
 	<string name="dialog_filetype_not_supported_title">%1$s を開くことができません</string>
@@ -336,12 +336,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">このモードでは、デバイスのログファイルに機密情報が書き込まれることがあります(例: ファイル名やパス)。パスワードや cookie 等は除外されます。\n\n できるだけ早くデバッグ モードを無効化をすることを忘れないでください。</string>
 	<string name="dialog_debug_mode_disclaimer_title">注意</string>
 	<string name="dialog_debug_mode_positive_button">有効にする</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">このオプションを有効にする場合には以下の挙動を必ずご確認ください。Microsoft アプリのバグを回避するため、編集するファイルはデバイス上の公開メディアフォルダを通してアプリに共有する必要があります。編集を終えて Latch に戻った際に公開メディアフォルダ上のファイルは削除されますが、その間ファイルは他アプリからもアクセス可能なままとなります。本回避策は Microsoft のファイルタイプのみに適用されます。\n\nオプションを有効化した後に Latch は再起動します。</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">このオプションを有効にする場合には以下の挙動を必ずご確認ください。Microsoft アプリのバグを回避するため、編集するファイルはデバイス上の公開メディアフォルダを通してアプリに共有する必要があります。編集を終えて Voidbox に戻った際に公開メディアフォルダ上のファイルは削除されますが、その間ファイルは他アプリからもアクセス可能なままとなります。本回避策は Microsoft のファイルタイプのみに適用されます。\n\nオプションを有効化した後に Voidbox は再起動します。</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">この設定はセキュリティのための機能であり、ユーザーが他のアプリに騙されて望まない操作をしてしまうことを防ぎます。\n\n無効にするには<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">リスクを承知</a>してください。</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">注意</string>
 	<string name="dialog_disable_app_obscured_positive_button">無効</string>
 	<string name="dialog_app_is_obscured_info_title">アプリが重なっています</string>
-	<string name="dialog_app_is_obscured_info_hint">他のアプリケーションが Latch の上に何かを表示しています（例: ブルーライトフィルターやナイトモードアプリ）。このため、セキュリティの観点から Latch が無効化されています。\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Latch を有効にするには</a></string>
+	<string name="dialog_app_is_obscured_info_hint">他のアプリケーションが Voidbox の上に何かを表示しています（例: ブルーライトフィルターやナイトモードアプリ）。このため、セキュリティの観点から Voidbox が無効化されています。\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Voidbox を有効にするには</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">閉じる</string>
 	<string name="dialog_vaults_removed_during_migration_title">%1s クラウンドの金庫を再追加してください</string>
 	<string name="dialog_vaults_removed_during_migration_hint">このアプリのバージョンに移行に際して、アプリから次の保管庫を削除する必要があります:\n%2s \n\nこれらの保管庫はクラウドからではなく、このアプリからのみ削除されます。 ご不便をおかけして申し訳ありませんが、保管庫を再度追加してください。</string>
@@ -355,9 +355,9 @@
 	<string name="dialog_confirm_delete_file_message">本当にこのファイルを削除してもよろしいですか?</string>
 	<string name="dialog_confirm_delete_folder_message">この操作はフォルダーの内容をすべて削除します。本当にこのフォルダーを削除してもよろしいですか？</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">生体認証機能が無効になりました</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">鍵が無効になったため、生体認証が無効になりました。再度有効にするには、Latch の設定を開いてください。</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">鍵が無効になったため、生体認証が無効になりました。再度有効にするには、Voidbox の設定を開いてください。</string>
 	<string name="dialog_enter_license_title">有効なライセンスを入力してください</string>
-	<string name="dialog_enter_license_content">Google Play ストアを使用せずに Latch をインストールしたことを検出しました。有効なライセンスを購入してください: <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Google Play ストアを使用せずに Voidbox をインストールしたことを検出しました。有効なライセンスを購入してください: <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">入力されたライセンスが無効です。正しく入力されていることを確認してください。</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">入力されたキーはデスクトップサポーター証明書です。有効なライセンスを入力してください。</string>
 	<string name="dialog_enter_license_no_content">ライセンスがありません。有効なライセンスを入力してください。</string>
@@ -365,12 +365,12 @@
 	<string name="dialog_license_confirmation_title">ライセンスの確認を完了</string>
 	<string name="dialog_license_confirmation_message">%1$s-san 有効なライセンスを入力していただきありがとうございます。 </string>
 	<string name="dialog_update_available_title">利用可能なアップデートがあります</string>
-	<string name="dialog_update_available_message">Latch を最新のバージョンに更新します。OK を押すとバックグラウンドでアプリがダウンロードされ、インストール可能になると通知されます。</string>
+	<string name="dialog_update_available_message">Voidbox を最新のバージョンに更新します。OK を押すとバックグラウンドでアプリがダウンロードされ、インストール可能になると通知されます。</string>
 	<string name="dialog_update_available_update">すぐに更新</string>
 	<string name="dialog_update_available_download_site">ダウンロードサイトに行く</string>
 	<string name="dialog_update_available_cancel">あとで</string>
 	<string name="dialog_download_update_title">ダウンロード中</string>
-	<string name="dialog_download_update_message">Latch の最新バージョンをダウンロード中</string>
+	<string name="dialog_download_update_message">Voidbox の最新バージョンをダウンロード中</string>
 	<string name="dialog_sym_link_title">フォルダがシンボリックリンクです</string>
 	<string name="dialog_sym_link_message">このシンボリックリンクに移動することはできません</string>
 	<string name="dialog_sym_link_back_button">戻る</string>
@@ -402,9 +402,9 @@
 	<string name="dialog_hub_user_setup_required_hint">続行するにはHubユーザープロフィールで必要な手順を完了してください。</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">プロフィールへ移動</string>
 	<string name="dialog_hub_check_host_authenticity_title">このホストを信頼しますか？</string>
-	<string name="permission_snackbar_auth_local_vault">ローカルの金庫を使用するには、Latch がストレージにアクセスする許可が必要です</string>
-	<string name="permission_snackbar_auth_auto_upload">自動的に画像をアップロードするには、Latch がストレージにアクセスする許可が必要です</string>
-	<string name="permission_snackbar_notifications">金庫の状態などを表示するには、Latch に通知権限が必要です。</string>
+	<string name="permission_snackbar_auth_local_vault">ローカルの金庫を使用するには、Voidbox がストレージにアクセスする許可が必要です</string>
+	<string name="permission_snackbar_auth_auto_upload">自動的に画像をアップロードするには、Voidbox がストレージにアクセスする許可が必要です</string>
+	<string name="permission_snackbar_notifications">金庫の状態などを表示するには、Voidbox に通知権限が必要です。</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

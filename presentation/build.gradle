@@ -3,6 +3,7 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-parcelize'
 apply plugin: 'de.mannodermaus.android-junit5'
+apply plugin: 'org.jetbrains.kotlinx.kover'
 
 if (!liteFlavor()) {
 	apply from: 'prebuild.gradle'
@@ -30,19 +31,19 @@ android {
 		targetSdkVersion globalConfiguration["androidTargetSdkVersion"]
 
 		applicationId globalConfiguration["androidApplicationId"]
-		// Latch carries its own semantic version in VERSION (1.2.3 or 1.2.3-beta.4). The Cryptomator
+		// Voidbox carries its own semantic version in VERSION (1.2.3 or 1.2.3-beta.4). The Cryptomator
 		// base it is built on is recorded in UPSTREAM_TAG and only named in the release notes.
-		def latchVersion = rootProject.file("VERSION").text.trim()
-		def versionMatch = latchVersion =~ /^(\d+)\.(\d+)\.(\d+)(?:-([A-Za-z]+)\.?(\d+)?)?$/
+		def appVersion = rootProject.file("VERSION").text.trim()
+		def versionMatch = appVersion =~ /^(\d+)\.(\d+)\.(\d+)(?:-([A-Za-z]+)\.?(\d+)?)?$/
 		if (!versionMatch.matches()) {
-			throw new GradleException("VERSION must look like 1.2.3 or 1.2.3-beta.4, got '${latchVersion}'")
+			throw new GradleException("VERSION must look like 1.2.3 or 1.2.3-beta.4, got '${appVersion}'")
 		}
 		def preRelease = versionMatch.group(4) != null
 		// 1.2.3 -> 1_02_03_99; a pre-release takes its own number instead of 99, so betas sort below the final build
 		def preNumber = preRelease ? (versionMatch.group(5) ?: "1").toInteger() : 99
 		versionCode versionMatch.group(1).toInteger() * 1000000 + versionMatch.group(2).toInteger() * 10000 + versionMatch.group(3).toInteger() * 100 + preNumber
-		versionName latchVersion
-		resValue "string", "app_label", "Latch" + (preRelease ? " Beta" : "")
+		versionName appVersion
+		resValue "string", "app_label", "Voidbox" + (preRelease ? " Beta" : "")
 
 		multiDexEnabled true
 		testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
@@ -370,4 +371,27 @@ project.afterEvaluate {
 			}
 		}
 	}
+}
+
+// unit test coverage of the shipped lite flavor, across all modules: koverXmlReportLite
+kover {
+	currentProject {
+		createVariant("lite") {
+			add(["liteDebug"] as String[], false)
+		}
+	}
+	reports {
+		filters {
+			excludes {
+				classes("*.BuildConfig", "*.R", "*.R\$*", "*_Factory", "*_Factory\$*", "*_MembersInjector", "*Dagger*", "*.databinding.*")
+				annotatedBy("javax.annotation.processing.Generated", "javax.annotation.Generated")
+			}
+		}
+	}
+}
+
+dependencies {
+	kover project(':data')
+	kover project(':domain')
+	kover project(':util')
 }

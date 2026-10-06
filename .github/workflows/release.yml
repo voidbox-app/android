@@ -54,15 +54,15 @@ jobs:
           KEYSTORE_B64: ${{ secrets.LATCH_KEYSTORE_B64 }}
           KEYSTORE_PASSWORD: ${{ secrets.LATCH_KEYSTORE_PASSWORD }}
         run: |
-          echo "$KEYSTORE_B64" | base64 -d > latch.jks
+          echo "$KEYSTORE_B64" | base64 -d > release.jks
           tools=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
           unsigned=$(ls presentation/build/outputs/apk/lite/release/*.apk | head -1)
-          "$tools/apksigner" sign --ks latch.jks --ks-key-alias latch \
+          "$tools/apksigner" sign --ks release.jks --ks-key-alias latch \
             --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEYSTORE_PASSWORD \
-            --out "latch-${{ steps.version.outputs.version }}.apk" "$unsigned"
-          "$tools/apksigner" verify --print-certs "latch-${{ steps.version.outputs.version }}.apk"
-          sha256sum "latch-${{ steps.version.outputs.version }}.apk" > "latch-${{ steps.version.outputs.version }}.apk.sha256"
-          rm -f latch.jks
+            --out "voidbox-${{ steps.version.outputs.version }}.apk" "$unsigned"
+          "$tools/apksigner" verify --print-certs "voidbox-${{ steps.version.outputs.version }}.apk"
+          sha256sum "voidbox-${{ steps.version.outputs.version }}.apk" > "voidbox-${{ steps.version.outputs.version }}.apk.sha256"
+          rm -f release.jks
 
       - name: Publish release
         if: steps.version.outputs.skip != 'true'
@@ -73,6 +73,6 @@ jobs:
           upstream="${{ steps.version.outputs.upstream }}"
           prerelease=""
           if [ "${{ steps.version.outputs.prerelease }}" = "true" ]; then prerelease="--prerelease"; fi
-          gh release create "v$version" "latch-$version.apk" "latch-$version.apk.sha256" --repo "$GITHUB_REPOSITORY" $prerelease \
-            --title "Latch $version" \
-            --notes "Latch $version, built on Cryptomator $upstream: https://github.com/cryptomator/android/releases/tag/$upstream"
+          gh release create "v$version" "voidbox-$version.apk" "voidbox-$version.apk.sha256" --repo "$GITHUB_REPOSITORY" $prerelease \
+            --title "Voidbox $version" \
+            --notes "Voidbox $version, built on Cryptomator $upstream: https://github.com/cryptomator/android/releases/tag/$upstream"

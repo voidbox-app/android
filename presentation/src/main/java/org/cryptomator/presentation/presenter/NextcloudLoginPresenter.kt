@@ -220,7 +220,7 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 
 	companion object {
 
-		private const val USER_AGENT = "Latch"
+		private const val USER_AGENT = "Voidbox"
 		private const val POLL_INTERVAL_MS = 3000L
 		private const val POLL_BACKOFF_MS = 10000L
 
