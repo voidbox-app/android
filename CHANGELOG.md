@@ -2,7 +2,7 @@
 
 All notable changes to Voidbox. Versions follow [semantic versioning](https://semver.org).
 
-## Unreleased
+## 1.1.0 – 2026-10-07
 
 ### Changed
 
@@ -22,6 +22,13 @@ All notable changes to Voidbox. Versions follow [semantic versioning](https://se
 ### Fixed
 
 - Folder transitions slide instead of showing both lists on top of each other.
+- On Android 16, Back ends selection mode instead of closing the vault and goes one folder up when
+  choosing a folder.
+- On Android 16, the text editor asks about unsaved changes on Back again.
+- On Android 16, closing the unlock prompt with Back no longer leaves the app unresponsive.
+- WebDAV uploads no longer fail when the server has closed an idle connection.
+- The file name in the image viewer is readable in the light theme.
+- The dark theme shows the same icons as the light theme.
 
 ## 1.0.4 – 2026-10-06
 
