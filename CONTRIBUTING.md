@@ -40,4 +40,4 @@ The APK lands in `presentation/build/outputs/apk/lite/debug/`.
 
 ## Releases
 
-Maintainers publish releases as described in [RELEASING.md](RELEASING.md).
+The developer publishes releases as described in [RELEASING.md](RELEASING.md).
