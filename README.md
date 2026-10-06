@@ -23,24 +23,11 @@
   <a href="PRIVACY.md">Privacy</a>
 </p>
 
-<p align="center">
-  <img src="docs/demo.gif" width="300" alt="Unlocking a vault, browsing photos and playing a video">
-</p>
-
 Voidbox for Android keeps your documents, photos and videos private in the cloud you already use.
 Every file is encrypted on your phone before it leaves it, so your provider only ever stores data
 it cannot read.
 
 Free, with no ads, no tracking and no account.
-
-## Screenshots
-
-<p align="center">
-  <img src="docs/screenshots/vaults.png" width="200" alt="Vault list">
-  <img src="docs/screenshots/files.png" width="200" alt="Photos and videos with thumbnails">
-  <img src="docs/screenshots/clouds.png" width="200" alt="Choosing a cloud">
-  <img src="docs/screenshots/settings.png" width="200" alt="Privacy settings">
-</p>
 
 ## Features
 
@@ -65,6 +52,16 @@ Free, with no ads, no tracking and no account.
 
 **And the essentials**
 - Automatic photo upload, biometric unlock and automatic locking.
+
+## Screenshots
+
+<p align="center">
+  <img src="docs/screenshots/vaults.png" width="160" alt="Vault list">
+  <img src="docs/screenshots/files.png" width="160" alt="Photos and videos with thumbnails">
+  <img src="docs/demo.gif" width="160" alt="Unlocking a vault, browsing photos and playing a video">
+  <img src="docs/screenshots/clouds.png" width="160" alt="Choosing a cloud">
+  <img src="docs/screenshots/settings.png" width="160" alt="Privacy settings">
+</p>
 
 ## Download
 
