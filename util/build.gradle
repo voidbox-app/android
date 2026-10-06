@@ -1,6 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'de.mannodermaus.android-junit5'
+apply plugin: 'org.jetbrains.kotlinx.kover'
 
 android {
 	def globalConfiguration = rootProject.extensions.getByName("ext")
@@ -123,5 +124,14 @@ tasks.withType(Test) {
 		showStackTraces true
 
 		showStandardStreams = false
+	}
+}
+
+// unit test coverage of the shipped lite flavor; the report is aggregated in :presentation
+kover {
+	currentProject {
+		createVariant("lite") {
+			add(["liteDebug"] as String[], false)
+		}
 	}
 }
