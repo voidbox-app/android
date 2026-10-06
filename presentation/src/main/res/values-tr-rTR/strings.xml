@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">Ağ bağlantısı yok</string>
 	<string name="error_invalid_passphrase">Hatalı parola</string>
 	<string name="error_file_or_folder_exists">Dosya veya klasör zaten var.</string>
-	<string name="error_vault_version_not_supported">%1$s kasa sürümü desteklenmiyor. Bu kasa, Latch\'ın daha eski veya daha yeni bir sürümüyle oluşturuldu.</string>
+	<string name="error_vault_version_not_supported">%1$s kasa sürümü desteklenmiyor. Bu kasa, Voidbox\'ın daha eski veya daha yeni bir sürümüyle oluşturuldu.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">Kasa klasörünüzde %1$s dosyası eksik. Bu dosyanın buluttaki kasa klasörünüzde bulunduğundan emin olun.</string>
 	<string name="error_vault_already_exists">Kasa zaten var.</string>
 	<string name="error_no_such_file">Dosya bulunmuyor.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">%1$s içinde belirtilen sürüm %2$s\'den farklı</string>
 	<string name="error_vault_key_invalid">%1$s, bu %2$s ile eşleşmiyor</string>
 	<string name="error_vault_config_loading">Kasa yapılandırması yüklenirken genel hata</string>
-	<string name="error_file_not_found_after_opening_using_3party">Latch\'a geri döndükten sonra yerel dosya artık mevcut değil. Olası değişiklikler buluta geri aktarılamaz.</string>
+	<string name="error_file_not_found_after_opening_using_3party">Voidbox\'a geri döndükten sonra yerel dosya artık mevcut değil. Olası değişiklikler buluta geri aktarılamaz.</string>
 	<string name="error_no_such_bucket">Böyle bir kova yok</string>
 	<string name="error_masterkey_location_not_supported">Özel ana anahtar konumu henüz desteklenmiyor</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">F-Droid uygulamasıyla iletişim kurulamadı. Yüklü değil mi?</string>
@@ -61,7 +61,7 @@
 	<string name="screen_license_check_trial_expired_info">Deneme süreniz doldu.</string>
 	<string name="screen_license_check_subscription_upgrade_hint">Aktif bir aboneliğiniz mevcut. Geçiş yapmak için ömürlük lisans satın alın ve aboneliğinizi iptal edebilirsiniz.</string>
 	<string name="screen_welcome_title">Hoş geldiniz</string>
-	<string name="screen_welcome_notifications_message">Latch\u0027ın size arka plan aktiviteleri, otomatik yüklemeleri veya diğer önemli olayları haber vermesi için bildirimlere izin verin.</string>
+	<string name="screen_welcome_notifications_message">Voidbox\u0027ın size arka plan aktiviteleri, otomatik yüklemeleri veya diğer önemli olayları haber vermesi için bildirimlere izin verin.</string>
 	<string name="screen_welcome_continue_button">Devam et</string>
 	<string name="screen_welcome_screen_lock_button">Ekran kilidini ayarla</string>
 	<string name="next">İleri</string>
@@ -71,10 +71,10 @@
 	<string name="cloud_names_local_storage">Yerel depolama</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch\'un dosyaları dışa aktarmak için depolama erişimine ihtiyacı var</string>
-	<string name="permission_message_upload_file">Latch\'un dosyaları yüklemek için depolama erişimine ihtiyacı var</string>
-	<string name="permission_message_share_file">Latch\'un dosyaları paylaşmak için depolama erişimine ihtiyacı var</string>
-	<string name="permission_revoked_re_request_permission">Latch bu konuma erişim iznini kaybetti. İzni geri yüklemek için lütfen bu klasörü tekrar seçin.</string>
+	<string name="permission_message_export_file">Voidbox\'un dosyaları dışa aktarmak için depolama erişimine ihtiyacı var</string>
+	<string name="permission_message_upload_file">Voidbox\'un dosyaları yüklemek için depolama erişimine ihtiyacı var</string>
+	<string name="permission_message_share_file">Voidbox\'un dosyaları paylaşmak için depolama erişimine ihtiyacı var</string>
+	<string name="permission_revoked_re_request_permission">Voidbox bu konuma erişim iznini kaybetti. İzni geri yüklemek için lütfen bu klasörü tekrar seçin.</string>
 	<string name="snack_bar_action_title_settings">Ayarlar</string>
 	<string name="snack_bar_action_title_search">Ara</string>
 	<string name="snack_bar_action_title_search_previous">Önceki</string>
@@ -90,7 +90,7 @@
 	<string name="snack_bar_cryptomator_variants_hint">Bulut listede yok mu?</string>
 	<!-- # screens -->
 	<!-- # screen: vault list -->
-	<string name="screen_vault_list_actions_title">Latch\'a ekle</string>
+	<string name="screen_vault_list_actions_title">Voidbox\'a ekle</string>
 	<string name="screen_vault_list_action_create_new_vault">Yeni kasa oluştur</string>
 	<string name="screen_vault_list_action_add_existing_vault">Mevcut kasayı ekle</string>
 	<string name="screen_vault_list_vault_action_delete">Kaldır</string>
@@ -215,7 +215,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Yalnızca WIFI kullanarak yükle</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Videoları yükle</string>
 	<string name="screen_settings_auto_photo_upload_title">Otomatik yükleme&#8230;</string>
-	<string name="screen_settings_website_label">Latch web sitesi</string>
+	<string name="screen_settings_website_label">Voidbox web sitesi</string>
 	<string name="screen_settings_mastodon_label">Bizi Mastodon\'da takip edin</string>
 	<string name="screen_settings_facebook_label">Bizi Facebook\'ta beğenin</string>
 	<string name="screen_settings_section_legal">Yasal</string>
@@ -248,15 +248,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s kimliği doğrulanamadı.</string>
 	<string name="screen_update_pcloud_connections_title">pCloud kimlik bilgilerini güncelleyin</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Latch\'ın Varyantları</string>
+	<string name="screen_cryptomator_variants_title">Voidbox\'ın Varyantları</string>
 	<string name="screen_cryptomator_variants_lite_title">Ana F-Droid Deposu</string>
 	<string name="screen_cryptomator_variants_lite_description">API anahtarları gerektirdiği için hariç tutulmuştur.</string>
 	<string name="screen_cryptomator_variants_lite_install">Yükle</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Latch F-Droid Deposu</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Voidbox F-Droid Deposu</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Tescilli bağımlılıklar içerdiğinden hariç tutulmuştur.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Latch deposunu F-Droid uygulamasına ekle.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Voidbox deposunu F-Droid uygulamasına ekle.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Ekle</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">F-Droid kullanarak Latch\'ı kur.\nBulunamadı hatası görüntülenirse, F-Droid senkronizasyonu bitene kadar bekle.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">F-Droid kullanarak Voidbox\'ı kur.\nBulunamadı hatası görüntülenirse, F-Droid senkronizasyonu bitene kadar bekle.</string>
 	<string name="screen_cryptomator_variants_website_title">Web sitesi</string>
 	<string name="screen_cryptomator_variants_website_description">Tescilli bağımlılıklar içerir.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Ana F-Droid deposu varyantından veya ana F-Droid deposu varyantına geçiş, uygulamanın yeni bir kurulumunu gerektirir.</string>
@@ -286,7 +286,7 @@
 	<string name="dialog_replace_title_single_file_exists">Dosya değiştirilsin mi?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Dosyalar değiştirilsin mi?</string>
 	<string name="dialog_unable_to_share_title">Dosyalar paylaşılamıyor</string>
-	<string name="dialog_unable_to_share_message">Daha önce herhangi bir kasa oluşturmadınız! Lütfen önce Latch uygulamasıyla yeni bir kasa oluşturun.</string>
+	<string name="dialog_unable_to_share_message">Daha önce herhangi bir kasa oluşturmadınız! Lütfen önce Voidbox uygulamasıyla yeni bir kasa oluşturun.</string>
 	<string name="dialog_unable_to_share_positive_button">Tamam</string>
 	<string name="dialog_unable_to_share_negative_button">Kasa oluştur</string>
 	<string name="dialog_filetype_not_supported_title">%1$s açılamıyor</string>
@@ -337,12 +337,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">Bu modda, hassas veriler cihazınızdaki bir günlük dosyasına (örn. dosya adları ve yolları) yazılabilir. Parolalar, tanımlama vb. bilgiler hariç tutulmuştur.\n\nHata ayıklama modunu mümkün olan en kısa sürede devre dışı bırakmayı unutmayın.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Dikkat</string>
 	<string name="dialog_debug_mode_positive_button">Etkinleştir</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">Microsoft uygulamalarındaki bir hata nedeniyle, düzenlenecek dosyanın cihazınızdaki herkese açık bir medya klasöründe bu uygulamalarla paylaşılması gerekir. Latch yeniden başlatıldıktan sonra, herkese açık dosya tekrar silinir, ancak Latch bu arada bu dosyaya ne olduğunu etkileyemez. Bu seçeneği etkinleştirirken bu davranışın farkında olduğunuzdan emin olun. Bu sadece Microsoft dosya türleri için geçerli olacaktır.\n\nLatch aktivasyondan sonra yeniden başlayacaktır.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">Microsoft uygulamalarındaki bir hata nedeniyle, düzenlenecek dosyanın cihazınızdaki herkese açık bir medya klasöründe bu uygulamalarla paylaşılması gerekir. Voidbox yeniden başlatıldıktan sonra, herkese açık dosya tekrar silinir, ancak Voidbox bu arada bu dosyaya ne olduğunu etkileyemez. Bu seçeneği etkinleştirirken bu davranışın farkında olduğunuzdan emin olun. Bu sadece Microsoft dosya türleri için geçerli olacaktır.\n\nVoidbox aktivasyondan sonra yeniden başlayacaktır.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Bu ayar bir güvenlik özelliğidir ve diğer uygulamaların kullanıcıları yapmak istemedikleri şeyleri yapmaları için kandırmasını önler.\n\nDevre dışı bırakarak <a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">risklerin farkında olduğunuzu</a> onaylamış olursunuz.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Dikkat</string>
 	<string name="dialog_disable_app_obscured_positive_button">Devre dışı bırak</string>
 	<string name="dialog_app_is_obscured_info_title">Uygulama gizlendi</string>
-	<string name="dialog_app_is_obscured_info_hint">Başka bir uygulama Latch\'ın üzerinde bir şey görüntülüyor (örneğin, mavi ışık filtresi veya gece modu uygulaması). Güvenlik nedeniyle Latch devre dışı bırakılmıştır.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Latch nasıl etkinleştirilir</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Başka bir uygulama Voidbox\'ın üzerinde bir şey görüntülüyor (örneğin, mavi ışık filtresi veya gece modu uygulaması). Güvenlik nedeniyle Voidbox devre dışı bırakılmıştır.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Voidbox nasıl etkinleştirilir</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Kapat</string>
 	<string name="dialog_vaults_removed_during_migration_title">Lütfen %1s bulutu için kasaları yeniden ekleyin</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Bu uygulama sürümüne geçiş yaparken aşağıdaki kasaları uygulamadan kaldırmamız gerekiyor:\n%2s \n\nBu kasalar buluttan değil, yalnızca bu uygulamadan kaldırılır. Rahatsızlık için özür dileriz ve onlarla çalışmaya devam etmek için lütfen bu kasaları yeniden ekleyin.</string>
@@ -356,9 +356,9 @@
 	<string name="dialog_confirm_delete_file_message">Bu dosyayı silmek istediğinizden emin misiniz?</string>
 	<string name="dialog_confirm_delete_folder_message">Klasördeki tüm içerikler silinecek! Bu klasörü silmek istediğinizden emin misiniz?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Biyometrik kimlik doğrulama özelliği devre dışı bırakıldı</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Anahtar geçersiz olduğu için biyometrik kimlik doğrulama özelliği devre dışı bırakıldı. Yeniden etkinleştirmek için Latch ayarlarını açın.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Anahtar geçersiz olduğu için biyometrik kimlik doğrulama özelliği devre dışı bırakıldı. Yeniden etkinleştirmek için Voidbox ayarlarını açın.</string>
 	<string name="dialog_enter_license_title">Geçerli bir lisans sağlayın</string>
-	<string name="dialog_enter_license_content">Latch\'ı Google Play Store kullanmadan yüklediğinizi tespit ettik. <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> adresinden satın alınabilecek geçerli bir lisans edinin.</string>
+	<string name="dialog_enter_license_content">Voidbox\'ı Google Play Store kullanmadan yüklediğinizi tespit ettik. <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a> adresinden satın alınabilecek geçerli bir lisans edinin.</string>
 	<string name="dialog_enter_license_not_valid_content">Sağlanan lisans geçerli değil. Doğru girdiğinizden emin olun.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">Sağlanan anahtar, bir masaüstü destek sertifikasıdır. Lütfen geçerli bir lisans girin.</string>
 	<string name="dialog_enter_license_no_content">Lisans verilmemiştir. Lütfen geçerli bir lisans girin.</string>
@@ -366,12 +366,12 @@
 	<string name="dialog_license_confirmation_title">Lisans onayı</string>
 	<string name="dialog_license_confirmation_message">Geçerli lisansınızı sağladığınız için teşekkür ederiz %1$s.</string>
 	<string name="dialog_update_available_title">Güncelleme mevcut</string>
-	<string name="dialog_update_available_message">Latch\'ı en son sürüme güncellemek için Tamam\'a dokunun lütfen. Uygulamayı arka planda indireceğiz ve sizden yüklemenizi isteyeceğiz.</string>
+	<string name="dialog_update_available_message">Voidbox\'ı en son sürüme güncellemek için Tamam\'a dokunun lütfen. Uygulamayı arka planda indireceğiz ve sizden yüklemenizi isteyeceğiz.</string>
 	<string name="dialog_update_available_update">Şimdi güncelle</string>
 	<string name="dialog_update_available_download_site">İndirme sitesine git</string>
 	<string name="dialog_update_available_cancel">Sonra</string>
 	<string name="dialog_download_update_title">İndirme sürüyor</string>
-	<string name="dialog_download_update_message">Latch\'ın son sürümünü indiriliyor</string>
+	<string name="dialog_download_update_message">Voidbox\'ın son sürümünü indiriliyor</string>
 	<string name="dialog_sym_link_title">Klasör sembolik bir bağlantıdır</string>
 	<string name="dialog_sym_link_message">Bu sembolik bağlantıya gidemezsin</string>
 	<string name="dialog_sym_link_back_button">Geri</string>
@@ -402,9 +402,9 @@
 	<string name="dialog_hub_user_setup_required_title">Kullanıcı kurulumu gerekli</string>
 	<string name="dialog_hub_user_setup_required_hint">Devam etmek için lütfen Hub kullanıcı profilinizde gerekli adımları tamamlayın.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Profile Git</string>
-	<string name="permission_snackbar_auth_local_vault">Latch\'ın yerel kasaları kullanmak için depolama erişimine ihtiyacı var</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch\'ın otomatik fotoğraf yüklemesi için depolama erişimine ihtiyacı var</string>
-	<string name="permission_snackbar_notifications">Latch, örneğin kasa durumunu görüntülemek için bildirim izinlerine ihtiyaç duyar</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox\'ın yerel kasaları kullanmak için depolama erişimine ihtiyacı var</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox\'ın otomatik fotoğraf yüklemesi için depolama erişimine ihtiyacı var</string>
+	<string name="permission_snackbar_notifications">Voidbox, örneğin kasa durumunu görüntülemek için bildirim izinlerine ihtiyaç duyar</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

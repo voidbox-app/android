@@ -9,7 +9,7 @@
 	<string name="error_no_network_connection">No hi ha connexió de xarxa</string>
 	<string name="error_invalid_passphrase">Contrasenya incorrecta</string>
 	<string name="error_file_or_folder_exists">Ja existeix un fitxer o carpeta.</string>
-	<string name="error_vault_version_not_supported">La versió %1$s de la caixa forta no està suportada. Aquesta caixa forta ha estat creada amb una versió més antiga o més nova de Latch.</string>
+	<string name="error_vault_version_not_supported">La versió %1$s de la caixa forta no està suportada. Aquesta caixa forta ha estat creada amb una versió més antiga o més nova de Voidbox.</string>
 	<string name="error_vault_config_file_missing_due_to_format_999">L\'arxiu %1$s no existeix a la caixa forta. Si us plau, revisa que l\'arxiu existeix en la caixa forta sincronitzada al núvol.</string>
 	<string name="error_vault_already_exists">La caixa forta ja existeix.</string>
 	<string name="error_no_such_file">El fitxer no existeix.</string>
@@ -31,7 +31,7 @@
 	<string name="error_vault_version_mismatch">La versió especificada a %1$s és diferent a la de %2$s</string>
 	<string name="error_vault_key_invalid">%1$s no coincideix amb aquest %2$s</string>
 	<string name="error_vault_config_loading">Error general carregant la configuració de la caixa forta</string>
-	<string name="error_file_not_found_after_opening_using_3party">El fitxer local ja no és present després de tornar a canviar a Latch. Els possibles canvis no és poden propagar cap al núvol.</string>
+	<string name="error_file_not_found_after_opening_using_3party">El fitxer local ja no és present després de tornar a canviar a Voidbox. Els possibles canvis no és poden propagar cap al núvol.</string>
 	<string name="error_no_such_bucket">No existeix el cubell</string>
 	<string name="error_masterkey_location_not_supported">Encara no es permet la ubicació personalitzada de la clau mestra</string>
 	<string name="error_interact_with_fdroid_but_fdroid_missing">Error en la comunicació amb l\'aplicació F-Droid. Està instal·lada?</string>
@@ -68,10 +68,10 @@
 	<string name="cloud_names_local_storage">Emmagatzematge local</string>
 	<!-- # permission -->
 	<!-- ## permission messages -->
-	<string name="permission_message_export_file">Latch necessita accés a l\'emmagatzematge per a exportar fitxers</string>
-	<string name="permission_message_upload_file">Latch necessita accés a l\'emmagatzematge per a carregar fitxers</string>
-	<string name="permission_message_share_file">Latch necessita accés a l\'emmagatzematge per a compartir fitxers</string>
-	<string name="permission_revoked_re_request_permission">Latch ja no té permisos per accedir a aquesta ubicació. Selecciona novament la carpeta per a restaurar els permisos.</string>
+	<string name="permission_message_export_file">Voidbox necessita accés a l\'emmagatzematge per a exportar fitxers</string>
+	<string name="permission_message_upload_file">Voidbox necessita accés a l\'emmagatzematge per a carregar fitxers</string>
+	<string name="permission_message_share_file">Voidbox necessita accés a l\'emmagatzematge per a compartir fitxers</string>
+	<string name="permission_revoked_re_request_permission">Voidbox ja no té permisos per accedir a aquesta ubicació. Selecciona novament la carpeta per a restaurar els permisos.</string>
 	<string name="snack_bar_action_title_settings">Configuració</string>
 	<string name="snack_bar_action_title_search">Cercar</string>
 	<string name="snack_bar_action_title_search_previous">Anterior</string>
@@ -211,7 +211,7 @@
 	<string name="screen_settings_section_auto_photo_upload_only_wifi_toggle">Puja només amb WIFI</string>
 	<string name="screen_settings_section_auto_photo_upload_including_videos">Puja vídeos</string>
 	<string name="screen_settings_auto_photo_upload_title">Desa els fitxers pujats automàticament a&#8230;</string>
-	<string name="screen_settings_website_label">Lloc web de Latch</string>
+	<string name="screen_settings_website_label">Lloc web de Voidbox</string>
 	<string name="screen_settings_mastodon_label">Seguiu-nos a Mastodont</string>
 	<string name="screen_settings_facebook_label">Poseu-nos un \"m\'agrada\" a Facebook</string>
 	<string name="screen_settings_section_legal">Legal</string>
@@ -244,15 +244,15 @@
 	<string name="screen_authenticate_auth_authentication_failed">%1$s no s\'ha pogut autenticar.</string>
 	<string name="screen_update_pcloud_connections_title">Actualitza les credencials de pCloud</string>
 	<!-- ## screen: cryptomator app variants -->
-	<string name="screen_cryptomator_variants_title">Variables de Latch</string>
+	<string name="screen_cryptomator_variants_title">Variables de Voidbox</string>
 	<string name="screen_cryptomator_variants_lite_title">Repositori principal de F-Droid</string>
 	<string name="screen_cryptomator_variants_lite_description">Exclosos perquè requereixen claus API.</string>
 	<string name="screen_cryptomator_variants_lite_install">Instal·lar</string>
-	<string name="screen_cryptomator_variants_fdroid_title">Repositori Latch F-Droid</string>
+	<string name="screen_cryptomator_variants_fdroid_title">Repositori Voidbox F-Droid</string>
 	<string name="screen_cryptomator_variants_fdroid_description">Exclòs perquè requereix dependències propietàries.</string>
-	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Afegir repositori Latch a l\'aplicació F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_add_repo_hint">Afegir repositori Voidbox a l\'aplicació F-Droid.</string>
 	<string name="screen_cryptomator_variants_fdroid_add_repo">Afegir</string>
-	<string name="screen_cryptomator_variants_fdroid_install_hint">Instal·lar Latch utilitzant F-Droid.\nIf mostra un error de no trobat, esperi fins que finalitzi la sincronització de F-Droid.</string>
+	<string name="screen_cryptomator_variants_fdroid_install_hint">Instal·lar Voidbox utilitzant F-Droid.\nIf mostra un error de no trobat, esperi fins que finalitzi la sincronització de F-Droid.</string>
 	<string name="screen_cryptomator_variants_website_title">Lloc web</string>
 	<string name="screen_cryptomator_variants_website_description">Conté dependències propietàries.</string>
 	<string name="screen_cryptomator_variants_installation_hint">Canviar des de o cap a la variant principal del repositori F-Droid requereix una nova configuració de l\'aplicació.</string>
@@ -282,7 +282,7 @@
 	<string name="dialog_replace_title_single_file_exists">Voleu substituir el fitxer?</string>
 	<string name="dialog_replace_title_multiple_files_exist">Voleu substituir els fitxers?</string>
 	<string name="dialog_unable_to_share_title">No es poden compartir fitxers</string>
-	<string name="dialog_unable_to_share_message">No has configurat cap caixa forta. Crea una nova caixa forta mitjançant l\'aplicació Latch primer.</string>
+	<string name="dialog_unable_to_share_message">No has configurat cap caixa forta. Crea una nova caixa forta mitjançant l\'aplicació Voidbox primer.</string>
 	<string name="dialog_unable_to_share_positive_button">D\'acord</string>
 	<string name="dialog_unable_to_share_negative_button">Crear Caixa forta</string>
 	<string name="dialog_filetype_not_supported_title">No es pot obrir %1$s</string>
@@ -333,12 +333,12 @@
 	<string name="dialog_debug_mode_disclaimer_hint">En aquest mode, informació sensible pot ser escrita en un arxiu de registre al teu dispositiu (per exemple, noms d\'arxius i rutes). Contrasenyes, galetes, etc. són explícitament excloses.\n\nRecorda desactivar el mode de depuració tan aviat com sigui possible.</string>
 	<string name="dialog_debug_mode_disclaimer_title">Atenció</string>
 	<string name="dialog_debug_mode_positive_button">Activa</string>
-	<string name="dialog_microsoft_workaround_disclaimer_hint">A causa d\'un error en les aplicacions de Microsoft, el fitxer que s\'editarà s\'ha de compartir amb aquestes aplicacions en una carpeta de mitjans públics al dispositiu. Quan es reprengui Latch, el fitxer d\'accés públic s\'elimina novament, però Latch no pot influir en el que va passar amb aquest fitxer mentrestant. Assegureu-vos de conèixer aquest comportament en activar aquesta opció. Això només s\'aplicarà als tipus de fitxers de Microsoft.\n\nLatch es reiniciarà després de l\'activació.</string>
+	<string name="dialog_microsoft_workaround_disclaimer_hint">A causa d\'un error en les aplicacions de Microsoft, el fitxer que s\'editarà s\'ha de compartir amb aquestes aplicacions en una carpeta de mitjans públics al dispositiu. Quan es reprengui Voidbox, el fitxer d\'accés públic s\'elimina novament, però Voidbox no pot influir en el que va passar amb aquest fitxer mentrestant. Assegureu-vos de conèixer aquest comportament en activar aquesta opció. Això només s\'aplicarà als tipus de fitxers de Microsoft.\n\nVoidbox es reiniciarà després de l\'activació.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_hint">Aquesta configuració és una funció de seguretat que evita que altres aplicacions enganyin els usuaris perquè facin coses que no volen fer.\n\nEn desactivar-la, confirmeu que en compreneu &lt;a href=\"https://docs.cryptomator.org\". /en/1.6/android/settings/#block-app-when-obscured\"&gt;els riscos&lt;/a&gt;.</string>
 	<string name="dialog_disable_app_obscured_disclaimer_title">Atenció</string>
 	<string name="dialog_disable_app_obscured_positive_button">Desactiva</string>
 	<string name="dialog_app_is_obscured_info_title">Alguna cosa està superposada a l\'aplicació</string>
-	<string name="dialog_app_is_obscured_info_hint">Una altra aplicació mostra alguna cosa a sobre de Latch (p. ex., un filtre de llum blava o una aplicació de mode nocturn). Per motius de seguretat, Latch s\'ha desactivat.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Com activar Latch</a></string>
+	<string name="dialog_app_is_obscured_info_hint">Una altra aplicació mostra alguna cosa a sobre de Voidbox (p. ex., un filtre de llum blava o una aplicació de mode nocturn). Per motius de seguretat, Voidbox s\'ha desactivat.\n\n<a href="https://docs.cryptomator.org/en/latest/android/settings/#block-app-when-obscured">Com activar Voidbox</a></string>
 	<string name="dialog_app_is_obscured_info_neutral_button">Tanca</string>
 	<string name="dialog_vaults_removed_during_migration_title">Si us plau, torna a afegir les caixes fortes per el cloud %1s</string>
 	<string name="dialog_vaults_removed_during_migration_hint">Al migrar cap a aquesta versió de l\'app hem hagut d\'esborrar les següents caixes fortes de l\'aplicació:\n%2s \n\nAquestes caixes fortes no s\'han esborrat del cloud sinó que només de l\'aplicació. Sentim les molèsties ocasionades, si us plau torna a afegir les caixes fortes per a continuar treballant amb elles.</string>
@@ -352,9 +352,9 @@
 	<string name="dialog_confirm_delete_file_message">Esteu segur/a que voleu esborrar aquest fitxer?</string>
 	<string name="dialog_confirm_delete_folder_message">Això esborrarà tots els continguts de la carpeta. Estàs segur que la vols esborrar?</string>
 	<string name="dialog_biometric_auth_key_invalidated_title">Autenticació biomètrica desactivada</string>
-	<string name="dialog_biometric_auth_key_invalidated_message">Ja que aquesta clau ha sigut invalidada, s\'ha desactivat l\'autenticació biomètrica. Per tornar-la a activar, obre la configuració de Latch.</string>
+	<string name="dialog_biometric_auth_key_invalidated_message">Ja que aquesta clau ha sigut invalidada, s\'ha desactivat l\'autenticació biomètrica. Per tornar-la a activar, obre la configuració de Voidbox.</string>
 	<string name="dialog_enter_license_title">Proporcioneu una llicència vàlida</string>
-	<string name="dialog_enter_license_content">Hem detectat que has instal·lat Latch sense fer servir la Google Play Store. Proveeix una llicència vàlida, que pot ser adquirida a <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
+	<string name="dialog_enter_license_content">Hem detectat que has instal·lat Voidbox sense fer servir la Google Play Store. Proveeix una llicència vàlida, que pot ser adquirida a <a href="https://cryptomator.org/android/">https://cryptomator.org/android/</a></string>
 	<string name="dialog_enter_license_not_valid_content">La llicència introduïda no és vàlida. Assegureu-vos que l\'heu escrita correctament.</string>
 	<string name="dialog_enter_license_not_valid_content_desktop_supporter_certificate">La clau proporcionada és un certificat per a escriptori. Si us plau, proporcioneu una llicència vàlida.</string>
 	<string name="dialog_enter_license_no_content">No heu introduït cap llicència. Si us plau, introduïu una llicència vàlida.</string>
@@ -362,12 +362,12 @@
 	<string name="dialog_license_confirmation_title">Confirmació de la llicència</string>
 	<string name="dialog_license_confirmation_message">Gràcies %1$s per proveir-nos la teva llicència vàlida.</string>
 	<string name="dialog_update_available_title">Actualització disponible</string>
-	<string name="dialog_update_available_message">Actualizeu Latch a la versió més recent. Si premeu OK l\'app es descarregarà en segon pla i us demanarà permís per a instal·lar-se.</string>
+	<string name="dialog_update_available_message">Actualizeu Voidbox a la versió més recent. Si premeu OK l\'app es descarregarà en segon pla i us demanarà permís per a instal·lar-se.</string>
 	<string name="dialog_update_available_update">Actualitza ara</string>
 	<string name="dialog_update_available_download_site">Vés al lloc de descàrregues</string>
 	<string name="dialog_update_available_cancel">Després</string>
 	<string name="dialog_download_update_title">Descàrrega en procés</string>
-	<string name="dialog_download_update_message">Ara es descarrega la versió més recent de Latch</string>
+	<string name="dialog_download_update_message">Ara es descarrega la versió més recent de Voidbox</string>
 	<string name="dialog_sym_link_title">La carpeta és un enllaç simbòlic</string>
 	<string name="dialog_sym_link_message">No pots navegar cap a aquest enllaç simbòlic</string>
 	<string name="dialog_sym_link_back_button">Enrere</string>
@@ -389,9 +389,9 @@
 	<string name="dialog_no_full_version_title">Sense versió completa</string>
 	<string name="dialog_hub_user_setup_required_hint">Per a continuar, si us plau, seguiu els passos necessaris en el vostre perfil d\'usuari de Hub.</string>
 	<string name="dialog_hub_user_setup_required_neutral_button">Vés al perfil</string>
-	<string name="permission_snackbar_auth_local_vault">Latch necessita accés a l\'emmagatzematge per a fer servir caixes fortes locals</string>
-	<string name="permission_snackbar_auth_auto_upload">Latch necessita accés a l\'emmagatzematge per a la pujada de fotos automàtica</string>
-	<string name="permission_snackbar_notifications">Latch necessita permís de notificacions per poder informar del seu estat, per exemple</string>
+	<string name="permission_snackbar_auth_local_vault">Voidbox necessita accés a l\'emmagatzematge per a fer servir caixes fortes locals</string>
+	<string name="permission_snackbar_auth_auto_upload">Voidbox necessita accés a l\'emmagatzematge per a la pujada de fotos automàtica</string>
+	<string name="permission_snackbar_notifications">Voidbox necessita permís de notificacions per poder informar del seu estat, per exemple</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

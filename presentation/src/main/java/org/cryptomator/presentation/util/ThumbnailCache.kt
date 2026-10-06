@@ -212,7 +212,7 @@ class ThumbnailCache @Inject constructor(private val context: Context, private v
 	companion object {
 
 		const val MAX_IMAGE_BYTES = 20L * 1024L * 1024L
-		private const val KEY_LABEL = "latch-thumbnails-v1"
+		private const val KEY_LABEL = "voidbox-thumbnails-v1"
 		private const val CIPHER = "AES/GCM/NoPadding"
 		private const val IV_BYTES = 12
 		private const val TAG_BITS = 128
