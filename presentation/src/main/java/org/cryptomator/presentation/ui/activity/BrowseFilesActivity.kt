@@ -250,6 +250,8 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 			// Respond to the action bar's Up/Home button
 			if (isNavigationMode(SELECT_ITEMS)) {
 				browseFilesPresenter.disableSelectionMode()
+			} else if (supportFragmentManager.backStackEntryCount > 0 && !hasCloudNodeSettings()) {
+				onBackPressed()
 			} else {
 				// finish this activity and does not call the onCreate method of the parent activity
 				finish()
@@ -276,11 +278,33 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 
 	private fun setupToolbar() {
 		binding.mtToolbar.toolbar.title = effectiveTitle(browseFilesIntent.folder())
-		binding.mtToolbar.toolbar.subtitle = effectiveSubtitle()
+		binding.mtToolbar.toolbar.subtitle = parentPath(browseFilesIntent.folder()) ?: effectiveSubtitle()
 		setSupportActionBar(binding.mtToolbar.toolbar)
 		if (hasCloudNodeSettings()) {
 			effectiveToolbarIcon(browseFilesIntent.chooseCloudNodeSettings().extraToolbarIcon())
+		} else {
+			showBackArrow()
 		}
+	}
+
+	private fun showBackArrow() {
+		supportActionBar?.let {
+			it.setDisplayHomeAsUpEnabled(true)
+			it.setHomeAsUpIndicator(R.drawable.ic_arrow_back)
+		}
+	}
+
+	/** E.g. "Vault › Photos"; null at the vault root. */
+	private fun parentPath(folder: CloudFolderModel?): String? {
+		if (folder == null || hasCloudNodeSettings()) {
+			return null
+		}
+		val vaultName = folder.vault()?.name ?: return null
+		val above = folder.path.trim('/').split('/').filter { it.isNotEmpty() }.dropLast(1)
+		if (folder.path.trim('/').isEmpty()) {
+			return null
+		}
+		return (listOf(vaultName) + above).joinToString(" › ")
 	}
 
 	private fun effectiveToolbarIcon(extraToolbarIcon: Int) {
@@ -293,7 +317,11 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 	}
 
 	private fun hideToolbarIcon() {
-		supportActionBar?.setDisplayHomeAsUpEnabled(false)
+		if (hasCloudNodeSettings()) {
+			supportActionBar?.setDisplayHomeAsUpEnabled(false)
+		} else {
+			showBackArrow()
+		}
 	}
 
 	private fun effectiveTitle(folder: CloudFolderModel?): String {
@@ -456,6 +484,7 @@ class BrowseFilesActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBi
 
 	override fun updateTitle(folder: CloudFolderModel) {
 		binding.mtToolbar.toolbar.title = effectiveTitle(folder)
+		binding.mtToolbar.toolbar.subtitle = parentPath(folder) ?: effectiveSubtitle()
 	}
 
 	override fun hasExcludedFolder(): Boolean {
