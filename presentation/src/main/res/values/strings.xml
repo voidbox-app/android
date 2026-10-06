@@ -733,6 +733,10 @@
 	<string name="screen_settings_thumbnails_never">Never</string>
 	<string name="screen_settings_thumbnails_wifi">Only on Wi\u2011Fi</string>
 	<string name="screen_settings_thumbnails_always">Always</string>
+	<string name="screen_settings_video_thumbnails">Video thumbnails</string>
+	<string name="screen_settings_video_thumbnails_summary">Shows a frame of each video in the list. Fetches about 1 MB per video while browsing; the server can tell which files are videos</string>
+	<string name="screen_settings_stream_media">Play without downloading</string>
+	<string name="screen_settings_stream_media_summary">Plays video and audio straight from the cloud, decrypting in memory. When off, the file is downloaded first</string>
 	<string name="screen_settings_lru_cache_toggle" translatable="false">@string/screen_settings_section_auto_photo_upload_toggle</string>
 	<string name="screen_settings_lru_cache_toggle_summary">Cache recently accessed files encrypted locally on the device for later reuse when reopened</string>
 	<string name="screen_settings_lru_cache_size">Total cache size</string>

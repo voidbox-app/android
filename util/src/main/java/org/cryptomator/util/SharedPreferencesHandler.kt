@@ -167,6 +167,16 @@ constructor(context: Context) : SharedPreferences.OnSharedPreferenceChangeListen
 		return defaultSharedPreferences.getValue(THUMBNAILS, "wifi")
 	}
 
+	/** Whether vault videos get a thumbnail from one of their frames; costs a couple of requests per video while browsing. */
+	fun videoThumbnails(): Boolean {
+		return defaultSharedPreferences.getValue(VIDEO_THUMBNAILS, false)
+	}
+
+	/** Whether vault video and audio play straight from the cloud instead of being downloaded first. */
+	fun streamMedia(): Boolean {
+		return defaultSharedPreferences.getValue(STREAM_MEDIA, true)
+	}
+
 	fun useLruCache(): Boolean {
 		return defaultSharedPreferences.getValue(USE_LRU_CACHE, false)
 	}
@@ -418,6 +428,8 @@ constructor(context: Context) : SharedPreferences.OnSharedPreferenceChangeListen
 		const val PHOTO_UPLOAD_VAULT = "photoUploadVault"
 		const val PHOTO_UPLOAD_FOLDER = "photoUploadFolder"
 		const val PHOTO_UPLOAD_INCLUDING_VIDEOS = "photoUploadIncludingVideos"
+		const val VIDEO_THUMBNAILS = "videoThumbnails"
+		const val STREAM_MEDIA = "streamMedia"
 		const val USE_LRU_CACHE = "lruCache"
 		const val LRU_CACHE_SIZE = "lruCacheSize"
 		const val THUMBNAILS = "thumbnails"

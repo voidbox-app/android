@@ -591,7 +591,7 @@ class BrowseFilesPresenter @Inject constructor( //
 
 	private fun thumbnailsAllowedFor(file: CloudFileModel): Boolean {
 		// a video is read in pieces, so its size does not matter; an image is downloaded whole
-		val eligible = file.icon == FileIcon.MOVIE || (file.icon == FileIcon.IMAGE && (file.size ?: 0L) <= ThumbnailCache.MAX_IMAGE_BYTES)
+		val eligible = (file.icon == FileIcon.MOVIE && sharedPreferencesHandler.videoThumbnails()) || (file.icon == FileIcon.IMAGE && (file.size ?: 0L) <= ThumbnailCache.MAX_IMAGE_BYTES)
 		if (!eligible || thumbnailCache.vaultOf(file) == null) {
 			return false
 		}
@@ -872,7 +872,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onFileClicked(cloudFile: CloudFileModel) {
-		if ((isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) && thumbnailCache.vaultOf(cloudFile) != null) {
+		if ((isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) && thumbnailCache.vaultOf(cloudFile) != null && sharedPreferencesHandler.streamMedia()) {
 			streamOrDownload(cloudFile)
 		} else {
 			readFilesWithProgress(listOf(cloudFile), Intent.ACTION_VIEW)

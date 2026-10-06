@@ -134,6 +134,18 @@
 			android:title="@string/screen_settings_thumbnails" />
 
 		<SwitchPreferenceCompat
+			android:defaultValue="false"
+			android:key="videoThumbnails"
+			android:summary="@string/screen_settings_video_thumbnails_summary"
+			android:title="@string/screen_settings_video_thumbnails" />
+
+		<SwitchPreferenceCompat
+			android:defaultValue="true"
+			android:key="streamMedia"
+			android:summary="@string/screen_settings_stream_media_summary"
+			android:title="@string/screen_settings_stream_media" />
+
+		<SwitchPreferenceCompat
 			android:defaultValue="true"
 			android:key="lruCache"
 			android:summary="@string/screen_settings_lru_cache_toggle_summary"
