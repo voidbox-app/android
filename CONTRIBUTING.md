@@ -11,13 +11,16 @@ Security issues go through [SECURITY.md](SECURITY.md), not public issues.
 ## Pull requests
 
 1. Open an issue first for anything bigger than a small fix, so the change can be agreed on.
-2. Branch from `master` as `feat/<topic>` or `fix/<topic>`. One pull request holds one change.
+2. Branch from `master` as `<type>/<issue>-<topic>`, where the type is `feat`, `fix`, `docs`,
+   `chore` or `ci`: `fix/42-folder-spinner`. Without an issue, put `ni` in place of the number:
+   `fix/ni-folder-spinner`. Release (`release/<version>`) and upstream merge (`upstream/<tag>`)
+   branches carry no number. One pull request holds one change.
 3. Keep CI green: it runs the unit tests and builds the APK. Add tests for logic you change.
 4. For anything visible, attach screenshots and say on which device or emulator you checked it.
 5. Pull requests are squash-merged: the title and description become the commit on `master`, so
    write them as a commit message, with the title in the imperative.
 
-Features for Cryptomator Hub and other enterprise setups are out of scope.
+Features for teams and enterprise setups, such as central key management, are out of scope.
 
 ## Code
 
