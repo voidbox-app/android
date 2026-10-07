@@ -51,13 +51,13 @@ jobs:
       - name: Sign APK
         if: steps.version.outputs.skip != 'true'
         env:
-          KEYSTORE_B64: ${{ secrets.LATCH_KEYSTORE_B64 }}
-          KEYSTORE_PASSWORD: ${{ secrets.LATCH_KEYSTORE_PASSWORD }}
+          KEYSTORE_B64: ${{ secrets.VOIDBOX_KEYSTORE_B64 }}
+          KEYSTORE_PASSWORD: ${{ secrets.VOIDBOX_KEYSTORE_PASSWORD }}
         run: |
           echo "$KEYSTORE_B64" | base64 -d > release.jks
           tools=$(ls -d "$ANDROID_HOME"/build-tools/* | sort -V | tail -1)
           unsigned=$(ls presentation/build/outputs/apk/lite/release/*.apk | head -1)
-          "$tools/apksigner" sign --ks release.jks --ks-key-alias latch \
+          "$tools/apksigner" sign --ks release.jks --ks-key-alias voidbox \
             --ks-pass env:KEYSTORE_PASSWORD --key-pass env:KEYSTORE_PASSWORD \
             --out "voidbox-${{ steps.version.outputs.version }}.apk" "$unsigned"
           "$tools/apksigner" verify --print-certs "voidbox-${{ steps.version.outputs.version }}.apk"
