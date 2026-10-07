@@ -97,6 +97,7 @@ import android.net.NetworkCapabilities
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import java.io.ByteArrayOutputStream
 import java.util.Optional
@@ -162,6 +163,8 @@ class BrowseFilesPresenter @Inject constructor( //
 
 	private var resumedAfterAuthentication = false
 
+	private var delayedLoading: Disposable? = null
+
 	@InjectIntent
 	lateinit var intent: BrowseFilesIntent
 
@@ -209,19 +212,39 @@ class BrowseFilesPresenter @Inject constructor( //
 
 	fun onBackPressed() {
 		unsubscribeAll()
+		// Back may only leave selection mode and stay in this folder, whose listing is cancelled here
+		hideLoading()
 	}
 
 	fun onFolderDisplayed(folder: CloudFolderModel) {
 		// what the folder looked like last time appears at once; the fresh listing replaces it
 		folderListingCache.get(folder)?.let { view?.showCloudNodes(it) }
-		view?.showLoading(true)
+		showLoadingIfSlow()
 		getCloudList(folder)
 		view?.updateTitle(folder)
 	}
 
 	fun onRefreshTriggered(cloudModel: CloudFolderModel) {
+		cancelDelayedLoading()
 		view?.showLoading(true)
 		getCloudList(cloudModel)
+	}
+
+	// outlasts the slide-in of the folder: a quick listing shows no spinner, a slow one shows it once the folder is in place
+	private fun showLoadingIfSlow() {
+		delayedLoading?.dispose()
+		delayedLoading = Completable.timer(LOADING_INDICATOR_DELAY_MILLIS, TimeUnit.MILLISECONDS, AndroidSchedulers.mainThread()) //
+			.subscribe { view?.showLoading(true) }
+	}
+
+	private fun hideLoading() {
+		cancelDelayedLoading()
+		view?.showLoading(false)
+	}
+
+	private fun cancelDelayedLoading() {
+		delayedLoading?.dispose()
+		delayedLoading = null
 	}
 
 	private fun getCloudList(cloudFolderModel: CloudFolderModel) {
@@ -235,11 +258,11 @@ class BrowseFilesPresenter @Inject constructor( //
 					} else {
 						showCloudNodesCollectionInView(cloudFolderModel, cloudNodes)
 					}
-					view?.showLoading(false)
+					hideLoading()
 				}
 
 				override fun onError(e: Throwable) {
-					view?.showLoading(false)
+					hideLoading()
 					when {
 						authenticationExceptionHandler.handleAuthenticationException(this@BrowseFilesPresenter, e, ActivityResultCallbacks.getCloudListAfterAuthentication(cloudFolderModel)) -> {
 							resumedAfterAuthentication = true
@@ -681,6 +704,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	private val thumbnailLoads = CompositeDisposable()
 
 	override fun destroyed() {
+		cancelDelayedLoading()
 		thumbnailLoads.dispose()
 		streamProbes.dispose()
 		pendingThumbnails.clear()
@@ -1120,6 +1144,8 @@ class BrowseFilesPresenter @Inject constructor( //
 
 	fun onFolderClicked(cloudFolderModel: CloudFolderModel) {
 		unsubscribeAll()
+		// the fragment keeps its views in the back stack, so a shown indicator would still spin after Back
+		hideLoading()
 		view?.navigateTo(cloudFolderModel)
 	}
 
@@ -1493,6 +1519,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	companion object {
 
 		private const val VIDEO_THUMBNAIL_TIMEOUT_SECONDS = 30L
+		private const val LOADING_INDICATOR_DELAY_MILLIS = 500L
 
 		const val OPEN_FILE_FINISHED = 12
 
