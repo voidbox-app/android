@@ -20,8 +20,6 @@ Security issues go through [SECURITY.md](SECURITY.md), not public issues.
 5. Pull requests are squash-merged: the title and description become the commit on `master`, so
    write them as a commit message, with the title in the imperative.
 
-Features for teams and enterprise setups, such as central key management, are out of scope.
-
 ## Code
 
 - Follow the style of the surrounding code; reformat with Android Studio using the project code
