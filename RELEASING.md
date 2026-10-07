@@ -25,8 +25,8 @@ GitHub pre-release.
 4. Install the published APK on a phone and check that it starts and opens a vault.
 
 The APK is signed with one key for every channel, so users can move between GitHub, F-Droid and
-Google Play without reinstalling. The repository secrets `LATCH_KEYSTORE_B64` and
-`LATCH_KEYSTORE_PASSWORD` hold it; the keystore itself is never committed.
+Google Play without reinstalling. The repository secrets `VOIDBOX_KEYSTORE_B64` and
+`VOIDBOX_KEYSTORE_PASSWORD` hold it; the keystore itself is never committed.
 
 ## Following Cryptomator
 

@@ -102,7 +102,7 @@ Run the unit tests of all modules with coverage:
 ```
 
 Releases are signed with a certificate whose SHA-256 fingerprint is
-`4c1fe944d1ef0f3fc8de7436b08e452cd4500cee5bdacb936504a1a5bb682b1d`. Check a download with
+`4ddc28a5aaac5f276996d02205185bc34945a90467d35945ba854165bcbe0ca3`. Check a download with
 `apksigner verify --print-certs voidbox-<version>.apk` and the published `.sha256` checksum.
 
 ## Contributing
