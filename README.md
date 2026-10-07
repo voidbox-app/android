@@ -70,7 +70,7 @@ Free, with no ads, no tracking and no account.
 | Source | |
 |---|---|
 | [GitHub Releases](https://github.com/voidbox-app/android/releases/latest) | Signed APK with a SHA-256 checksum |
-| [Obtainium](https://obtainium.imranr.dev) | Add `https://github.com/voidbox-app/android` for automatic updates |
+| [Obtainium](https://obtainium.imranr.dev) | [Add in one tap](https://apps.obtainium.imranr.dev/redirect?r=obtainium://add/https://github.com/voidbox-app/android) or add `https://github.com/voidbox-app/android`; updates arrive automatically, no GitHub token needed |
 | F-Droid | Coming soon |
 
 Voidbox runs on Android 8.0 and newer.
