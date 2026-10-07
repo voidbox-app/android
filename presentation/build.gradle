@@ -323,10 +323,6 @@ def getOnedriveApiKey() {
 	return uri.path
 }
 
-task updateGradleVerification(type: Exec) {
-	commandLine 'sh', '../buildsystem/updateGradleVerification.sh'
-}
-
 tasks.withType(Test) {
 	testLogging {
 		events "failed"
