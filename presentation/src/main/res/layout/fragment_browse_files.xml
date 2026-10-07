@@ -32,6 +32,25 @@
 			android:id="@+id/rl_view_empty_folder"
 			layout="@layout/view_empty_folder" />
 
+		<com.google.android.material.card.MaterialCardView
+			android:id="@+id/loading_indicator"
+			style="?attr/materialCardViewElevatedStyle"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_centerInParent="true"
+			android:visibility="gone"
+			app:cardCornerRadius="24dp"
+			app:cardElevation="3dp">
+
+			<com.google.android.material.progressindicator.CircularProgressIndicator
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:indeterminate="true"
+				app:indicatorSize="28dp"
+				app:trackThickness="3dp" />
+		</com.google.android.material.card.MaterialCardView>
+
 		<org.cryptomator.presentation.ui.layout.BottomToolbarLayout
 			android:id="@+id/toolbar_bottom"
 			android:layout_width="match_parent"

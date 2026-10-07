@@ -254,8 +254,28 @@ class BrowseFilesFragment : BaseFragment<FragmentBrowseFilesBinding>(FragmentBro
 		cloudNodesAdapter.replaceRenamedCloudFile(cloudFile)
 	}
 
+	// the pull-to-refresh circle only follows the finger; the loading itself shows in loading_indicator
 	fun showLoading(loading: Boolean?) {
-		loading?.let { binding.swipeRefreshLayout.isRefreshing = it }
+		loading ?: return
+		binding.swipeRefreshLayout.isRefreshing = false
+		val indicator = binding.loadingIndicator
+		val duration = resources.getInteger(android.R.integer.config_shortAnimTime).toLong()
+		indicator.animate().cancel()
+		if (loading) {
+			if (indicator.visibility != VISIBLE) {
+				// centred on the screen, not on the area below the toolbar
+				val parent = indicator.parent as View
+				val parentTop = IntArray(2).also { parent.getLocationInWindow(it) }[1]
+				indicator.translationY = requireActivity().window.decorView.height / 2f - (parentTop + parent.height / 2f)
+				indicator.alpha = 0f
+				indicator.scaleX = 0.5f
+				indicator.scaleY = 0.5f
+				indicator.visibility = VISIBLE
+			}
+			indicator.animate().alpha(1f).scaleX(1f).scaleY(1f).setDuration(duration)
+		} else if (indicator.visibility == VISIBLE) {
+			indicator.animate().alpha(0f).scaleX(0.5f).scaleY(0.5f).setDuration(duration).withEndAction { indicator.visibility = GONE }
+		}
 	}
 
 	fun addOrUpdate(cloudNode: CloudNodeModel<*>) {
