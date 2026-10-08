@@ -2,6 +2,19 @@
 
 All notable changes to Voidbox. Versions follow [semantic versioning](https://semver.org).
 
+## 1.1.1 – 2026-10-09
+
+### Changed
+
+- Releases are signed with a new Voidbox key. If you installed 1.1.0, uninstall it before
+  installing 1.1.1 and add your vaults again; later versions update in place.
+
+### Fixed
+
+- The status bar and notifications show the Voidbox lock instead of the old robot icon.
+- Opening a folder shows the loading indicator only when the listing is slow, in the middle of
+  the screen.
+
 ## 1.1.0 – 2026-10-07
 
 ### Changed
