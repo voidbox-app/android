@@ -39,6 +39,7 @@ import java.util.LinkedList
 import java.util.Queue
 import java.util.UUID
 import java.util.function.Supplier
+import timber.log.Timber
 
 
 abstract class CryptoImplDecorator(
@@ -52,6 +53,8 @@ abstract class CryptoImplDecorator(
 
 	@Volatile
 	private var root: RootCryptoFolder? = null
+
+	val offlineCopies: OfflineCopies by lazy { OfflineCopies.of(context) }
 
 	@Throws(BackendException::class)
 	abstract fun folder(cryptoParent: CryptoFolder, cleartextName: String): CryptoFolder
@@ -260,17 +263,24 @@ abstract class CryptoImplDecorator(
 	@Throws(BackendException::class, IOException::class)
 	private fun writeFromTmpFile(originalDataSource: DataSource, cryptoFile: CryptoFile, encryptedFile: File, progressAware: ProgressAware<UploadState>, replace: Boolean): CryptoFile {
 		val targetFile = targetFile(cryptoFile, replace)
-		return file(
-			targetFile,  //
-			cloudContentRepository.write( //
-				targetFile.cloudFile,  //
-				originalDataSource.decorate(from(encryptedFile)), //
-				UploadFileReplacingProgressAware(cryptoFile, progressAware),  //
-				replace,  //
-				encryptedFile.length()
-			),  //
-			cryptoFile.size
+		val written = cloudContentRepository.write( //
+			targetFile.cloudFile,  //
+			originalDataSource.decorate(from(encryptedFile)), //
+			UploadFileReplacingProgressAware(cryptoFile, progressAware),  //
+			replace,  //
+			encryptedFile.length()
 		)
+		keepOfflineCopyOf(targetFile.cloudFile, written, encryptedFile)
+		return file(targetFile, written, cryptoFile.size)
+	}
+
+	/** After a write: a file that was kept offline stays kept, with the new ciphertext. */
+	fun keepOfflineCopyOf(previous: CloudFile, written: CloudFile, encryptedFile: File) {
+		try {
+			offlineCopies.replace(previous, written, encryptedFile)
+		} catch (e: IOException) {
+			Timber.tag("CryptoFs").w(e, "Offline copy of %s not replaced after writing", written.path)
+		}
 	}
 
 	@Throws(BackendException::class)
@@ -313,10 +323,11 @@ abstract class CryptoImplDecorator(
 	fun read(cryptoFile: CryptoFile, data: OutputStream, progressAware: ProgressAware<DownloadState>) {
 		val ciphertextFile = cryptoFile.cloudFile
 		try {
-			val encryptedTmpFile = readToTmpFile(cryptoFile, ciphertextFile, progressAware)
+			val offlineCopy = offlineCopies.find(ciphertextFile)
+			val encryptedFile = offlineCopy ?: readToTmpFile(cryptoFile, ciphertextFile, progressAware)
 			progressAware.onProgress(Progress.started(DownloadState.decryption(cryptoFile)))
 			try {
-				Channels.newChannel(FileInputStream(encryptedTmpFile)).use { readableByteChannel ->
+				Channels.newChannel(FileInputStream(encryptedFile)).use { readableByteChannel ->
 					DecryptingReadableByteChannel(readableByteChannel, cryptor(), true).use { decryptingReadableByteChannel ->
 						val buff = ByteBuffer.allocate(cryptor().fileContentCryptor().ciphertextChunkSize())
 						val cleartextSize = cryptoFile.size ?: Long.MAX_VALUE
@@ -337,7 +348,9 @@ abstract class CryptoImplDecorator(
 					}
 				}
 			} finally {
-				encryptedTmpFile.delete()
+				if (offlineCopy == null) {
+					encryptedFile.delete()
+				}
 				progressAware.onProgress(Progress.completed(DownloadState.decryption(cryptoFile)))
 			}
 		} catch (e: IOException) {
@@ -348,17 +361,13 @@ abstract class CryptoImplDecorator(
 	/** Reads the offline copy when there is one, otherwise the cloud. */
 	@Throws(BackendException::class)
 	fun openRandomAccess(cryptoFile: CryptoFile): RandomAccessContent {
-		val ciphertext = OfflineCopies.of(context).find(cryptoFile.cloudFile)?.let { FileRandomAccessContent(it) } ?: cloudContentRepository.openRandomAccess(cryptoFile.cloudFile)
+		val ciphertext = offlineCopies.find(cryptoFile.cloudFile)?.let { FileRandomAccessContent(it) } ?: cloudContentRepository.openRandomAccess(cryptoFile.cloudFile)
 		return CryptoRandomAccessContent(ciphertext, cryptor())
 	}
 
 	@Throws(BackendException::class, IOException::class)
 	private fun readToTmpFile(cryptoFile: CryptoFile, file: CloudFile, progressAware: ProgressAware<DownloadState>): File {
 		val encryptedTmpFile = File.createTempFile(UUID.randomUUID().toString(), ".crypto", internalCache)
-		OfflineCopies.of(context).find(file)?.let { offlineCopy ->
-			offlineCopy.copyTo(encryptedTmpFile, overwrite = true)
-			return encryptedTmpFile
-		}
 		FileOutputStream(encryptedTmpFile).use { encryptedData ->
 			cloudContentRepository.read(file, encryptedTmpFile, encryptedData, DownloadFileReplacingProgressAware(cryptoFile, progressAware))
 			return encryptedTmpFile

@@ -957,9 +957,13 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onRemoveOfflineClicked(file: CloudFileModel) {
-		offlineFiles.remove(file)
-		view?.addOrUpdateCloudNode(file)
-		view?.showMessage(R.string.screen_file_browser_msg_offline_removed)
+		streamProbes.add(Completable.fromAction { offlineFiles.remove(file) } //
+			.subscribeOn(Schedulers.io()) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({
+				view?.addOrUpdateCloudNode(file)
+				view?.showMessage(R.string.screen_file_browser_msg_offline_removed)
+			}, { e -> showError(e) }))
 	}
 
 	fun onShareNodesClicked(nodes: List<CloudNodeModel<*>?>) {
