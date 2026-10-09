@@ -51,7 +51,7 @@ class OfflineFilesPresenter @Inject constructor(
 		val vaultsById = vaults.associateBy { it.id }
 		return offlineFiles.usage() //
 			.map { usage -> OfflineVaultModel(usage.vaultId, vaultsById[usage.vaultId]?.let { VaultModel(it) }, usage.bytes, usage.files) } //
-			.sortedWith(compareBy({ it.vault == null }, { it.vault?.position ?: 0 }, { -it.bytes }))
+			.sortedWith(compareBy({ it.vault == null }, { it.vault?.position ?: 0 }, { it.vaultId }))
 	}
 
 	fun onRemoveClicked(vault: OfflineVaultModel) {

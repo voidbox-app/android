@@ -1,5 +1,6 @@
 package org.cryptomator.presentation.ui.fragment
 
+import android.content.res.ColorStateList
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
@@ -61,7 +62,7 @@ class OfflineFilesFragment : BaseFragment<FragmentOfflineFilesBinding>(FragmentO
 		vaults.forEachIndexed { index, vault ->
 			val segment = View(context())
 			segment.background = ContextCompat.getDrawable(context(), R.drawable.bg_usage_segment)
-			segment.backgroundTintList = ContextCompat.getColorStateList(context(), OfflineFilesAdapter.segmentColor(index))
+			segment.backgroundTintList = ColorStateList.valueOf(OfflineFilesAdapter.segmentColor(bar, index))
 			val weight = (vault.bytes.toFloat() / total).coerceAtLeast(MIN_SHARE)
 			val params = LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, weight)
 			if (index < vaults.lastIndex) {

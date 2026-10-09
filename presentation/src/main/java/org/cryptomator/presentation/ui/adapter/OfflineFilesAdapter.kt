@@ -1,9 +1,10 @@
 package org.cryptomator.presentation.ui.adapter
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
+import com.google.android.material.color.MaterialColors
 import com.google.android.material.shape.CornerFamily
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.ItemOfflineVaultBinding
@@ -47,7 +48,7 @@ class OfflineFilesAdapter @Inject constructor(private val fileSizeHelper: FileSi
 			binding.vaultName.text = name
 			binding.cloudImage.setImageResource(vault?.cloudImageResource ?: R.drawable.ic_cloud)
 			binding.locked.visibility = if (locked) View.VISIBLE else View.GONE
-			binding.dot.backgroundTintList = ContextCompat.getColorStateList(context, segmentColor(position))
+			binding.dot.backgroundTintList = ColorStateList.valueOf(segmentColor(binding.root, position))
 			binding.usage.text = listOfNotNull(
 				fileSizeHelper.getFormattedFileSize(item.bytes), //
 				resources.getQuantityString(R.plurals.screen_offline_files_count, item.files, item.files), //
@@ -67,12 +68,17 @@ class OfflineFilesAdapter @Inject constructor(private val fileSizeHelper: FileSi
 
 		// a resource would lose the surrounding spaces
 		private const val SEPARATOR = " \u00B7 "
-		private val SEGMENT_COLORS = intArrayOf(
-			R.color.voidbox_offline_segment_1, R.color.voidbox_offline_segment_2, R.color.voidbox_offline_segment_3, //
-			R.color.voidbox_offline_segment_4, R.color.voidbox_offline_segment_5
+
+		// theme roles, so the shares follow Material You like the rest of the app; neighbours differ in hue
+		private val SEGMENT_ROLES = intArrayOf(
+			com.google.android.material.R.attr.colorPrimary, //
+			com.google.android.material.R.attr.colorTertiary, //
+			com.google.android.material.R.attr.colorSecondary, //
+			com.google.android.material.R.attr.colorOnTertiaryContainer, //
+			com.google.android.material.R.attr.colorOnPrimaryContainer
 		)
 
 		/** The colour of a vault's share in the usage bar and of the dot in its row. */
-		fun segmentColor(position: Int): Int = SEGMENT_COLORS[position % SEGMENT_COLORS.size]
+		fun segmentColor(view: View, position: Int): Int = MaterialColors.getColor(view, SEGMENT_ROLES[position % SEGMENT_ROLES.size])
 	}
 }

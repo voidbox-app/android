@@ -67,7 +67,7 @@ class OfflineFilesPresenterTest {
 	}
 
 	@Test
-	fun `copies of removed vaults are listed largest first`() {
+	fun `copies of removed vaults are listed in a stable order`() {
 		whenever(offlineFiles.usage()).thenReturn(
 			listOf(OfflineCopies.VaultUsage(7, 10, 1), OfflineCopies.VaultUsage(8, 300, 3), OfflineCopies.VaultUsage(9, 20, 2))
 		)
@@ -75,7 +75,7 @@ class OfflineFilesPresenterTest {
 		presenter.loadUsage()
 		vaultListResult().onSuccess(emptyList())
 
-		assertEquals(listOf(8L, 9L, 7L), shownUsage().map { it.vaultId })
+		assertEquals(listOf(7L, 8L, 9L), shownUsage().map { it.vaultId })
 	}
 
 	@Test
