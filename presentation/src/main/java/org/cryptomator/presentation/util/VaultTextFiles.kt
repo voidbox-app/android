@@ -5,12 +5,15 @@ import org.cryptomator.data.cloud.crypto.CryptoFile
 import org.cryptomator.data.repository.DispatchingCloudContentRepository
 import org.cryptomator.domain.exception.BackendException
 import org.cryptomator.domain.repository.RandomAccessContent
+import org.cryptomator.domain.usecases.DownloadFileReplacingProgressAware
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DownloadState
+import org.cryptomator.domain.usecases.cloud.Progress
 import org.cryptomator.presentation.model.CloudFileModel
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
+import java.io.InterruptedIOException
 import java.util.UUID
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -21,7 +24,7 @@ class VaultTextFiles @Inject constructor(context: Context, private val cloudCont
 
 	private val cacheDir: File = context.cacheDir
 
-	/** Call off the main thread. Closing the result deletes the temporary ciphertext. */
+	/** Call off the main thread; interrupting the thread stops the download. Closing the result deletes the temporary ciphertext. */
 	@Throws(BackendException::class, IOException::class)
 	fun open(file: CloudFileModel, progressAware: ProgressAware<DownloadState>): RandomAccessContent {
 		val cryptoFile = file.toCloudNode() as? CryptoFile ?: throw IllegalArgumentException("${file.name} is not in a vault")
@@ -30,7 +33,8 @@ class VaultTextFiles @Inject constructor(context: Context, private val cloudCont
 		}
 		val ciphertext = File.createTempFile(UUID.randomUUID().toString(), CIPHERTEXT_SUFFIX, cacheDir)
 		try {
-			FileOutputStream(ciphertext).use { out -> cloudContentRepository.read(cryptoFile.cloudFile, null, out, progressAware) }
+			val progress = DownloadFileReplacingProgressAware(cryptoFile, CancellableProgress(progressAware))
+			FileOutputStream(ciphertext).use { out -> cloudContentRepository.read(cryptoFile.cloudFile, null, out, progress) }
 			return TemporaryCiphertextContent(cloudContentRepository.openRandomAccess(cryptoFile, ciphertext), ciphertext)
 		} catch (e: Exception) {
 			ciphertext.delete()
@@ -43,6 +47,16 @@ class VaultTextFiles @Inject constructor(context: Context, private val cloudCont
 		val runtime = Runtime.getRuntime()
 		val available = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory())
 		return size * EDITOR_BYTES_PER_TEXT_BYTE <= (available * EDITOR_SHARE_OF_AVAILABLE_MEMORY).toLong()
+	}
+
+	private class CancellableProgress(private val delegate: ProgressAware<DownloadState>) : ProgressAware<DownloadState> {
+
+		override fun onProgress(progress: Progress<DownloadState>) {
+			if (Thread.currentThread().isInterrupted) {
+				throw InterruptedIOException("Loading was cancelled")
+			}
+			delegate.onProgress(progress)
+		}
 	}
 
 	private class TemporaryCiphertextContent(private val content: RandomAccessContent, private val ciphertext: File) : RandomAccessContent by content {

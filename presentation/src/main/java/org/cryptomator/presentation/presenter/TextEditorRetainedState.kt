@@ -53,6 +53,7 @@ class TextEditorRetainedState : ViewModel() {
 
 	/** Runs [load] once in the background; the result waits in [loadingResult] for whichever screen asks for it. */
 	fun startLoading(load: () -> LoadedText) {
+		progress.onNext(ProgressModel.GENERIC)
 		val subject = SingleSubject.create<LoadedText>()
 		result = subject
 		loading = Single.create<LoadedText> { emitter ->

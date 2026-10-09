@@ -3,6 +3,7 @@ package org.cryptomator.presentation.presenter
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import org.cryptomator.domain.CloudFile
 import org.cryptomator.domain.di.PerView
@@ -39,6 +40,7 @@ class TextEditorPresenter @Inject constructor( //
 	private val textFile = AtomicReference<CloudFileModel>()
 	private lateinit var retainedState: TextEditorRetainedState
 	private val subscriptions = CompositeDisposable()
+	private var pageSearch: Disposable? = null
 	private var resultWaitingForResume: LoadedText? = null
 	private var errorWaitingForResume: Throwable? = null
 
@@ -228,19 +230,22 @@ class TextEditorPresenter @Inject constructor( //
 		)
 	}
 
-	fun findInPages(forward: Boolean, onFound: (TextPages.Match?) -> Unit) {
+	/** Calls [onDone] with the match, or with null when there is none or the search failed; a new search replaces a running one. */
+	fun findInPages(forward: Boolean, onDone: (TextPages.Match?) -> Unit) {
 		val pages = retainedState.pages ?: return
 		val query = query?.takeIf { it.isNotEmpty() } ?: return
 		val from = retainedState.currentMatch
-		subscriptions.add(
-			Single.fromCallable { pages.find(query, from, forward) } //
-				.subscribeOn(Schedulers.io()) //
-				.observeOn(AndroidSchedulers.mainThread()) //
-				.subscribe({ match ->
-					retainedState.currentMatch = match ?: from
-					onFound(match)
-				}, { showError(it) })
-		)
+		pageSearch?.dispose()
+		pageSearch = Single.fromCallable { pages.find(query, from, forward) } //
+			.subscribeOn(Schedulers.io()) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({ match ->
+				retainedState.currentMatch = match ?: from
+				onDone(match)
+			}, { e ->
+				showError(e)
+				onDone(null)
+			})
 	}
 
 	fun startNewPageSearch(query: String) {
@@ -252,7 +257,7 @@ class TextEditorPresenter @Inject constructor( //
 		get() = retainedState.currentMatch
 
 	fun keepEditorContent(content: CharSequence, position: EditorPosition) {
-		if (!retainedState.isLoaded) {
+		if (retainedState.originalContent == null) {
 			return
 		}
 		retainedState.editedContent = content
@@ -269,6 +274,7 @@ class TextEditorPresenter @Inject constructor( //
 
 	override fun destroyed() {
 		subscriptions.clear()
+		pageSearch?.dispose()
 	}
 
 	init {

@@ -4,6 +4,7 @@ import org.cryptomator.domain.exception.BackendException
 import org.cryptomator.domain.repository.RandomAccessContent
 import java.io.Closeable
 import java.io.IOException
+import java.io.InterruptedIOException
 import java.nio.charset.StandardCharsets
 
 /** A text too large to hold in memory, decoded one page at a time; only the page borders are kept. */
@@ -20,24 +21,28 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 	var indexed = false
 		private set
 
+	/** Pages whose end is known: while indexing runs, the page being cut is not counted yet. */
 	val pageCount: Int
-		get() = synchronized(starts) { starts.size }
+		get() = synchronized(starts) { if (indexed) starts.size else (starts.size - 1).coerceAtLeast(0) }
 
-	/** Reads the text once and cuts it into pages at line breaks; [onPagesAdded] gets the running page count as pages are found. */
+	/** Reads the text once and cuts it into pages at line breaks; [onPagesAdded] gets the running page count as pages are completed. */
 	@Throws(BackendException::class, IOException::class)
 	fun index(onPagesAdded: (Int) -> Unit) {
-		synchronized(starts) { starts.clear() }
+		synchronized(starts) {
+			starts.clear()
+			indexed = false
+		}
 		if (content.size == 0L) {
-			indexed = true
+			synchronized(starts) { indexed = true }
 			return
 		}
 		addPage(0L)
-		onPagesAdded(pageCount)
 		val buffer = ByteArray(READ_BUFFER_SIZE)
 		var pageStart = 0L
 		var position = 0L
 		content.openStream(0, null).use { stream ->
 			while (true) {
+				stopWhenCancelled()
 				val read = stream.read(buffer)
 				if (read < 0) {
 					break
@@ -61,7 +66,14 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 				}
 			}
 		}
-		indexed = true
+		synchronized(starts) { indexed = true }
+		onPagesAdded(pageCount)
+	}
+
+	private fun stopWhenCancelled() {
+		if (Thread.currentThread().isInterrupted) {
+			throw InterruptedIOException("Indexing was cancelled")
+		}
 	}
 
 	fun cachedPage(page: Int): String? = synchronized(cache) { cache[page] }
@@ -71,6 +83,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 	fun page(page: Int): String {
 		cachedPage(page)?.let { return it }
 		val (start, end) = synchronized(starts) {
+			check(page < pageCount) { "Page $page is not indexed yet" }
 			starts[page] to (if (page + 1 < starts.size) starts[page + 1] else content.size)
 		}
 		val text = content.openStream(start, end - start).use { String(it.readBytes(), StandardCharsets.UTF_8) }

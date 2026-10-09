@@ -93,9 +93,24 @@ class TextPagesTest {
 
 		val counts = pages.indexAll()
 
-		assertEquals(1, counts.first())
+		assertTrue(counts.first() < counts.last())
 		assertEquals(pages.pageCount, counts.last())
 		assertEquals(counts, counts.sorted())
+	}
+
+	@Test
+	fun `a page is counted only once its end is known`() {
+		val pages = pagesOf(("y".repeat(1023) + "\n").repeat(200))
+		val pageSizes = ArrayList<Int>()
+
+		pages.index { count ->
+			if (!pages.indexed) {
+				pageSizes.add(pages.page(count - 1).toByteArray(StandardCharsets.UTF_8).size)
+			}
+		}
+
+		assertTrue(pageSizes.isNotEmpty())
+		pageSizes.forEach { assertEquals(TextPages.PAGE_BYTES, it) }
 	}
 
 	@Test

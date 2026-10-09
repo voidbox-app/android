@@ -3,6 +3,7 @@ package org.cryptomator.presentation.ui.fragment
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
+import androidx.core.view.doOnPreDraw
 import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -22,6 +23,7 @@ class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextV
 	lateinit var textEditorPresenter: TextEditorPresenter
 
 	private var adapter: TextPagesAdapter? = null
+	private var searching = false
 	private val subscriptions = CompositeDisposable()
 
 	override fun setupView() {
@@ -47,12 +49,17 @@ class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextV
 		pagesAdapter.highlight(textEditorPresenter.currentMatch)
 		adapter = pagesAdapter
 		binding.pages.adapter = pagesAdapter
-		binding.indexingProgress.visibility = if (pages.indexed) View.GONE else View.VISIBLE
+		showProgressBar()
 		subscriptions.add(
 			textEditorPresenter.pageCount() //
 				.observeOn(AndroidSchedulers.mainThread()) //
-				.subscribe({ pagesAdapter.showPageCount(it) }, { textEditorPresenter.showError(it) }, { binding.indexingProgress.visibility = View.GONE })
+				.subscribe({ pagesAdapter.showPageCount(it) }, { textEditorPresenter.showError(it) }, { showProgressBar() })
 		)
+	}
+
+	private fun showProgressBar() {
+		val indexing = textEditorPresenter.pages?.indexed == false
+		binding.progress.visibility = if (indexing || searching) View.VISIBLE else View.GONE
 	}
 
 	override fun onQueryText(query: String) {
@@ -65,11 +72,24 @@ class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextV
 	}
 
 	override fun onPreviousQuery() {
-		textEditorPresenter.findInPages(false) { showMatch(it) }
+		search(forward = false)
 	}
 
 	override fun onNextQuery() {
-		textEditorPresenter.findInPages(true) { showMatch(it) }
+		search(forward = true)
+	}
+
+	private fun search(forward: Boolean) {
+		if (adapter == null || textEditorPresenter.query.isNullOrEmpty()) {
+			return
+		}
+		searching = true
+		showProgressBar()
+		textEditorPresenter.findInPages(forward) { match ->
+			searching = false
+			showProgressBar()
+			showMatch(match)
+		}
 	}
 
 	private fun showMatch(match: TextPages.Match?) {
@@ -80,7 +100,7 @@ class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextV
 		pagesAdapter.highlight(match)
 		val layoutManager = binding.pages.layoutManager as LinearLayoutManager
 		layoutManager.scrollToPositionWithOffset(match.page, 0)
-		binding.pages.post { scrollMatchLineToTop(match) }
+		binding.pages.doOnPreDraw { scrollMatchLineToTop(match) }
 	}
 
 	private fun scrollMatchLineToTop(match: TextPages.Match) {

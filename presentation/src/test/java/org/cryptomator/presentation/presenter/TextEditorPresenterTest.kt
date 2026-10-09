@@ -210,6 +210,16 @@ class TextEditorPresenterTest {
 	}
 
 	@Test
+	fun `editor text is not kept for a read only text`() {
+		whenever(vaultTextFiles.fitsInEditor(any())).thenReturn(false)
+		presenter.loadFileContent()
+
+		presenter.keepEditorContent("", POSITION)
+
+		assertNull(retainedState.editedContent)
+	}
+
+	@Test
 	fun `text of a screen that never loaded is not kept`() {
 		presenter.keepEditorContent("typed", POSITION)
 
