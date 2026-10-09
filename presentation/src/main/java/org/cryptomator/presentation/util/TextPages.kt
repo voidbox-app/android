@@ -5,6 +5,9 @@ import org.cryptomator.domain.repository.RandomAccessContent
 import java.io.Closeable
 import java.io.IOException
 import java.nio.charset.StandardCharsets
+import java.util.concurrent.TimeUnit
+import java.util.concurrent.locks.ReentrantLock
+import kotlin.concurrent.withLock
 
 /** A text too large to hold in memory, decoded one page at a time; only the page borders are kept. */
 class TextPages(private val content: RandomAccessContent) : Closeable {
@@ -12,6 +15,8 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 	data class Match(val page: Int, val index: Int, val length: Int)
 
 	private val starts = ArrayList<Long>()
+	private val lock = ReentrantLock()
+	private val pagesAdded = lock.newCondition()
 	private val cache = object : LinkedHashMap<Int, String>(CACHED_PAGES, 0.75f, true) {
 		override fun removeEldestEntry(eldest: MutableMap.MutableEntry<Int, String>?): Boolean = size > CACHED_PAGES
 	}
@@ -22,12 +27,12 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 
 	/** Pages whose end is known: while indexing runs, the page being cut is not counted yet. */
 	val pageCount: Int
-		get() = synchronized(starts) { if (indexed) starts.size else (starts.size - 1).coerceAtLeast(0) }
+		get() = lock.withLock { if (indexed) starts.size else (starts.size - 1).coerceAtLeast(0) }
 
 	/** Reads the text once and cuts it into pages at line breaks; [onPagesAdded] gets the running page count as pages are completed. */
 	@Throws(BackendException::class, IOException::class)
 	fun index(onPagesAdded: (Int) -> Unit) {
-		synchronized(starts) {
+		lock.withLock {
 			starts.clear()
 			indexed = false
 		}
@@ -72,9 +77,9 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 	}
 
 	private fun finishIndexing() {
-		synchronized(starts) {
+		lock.withLock {
 			indexed = true
-			starts.notifyAll()
+			pagesAdded.signalAll()
 		}
 	}
 
@@ -82,7 +87,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 
 	/** True once [page] exists; waits while indexing may still produce it. False when it never will or the thread was interrupted. */
 	private fun waitForPage(page: Int): Boolean {
-		synchronized(starts) {
+		lock.withLock {
 			while (page >= pageCount && !indexed) {
 				if (!waitForIndexing()) {
 					return false
@@ -93,7 +98,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 	}
 
 	private fun waitUntilIndexed(): Boolean {
-		synchronized(starts) {
+		lock.withLock {
 			while (!indexed) {
 				if (!waitForIndexing()) {
 					return false
@@ -108,7 +113,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 			return false
 		}
 		return try {
-			starts.wait(INDEXING_WAIT_MILLIS)
+			pagesAdded.await(INDEXING_WAIT_MILLIS, TimeUnit.MILLISECONDS)
 			true
 		} catch (e: InterruptedException) {
 			Thread.currentThread().interrupt()
@@ -122,7 +127,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 	@Throws(BackendException::class, IOException::class)
 	fun page(page: Int): String {
 		cachedPage(page)?.let { return it }
-		val (start, end) = synchronized(starts) {
+		val (start, end) = lock.withLock {
 			check(page < pageCount) { "Page $page is not indexed yet" }
 			starts[page] to (if (page + 1 < starts.size) starts[page + 1] else content.size)
 		}
@@ -186,9 +191,9 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 	}
 
 	private fun addPage(start: Long) {
-		synchronized(starts) {
+		lock.withLock {
 			starts.add(start)
-			starts.notifyAll()
+			pagesAdded.signalAll()
 		}
 	}
 
