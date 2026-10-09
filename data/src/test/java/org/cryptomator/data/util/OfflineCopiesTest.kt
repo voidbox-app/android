@@ -189,6 +189,18 @@ class OfflineCopiesTest {
 	}
 
 	@Test
+	fun aMoveReportedWithoutSizeAndDateKeepsTheCopysOwn() {
+		val listed = file(folder("/e"), "z.c9r", 11, 1000)
+		keep(file, "hello world")
+
+		copies.move(file, file(folder("/e"), "z.c9r", null, null))
+
+		assertTrue(copies.isKept(listed))
+		assertEquals("hello world", copies.find(listed)!!.readText())
+		assertTrue(OfflineCopies(directory).isKept(listed))
+	}
+
+	@Test
 	fun movingAFileThatIsNotKeptDoesNothing() {
 		copies.move(file, file(d, "z.c9r", 11, 1000))
 

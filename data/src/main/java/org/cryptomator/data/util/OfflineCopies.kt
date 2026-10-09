@@ -152,7 +152,11 @@ class OfflineCopies internal constructor(private val directory: File?) {
 	}
 
 	private fun writeMeta(meta: File, ciphertext: CloudFile) {
-		meta.writeText("${ciphertext.path}\n${ciphertext.size ?: ""}\n${ciphertext.modified?.time ?: ""}\n")
+		writeMeta(meta, ciphertext.path, ciphertext.size, ciphertext.modified?.time)
+	}
+
+	private fun writeMeta(meta: File, path: String, size: Long?, modified: Long?) {
+		meta.writeText("$path\n${size ?: ""}\n${modified ?: ""}\n")
 	}
 
 	fun remove(ciphertext: CloudFile) {
@@ -171,7 +175,10 @@ class OfflineCopies internal constructor(private val directory: File?) {
 		}
 	}
 
-	/** The file moved in the cloud with its content unchanged: the copy follows it. */
+	/**
+	 * The file moved in the cloud with its content unchanged: the copy follows it. A move may
+	 * report the target without size or date (long names in vault format 7); the copy keeps its own.
+	 */
 	fun move(from: CloudFile, to: CloudFile) {
 		ready()
 		synchronized(commit) {
@@ -180,11 +187,13 @@ class OfflineCopies internal constructor(private val directory: File?) {
 			val name = name(to.path)
 			val moved = File(folder, name)
 			val meta = File(folder, name + META)
+			val size = to.size ?: copy.size
+			val modified = to.modified?.time ?: copy.modified
 			if (copy.file.renameTo(moved)) {
 				copy.meta.delete()
 				try {
-					writeMeta(meta, to)
-					index[to.path] = Copy(moved, meta, to.size, to.modified?.time)
+					writeMeta(meta, to.path, size, modified)
+					index[to.path] = Copy(moved, meta, size, modified)
 				} catch (e: IOException) {
 					moved.delete()
 					meta.delete()
