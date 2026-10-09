@@ -28,9 +28,7 @@ class VaultTextFiles @Inject constructor(context: Context, private val cloudCont
 	@Throws(BackendException::class, IOException::class)
 	fun open(file: CloudFileModel, progressAware: ProgressAware<DownloadState>): RandomAccessContent {
 		val cryptoFile = file.toCloudNode() as? CryptoFile ?: throw IllegalArgumentException("${file.name} is not in a vault")
-		if (offlineFiles.isOffline(file)) {
-			return cloudContentRepository.openRandomAccess(cryptoFile)
-		}
+		offlineFiles.copyOf(file)?.let { copy -> return cloudContentRepository.openRandomAccess(cryptoFile, copy) }
 		val ciphertext = File.createTempFile(UUID.randomUUID().toString(), CIPHERTEXT_SUFFIX, cacheDir)
 		try {
 			val progress = DownloadFileReplacingProgressAware(cryptoFile, CancellableProgress(progressAware))
@@ -42,11 +40,9 @@ class VaultTextFiles @Inject constructor(context: Context, private val cloudCont
 		}
 	}
 
-	/** Whether a text of [size] bytes can be laid out in the editor without running out of memory on this device. */
+	/** Whether a text of [size] bytes stays editable on this device: within the editor's share of the heap and the size the editor still lays out quickly. */
 	fun fitsInEditor(size: Long): Boolean {
-		val runtime = Runtime.getRuntime()
-		val available = runtime.maxMemory() - (runtime.totalMemory() - runtime.freeMemory())
-		return size * EDITOR_BYTES_PER_TEXT_BYTE <= (available * EDITOR_SHARE_OF_AVAILABLE_MEMORY).toLong()
+		return size <= MAX_EDITABLE_BYTES && size * EDITOR_BYTES_PER_TEXT_BYTE <= Runtime.getRuntime().maxMemory() / EDITOR_SHARE_OF_HEAP
 	}
 
 	private class CancellableProgress(private val delegate: ProgressAware<DownloadState>) : ProgressAware<DownloadState> {
@@ -71,6 +67,7 @@ class VaultTextFiles @Inject constructor(context: Context, private val cloudCont
 
 		private const val CIPHERTEXT_SUFFIX = ".crypto"
 		private const val EDITOR_BYTES_PER_TEXT_BYTE = 24L
-		private const val EDITOR_SHARE_OF_AVAILABLE_MEMORY = 0.6
+		private const val EDITOR_SHARE_OF_HEAP = 3L
+		private const val MAX_EDITABLE_BYTES = 4L * 1024 * 1024
 	}
 }

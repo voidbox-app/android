@@ -4,7 +4,6 @@ import org.cryptomator.domain.exception.BackendException
 import org.cryptomator.domain.repository.RandomAccessContent
 import java.io.Closeable
 import java.io.IOException
-import java.io.InterruptedIOException
 import java.nio.charset.StandardCharsets
 
 /** A text too large to hold in memory, decoded one page at a time; only the page borders are kept. */
@@ -42,7 +41,9 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 		var position = 0L
 		content.openStream(0, null).use { stream ->
 			while (true) {
-				stopWhenCancelled()
+				if (cancelled()) {
+					return
+				}
 				val read = stream.read(buffer)
 				if (read < 0) {
 					break
@@ -70,11 +71,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 		onPagesAdded(pageCount)
 	}
 
-	private fun stopWhenCancelled() {
-		if (Thread.currentThread().isInterrupted) {
-			throw InterruptedIOException("Indexing was cancelled")
-		}
-	}
+	private fun cancelled(): Boolean = Thread.currentThread().isInterrupted
 
 	fun cachedPage(page: Int): String? = synchronized(cache) { cache[page] }
 
@@ -91,7 +88,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 		return text
 	}
 
-	/** The next match after [from] (or the first one) when [forward], otherwise the one before it; null when there is none. */
+	/** The next match after [from] (or the first one) when [forward], otherwise the one before it; null when there is none or the thread was interrupted. */
 	@Throws(BackendException::class, IOException::class)
 	fun find(query: String, from: Match?, forward: Boolean): Match? {
 		if (query.isEmpty() || pageCount == 0) {
@@ -100,7 +97,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 		if (forward) {
 			var page = from?.page ?: 0
 			var fromIndex = from?.let { it.index + 1 } ?: 0
-			while (page < pageCount) {
+			while (page < pageCount && !cancelled()) {
 				val index = page(page).indexOf(query, fromIndex, ignoreCase = true)
 				if (index >= 0) {
 					return Match(page, index, query.length)
@@ -111,7 +108,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 		} else {
 			var page = from?.page ?: (pageCount - 1)
 			var fromIndex = from?.let { it.index - 1 } ?: Int.MAX_VALUE
-			while (page >= 0) {
+			while (page >= 0 && !cancelled()) {
 				if (fromIndex >= 0) {
 					val index = page(page).lastIndexOf(query, fromIndex, ignoreCase = true)
 					if (index >= 0) {

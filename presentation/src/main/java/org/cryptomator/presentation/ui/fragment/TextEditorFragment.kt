@@ -13,6 +13,7 @@ import com.google.android.material.textfield.TextInputEditText
 import org.cryptomator.generator.Fragment
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.FragmentTextEditorBinding
+import org.cryptomator.presentation.model.ProgressModel
 import org.cryptomator.presentation.presenter.EditorPosition
 import org.cryptomator.presentation.presenter.TextEditorPresenter
 import org.cryptomator.presentation.ui.layout.applySystemBarsMargins
@@ -21,7 +22,7 @@ import org.cryptomator.presentation.ui.layout.attachFastScrollThumb
 import javax.inject.Inject
 
 @Fragment
-class TextEditorFragment : BaseFragment<FragmentTextEditorBinding>(FragmentTextEditorBinding::inflate), TextSearch {
+class TextEditorFragment : BaseFragment<FragmentTextEditorBinding>(FragmentTextEditorBinding::inflate), TextScreen {
 
 	@Inject
 	lateinit var textEditorPresenter: TextEditorPresenter
@@ -45,6 +46,21 @@ class TextEditorFragment : BaseFragment<FragmentTextEditorBinding>(FragmentTextE
 		caretAutoScrollWatcher?.let { binding.textEditor.removeTextChangedListener(it) }
 		binding.textEditor.setText(textFileContent)
 		caretAutoScrollWatcher?.let { binding.textEditor.addTextChangedListener(it) }
+		binding.textViewWrapper.visibility = View.VISIBLE
+	}
+
+	override fun showLoadingProgress(progress: ProgressModel) {
+		val bar = binding.loadingProgress
+		val percent = progress.progress()
+		bar.isIndeterminate = percent < 0
+		if (percent >= 0) {
+			bar.progress = percent
+		}
+		bar.visibility = View.VISIBLE
+	}
+
+	override fun hideLoadingProgress() {
+		binding.loadingProgress.visibility = View.GONE
 	}
 
 	fun restoreEditorPosition(position: EditorPosition) {

@@ -9,6 +9,7 @@ import org.cryptomator.domain.exception.BackendException
 import org.cryptomator.domain.usecases.ProgressAware
 import org.cryptomator.domain.usecases.cloud.DownloadState
 import org.cryptomator.presentation.model.CloudFileModel
+import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import javax.inject.Inject
@@ -21,9 +22,12 @@ class OfflineFiles @Inject constructor(context: Context, private val cloudConten
 	private val copies = OfflineCopies.of(context)
 
 	/** In-memory lookup; safe on the main thread. */
-	fun isOffline(file: CloudFileModel): Boolean {
-		val cryptoFile = file.toCloudNode() as? CryptoFile ?: return false
-		return copies.find(cryptoFile.cloudFile) != null
+	fun isOffline(file: CloudFileModel): Boolean = copyOf(file) != null
+
+	/** The ciphertext kept on the device for [file], or null when there is none. */
+	fun copyOf(file: CloudFileModel): File? {
+		val cryptoFile = file.toCloudNode() as? CryptoFile ?: return null
+		return copies.find(cryptoFile.cloudFile)
 	}
 
 	/** Call off the main thread. */

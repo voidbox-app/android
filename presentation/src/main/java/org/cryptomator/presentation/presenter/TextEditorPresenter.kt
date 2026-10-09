@@ -1,6 +1,6 @@
 package org.cryptomator.presentation.presenter
 
-import io.reactivex.Single
+import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
@@ -137,13 +137,16 @@ class TextEditorPresenter @Inject constructor( //
 		val content = retainedState.editedContent ?: retainedState.originalContent ?: return
 		view?.displayTextFileContent(content)
 		view?.restoreEditorPosition(retainedState.position)
-		retainedState.editedContent = null
 	}
 
+	/** The loading lambda outlives this presenter, so it takes what it needs instead of holding the presenter and its screen. */
 	private fun startLoading() {
 		val file = textFile.get()
+		val vaultTextFiles = vaultTextFiles
+		val progressModelMapper = progressModelMapper
+		val progress = retainedState.progress
 		retainedState.startLoading {
-			val content = vaultTextFiles.open(file) { progress -> retainedState.progress.onNext(progressModelMapper.toModel(progress)) }
+			val content = vaultTextFiles.open(file) { downloaded -> progress.onNext(progressModelMapper.toModel(downloaded)) }
 			if (vaultTextFiles.fitsInEditor(content.size)) {
 				content.use { LoadedText.Editable(it.openStream(0, null).use { stream -> String(stream.readBytes(), StandardCharsets.UTF_8) }) }
 			} else {
@@ -158,7 +161,7 @@ class TextEditorPresenter @Inject constructor( //
 		subscriptions.add(
 			retainedState.progress //
 				.observeOn(AndroidSchedulers.mainThread()) //
-				.subscribe { showProgress(it) }
+				.subscribe { view?.showLoadingProgress(it) }
 		)
 		subscriptions.add(
 			result //
@@ -197,7 +200,7 @@ class TextEditorPresenter @Inject constructor( //
 	private fun showLoaded(loaded: LoadedText) {
 		subscriptions.clear()
 		retainedState.forgetLoading()
-		view?.showProgress(ProgressModel.COMPLETED)
+		view?.hideLoadingProgress()
 		didLoadFileContent = true
 		when (loaded) {
 			is LoadedText.Editable -> {
@@ -214,20 +217,20 @@ class TextEditorPresenter @Inject constructor( //
 	private fun showLoadingError(e: Throwable) {
 		subscriptions.clear()
 		retainedState.forgetLoading()
-		view?.showProgress(ProgressModel.COMPLETED)
+		view?.hideLoadingProgress()
 		showError(e)
+		view?.finish()
 	}
 
 	fun pageCount() = retainedState.pageCount()
 
-	fun loadPage(page: Int, onLoaded: (String) -> Unit) {
-		val pages = retainedState.pages ?: return
-		subscriptions.add(
-			Single.fromCallable { pages.page(page) } //
-				.subscribeOn(Schedulers.io()) //
-				.observeOn(AndroidSchedulers.mainThread()) //
-				.subscribe({ onLoaded(it) }, { showError(it) })
-		)
+	/** The caller owns the returned subscription: disposing it cancels a page no longer on screen. */
+	fun loadPage(page: Int, onLoaded: (String) -> Unit): Disposable? {
+		val pages = retainedState.pages ?: return null
+		return Maybe.fromCallable { unlessCancelled { pages.page(page) } } //
+			.subscribeOn(Schedulers.io()) //
+			.observeOn(AndroidSchedulers.mainThread()) //
+			.subscribe({ onLoaded(it) }, { showError(it) })
 	}
 
 	/** Calls [onDone] with the match, or with null when there is none or the search failed; a new search replaces a running one. */
@@ -236,16 +239,25 @@ class TextEditorPresenter @Inject constructor( //
 		val query = query?.takeIf { it.isNotEmpty() } ?: return
 		val from = retainedState.currentMatch
 		pageSearch?.dispose()
-		pageSearch = Single.fromCallable { pages.find(query, from, forward) } //
+		pageSearch = Maybe.fromCallable { unlessCancelled { pages.find(query, from, forward) } } //
 			.subscribeOn(Schedulers.io()) //
 			.observeOn(AndroidSchedulers.mainThread()) //
 			.subscribe({ match ->
-				retainedState.currentMatch = match ?: from
+				retainedState.currentMatch = match
 				onDone(match)
 			}, { e ->
 				showError(e)
 				onDone(null)
-			})
+			}, { onDone(null) })
+	}
+
+	/** Work interrupted by a disposed subscription ends quietly instead of reporting the exception it was cut off with. */
+	private fun <T> unlessCancelled(work: () -> T?): T? {
+		return try {
+			work()
+		} catch (e: Exception) {
+			if (Thread.currentThread().isInterrupted) null else throw e
+		}
 	}
 
 	fun startNewPageSearch(query: String) {

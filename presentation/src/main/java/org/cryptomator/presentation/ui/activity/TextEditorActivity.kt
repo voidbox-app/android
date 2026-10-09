@@ -13,13 +13,14 @@ import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.ActivityLayoutBinding
 import org.cryptomator.presentation.intent.TextEditorIntent
 import org.cryptomator.presentation.licensing.LicenseEnforcer
+import org.cryptomator.presentation.model.ProgressModel
 import org.cryptomator.presentation.presenter.EditorPosition
 import org.cryptomator.presentation.presenter.TextEditorPresenter
 import org.cryptomator.presentation.presenter.TextEditorRetainedState
 import org.cryptomator.presentation.ui.activity.view.TextEditorView
 import org.cryptomator.presentation.ui.dialog.UnsavedChangesDialog
 import org.cryptomator.presentation.ui.fragment.TextEditorFragment
-import org.cryptomator.presentation.ui.fragment.TextSearch
+import org.cryptomator.presentation.ui.fragment.TextScreen
 import org.cryptomator.presentation.ui.fragment.TextViewerFragment
 import javax.inject.Inject
 
@@ -99,11 +100,11 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 			true
 		}
 		R.id.action_search_previous -> {
-			textSearch()?.onPreviousQuery()
+			textScreen()?.onPreviousQuery()
 			true
 		}
 		R.id.action_search_next -> {
-			textSearch()?.onNextQuery()
+			textScreen()?.onNextQuery()
 			true
 		}
 		else -> {
@@ -112,13 +113,13 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 	}
 
 	override fun onQueryTextSubmit(query: String): Boolean {
-		textSearch()?.onQueryText(query)
+		textScreen()?.onQueryText(query)
 		return true
 	}
 
 	override fun onQueryTextChange(query: String): Boolean {
 		if (sharedPreferencesHandler.useLiveSearch()) {
-			textSearch()?.onQueryText(query)
+			textScreen()?.onQueryText(query)
 		}
 
 		return true
@@ -162,6 +163,14 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 		textEditorFragment()?.restoreEditorPosition(position)
 	}
 
+	override fun showLoadingProgress(progress: ProgressModel) {
+		textScreen()?.showLoadingProgress(progress)
+	}
+
+	override fun hideLoadingProgress() {
+		textScreen()?.hideLoadingProgress()
+	}
+
 	override fun showReadOnlyText() {
 		invalidateOptionsMenu()
 		val viewer = getCurrentFragment(R.id.fragment_container) as? TextViewerFragment
@@ -186,5 +195,5 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 
 	private fun textEditorFragment(): TextEditorFragment? = getCurrentFragment(R.id.fragment_container) as? TextEditorFragment
 
-	private fun textSearch(): TextSearch? = getCurrentFragment(R.id.fragment_container) as? TextSearch
+	private fun textScreen(): TextScreen? = getCurrentFragment(R.id.fragment_container) as? TextScreen
 }

@@ -1,5 +1,6 @@
 package org.cryptomator.presentation.ui.activity.view
 
+import org.cryptomator.presentation.model.ProgressModel
 import org.cryptomator.presentation.presenter.EditorPosition
 
 interface TextEditorView : View {
@@ -12,5 +13,7 @@ interface TextEditorView : View {
 	fun displayTextFileContent(textFileContent: CharSequence)
 	fun restoreEditorPosition(position: EditorPosition)
 	fun showReadOnlyText()
+	fun showLoadingProgress(progress: ProgressModel)
+	fun hideLoadingProgress()
 
 }

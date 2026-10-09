@@ -77,30 +77,31 @@ class TextPagesTest {
 
 	@Test
 	fun `a page without line breaks is cut between characters, never inside one`() {
-		val text = "ж".repeat(MAX_PAGE_CHARS * 2 + 7)
+		val text = "€".repeat(THREE_BYTE_CHARS_IN_TWO_PAGES + 7)
 		val pages = pagesOf(text)
 
 		pages.indexAll()
 
 		assertEquals(3, pages.pageCount)
-		pages.allPages().forEach { page -> assertFalse(page.contains('�')) }
+		assertEquals(TextPages.MAX_PAGE_BYTES + 2, pages.page(0).toByteArray(StandardCharsets.UTF_8).size)
+		pages.allPages().forEach { page -> assertFalse(page.contains('\uFFFD')) }
 		assertEquals(text, pages.allPages().joinToString(""))
 	}
 
 	@Test
 	fun `the running page count is reported while indexing`() {
-		val pages = pagesOf(("y".repeat(1023) + "\n").repeat(200))
+		val pages = pagesOf(("y".repeat(1023) + "\n").repeat(LINES_IN_THREE_READ_BUFFERS))
 
 		val counts = pages.indexAll()
 
-		assertTrue(counts.first() < counts.last())
+		assertTrue(counts.size >= 3)
 		assertEquals(pages.pageCount, counts.last())
 		assertEquals(counts, counts.sorted())
 	}
 
 	@Test
 	fun `a page is counted only once its end is known`() {
-		val pages = pagesOf(("y".repeat(1023) + "\n").repeat(200))
+		val pages = pagesOf(("y".repeat(1023) + "\n").repeat(LINES_IN_THREE_READ_BUFFERS))
 		val pageSizes = ArrayList<Int>()
 
 		pages.index { count ->
@@ -109,8 +110,38 @@ class TextPagesTest {
 			}
 		}
 
-		assertTrue(pageSizes.isNotEmpty())
+		assertTrue(pageSizes.size >= 2)
 		pageSizes.forEach { assertEquals(TextPages.PAGE_BYTES, it) }
+	}
+
+	@Test
+	fun `an interrupted indexing stops without marking the text indexed`() {
+		val pages = pagesOf(("y".repeat(1023) + "\n").repeat(LINES_IN_THREE_READ_BUFFERS))
+
+		Thread.currentThread().interrupt()
+		try {
+			pages.indexAll()
+		} finally {
+			Thread.interrupted()
+		}
+
+		assertFalse(pages.indexed)
+		assertEquals(0, pages.pageCount)
+	}
+
+	@Test
+	fun `an interrupted search finds nothing`() {
+		val pages = pagesOf("needle")
+		pages.indexAll()
+
+		Thread.currentThread().interrupt()
+		val match = try {
+			pages.find("needle", null, forward = true)
+		} finally {
+			Thread.interrupted()
+		}
+
+		assertNull(match)
 	}
 
 	@Test
@@ -166,6 +197,7 @@ class TextPagesTest {
 
 	companion object {
 
-		private const val MAX_PAGE_CHARS = TextPages.MAX_PAGE_BYTES / 2
+		private const val THREE_BYTE_CHARS_IN_TWO_PAGES = TextPages.MAX_PAGE_BYTES * 2 / 3 + 1
+		private const val LINES_IN_THREE_READ_BUFFERS = 3 * 256
 	}
 }

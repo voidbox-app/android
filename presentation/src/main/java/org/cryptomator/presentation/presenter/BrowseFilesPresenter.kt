@@ -580,9 +580,10 @@ class BrowseFilesPresenter @Inject constructor( //
 			})
 	}
 
-	private fun isTextFile(cloudFile: CloudFileModel): Boolean {
+	private fun isVaultTextFile(cloudFile: CloudFileModel): Boolean {
 		val lowerFileName = cloudFile.name.lowercase()
-		return lowerFileName.endsWith(".txt") || lowerFileName.endsWith(".md") || lowerFileName.endsWith(".todo")
+		val textFile = lowerFileName.endsWith(".txt") || lowerFileName.endsWith(".md") || lowerFileName.endsWith(".todo")
+		return textFile && cloudFile.toCloudNode() is CryptoFile
 	}
 
 	/** The editor fetches and decrypts the text itself, in memory, so nothing is downloaded here. */
@@ -596,7 +597,7 @@ class BrowseFilesPresenter @Inject constructor( //
 
 	private fun viewFile(cloudFile: CloudFileModel) {
 		val lowerFileName = cloudFile.name.lowercase()
-		if (isTextFile(cloudFile)) {
+		if (isVaultTextFile(cloudFile)) {
 			openInTextEditor(cloudFile)
 		} else if (lowerFileName.endsWith(".pdf")) {
 			startIntent(Intents.pdfPreviewIntent().withPdfFile(cloudFile).build(this))
@@ -913,7 +914,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onFileClicked(cloudFile: CloudFileModel) {
-		if (isTextFile(cloudFile) && cloudFile.toCloudNode() is CryptoFile) {
+		if (isVaultTextFile(cloudFile)) {
 			openInTextEditor(cloudFile)
 		} else if ((isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) && thumbnailCache.vaultOf(cloudFile) != null && sharedPreferencesHandler.streamMedia()) {
 			streamOrDownload(cloudFile)
@@ -1392,7 +1393,7 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onOpenWithTextFileClicked(textFile: CloudFileModel, newlyCreated: Boolean, internalEditor: Boolean) {
-		if (internalEditor && textFile.toCloudNode() is CryptoFile) {
+		if (internalEditor && isVaultTextFile(textFile)) {
 			openInTextEditor(textFile)
 			return
 		}

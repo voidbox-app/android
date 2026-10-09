@@ -9,6 +9,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import org.cryptomator.generator.Fragment
 import org.cryptomator.presentation.databinding.FragmentTextViewerBinding
+import org.cryptomator.presentation.model.ProgressModel
 import org.cryptomator.presentation.presenter.TextEditorPresenter
 import org.cryptomator.presentation.ui.adapter.TextPagesAdapter
 import org.cryptomator.presentation.ui.layout.applySystemBarsPadding
@@ -17,13 +18,14 @@ import javax.inject.Inject
 
 /** Shows a text too large for the editor page by page, decrypting only the pages on screen. */
 @Fragment
-class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextViewerBinding::inflate), TextSearch {
+class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextViewerBinding::inflate), TextScreen {
 
 	@Inject
 	lateinit var textEditorPresenter: TextEditorPresenter
 
 	private var adapter: TextPagesAdapter? = null
 	private var searching = false
+	private var loading = false
 	private val subscriptions = CompositeDisposable()
 
 	override fun setupView() {
@@ -59,7 +61,17 @@ class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextV
 
 	private fun showProgressBar() {
 		val indexing = textEditorPresenter.pages?.indexed == false
-		binding.progress.visibility = if (indexing || searching) View.VISIBLE else View.GONE
+		binding.progress.visibility = if (indexing || searching || loading) View.VISIBLE else View.GONE
+	}
+
+	override fun showLoadingProgress(progress: ProgressModel) {
+		loading = true
+		showProgressBar()
+	}
+
+	override fun hideLoadingProgress() {
+		loading = false
+		showProgressBar()
 	}
 
 	override fun onQueryText(query: String) {

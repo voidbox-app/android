@@ -75,7 +75,9 @@ class TextEditorPresenterTest {
 		presenter.loadFileContent()
 
 		verify(view).displayTextFileContent(CONTENT)
-		verify(view).showProgress(ProgressModel.COMPLETED)
+		verify(view).showLoadingProgress(ProgressModel.GENERIC)
+		verify(view).hideLoadingProgress()
+		verify(view, never()).showProgress(any())
 		assertEquals(CONTENT, retainedState.originalContent)
 		assertTrue(presenter.didLoadFileContent)
 		assertFalse(presenter.isReadOnlyText)
@@ -109,13 +111,14 @@ class TextEditorPresenterTest {
 	}
 
 	@Test
-	fun `a failed read shows the error and leaves nothing loaded`() {
+	fun `a failed read shows the error and closes the editor`() {
 		whenever(vaultTextFiles.open(eq(textFile), any())).thenThrow(IOException("gone"))
 
 		presenter.loadFileContent()
 
 		verify(exceptionHandlers).handle(eq(view), any())
-		verify(view).showProgress(ProgressModel.COMPLETED)
+		verify(view).hideLoadingProgress()
+		verify(view).finish()
 		verify(view, never()).displayTextFileContent(any())
 		assertFalse(retainedState.isLoaded)
 		assertFalse(presenter.didLoadFileContent)
@@ -162,7 +165,6 @@ class TextEditorPresenterTest {
 		verify(view).displayTextFileContent("edited")
 		verify(view).restoreEditorPosition(POSITION)
 		verify(vaultTextFiles, times(1)).open(any(), any())
-		assertNull(retainedState.editedContent)
 	}
 
 	@Test
@@ -277,7 +279,7 @@ class TextEditorPresenterTest {
 		presenter.saveChanges()
 
 		verify(uploadFilesUseCase, never()).withParent(any())
-		verify(fileCacheUtils, never()).tmpFile()
+		verify(view, never()).showProgress(any())
 	}
 
 	private class InMemoryContent(text: String) : RandomAccessContent {

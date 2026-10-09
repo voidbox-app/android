@@ -7,12 +7,13 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import io.reactivex.disposables.Disposable
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.ItemTextPageBinding
 import org.cryptomator.presentation.util.TextPages
 
 /** One decoded page of a large text per item; pages decode lazily off the main thread. */
-class TextPagesAdapter(private val pages: TextPages, private val loadPage: (Int, (String) -> Unit) -> Unit) : RecyclerView.Adapter<TextPagesAdapter.PageHolder>() {
+class TextPagesAdapter(private val pages: TextPages, private val loadPage: (Int, (String) -> Unit) -> Disposable?) : RecyclerView.Adapter<TextPagesAdapter.PageHolder>() {
 
 	private var pageCount = pages.pageCount
 	private var highlighted: TextPages.Match? = null
@@ -43,20 +44,32 @@ class TextPagesAdapter(private val pages: TextPages, private val loadPage: (Int,
 		holder.bind(position)
 	}
 
+	override fun onViewRecycled(holder: PageHolder) {
+		holder.cancelLoading()
+	}
+
 	inner class PageHolder(private val binding: ItemTextPageBinding) : RecyclerView.ViewHolder(binding.root) {
 
+		private var loading: Disposable? = null
+
 		fun bind(position: Int) {
+			cancelLoading()
 			val cached = pages.cachedPage(position)
 			if (cached != null) {
 				show(position, cached)
 				return
 			}
 			binding.pageText.setText(R.string.screen_text_editor_page_loading)
-			loadPage(position) { text ->
+			loading = loadPage(position) { text ->
 				if (bindingAdapterPosition == position) {
 					show(position, text)
 				}
 			}
+		}
+
+		fun cancelLoading() {
+			loading?.dispose()
+			loading = null
 		}
 
 		private fun show(position: Int, text: String) {
