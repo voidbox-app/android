@@ -4,6 +4,7 @@ import android.content.DialogInterface
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.DialogFragment
+import com.google.android.material.color.MaterialColors
 import org.cryptomator.generator.Dialog
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.DialogRemoveOfflineFilesBinding
@@ -29,17 +30,25 @@ class RemoveOfflineFilesDialog : BaseDialog<RemoveOfflineFilesDialog.Callback, D
 	}
 
 	public override fun setupView() {
-		// empty
+		binding.tvMessage.text = getString(R.string.dialog_remove_offline_files_message, requireArguments().getString(SIZE_ARG))
+	}
+
+	override fun onStart() {
+		super.onStart()
+		// the buttons exist only once the dialog is shown
+		(dialog as? AlertDialog)?.getButton(AlertDialog.BUTTON_POSITIVE)?.setTextColor(MaterialColors.getColor(binding.root, com.google.android.material.R.attr.colorError))
 	}
 
 	companion object {
 
 		private const val VAULT_ARG = "vault"
+		private const val SIZE_ARG = "size"
 
-		fun newInstance(vault: OfflineVaultModel?): DialogFragment {
+		fun newInstance(vault: OfflineVaultModel?, formattedSize: String): DialogFragment {
 			val dialog = RemoveOfflineFilesDialog()
 			val args = Bundle()
 			args.putSerializable(VAULT_ARG, vault)
+			args.putString(SIZE_ARG, formattedSize)
 			dialog.arguments = args
 			return dialog
 		}

@@ -503,20 +503,29 @@
 	<string name="screen_settings_lru_cache_changed__restart_toast">Изменения будут применены при следующем перезапуске приложения</string>
 	<string name="screen_settings_offline_files">Офлайн-файлы</string>
 	<string name="screen_offline_files_total">%1$s на этом телефоне</string>
+	<plurals name="screen_offline_files_in_vaults">
+		<item quantity="one">на этом телефоне в %d хранилище</item>
+		<item quantity="few">на этом телефоне в %d хранилищах</item>
+		<item quantity="many">на этом телефоне в %d хранилищах</item>
+		<item quantity="other">на этом телефоне в %d хранилищах</item>
+	</plurals>
 	<string name="screen_offline_files_empty">Нет файлов, сохранённых офлайн</string>
-	<string name="screen_offline_files_note">Копии хранятся на телефоне зашифрованными. Их удаление ничего не меняет в облаке.</string>
+	<string name="screen_offline_files_section_vaults">Хранилища</string>
+	<string name="screen_offline_files_note">Офлайн-копии хранятся зашифрованными. Их удаление освобождает место на телефоне и ничего не меняет в облаке.</string>
 	<plurals name="screen_offline_files_count">
 		<item quantity="one">%d файл</item>
 		<item quantity="few">%d файла</item>
 		<item quantity="many">%d файлов</item>
 		<item quantity="other">%d файла</item>
 	</plurals>
+	<string name="screen_offline_files_locked">закрыто</string>
 	<string name="screen_offline_files_removed_vault">Удалённое хранилище</string>
 	<string name="screen_offline_files_remove">Удалить</string>
+	<string name="screen_offline_files_remove_of">Удалить офлайн-файлы хранилища %1$s</string>
 	<string name="screen_offline_files_remove_all">Удалить все офлайн-файлы</string>
 	<string name="screen_offline_files_removed">Офлайн-файлы удалены</string>
 	<string name="dialog_remove_offline_files_title">Удалить все офлайн-файлы?</string>
-	<string name="dialog_remove_offline_files_message">Файлы остаются в облаке, их можно снова сохранить офлайн.</string>
+	<string name="dialog_remove_offline_files_message">Освободится %1$s на этом телефоне. Файлы остаются в облаке и открываются онлайн, как раньше.</string>
 	<string name="screen_settings_license_title_unlock">Получить полную версию</string>
 	<string name="screen_settings_license_title_unlocked">Полная версия</string>
 	<string name="screen_settings_license_mail">%1$s</string>

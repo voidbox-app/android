@@ -165,10 +165,8 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 	}
 
 	private fun setupOfflineFilesSize() {
-		val preference = findPreference(OFFLINE_FILES_ITEM_KEY) as Preference?
-		val size = SpannableString(activity().presenter().offlineFilesSize())
-		size.setSpan(ForegroundColorSpan(ContextCompat.getColor(activity(), R.color.textColorLight)), 0, size.length, 0)
-		preference?.summaryProvider = Preference.SummaryProvider<Preference> { size }
+		val summary = getString(R.string.screen_offline_files_total, activity().presenter().offlineFilesSize())
+		(findPreference(OFFLINE_FILES_ITEM_KEY) as Preference?)?.summaryProvider = Preference.SummaryProvider<Preference> { summary }
 	}
 
 	private fun setupLruCacheSize() {

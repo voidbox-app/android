@@ -1,73 +1,106 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:id="@+id/card"
+	style="?attr/materialCardViewFilledStyle"
 	android:layout_width="match_parent"
-	android:layout_height="72dp">
+	android:layout_height="wrap_content"
+	android:layout_marginStart="16dp"
+	android:layout_marginEnd="16dp"
+	android:layout_marginBottom="2dp"
+	app:cardBackgroundColor="?attr/colorSurfaceContainer"
+	app:cardElevation="0dp"
+	app:strokeWidth="0dp">
 
-	<FrameLayout
-		android:id="@+id/cloud_image_container"
-		android:layout_width="40dp"
-		android:layout_height="40dp"
-		android:layout_centerVertical="true"
-		android:layout_marginStart="16dp"
-		android:background="@drawable/bg_icon_container">
-
-		<ImageView
-			android:id="@+id/cloud_image"
-			android:layout_width="32dp"
-			android:layout_height="24dp"
-			android:layout_gravity="center"
-			android:contentDescription="@null" />
-	</FrameLayout>
-
-	<ImageButton
-		android:id="@+id/remove"
-		android:layout_width="48dp"
-		android:layout_height="48dp"
-		android:layout_alignParentEnd="true"
-		android:layout_centerVertical="true"
-		android:layout_marginEnd="4dp"
-		android:background="?attr/selectableItemBackgroundBorderless"
-		android:contentDescription="@string/screen_offline_files_remove"
-		app:srcCompat="@drawable/ic_delete"
-		app:tint="?attr/colorOnSurfaceVariant" />
-
-	<ImageView
-		android:id="@+id/locked"
-		android:layout_width="20dp"
-		android:layout_height="20dp"
-		android:layout_centerVertical="true"
-		android:layout_marginEnd="8dp"
-		android:layout_toStartOf="@id/remove"
-		android:contentDescription="@null"
-		app:srcCompat="@drawable/ic_lock"
-		app:tint="?attr/colorOnSurfaceVariant" />
-
-	<LinearLayout
+	<androidx.constraintlayout.widget.ConstraintLayout
 		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_centerVertical="true"
-		android:layout_marginStart="16dp"
-		android:layout_marginEnd="8dp"
-		android:layout_toStartOf="@id/locked"
-		android:layout_toEndOf="@id/cloud_image_container"
-		android:orientation="vertical">
+		android:layout_height="72dp">
+
+		<FrameLayout
+			android:id="@+id/cloud_image_container"
+			android:layout_width="40dp"
+			android:layout_height="40dp"
+			android:layout_marginStart="16dp"
+			android:background="@drawable/bg_icon_container"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent">
+
+			<ImageView
+				android:id="@+id/cloud_image"
+				android:layout_width="32dp"
+				android:layout_height="24dp"
+				android:layout_gravity="center"
+				android:contentDescription="@null" />
+		</FrameLayout>
+
+		<ImageButton
+			android:id="@+id/remove"
+			android:layout_width="48dp"
+			android:layout_height="48dp"
+			android:layout_marginEnd="4dp"
+			android:background="?attr/selectableItemBackgroundBorderless"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:srcCompat="@drawable/ic_delete_sweep"
+			app:tint="?attr/colorOnSurfaceVariant" />
 
 		<TextView
 			android:id="@+id/vault_name"
-			android:layout_width="match_parent"
+			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="14dp"
 			android:ellipsize="end"
 			android:singleLine="true"
-			android:textAppearance="?attr/textAppearanceBodyLarge"
-			android:textColor="?attr/colorOnSurface" />
+			android:textColor="?attr/colorOnSurface"
+			android:textSize="16sp"
+			app:layout_constrainedWidth="true"
+			app:layout_constraintEnd_toStartOf="@id/locked"
+			app:layout_constraintHorizontal_bias="0"
+			app:layout_constraintHorizontal_chainStyle="packed"
+			app:layout_constraintStart_toEndOf="@id/cloud_image_container"
+			app:layout_constraintTop_toTopOf="parent" />
+
+		<ImageView
+			android:id="@+id/locked"
+			android:layout_width="14dp"
+			android:layout_height="14dp"
+			android:layout_marginStart="6dp"
+			android:layout_marginEnd="8dp"
+			android:contentDescription="@null"
+			app:layout_constraintBottom_toBottomOf="@id/vault_name"
+			app:layout_constraintEnd_toStartOf="@id/remove"
+			app:layout_constraintStart_toEndOf="@id/vault_name"
+			app:layout_constraintTop_toTopOf="@id/vault_name"
+			app:srcCompat="@drawable/ic_lock"
+			app:tint="?attr/colorOnSurfaceVariant" />
+
+		<View
+			android:id="@+id/dot"
+			android:layout_width="8dp"
+			android:layout_height="8dp"
+			android:layout_marginStart="16dp"
+			android:background="@drawable/bg_usage_dot"
+			app:layout_constraintBottom_toBottomOf="@id/usage"
+			app:layout_constraintStart_toEndOf="@id/cloud_image_container"
+			app:layout_constraintTop_toTopOf="@id/usage" />
 
 		<TextView
 			android:id="@+id/usage"
-			android:layout_width="wrap_content"
+			android:layout_width="0dp"
 			android:layout_height="wrap_content"
+			android:layout_marginStart="8dp"
+			android:layout_marginTop="2dp"
+			android:layout_marginEnd="8dp"
+			android:ellipsize="end"
 			android:singleLine="true"
 			android:textAppearance="?attr/textAppearanceBodyMedium"
-			android:textColor="?attr/colorOnSurfaceVariant" />
-	</LinearLayout>
-</RelativeLayout>
+			android:textColor="?attr/colorOnSurfaceVariant"
+			app:layout_constraintEnd_toStartOf="@id/remove"
+			app:layout_constraintStart_toEndOf="@id/dot"
+			app:layout_constraintTop_toBottomOf="@id/vault_name" />
+
+	</androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

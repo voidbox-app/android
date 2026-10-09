@@ -1,43 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	android:orientation="vertical">
+	android:fillViewport="true">
 
-	<TextView
-		android:id="@+id/total"
+	<LinearLayout
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:paddingStart="16dp"
-		android:paddingTop="16dp"
-		android:paddingEnd="16dp"
-		android:textAppearance="?attr/textAppearanceTitleMedium"
-		android:textColor="?attr/colorOnSurface" />
+		android:orientation="vertical"
+		android:paddingBottom="24dp">
 
-	<TextView
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:paddingStart="16dp"
-		android:paddingTop="4dp"
-		android:paddingEnd="16dp"
-		android:paddingBottom="8dp"
-		android:text="@string/screen_offline_files_note"
-		android:textAppearance="?attr/textAppearanceBodyMedium"
-		android:textColor="?attr/colorOnSurfaceVariant" />
+		<TextView
+			android:id="@+id/total"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="16dp"
+			android:paddingTop="24dp"
+			android:paddingEnd="16dp"
+			android:textColor="?attr/colorOnSurface"
+			android:textSize="32sp" />
 
-	<include
-		android:id="@+id/rv_vaults"
-		layout="@layout/recycler_view_layout"
-		android:layout_width="match_parent"
-		android:layout_height="0dp"
-		android:layout_weight="1" />
+		<TextView
+			android:id="@+id/total_subtitle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="16dp"
+			android:paddingTop="4dp"
+			android:paddingEnd="16dp"
+			android:textAppearance="?attr/textAppearanceBodyMedium"
+			android:textColor="?attr/colorOnSurfaceVariant" />
 
-	<com.google.android.material.button.MaterialButton
-		android:id="@+id/remove_all"
-		style="?attr/materialButtonOutlinedStyle"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_margin="16dp"
-		android:text="@string/screen_offline_files_remove_all" />
+		<LinearLayout
+			android:id="@+id/usage_bar"
+			android:layout_width="match_parent"
+			android:layout_height="8dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginEnd="16dp"
+			android:orientation="horizontal" />
 
-</LinearLayout>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="16dp"
+			android:paddingTop="24dp"
+			android:paddingEnd="16dp"
+			android:paddingBottom="8dp"
+			android:text="@string/screen_offline_files_section_vaults"
+			android:textAppearance="?attr/textAppearanceLabelLarge"
+			android:textColor="?attr/colorPrimary" />
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/vaults"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:nestedScrollingEnabled="false" />
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/remove_all"
+			style="?attr/materialButtonOutlinedStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginEnd="16dp"
+			android:text="@string/screen_offline_files_remove_all"
+			android:textColor="?attr/colorError" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="16dp"
+			android:paddingTop="8dp"
+			android:paddingEnd="16dp"
+			android:text="@string/screen_offline_files_note"
+			android:textColor="?attr/colorOnSurfaceVariant"
+			android:textSize="13sp" />
+
+	</LinearLayout>
+</androidx.core.widget.NestedScrollView>

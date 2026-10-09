@@ -11,6 +11,7 @@ import org.cryptomator.presentation.R
 import org.cryptomator.presentation.exception.ExceptionHandlers
 import org.cryptomator.presentation.model.OfflineVaultModel
 import org.cryptomator.presentation.ui.activity.view.OfflineFilesView
+import org.cryptomator.presentation.util.FileSizeHelper
 import org.cryptomator.presentation.util.OfflineFiles
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -29,6 +30,7 @@ class OfflineFilesPresenterTest {
 	private val view: OfflineFilesView = mock()
 	private val getVaultListUseCase: GetVaultListUseCase = mock()
 	private val offlineFiles: OfflineFiles = mock()
+	private val fileSizeHelper: FileSizeHelper = mock()
 	private val exceptionHandlers: ExceptionHandlers = mock()
 	private lateinit var presenter: OfflineFilesPresenter
 
@@ -37,7 +39,7 @@ class OfflineFilesPresenterTest {
 		RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
 		RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
 		RxAndroidPlugins.setMainThreadSchedulerHandler { Schedulers.trampoline() }
-		presenter = OfflineFilesPresenter(getVaultListUseCase, offlineFiles, exceptionHandlers)
+		presenter = OfflineFilesPresenter(getVaultListUseCase, offlineFiles, fileSizeHelper, exceptionHandlers)
 		presenter.view = view
 	}
 

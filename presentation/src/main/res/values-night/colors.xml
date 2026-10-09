@@ -17,6 +17,10 @@
 	<color name="voidbox_tertiary_container">#0F5223</color>
 	<color name="voidbox_on_tertiary_container">#C4EED0</color>
 
+	<color name="voidbox_offline_segment_1">#8AB4F8</color>
+	<color name="voidbox_offline_segment_2">#4D7FD3</color>
+	<color name="voidbox_offline_segment_3">#2B4A82</color>
+
 	<color name="voidbox_error">#F2B8B5</color>
 	<color name="voidbox_on_error">#601410</color>
 	<color name="voidbox_error_container">#8C1D18</color>

@@ -14,6 +14,7 @@ import org.cryptomator.presentation.model.OfflineVaultModel
 import org.cryptomator.presentation.model.VaultModel
 import org.cryptomator.presentation.ui.activity.view.OfflineFilesView
 import org.cryptomator.presentation.ui.dialog.RemoveOfflineFilesDialog
+import org.cryptomator.presentation.util.FileSizeHelper
 import org.cryptomator.presentation.util.OfflineFiles
 import javax.inject.Inject
 
@@ -21,10 +22,12 @@ import javax.inject.Inject
 class OfflineFilesPresenter @Inject constructor(
 	private val getVaultListUseCase: GetVaultListUseCase, //
 	private val offlineFiles: OfflineFiles, //
+	private val fileSizeHelper: FileSizeHelper, //
 	exceptionMappings: ExceptionHandlers
 ) : Presenter<OfflineFilesView>(exceptionMappings) {
 
 	private val work = CompositeDisposable()
+	private var shown: List<OfflineVaultModel> = emptyList()
 
 	fun loadUsage() {
 		getVaultListUseCase.run(object : DefaultResultHandler<List<Vault>>() {
@@ -38,7 +41,10 @@ class OfflineFilesPresenter @Inject constructor(
 		work.add(Single.fromCallable { usageOf(vaults) } //
 			.subscribeOn(Schedulers.io()) //
 			.observeOn(AndroidSchedulers.mainThread()) //
-			.subscribe({ view?.showUsage(it) }, { showError(it) }))
+			.subscribe({
+				shown = it
+				view?.showUsage(it)
+			}, { showError(it) }))
 	}
 
 	private fun usageOf(vaults: List<Vault>): List<OfflineVaultModel> {
@@ -49,12 +55,14 @@ class OfflineFilesPresenter @Inject constructor(
 	}
 
 	fun onRemoveClicked(vault: OfflineVaultModel) {
-		view?.showDialog(RemoveOfflineFilesDialog.newInstance(vault))
+		view?.showDialog(RemoveOfflineFilesDialog.newInstance(vault, formatted(vault.bytes)))
 	}
 
 	fun onRemoveAllClicked() {
-		view?.showDialog(RemoveOfflineFilesDialog.newInstance(null))
+		view?.showDialog(RemoveOfflineFilesDialog.newInstance(null, formatted(shown.sumOf { it.bytes })))
 	}
+
+	private fun formatted(bytes: Long): String = fileSizeHelper.getFormattedFileSize(bytes) ?: ""
 
 	fun onRemoveConfirmed(vault: OfflineVaultModel?) {
 		work.add(Completable.fromAction { if (vault == null) offlineFiles.deleteAll() else offlineFiles.deleteVault(vault.vaultId) } //
