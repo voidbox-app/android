@@ -380,6 +380,11 @@ open class CryptoImplVaultFormat7 : CryptoImplDecorator {
 
 	@Throws(BackendException::class)
 	override fun move(source: CryptoFile, target: CryptoFile): CryptoFile {
+		return moveFile(source, target).also { offlineCopies.move(source.cloudFile, it.cloudFile) }
+	}
+
+	@Throws(BackendException::class)
+	private fun moveFile(source: CryptoFile, target: CryptoFile): CryptoFile {
 		return if (source.cloudFile.parent.name.endsWith(LONG_NODE_FILE_EXT)) {
 			val targetDirFolder = cloudContentRepository.folder(target.cloudFile.parent, target.cloudFile.name)
 			val cryptoFile: CryptoFile = if (target.cloudFile.name.endsWith(LONG_NODE_FILE_EXT)) {
@@ -435,10 +440,12 @@ open class CryptoImplVaultFormat7 : CryptoImplDecorator {
 			val cryptoSubfolders = deepCollectSubfolders(node)
 			for (cryptoSubfolder in cryptoSubfolders) {
 				getCachingAwareDirIdInfo(cryptoSubfolder)?.let {
+					offlineCopies.removeBelow(it.cloudFolder)
 					cloudContentRepository.delete(it.cloudFolder)
 				} ?: Timber.tag("CryptoFs").w("Dir file doesn't exists of a sub folder while deleting the parent, continue anyway")
 			}
 			getCachingAwareDirIdInfo(node)?.let {
+				offlineCopies.removeBelow(it.cloudFolder)
 				cloudContentRepository.delete(it.cloudFolder)
 			} ?: Timber.tag("CryptoFs").w("Dir file doesn't exists while deleting the folder, continue anyway")
 			cloudContentRepository.delete(node.dirFile.parent)
@@ -449,6 +456,7 @@ open class CryptoImplVaultFormat7 : CryptoImplDecorator {
 			} else {
 				cloudContentRepository.delete(node.cloudFile)
 			}
+			offlineCopies.remove(node.cloudFile)
 		}
 	}
 
@@ -489,17 +497,15 @@ open class CryptoImplVaultFormat7 : CryptoImplDecorator {
 								data.modifiedDate(context).ifPresent { encryptedTmpFile.setLastModified(it.time) }
 								progressAware.onProgress(Progress.completed(UploadState.encryption(cloudFile)))
 								val targetFile = targetFile(cryptoFile, cloudFile, replace)
-								return file(
-									cryptoFile,  //
-									cloudContentRepository.write( //
-										targetFile,  //
-										data.decorate(from(encryptedTmpFile)),
-										UploadFileReplacingProgressAware(cryptoFile, progressAware),  //
-										replace,  //
-										encryptedTmpFile.length()
-									),  //
-									cryptoFile.size
+								val written = cloudContentRepository.write( //
+									targetFile,  //
+									data.decorate(from(encryptedTmpFile)),
+									UploadFileReplacingProgressAware(cryptoFile, progressAware),  //
+									replace,  //
+									encryptedTmpFile.length()
 								)
+								keepOfflineCopyOf(targetFile, written, encryptedTmpFile)
+								return file(cryptoFile, written, cryptoFile.size)
 							} ?: throw FatalBackendException("CloudFile size shouldn't be null")
 						}
 					}

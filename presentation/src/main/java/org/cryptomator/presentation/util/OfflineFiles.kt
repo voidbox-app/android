@@ -20,10 +20,10 @@ class OfflineFiles @Inject constructor(context: Context, private val cloudConten
 
 	private val copies = OfflineCopies.of(context)
 
-	/** In-memory lookup; safe on the main thread. */
+	/** Memory only, no hashing or disk access: called for every row of the file list. */
 	fun isOffline(file: CloudFileModel): Boolean {
 		val cryptoFile = file.toCloudNode() as? CryptoFile ?: return false
-		return copies.find(cryptoFile.cloudFile) != null
+		return copies.isKept(cryptoFile.cloudFile)
 	}
 
 	/** Call off the main thread. */
