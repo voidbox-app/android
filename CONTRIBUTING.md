@@ -8,6 +8,10 @@ Open an [issue](https://github.com/voidbox-app/android/issues/new/choose) with t
 For a bug, include the Voidbox and Android versions, the cloud you use and the steps to reproduce.
 Security issues go through [SECURITY.md](SECURITY.md), not public issues.
 
+An issue found while reviewing the code: what happens in one paragraph, numbered steps, then
+`Cause:` and `Expected:`, each one sentence or a short paragraph. Measurements, logs and code
+walkthroughs go into a comment, not the description.
+
 ## Pull requests
 
 1. Open an issue first for anything bigger than a small fix, so the change can be agreed on.
@@ -19,6 +23,8 @@ Security issues go through [SECURITY.md](SECURITY.md), not public issues.
 4. For anything visible, attach screenshots and say on which device or emulator you checked it.
 5. Pull requests are squash-merged: the title and description become the commit on `master`, so
    write them as a commit message, with the title in the imperative.
+6. The description follows the template: why, what, a `Test:` line, `Fixes #N`; `Not here:` for
+   what is left out on purpose, a screenshot for anything visible.
 
 ## Code
 
