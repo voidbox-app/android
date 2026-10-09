@@ -413,18 +413,24 @@ open class CryptoImplVaultFormat7 : CryptoImplDecorator {
 
 	@Throws(BackendException::class)
 	private fun moveLongFileToLongFile(source: CryptoFile, target: CryptoFile, targetDirFolder: CloudFolder): CryptoFile {
-		requireNotNull(source.cloudFile.parent)
-		val sourceFile = cloudContentRepository.file(source.cloudFile.parent, LONG_NODE_FILE_CONTENT_CONTENTS + CLOUD_NODE_EXT)
-		val movedFile = cloudContentRepository.move(sourceFile, cloudContentRepository.file(targetDirFolder, LONG_NODE_FILE_CONTENT_CONTENTS + CLOUD_NODE_EXT))
+		val movedFile = cloudContentRepository.move(longFileContents(source), cloudContentRepository.file(targetDirFolder, LONG_NODE_FILE_CONTENT_CONTENTS + CLOUD_NODE_EXT))
 		return file(target, movedFile, movedFile.size)
 	}
 
 	@Throws(BackendException::class)
 	private fun moveLongFileToShortFile(source: CryptoFile, target: CryptoFile): CryptoFile {
-		requireNotNull(source.cloudFile.parent)
-		val sourceFile = cloudContentRepository.file(source.cloudFile.parent, LONG_NODE_FILE_CONTENT_CONTENTS + CLOUD_NODE_EXT)
-		val movedFile = cloudContentRepository.move(sourceFile, target.cloudFile)
+		val movedFile = cloudContentRepository.move(longFileContents(source), target.cloudFile)
 		return file(target, movedFile, movedFile.size)
+	}
+
+	/** The listed contents file keeps its size and date, which the moved file inherits. */
+	private fun longFileContents(source: CryptoFile): CloudFile {
+		requireNotNull(source.cloudFile.parent)
+		return if (source.cloudFile.name == LONG_NODE_FILE_CONTENT_CONTENTS + CLOUD_NODE_EXT) {
+			source.cloudFile
+		} else {
+			cloudContentRepository.file(source.cloudFile.parent, LONG_NODE_FILE_CONTENT_CONTENTS + CLOUD_NODE_EXT)
+		}
 	}
 
 	@Throws(BackendException::class)

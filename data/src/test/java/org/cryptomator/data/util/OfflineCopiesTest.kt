@@ -86,6 +86,17 @@ class OfflineCopiesTest {
 	}
 
 	@Test
+	fun aLookupWithoutSizeOrDateMatchesTheCopy() {
+		keep(file)
+
+		assertTrue(copies.isKept(file(d, "a.c9r", null, null)))
+		assertTrue(copies.isKept(file(d, "a.c9r", 11, null)))
+		assertTrue(copies.isKept(file(d, "a.c9r", null, 1000)))
+		assertNotNull(copies.find(file(d, "a.c9r", null, null)))
+		assertFalse(copies.isKept(file(d, "a.c9r", 12, null)))
+	}
+
+	@Test
 	fun aCopyThatVanishedFromDiskIsNotFound() {
 		keep(file).delete()
 

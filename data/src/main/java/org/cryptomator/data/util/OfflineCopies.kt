@@ -26,7 +26,12 @@ class OfflineCopies internal constructor(private val directory: File?) {
 
 	private class Copy(val file: File, val meta: File, val size: Long?, val modified: Long?) {
 
-		fun matches(ciphertext: CloudFile): Boolean = size == ciphertext.size && modified == ciphertext.modified?.time
+		/** A lookup that does not know the size or the date, as after a rename, does not mean the file changed. */
+		fun matches(ciphertext: CloudFile): Boolean {
+			val askedSize = ciphertext.size
+			val askedModified = ciphertext.modified?.time
+			return (askedSize == null || askedSize == size) && (askedModified == null || askedModified == modified)
+		}
 
 		/** A lookup with an older date than the copy comes from a stale listing, not from a changed file. */
 		fun isNewerThan(ciphertext: CloudFile): Boolean {
