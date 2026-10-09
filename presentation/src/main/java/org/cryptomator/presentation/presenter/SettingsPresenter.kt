@@ -28,7 +28,9 @@ import org.cryptomator.presentation.ui.dialog.AskIgnoreBatteryOptimizationsDialo
 import org.cryptomator.presentation.ui.dialog.UpdateAppAvailableDialog
 import org.cryptomator.presentation.ui.dialog.UpdateAppDialog
 import org.cryptomator.presentation.util.EmailBuilder
+import org.cryptomator.presentation.util.FileSizeHelper
 import org.cryptomator.presentation.util.FileUtil
+import org.cryptomator.presentation.util.OfflineFiles
 import org.cryptomator.presentation.workflow.PermissionsResult
 import org.cryptomator.util.SharedPreferencesHandler
 import java.io.File
@@ -48,8 +50,12 @@ class SettingsPresenter @Inject internal constructor(
 	private val networkConnectionCheck: NetworkConnectionCheck,  //
 	exceptionMappings: ExceptionHandlers,  //
 	private val fileUtil: FileUtil,  //
-	private val sharedPreferencesHandler: SharedPreferencesHandler
+	private val sharedPreferencesHandler: SharedPreferencesHandler,  //
+	private val offlineFiles: OfflineFiles,  //
+	private val fileSizeHelper: FileSizeHelper
 ) : Presenter<SettingsView>(exceptionMappings) {
+
+	fun offlineFilesSize(): String = fileSizeHelper.getFormattedFileSize(offlineFiles.totalBytes()) ?: ""
 
 	fun checkAutoUploadEnabledAndBatteryOptimizationDisabled() {
 		if (sharedPreferencesHandler.usePhotoUpload()) {

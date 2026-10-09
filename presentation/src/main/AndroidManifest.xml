@@ -111,6 +111,9 @@
 			android:name=".ui.activity.BiometricAuthSettingsActivity"
 			android:exported="false" />
 		<activity
+			android:name=".ui.activity.OfflineFilesActivity"
+			android:exported="false" />
+		<activity
 			android:name=".ui.activity.CloudConnectionListActivity"
 			android:exported="false" />
 		<activity
