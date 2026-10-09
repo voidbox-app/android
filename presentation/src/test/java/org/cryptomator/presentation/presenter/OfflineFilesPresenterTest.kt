@@ -67,6 +67,18 @@ class OfflineFilesPresenterTest {
 	}
 
 	@Test
+	fun `copies of removed vaults are listed largest first`() {
+		whenever(offlineFiles.usage()).thenReturn(
+			listOf(OfflineCopies.VaultUsage(7, 10, 1), OfflineCopies.VaultUsage(8, 300, 3), OfflineCopies.VaultUsage(9, 20, 2))
+		)
+
+		presenter.loadUsage()
+		vaultListResult().onSuccess(emptyList())
+
+		assertEquals(listOf(8L, 9L, 7L), shownUsage().map { it.vaultId })
+	}
+
+	@Test
 	fun `no copies show an empty list`() {
 		whenever(offlineFiles.usage()).thenReturn(emptyList())
 
