@@ -52,7 +52,7 @@ class OfflineFilesAdapter @Inject constructor(private val fileSizeHelper: FileSi
 				fileSizeHelper.getFormattedFileSize(item.bytes), //
 				resources.getQuantityString(R.plurals.screen_offline_files_count, item.files, item.files), //
 				if (locked) resources.getString(R.string.screen_offline_files_locked) else null
-			).joinToString(resources.getString(R.string.screen_offline_files_separator))
+			).joinToString(SEPARATOR)
 			binding.remove.contentDescription = resources.getString(R.string.screen_offline_files_remove_of, name)
 			binding.remove.setOnClickListener { callback?.onRemoveClicked(item) }
 		}
@@ -65,7 +65,12 @@ class OfflineFilesAdapter @Inject constructor(private val fileSizeHelper: FileSi
 
 	companion object {
 
-		private val SEGMENT_COLORS = intArrayOf(R.color.voidbox_offline_segment_1, R.color.voidbox_offline_segment_2, R.color.voidbox_offline_segment_3)
+		// a resource would lose the surrounding spaces
+		private const val SEPARATOR = " \u00B7 "
+		private val SEGMENT_COLORS = intArrayOf(
+			R.color.voidbox_offline_segment_1, R.color.voidbox_offline_segment_2, R.color.voidbox_offline_segment_3, //
+			R.color.voidbox_offline_segment_4, R.color.voidbox_offline_segment_5
+		)
 
 		/** The colour of a vault's share in the usage bar and of the dot in its row. */
 		fun segmentColor(position: Int): Int = SEGMENT_COLORS[position % SEGMENT_COLORS.size]

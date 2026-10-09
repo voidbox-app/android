@@ -20,6 +20,8 @@
 	<color name="voidbox_offline_segment_1">#8AB4F8</color>
 	<color name="voidbox_offline_segment_2">#4D7FD3</color>
 	<color name="voidbox_offline_segment_3">#2B4A82</color>
+	<color name="voidbox_offline_segment_4">#AECBFA</color>
+	<color name="voidbox_offline_segment_5">#1E3A5F</color>
 
 	<color name="voidbox_error">#F2B8B5</color>
 	<color name="voidbox_on_error">#601410</color>

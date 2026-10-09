@@ -47,6 +47,7 @@ class OfflineFilesFragment : BaseFragment<FragmentOfflineFilesBinding>(FragmentO
 			resources.getQuantityString(R.plurals.screen_offline_files_in_vaults, vaults.size, vaults.size)
 		}
 		showUsageBar(vaults)
+		binding.vaultsHeader.visibility = if (vaults.isEmpty()) View.GONE else View.VISIBLE
 		binding.removeAll.isEnabled = vaults.isNotEmpty()
 	}
 

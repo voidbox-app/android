@@ -756,7 +756,6 @@
 	<string name="screen_offline_files_empty">No files are kept offline</string>
 	<string name="screen_offline_files_section_vaults">Vaults</string>
 	<string name="screen_offline_files_note">Offline copies stay encrypted. Removing them frees space on this phone and changes nothing in the cloud.</string>
-	<string name="screen_offline_files_separator" translatable="false"> · </string>
 	<plurals name="screen_offline_files_count">
 		<item quantity="one">%d file</item>
 		<item quantity="other">%d files</item>
