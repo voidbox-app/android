@@ -11,6 +11,7 @@ import org.cryptomator.presentation.model.CloudFileModel
 import org.cryptomator.presentation.model.ProgressModel
 import org.cryptomator.presentation.model.mappers.ProgressModelMapper
 import org.cryptomator.presentation.ui.activity.view.TextEditorView
+import org.cryptomator.presentation.util.TextPages
 import org.cryptomator.presentation.util.VaultTextFiles
 import org.cryptomator.util.file.FileCacheUtils
 import org.junit.jupiter.api.AfterEach
@@ -209,6 +210,37 @@ class TextEditorPresenterTest {
 
 		verify(view).displayTextFileContent(CONTENT)
 		verify(view, never()).finish()
+	}
+
+	@Test
+	fun `typing more of the query keeps the current match instead of skipping past it`() {
+		whenever(vaultTextFiles.fitsInEditor(any())).thenReturn(false)
+		presenter.loadFileContent()
+		presenter.startNewPageSearch("sec")
+		presenter.findInPages(forward = true)
+		assertEquals(TextPages.Match(0, 11, 3), presenter.takeSearchResult()?.match)
+
+		presenter.startNewPageSearch("seco")
+		presenter.findInPages(forward = true)
+
+		assertEquals(TextPages.Match(0, 11, 4), presenter.takeSearchResult()?.match)
+	}
+
+	@Test
+	fun `a search result arriving while the screen is recreated waits for the new screen`() {
+		whenever(vaultTextFiles.fitsInEditor(any())).thenReturn(false)
+		presenter.loadFileContent()
+		val io = TestScheduler()
+		RxJavaPlugins.setIoSchedulerHandler { io }
+		presenter.startNewPageSearch("second")
+		presenter.findInPages(forward = true)
+		presenter.destroy()
+		val recreated = newPresenter(mock())
+
+		io.triggerActions()
+
+		assertEquals(TextPages.Match(0, 11, 6), recreated.takeSearchResult()?.match)
+		assertFalse(recreated.isSearching)
 	}
 
 	@Test

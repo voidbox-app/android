@@ -31,7 +31,9 @@ class VaultTextFiles @Inject constructor(context: Context, private val cloudCont
 		offlineFiles.copyOf(file)?.let { copy -> return cloudContentRepository.openRandomAccess(cryptoFile, copy) }
 		val ciphertext = File.createTempFile(UUID.randomUUID().toString(), CIPHERTEXT_SUFFIX, cacheDir)
 		try {
-			val progress = DownloadFileReplacingProgressAware(cryptoFile, CancellableProgress(progressAware))
+			val checkVaultUnlocked: () -> Unit = { cloudContentRepository.openRandomAccess(cryptoFile, ciphertext) }
+			checkVaultUnlocked()
+			val progress = DownloadFileReplacingProgressAware(cryptoFile, CancellableProgress(progressAware, checkVaultUnlocked))
 			FileOutputStream(ciphertext).use { out -> cloudContentRepository.read(cryptoFile.cloudFile, null, out, progress) }
 			return TemporaryCiphertextContent(cloudContentRepository.openRandomAccess(cryptoFile, ciphertext), ciphertext)
 		} catch (e: Exception) {
@@ -45,11 +47,18 @@ class VaultTextFiles @Inject constructor(context: Context, private val cloudCont
 		return size <= MAX_EDITABLE_BYTES && size * EDITOR_BYTES_PER_TEXT_BYTE <= Runtime.getRuntime().maxMemory() / EDITOR_SHARE_OF_HEAP
 	}
 
-	private class CancellableProgress(private val delegate: ProgressAware<DownloadState>) : ProgressAware<DownloadState> {
+	/** Stops the download when the screen is gone or the vault was locked meanwhile; the lock is checked once per percent. */
+	private class CancellableProgress(private val delegate: ProgressAware<DownloadState>, private val checkVaultUnlocked: () -> Unit) : ProgressAware<DownloadState> {
+
+		private var lastPercent = -1
 
 		override fun onProgress(progress: Progress<DownloadState>) {
 			if (Thread.currentThread().isInterrupted) {
 				throw InterruptedIOException("Loading was cancelled")
+			}
+			if (progress.asPercentage() != lastPercent) {
+				lastPercent = progress.asPercentage()
+				checkVaultUnlocked()
 			}
 			delegate.onProgress(progress)
 		}

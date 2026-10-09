@@ -32,7 +32,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 			indexed = false
 		}
 		if (content.size == 0L) {
-			synchronized(starts) { indexed = true }
+			finishIndexing()
 			return
 		}
 		addPage(0L)
@@ -67,11 +67,54 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 				}
 			}
 		}
-		synchronized(starts) { indexed = true }
+		finishIndexing()
 		onPagesAdded(pageCount)
 	}
 
+	private fun finishIndexing() {
+		synchronized(starts) {
+			indexed = true
+			starts.notifyAll()
+		}
+	}
+
 	private fun cancelled(): Boolean = Thread.currentThread().isInterrupted
+
+	/** True once [page] exists; waits while indexing may still produce it. False when it never will or the thread was interrupted. */
+	private fun waitForPage(page: Int): Boolean {
+		synchronized(starts) {
+			while (page >= pageCount && !indexed) {
+				if (!waitForIndexing()) {
+					return false
+				}
+			}
+			return page < pageCount && !cancelled()
+		}
+	}
+
+	private fun waitUntilIndexed(): Boolean {
+		synchronized(starts) {
+			while (!indexed) {
+				if (!waitForIndexing()) {
+					return false
+				}
+			}
+			return !cancelled()
+		}
+	}
+
+	private fun waitForIndexing(): Boolean {
+		if (cancelled()) {
+			return false
+		}
+		return try {
+			starts.wait(INDEXING_WAIT_MILLIS)
+			true
+		} catch (e: InterruptedException) {
+			Thread.currentThread().interrupt()
+			false
+		}
+	}
 
 	fun cachedPage(page: Int): String? = synchronized(cache) { cache[page] }
 
@@ -88,17 +131,20 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 		return text
 	}
 
-	/** The next match after [from] (or the first one) when [forward], otherwise the one before it; null when there is none or the thread was interrupted. */
+	/**
+	 * The next match after [from] (or the first one) when [forward], otherwise the one before it; null when there is none or the thread was interrupted.
+	 * Waits for pages still being indexed. A match that starts on one page and ends on the next is reported on the first page.
+	 */
 	@Throws(BackendException::class, IOException::class)
 	fun find(query: String, from: Match?, forward: Boolean): Match? {
-		if (query.isEmpty() || pageCount == 0) {
+		if (query.isEmpty()) {
 			return null
 		}
 		if (forward) {
 			var page = from?.page ?: 0
 			var fromIndex = from?.let { it.index + 1 } ?: 0
-			while (page < pageCount && !cancelled()) {
-				val index = page(page).indexOf(query, fromIndex, ignoreCase = true)
+			while (waitForPage(page)) {
+				val index = pageWithOverlap(page, query.length).indexOf(query, fromIndex, ignoreCase = true)
 				if (index >= 0) {
 					return Match(page, index, query.length)
 				}
@@ -106,11 +152,14 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 				fromIndex = 0
 			}
 		} else {
+			if (from == null && !waitUntilIndexed()) {
+				return null
+			}
 			var page = from?.page ?: (pageCount - 1)
 			var fromIndex = from?.let { it.index - 1 } ?: Int.MAX_VALUE
 			while (page >= 0 && !cancelled()) {
 				if (fromIndex >= 0) {
-					val index = page(page).lastIndexOf(query, fromIndex, ignoreCase = true)
+					val index = pageWithOverlap(page, query.length).lastIndexOf(query, fromIndex, ignoreCase = true)
 					if (index >= 0) {
 						return Match(page, index, query.length)
 					}
@@ -122,12 +171,25 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 		return null
 	}
 
+	/** The page followed by the first [queryLength] - 1 characters of the next one, so that a match cut by the page border is still found. */
+	@Throws(BackendException::class, IOException::class)
+	private fun pageWithOverlap(page: Int, queryLength: Int): String {
+		val text = page(page)
+		if (queryLength <= 1 || !waitForPage(page + 1)) {
+			return text
+		}
+		return text + page(page + 1).take(queryLength - 1)
+	}
+
 	override fun close() {
 		content.close()
 	}
 
 	private fun addPage(start: Long) {
-		synchronized(starts) { starts.add(start) }
+		synchronized(starts) {
+			starts.add(start)
+			starts.notifyAll()
+		}
 	}
 
 	companion object {
@@ -136,6 +198,7 @@ class TextPages(private val content: RandomAccessContent) : Closeable {
 		const val MAX_PAGE_BYTES = 64 * 1024
 		private const val READ_BUFFER_SIZE = 256 * 1024
 		private const val CACHED_PAGES = 24
+		private const val INDEXING_WAIT_MILLIS = 200L
 		private const val NEWLINE = '\n'.code
 	}
 }

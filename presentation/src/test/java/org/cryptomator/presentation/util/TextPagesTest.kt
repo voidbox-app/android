@@ -179,6 +179,35 @@ class TextPagesTest {
 	}
 
 	@Test
+	fun `a match cut by a forced page border is found from both directions`() {
+		val text = "a".repeat(TextPages.MAX_PAGE_BYTES - 3) + "needle" + "a".repeat(100)
+		val pages = pagesOf(text)
+		pages.indexAll()
+
+		val forward = pages.find("needle", null, forward = true)
+		val backward = pages.find("needle", null, forward = false)
+
+		assertEquals(2, pages.pageCount)
+		assertEquals(TextPages.Match(0, TextPages.MAX_PAGE_BYTES - 3, 6), forward)
+		assertEquals(forward, backward)
+	}
+
+	@Test
+	fun `a search waits for pages still being indexed`() {
+		val pages = pagesOf(("y".repeat(1023) + "\n").repeat(LINES_IN_THREE_READ_BUFFERS) + "needle")
+		val indexing = Thread {
+			Thread.sleep(300)
+			pages.indexAll()
+		}
+
+		indexing.start()
+		val match = pages.find("needle", null, forward = true)
+		indexing.join()
+
+		assertEquals(TextPages.Match(pages.pageCount - 1, 0, 6), match)
+	}
+
+	@Test
 	fun `find finds nothing for an empty query`() {
 		val pages = pagesOf("some text")
 		pages.indexAll()

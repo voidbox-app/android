@@ -73,7 +73,7 @@ class TextPagesAdapter(private val pages: TextPages, private val loadPage: (Int,
 		}
 
 		private fun show(position: Int, text: String) {
-			val match = highlighted?.takeIf { it.page == position && it.index + it.length <= text.length }
+			val match = highlighted?.takeIf { it.page == position && it.index < text.length }
 			if (match == null) {
 				binding.pageText.text = text
 				return
@@ -82,7 +82,7 @@ class TextPagesAdapter(private val pages: TextPages, private val loadPage: (Int,
 			spannable.setSpan(
 				BackgroundColorSpan(ContextCompat.getColor(binding.root.context, R.color.colorPrimaryTransparent)),
 				match.index,
-				match.index + match.length,
+				minOf(match.index + match.length, text.length),
 				Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
 			)
 			binding.pageText.text = spannable

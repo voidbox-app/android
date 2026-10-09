@@ -40,7 +40,6 @@ class TextEditorPresenter @Inject constructor( //
 	private val textFile = AtomicReference<CloudFileModel>()
 	private lateinit var retainedState: TextEditorRetainedState
 	private val subscriptions = CompositeDisposable()
-	private var pageSearch: Disposable? = null
 	private var resultWaitingForResume: LoadedText? = null
 	private var errorWaitingForResume: Throwable? = null
 
@@ -233,23 +232,20 @@ class TextEditorPresenter @Inject constructor( //
 			.subscribe({ onLoaded(it) }, { showError(it) })
 	}
 
-	/** Calls [onDone] with the match, or with null when there is none or the search failed; a new search replaces a running one. */
-	fun findInPages(forward: Boolean, onDone: (TextPages.Match?) -> Unit) {
+	/** Starts a search in the background; the result arrives through [searchResults] and [takeSearchResult]. A new search replaces a running one. */
+	fun findInPages(forward: Boolean) {
 		val pages = retainedState.pages ?: return
 		val query = query?.takeIf { it.isNotEmpty() } ?: return
 		val from = retainedState.currentMatch
-		pageSearch?.dispose()
-		pageSearch = Maybe.fromCallable { unlessCancelled { pages.find(query, from, forward) } } //
-			.subscribeOn(Schedulers.io()) //
-			.observeOn(AndroidSchedulers.mainThread()) //
-			.subscribe({ match ->
-				retainedState.currentMatch = match
-				onDone(match)
-			}, { e ->
-				showError(e)
-				onDone(null)
-			}, { onDone(null) })
+		retainedState.startSearch { unlessCancelled { pages.find(query, from, forward) } }
 	}
+
+	val isSearching: Boolean
+		get() = retainedState.isSearching
+
+	fun searchResults() = retainedState.searchResults()
+
+	fun takeSearchResult() = retainedState.takeSearchResult()
 
 	/** Work interrupted by a disposed subscription ends quietly instead of reporting the exception it was cut off with. */
 	private fun <T> unlessCancelled(work: () -> T?): T? {
@@ -260,9 +256,16 @@ class TextEditorPresenter @Inject constructor( //
 		}
 	}
 
+	/** A query typed on top of the previous one keeps the current match, so the next search re-checks it instead of skipping past it. */
 	fun startNewPageSearch(query: String) {
+		val previous = this.query
+		val current = retainedState.currentMatch
 		this.query = query
-		retainedState.currentMatch = null
+		retainedState.currentMatch = if (current != null && previous != null && previous.isNotEmpty() && query.startsWith(previous, ignoreCase = true)) {
+			current.copy(index = current.index - 1)
+		} else {
+			null
+		}
 	}
 
 	val currentMatch: TextPages.Match?
@@ -286,7 +289,6 @@ class TextEditorPresenter @Inject constructor( //
 
 	override fun destroyed() {
 		subscriptions.clear()
-		pageSearch?.dispose()
 	}
 
 	init {

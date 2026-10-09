@@ -24,7 +24,6 @@ class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextV
 	lateinit var textEditorPresenter: TextEditorPresenter
 
 	private var adapter: TextPagesAdapter? = null
-	private var searching = false
 	private var loading = false
 	private val subscriptions = CompositeDisposable()
 
@@ -57,11 +56,13 @@ class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextV
 				.observeOn(AndroidSchedulers.mainThread()) //
 				.subscribe({ pagesAdapter.showPageCount(it) }, { textEditorPresenter.showError(it) }, { showProgressBar() })
 		)
+		subscriptions.add(textEditorPresenter.searchResults().subscribe { showSearchResult() })
+		showSearchResult()
 	}
 
 	private fun showProgressBar() {
 		val indexing = textEditorPresenter.pages?.indexed == false
-		binding.progress.visibility = if (indexing || searching || loading) View.VISIBLE else View.GONE
+		binding.progress.visibility = if (indexing || textEditorPresenter.isSearching || loading) View.VISIBLE else View.GONE
 	}
 
 	override fun showLoadingProgress(progress: ProgressModel) {
@@ -95,13 +96,15 @@ class TextViewerFragment : BaseFragment<FragmentTextViewerBinding>(FragmentTextV
 		if (adapter == null || textEditorPresenter.query.isNullOrEmpty()) {
 			return
 		}
-		searching = true
+		textEditorPresenter.findInPages(forward)
 		showProgressBar()
-		textEditorPresenter.findInPages(forward) { match ->
-			searching = false
-			showProgressBar()
-			showMatch(match)
-		}
+	}
+
+	private fun showSearchResult() {
+		val result = textEditorPresenter.takeSearchResult() ?: return
+		showProgressBar()
+		result.error?.let { textEditorPresenter.showError(it) }
+		showMatch(result.match)
 	}
 
 	private fun showMatch(match: TextPages.Match?) {

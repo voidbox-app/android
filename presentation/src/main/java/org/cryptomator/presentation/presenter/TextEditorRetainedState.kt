@@ -2,11 +2,14 @@ package org.cryptomator.presentation.presenter
 
 import androidx.lifecycle.ViewModel
 import io.reactivex.Completable
+import io.reactivex.Maybe
 import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.BehaviorSubject
+import io.reactivex.subjects.PublishSubject
 import io.reactivex.subjects.SingleSubject
 import org.cryptomator.presentation.model.ProgressModel
 import org.cryptomator.presentation.util.TextPages
@@ -34,6 +37,8 @@ class TextEditorRetainedState : ViewModel() {
 	var editedContent: CharSequence? = null
 	var position = EditorPosition(0, 0, 0, 0)
 
+	class SearchResult(val match: TextPages.Match?, val error: Throwable?)
+
 	var pages: TextPages? = null
 		private set
 	var currentMatch: TextPages.Match? = null
@@ -43,7 +48,10 @@ class TextEditorRetainedState : ViewModel() {
 
 	private var loading: Disposable? = null
 	private var indexing: Disposable? = null
+	private var searching: Disposable? = null
 	private var result: SingleSubject<LoadedText>? = null
+	private var unseenSearchResult: SearchResult? = null
+	private val searchResults = PublishSubject.create<SearchResult>()
 
 	val isLoaded: Boolean
 		get() = originalContent != null || pages != null
@@ -88,9 +96,38 @@ class TextEditorRetainedState : ViewModel() {
 
 	fun pageCount(): Observable<Int> = pageCountUpdates
 
+	val isSearching: Boolean
+		get() = searching?.isDisposed == false
+
+	/** Runs [search] in the background, replacing a running one; the result waits in [takeSearchResult] for whichever screen asks first. */
+	fun startSearch(search: () -> TextPages.Match?) {
+		searching?.dispose()
+		unseenSearchResult = null
+		searching = Maybe.fromCallable { search() }
+			.subscribeOn(Schedulers.io())
+			.observeOn(AndroidSchedulers.mainThread())
+			.subscribe({ finishSearch(SearchResult(it, null)) }, { finishSearch(SearchResult(null, it)) }, { finishSearch(SearchResult(null, null)) })
+	}
+
+	private fun finishSearch(result: SearchResult) {
+		searching = null
+		result.match?.let { currentMatch = it }
+		unseenSearchResult = result
+		searchResults.onNext(result)
+	}
+
+	fun searchResults(): Observable<SearchResult> = searchResults
+
+	fun takeSearchResult(): SearchResult? {
+		val result = unseenSearchResult
+		unseenSearchResult = null
+		return result
+	}
+
 	override fun onCleared() {
 		loading?.dispose()
 		indexing?.dispose()
+		searching?.dispose()
 		result?.value?.close()
 		result = null
 		pages?.close()
