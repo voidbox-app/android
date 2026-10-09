@@ -17,8 +17,8 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNull
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import org.mockito.ArgumentCaptor
 import org.mockito.kotlin.any
+import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.mock
 import org.mockito.kotlin.never
 import org.mockito.kotlin.verify
@@ -104,17 +104,15 @@ class OfflineFilesPresenterTest {
 		return vault
 	}
 
-	@Suppress("UNCHECKED_CAST")
 	private fun vaultListResult(): ResultHandler<List<Vault>> {
-		val captor = ArgumentCaptor.forClass(ResultHandler::class.java) as ArgumentCaptor<ResultHandler<List<Vault>>>
+		val captor = argumentCaptor<ResultHandler<List<Vault>>>()
 		verify(getVaultListUseCase).run(captor.capture())
-		return captor.value
+		return captor.firstValue
 	}
 
-	@Suppress("UNCHECKED_CAST")
 	private fun shownUsage(): List<OfflineVaultModel> {
-		val captor = ArgumentCaptor.forClass(List::class.java) as ArgumentCaptor<List<OfflineVaultModel>>
+		val captor = argumentCaptor<List<OfflineVaultModel>>()
 		verify(view).showUsage(captor.capture())
-		return captor.value
+		return captor.firstValue
 	}
 }
