@@ -380,7 +380,7 @@ open class CryptoImplVaultFormat7 : CryptoImplDecorator {
 
 	@Throws(BackendException::class)
 	override fun move(source: CryptoFile, target: CryptoFile): CryptoFile {
-		return moveFile(source, target).also { offlineCopies.move(source.cloudFile, it.cloudFile) }
+		return moveFile(source, target).also { offlineCopies?.move(source.cloudFile, it.cloudFile) }
 	}
 
 	@Throws(BackendException::class)
@@ -446,12 +446,12 @@ open class CryptoImplVaultFormat7 : CryptoImplDecorator {
 			val cryptoSubfolders = deepCollectSubfolders(node)
 			for (cryptoSubfolder in cryptoSubfolders) {
 				getCachingAwareDirIdInfo(cryptoSubfolder)?.let {
-					offlineCopies.removeBelow(it.cloudFolder)
+					offlineCopies?.removeBelow(it.cloudFolder)
 					cloudContentRepository.delete(it.cloudFolder)
 				} ?: Timber.tag("CryptoFs").w("Dir file doesn't exists of a sub folder while deleting the parent, continue anyway")
 			}
 			getCachingAwareDirIdInfo(node)?.let {
-				offlineCopies.removeBelow(it.cloudFolder)
+				offlineCopies?.removeBelow(it.cloudFolder)
 				cloudContentRepository.delete(it.cloudFolder)
 			} ?: Timber.tag("CryptoFs").w("Dir file doesn't exists while deleting the folder, continue anyway")
 			cloudContentRepository.delete(node.dirFile.parent)
@@ -462,7 +462,7 @@ open class CryptoImplVaultFormat7 : CryptoImplDecorator {
 			} else {
 				cloudContentRepository.delete(node.cloudFile)
 			}
-			offlineCopies.remove(node.cloudFile)
+			offlineCopies?.remove(node.cloudFile)
 		}
 	}
 
