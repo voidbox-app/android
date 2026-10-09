@@ -144,20 +144,18 @@ class OfflineCopies internal constructor(private val directory: File?) {
 			synchronized(commit) {
 				val copy = File(folder, name)
 				val meta = File(folder, name + META)
-				writeMeta(meta, ciphertext)
+				val size = ciphertext.size ?: part.length()
+				val modified = ciphertext.modified?.time
+				writeMeta(meta, ciphertext.path, size, modified)
 				if (!part.renameTo(copy)) {
 					throw IOException("Could not keep ${ciphertext.path}")
 				}
-				index[ciphertext.path] = Copy(copy, meta, ciphertext.size, ciphertext.modified?.time)
+				index[ciphertext.path] = Copy(copy, meta, size, modified)
 				return copy
 			}
 		} finally {
 			part.delete()
 		}
-	}
-
-	private fun writeMeta(meta: File, ciphertext: CloudFile) {
-		writeMeta(meta, ciphertext.path, ciphertext.size, ciphertext.modified?.time)
 	}
 
 	private fun writeMeta(meta: File, path: String, size: Long?, modified: Long?) {
@@ -229,6 +227,24 @@ class OfflineCopies internal constructor(private val directory: File?) {
 		index.values.removeIf { it.file.parentFile?.name == vaultId.toString() }
 		directory?.let { File(it, vaultId.toString()).deleteRecursively() }
 	}
+
+	fun deleteAll() {
+		ready()
+		index.clear()
+		directory?.listFiles()?.forEach { it.deleteRecursively() }
+	}
+
+	/** Bytes and files per vault, from the index alone: safe on the main thread. */
+	fun usage(): List<VaultUsage> {
+		ready()
+		return index.values
+			.groupBy { it.file.parentFile?.name?.toLongOrNull() }
+			.mapNotNull { (vaultId, copies) ->
+				vaultId?.let { VaultUsage(it, copies.sumOf { copy -> copy.size ?: 0L }, copies.size) }
+			}
+	}
+
+	class VaultUsage(val vaultId: Long, val bytes: Long, val files: Int)
 
 	private fun name(path: String): String {
 		val digest = MessageDigest.getInstance("SHA-256").digest(path.toByteArray())

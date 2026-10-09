@@ -266,6 +266,44 @@ class OfflineCopiesTest {
 	}
 
 	@Test
+	fun usageCountsBytesAndFilesPerVault() {
+		keep(file, vaultId = 1)
+		keep(file(d, "b.c9r", 5, 1000), vaultId = 1)
+		keep(file(d, "c.c9r", 7, 1000), vaultId = 2)
+
+		val usage = copies.usage().sortedBy { it.vaultId }
+
+		assertEquals(listOf(1L, 2L), usage.map { it.vaultId })
+		assertEquals(listOf(16L, 7L), usage.map { it.bytes })
+		assertEquals(listOf(2, 1), usage.map { it.files })
+		assertEquals(emptyList<Long>(), OfflineCopies(File(tmpDir, "empty")).usage().map { it.vaultId })
+	}
+
+	@Test
+	fun aFileOfUnknownSizeRecordsTheCopysLength() {
+		val unsized = file(d, "u.c9r", null, 1000)
+
+		keep(unsized, "hello world")
+
+		assertEquals(11L, copies.usage().single().bytes)
+		assertTrue(copies.isKept(unsized))
+		assertTrue(copies.isKept(file(d, "u.c9r", 11, 1000)))
+		assertNotNull(copies.find(unsized))
+	}
+
+	@Test
+	fun deleteAllDropsEveryVault() {
+		keep(file, vaultId = 1)
+		keep(file(d, "c.c9r", 7, 1000), vaultId = 2)
+
+		copies.deleteAll()
+
+		assertFalse(copies.isKept(file))
+		assertEquals(emptyList<String>(), directory.listFiles()?.map { it.name } ?: emptyList<String>())
+		assertEquals(0, copies.usage().size)
+	}
+
+	@Test
 	fun withoutStorageNothingIsKept() {
 		val disabled = OfflineCopies(null)
 
@@ -274,6 +312,8 @@ class OfflineCopiesTest {
 		assertThrows(IOException::class.java) { disabled.store(1, file) { } }
 		disabled.remove(file)
 		disabled.deleteVault(1)
+		disabled.deleteAll()
+		assertEquals(0, disabled.usage().size)
 	}
 
 	@Test

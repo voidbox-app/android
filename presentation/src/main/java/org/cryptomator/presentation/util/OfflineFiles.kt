@@ -43,4 +43,12 @@ class OfflineFiles @Inject constructor(context: Context, private val cloudConten
 	fun deleteVault(vaultId: Long) {
 		copies.deleteVault(vaultId)
 	}
+
+	fun deleteAll() {
+		copies.deleteAll()
+	}
+
+	fun usage(): List<OfflineCopies.VaultUsage> = copies.usage()
+
+	fun totalBytes(): Long = usage().sumOf { it.bytes }
 }

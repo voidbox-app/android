@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:orientation="vertical">
+
+	<TextView
+		android:id="@+id/total"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingStart="16dp"
+		android:paddingTop="16dp"
+		android:paddingEnd="16dp"
+		android:textAppearance="?attr/textAppearanceTitleMedium"
+		android:textColor="?attr/colorOnSurface" />
+
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:paddingStart="16dp"
+		android:paddingTop="4dp"
+		android:paddingEnd="16dp"
+		android:paddingBottom="8dp"
+		android:text="@string/screen_offline_files_note"
+		android:textAppearance="?attr/textAppearanceBodyMedium"
+		android:textColor="?attr/colorOnSurfaceVariant" />
+
+	<include
+		android:id="@+id/rv_vaults"
+		layout="@layout/recycler_view_layout"
+		android:layout_width="match_parent"
+		android:layout_height="0dp"
+		android:layout_weight="1" />
+
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/remove_all"
+		style="?attr/materialButtonOutlinedStyle"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="16dp"
+		android:text="@string/screen_offline_files_remove_all" />
+
+</LinearLayout>

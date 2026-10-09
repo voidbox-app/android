@@ -747,6 +747,22 @@
 	<string name="screen_settings_clear_lru_cache_size">Clear Cache</string>
 	<string name="screen_settings_lru_cache_changed__restart_toast">Changes will be applied on next app restart</string>
 
+	<string name="screen_settings_offline_files">Offline files</string>
+	<string name="screen_offline_files_total">%1$s on this phone</string>
+	<string name="screen_offline_files_empty">No files are kept offline</string>
+	<string name="screen_offline_files_note">The copies stay encrypted on the phone. Removing them changes nothing in the cloud.</string>
+	<string name="screen_offline_files_usage" translatable="false">%1$s · %2$s</string>
+	<plurals name="screen_offline_files_count">
+		<item quantity="one">%d file</item>
+		<item quantity="other">%d files</item>
+	</plurals>
+	<string name="screen_offline_files_removed_vault">Removed vault</string>
+	<string name="screen_offline_files_remove">Remove</string>
+	<string name="screen_offline_files_remove_all">Remove all offline files</string>
+	<string name="screen_offline_files_removed">Offline files removed</string>
+	<string name="dialog_remove_offline_files_title">Remove all offline files?</string>
+	<string name="dialog_remove_offline_files_message">The files stay in the cloud and can be kept offline again.</string>
+
 	<string name="screen_settings_license_title_unlock">Unlock Full Version</string>
 	<string name="screen_settings_license_title_unlocked">Full Version</string>
 	<string name="screen_settings_license_mail">%1$s</string>

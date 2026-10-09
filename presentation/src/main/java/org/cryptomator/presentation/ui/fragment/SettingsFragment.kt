@@ -25,6 +25,7 @@ import org.cryptomator.presentation.ui.activity.BiometricAuthSettingsActivity
 import org.cryptomator.presentation.ui.activity.CloudSettingsActivity
 import org.cryptomator.presentation.ui.activity.CryptomatorVariantsActivity
 import org.cryptomator.presentation.ui.activity.LicensesActivity
+import org.cryptomator.presentation.ui.activity.OfflineFilesActivity
 import org.cryptomator.presentation.ui.activity.SettingsActivity
 import org.cryptomator.presentation.ui.dialog.DebugModeDisclaimerDialog
 import org.cryptomator.presentation.ui.dialog.DisableAppWhenObscuredDisclaimerDialog
@@ -161,6 +162,13 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 		preference?.summaryProvider = Preference.SummaryProvider<Preference> {
 			versionName
 		}
+	}
+
+	private fun setupOfflineFilesSize() {
+		val preference = findPreference(OFFLINE_FILES_ITEM_KEY) as Preference?
+		val size = SpannableString(activity().presenter().offlineFilesSize())
+		size.setSpan(ForegroundColorSpan(ContextCompat.getColor(activity(), R.color.textColorLight)), 0, size.length, 0)
+		preference?.summaryProvider = Preference.SummaryProvider<Preference> { size }
 	}
 
 	private fun setupLruCacheSize() {
@@ -323,6 +331,8 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 
 	override fun onResume() {
 		super.onResume()
+		setupOfflineFilesSize()
+		(findPreference(OFFLINE_FILES_ITEM_KEY) as Preference?)?.intent = Intent(context, OfflineFilesActivity::class.java)
 		(findPreference(SEND_ERROR_REPORT_ITEM_KEY) as Preference?)?.onPreferenceClickListener = sendErrorReportClickListener
 		(findPreference(LRU_CACHE_CLEAR_ITEM_KEY) as Preference?)?.onPreferenceClickListener = clearCacheClickListener
 		(findPreference(CLEAR_TRUSTED_HUB_HOSTS) as Preference?)?.onPreferenceClickListener = clearTrustedHubHostsClickListener
@@ -434,6 +444,7 @@ class SettingsFragment : PreferenceFragmentCompatLayout() {
 		private const val UPDATE_CHECK_ITEM_KEY = "updateCheck"
 		private const val UPDATE_INTERVAL_ITEM_KEY = "updateInterval"
 		private const val DISPLAY_LRU_CACHE_SIZE_ITEM_KEY = "displayLruCacheSize"
+		private const val OFFLINE_FILES_ITEM_KEY = "offlineFiles"
 		private const val LRU_CACHE_CLEAR_ITEM_KEY = "lruCacheClear"
 		private const val CLEAR_TRUSTED_HUB_HOSTS = "clearTrustedHubHosts"
 	}

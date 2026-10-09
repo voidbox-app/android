@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="72dp">
+
+	<FrameLayout
+		android:id="@+id/cloud_image_container"
+		android:layout_width="40dp"
+		android:layout_height="40dp"
+		android:layout_centerVertical="true"
+		android:layout_marginStart="16dp"
+		android:background="@drawable/bg_icon_container">
+
+		<ImageView
+			android:id="@+id/cloud_image"
+			android:layout_width="32dp"
+			android:layout_height="24dp"
+			android:layout_gravity="center"
+			android:contentDescription="@null" />
+	</FrameLayout>
+
+	<ImageButton
+		android:id="@+id/remove"
+		android:layout_width="48dp"
+		android:layout_height="48dp"
+		android:layout_alignParentEnd="true"
+		android:layout_centerVertical="true"
+		android:layout_marginEnd="4dp"
+		android:background="?attr/selectableItemBackgroundBorderless"
+		android:contentDescription="@string/screen_offline_files_remove"
+		app:srcCompat="@drawable/ic_delete"
+		app:tint="?attr/colorOnSurfaceVariant" />
+
+	<ImageView
+		android:id="@+id/locked"
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_centerVertical="true"
+		android:layout_marginEnd="8dp"
+		android:layout_toStartOf="@id/remove"
+		android:contentDescription="@null"
+		app:srcCompat="@drawable/ic_lock"
+		app:tint="?attr/colorOnSurfaceVariant" />
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_centerVertical="true"
+		android:layout_marginStart="16dp"
+		android:layout_marginEnd="8dp"
+		android:layout_toStartOf="@id/locked"
+		android:layout_toEndOf="@id/cloud_image_container"
+		android:orientation="vertical">
+
+		<TextView
+			android:id="@+id/vault_name"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:ellipsize="middle"
+			android:singleLine="true"
+			android:textAppearance="?attr/textAppearanceBodyLarge"
+			android:textColor="?attr/colorOnSurface" />
+
+		<TextView
+			android:id="@+id/usage"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:singleLine="true"
+			android:textAppearance="?attr/textAppearanceBodyMedium"
+			android:textColor="?attr/colorOnSurfaceVariant" />
+	</LinearLayout>
+</RelativeLayout>
