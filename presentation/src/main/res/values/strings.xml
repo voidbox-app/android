@@ -230,7 +230,7 @@
 
 	<!-- ## screen: text editor -->
 	<string name="screen_text_editor_save_success">Successfully saved</string>
-	<string name="screen_text_editor_too_large_to_edit">This file is too large to edit on this device, so it is open for reading. To change it, open it with another app from the file menu.</string>
+	<string name="screen_text_editor_too_large_to_edit">This file is too large to edit. You can change it in another app.</string>
 	<string name="screen_text_editor_page_loading">&#8230;</string>
 
 	<!-- ## screen: share files -->
