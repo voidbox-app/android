@@ -177,6 +177,16 @@ class DispatchingCloudContentRepository @Inject constructor(
 	}
 
 	@Throws(BackendException::class)
+	override fun openRandomAccess(file: CloudFile, ciphertext: File): RandomAccessContent {
+		try {
+			return delegateFor(file).openRandomAccess(file, ciphertext)
+		} catch (e: AuthenticationException) {
+			delegates.remove(file.cloud)
+			throw e
+		}
+	}
+
+	@Throws(BackendException::class)
 	override fun delete(node: CloudNode) {
 		try {
 			node.cloud?.let { networkConnectionCheck.assertConnectionIsPresent(it) } ?: throw IllegalStateException("Parent's cloud shouldn't be null")

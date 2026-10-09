@@ -101,6 +101,12 @@ interface CloudContentRepository<CloudType : Cloud, NodeType : CloudNode, DirTyp
 		throw RandomAccessNotSupportedException()
 	}
 
+	/** The content of [file] read from [ciphertext], a local copy of the file as the cloud stores it. */
+	@Throws(BackendException::class)
+	fun openRandomAccess(file: FileType, ciphertext: File): RandomAccessContent {
+		throw RandomAccessNotSupportedException()
+	}
+
 	@Throws(BackendException::class)
 	fun delete(node: NodeType)
 

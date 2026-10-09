@@ -170,6 +170,8 @@
 	<string name="screen_file_browser_no_connection_button_text">Повторить</string>
 	<!-- ## screen: text editor -->
 	<string name="screen_text_editor_save_success">Успешно сохранено</string>
+	<string name="screen_text_editor_too_large_to_edit">Файл слишком большой для редактирования на этом устройстве и открыт для чтения. Чтобы изменить его, откройте с помощью другого приложения из меню файла.</string>
+	<string name="screen_text_editor_page_loading">&#8230;</string>
 	<!-- ## screen: share files -->
 	<string name="screen_share_files_title">Сохранить %1$s в&#8230;</string>
 	<string name="screen_share_files_content_text">текст</string>

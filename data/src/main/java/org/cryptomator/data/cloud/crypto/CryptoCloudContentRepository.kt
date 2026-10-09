@@ -102,6 +102,11 @@ internal class CryptoCloudContentRepository(context: Context, cloudContentReposi
 	}
 
 	@Throws(BackendException::class)
+	override fun openRandomAccess(file: CryptoFile, ciphertext: File): RandomAccessContent {
+		return cryptoImpl.openRandomAccess(ciphertext)
+	}
+
+	@Throws(BackendException::class)
 	override fun delete(node: CryptoNode) {
 		cryptoImpl.delete(node)
 	}

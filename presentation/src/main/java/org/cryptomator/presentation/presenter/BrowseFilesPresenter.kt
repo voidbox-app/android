@@ -6,6 +6,7 @@ import android.net.Uri
 import android.provider.DocumentsContract
 import android.widget.Toast
 import androidx.core.net.toFile
+import org.cryptomator.data.cloud.crypto.CryptoFile
 import org.cryptomator.data.cloud.crypto.CryptoFolder
 import org.cryptomator.domain.Cloud
 import org.cryptomator.domain.CloudFile
@@ -579,14 +580,24 @@ class BrowseFilesPresenter @Inject constructor( //
 			})
 	}
 
+	private fun isTextFile(cloudFile: CloudFileModel): Boolean {
+		val lowerFileName = cloudFile.name.lowercase()
+		return lowerFileName.endsWith(".txt") || lowerFileName.endsWith(".md") || lowerFileName.endsWith(".todo")
+	}
+
+	/** The editor fetches and decrypts the text itself, in memory, so nothing is downloaded here. */
+	private fun openInTextEditor(cloudFile: CloudFileModel) {
+		val intent = Intents.textEditorIntent()
+			.withTextFile(cloudFile)
+			.withHubWriteAllowed(licenseEnforcer.hasWriteAccessForVault(view?.folder?.vault()))
+			.build(this)
+		startIntent(intent)
+	}
+
 	private fun viewFile(cloudFile: CloudFileModel) {
 		val lowerFileName = cloudFile.name.lowercase()
-		if (lowerFileName.endsWith(".txt") || lowerFileName.endsWith(".md") || lowerFileName.endsWith(".todo")) {
-			val intent = Intents.textEditorIntent()
-				.withTextFile(cloudFile)
-				.withHubWriteAllowed(licenseEnforcer.hasWriteAccessForVault(view?.folder?.vault()))
-				.build(this)
-			startIntent(intent)
+		if (isTextFile(cloudFile)) {
+			openInTextEditor(cloudFile)
 		} else if (lowerFileName.endsWith(".pdf")) {
 			startIntent(Intents.pdfPreviewIntent().withPdfFile(cloudFile).build(this))
 		} else if (isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) {
@@ -902,7 +913,9 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onFileClicked(cloudFile: CloudFileModel) {
-		if ((isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) && thumbnailCache.vaultOf(cloudFile) != null && sharedPreferencesHandler.streamMedia()) {
+		if (isTextFile(cloudFile) && cloudFile.toCloudNode() is CryptoFile) {
+			openInTextEditor(cloudFile)
+		} else if ((isMediaType(cloudFile.name, "video") || isMediaType(cloudFile.name, "audio")) && thumbnailCache.vaultOf(cloudFile) != null && sharedPreferencesHandler.streamMedia()) {
 			streamOrDownload(cloudFile)
 		} else {
 			readFilesWithProgress(listOf(cloudFile), Intent.ACTION_VIEW)
@@ -1379,6 +1392,10 @@ class BrowseFilesPresenter @Inject constructor( //
 	}
 
 	fun onOpenWithTextFileClicked(textFile: CloudFileModel, newlyCreated: Boolean, internalEditor: Boolean) {
+		if (internalEditor && textFile.toCloudNode() is CryptoFile) {
+			openInTextEditor(textFile)
+			return
+		}
 		val decryptData = downloadFileUtil.createDecryptedDataFor(this, textFile)
 		downloadFilesUseCase //
 			.withDownloadFiles( //

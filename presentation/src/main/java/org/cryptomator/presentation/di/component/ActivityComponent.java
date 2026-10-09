@@ -41,6 +41,7 @@ import org.cryptomator.presentation.ui.fragment.S3AddOrChangeFragment;
 import org.cryptomator.presentation.ui.fragment.SetPasswordFragment;
 import org.cryptomator.presentation.ui.fragment.SharedFilesFragment;
 import org.cryptomator.presentation.ui.fragment.TextEditorFragment;
+import org.cryptomator.presentation.ui.fragment.TextViewerFragment;
 import org.cryptomator.presentation.ui.fragment.UnlockVaultFragment;
 import org.cryptomator.presentation.ui.fragment.VaultListFragment;
 import org.cryptomator.presentation.ui.fragment.WebDavAddOrChangeFragment;
@@ -110,6 +111,8 @@ public interface ActivityComponent {
 	void inject(TextEditorActivity textEditorActivity);
 
 	void inject(TextEditorFragment textEditorFragment);
+
+	void inject(TextViewerFragment textViewerFragment);
 
 	void inject(AuthenticateCloudActivity authenticateCloudActivity);
 

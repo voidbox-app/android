@@ -11,5 +11,6 @@ interface TextEditorView : View {
 	fun showUnsavedChangesDialog()
 	fun displayTextFileContent(textFileContent: CharSequence)
 	fun restoreEditorPosition(position: EditorPosition)
+	fun showReadOnlyText()
 
 }

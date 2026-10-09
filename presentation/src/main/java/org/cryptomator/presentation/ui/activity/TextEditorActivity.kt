@@ -19,6 +19,8 @@ import org.cryptomator.presentation.presenter.TextEditorRetainedState
 import org.cryptomator.presentation.ui.activity.view.TextEditorView
 import org.cryptomator.presentation.ui.dialog.UnsavedChangesDialog
 import org.cryptomator.presentation.ui.fragment.TextEditorFragment
+import org.cryptomator.presentation.ui.fragment.TextSearch
+import org.cryptomator.presentation.ui.fragment.TextViewerFragment
 import javax.inject.Inject
 
 @Activity
@@ -43,7 +45,7 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 	}
 
 	override val textFileContent: String
-		get() = textEditorFragment().textFileContent
+		get() = textEditorFragment()?.textFileContent ?: ""
 
 	override fun allVaultsLocked(): Boolean = (application as CryptomatorApp).allVaultsLocked()
 
@@ -58,7 +60,7 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 
 	private val backPressedCallback = object : OnBackPressedCallback(true) {
 		override fun handleOnBackPressed() {
-			if (!hasWriteAccess()) {
+			if (!hasWriteAccess() || textEditorPresenter.isReadOnlyText) {
 				performBackPressed()
 				return
 			}
@@ -97,11 +99,11 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 			true
 		}
 		R.id.action_search_previous -> {
-			textEditorFragment().onPreviousQuery()
+			textSearch()?.onPreviousQuery()
 			true
 		}
 		R.id.action_search_next -> {
-			textEditorFragment().onNextQuery()
+			textSearch()?.onNextQuery()
 			true
 		}
 		else -> {
@@ -110,13 +112,13 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 	}
 
 	override fun onQueryTextSubmit(query: String): Boolean {
-		textEditorFragment().onQueryText(query)
+		textSearch()?.onQueryText(query)
 		return true
 	}
 
 	override fun onQueryTextChange(query: String): Boolean {
 		if (sharedPreferencesHandler.useLiveSearch()) {
-			textEditorFragment().onQueryText(query)
+			textSearch()?.onQueryText(query)
 		}
 
 		return true
@@ -126,7 +128,7 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 		val searchView = menu.findItem(R.id.action_search).actionView as SearchView
 		searchView.setOnQueryTextListener(this)
 
-		menu.findItem(R.id.action_save_changes).isVisible = hasWriteAccess()
+		menu.findItem(R.id.action_save_changes).isVisible = hasWriteAccess() && !textEditorPresenter.isReadOnlyText
 
 		return super.onPrepareOptionsMenu(menu)
 	}
@@ -145,14 +147,29 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 	}
 
 	override fun displayTextFileContent(textFileContent: CharSequence) {
-		textEditorFragment().displayTextFileContent(textFileContent)
+		val fragment = textEditorFragment() ?: return showEditorFragmentWhichLoadsTheKeptText()
+		fragment.displayTextFileContent(textFileContent)
 		if (!hasWriteAccess()) {
-			textEditorFragment().setReadOnly()
+			fragment.setReadOnly()
 		}
 	}
 
+	private fun showEditorFragmentWhichLoadsTheKeptText() {
+		replaceFragment(TextEditorFragment(), FragmentAnimation.NAVIGATE_IN_TO_FOLDER, addToBackStack = false)
+	}
+
 	override fun restoreEditorPosition(position: EditorPosition) {
-		textEditorFragment().restoreEditorPosition(position)
+		textEditorFragment()?.restoreEditorPosition(position)
+	}
+
+	override fun showReadOnlyText() {
+		invalidateOptionsMenu()
+		val viewer = getCurrentFragment(R.id.fragment_container) as? TextViewerFragment
+		if (viewer != null) {
+			viewer.showPages()
+		} else {
+			replaceFragment(TextViewerFragment(), FragmentAnimation.NAVIGATE_IN_TO_FOLDER, addToBackStack = false)
+		}
 	}
 
 	override fun onSaveChangesClicked() {
@@ -167,5 +184,7 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 		finish()
 	}
 
-	private fun textEditorFragment(): TextEditorFragment = getCurrentFragment(R.id.fragment_container) as TextEditorFragment
+	private fun textEditorFragment(): TextEditorFragment? = getCurrentFragment(R.id.fragment_container) as? TextEditorFragment
+
+	private fun textSearch(): TextSearch? = getCurrentFragment(R.id.fragment_container) as? TextSearch
 }

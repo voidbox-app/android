@@ -21,7 +21,7 @@ import org.cryptomator.presentation.ui.layout.attachFastScrollThumb
 import javax.inject.Inject
 
 @Fragment
-class TextEditorFragment : BaseFragment<FragmentTextEditorBinding>(FragmentTextEditorBinding::inflate) {
+class TextEditorFragment : BaseFragment<FragmentTextEditorBinding>(FragmentTextEditorBinding::inflate), TextSearch {
 
 	@Inject
 	lateinit var textEditorPresenter: TextEditorPresenter
@@ -79,7 +79,7 @@ class TextEditorFragment : BaseFragment<FragmentTextEditorBinding>(FragmentTextE
 		binding.textEditor.isCursorVisible = false
 	}
 
-	fun onQueryText(query: String) {
+	override fun onQueryText(query: String) {
 		textEditorPresenter.query = query
 
 		clearSpans(binding.textEditor)
@@ -93,11 +93,11 @@ class TextEditorFragment : BaseFragment<FragmentTextEditorBinding>(FragmentTextE
 		onNextQuery()
 	}
 
-	fun onPreviousQuery() {
+	override fun onPreviousQuery() {
 		onQuery(Direction.PREVIOUS)
 	}
 
-	fun onNextQuery() {
+	override fun onNextQuery() {
 		onQuery(Direction.NEXT)
 	}
 

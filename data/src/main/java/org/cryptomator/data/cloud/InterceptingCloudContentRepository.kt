@@ -190,6 +190,19 @@ abstract class InterceptingCloudContentRepository<CloudType : Cloud, NodeType : 
 		}
 	}
 
+	@Throws(BackendException::class)
+	override fun openRandomAccess(file: FileType, ciphertext: File): RandomAccessContent {
+		return try {
+			InterceptedRandomAccessContent(delegate.openRandomAccess(file, ciphertext))
+		} catch (e: BackendException) {
+			throwWrappedIfRequired(e)
+			throw e
+		} catch (e: RuntimeException) {
+			throwWrappedIfRequired(e)
+			throw e
+		}
+	}
+
 	// ranges are opened later, outside the try above
 	private inner class InterceptedRandomAccessContent(private val content: RandomAccessContent) : RandomAccessContent by content {
 

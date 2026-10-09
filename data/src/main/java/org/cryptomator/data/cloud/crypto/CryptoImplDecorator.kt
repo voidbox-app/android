@@ -352,6 +352,11 @@ abstract class CryptoImplDecorator(
 		return CryptoRandomAccessContent(ciphertext, cryptor())
 	}
 
+	@Throws(BackendException::class)
+	fun openRandomAccess(ciphertext: File): RandomAccessContent {
+		return CryptoRandomAccessContent(FileRandomAccessContent(ciphertext), cryptor())
+	}
+
 	@Throws(BackendException::class, IOException::class)
 	private fun readToTmpFile(cryptoFile: CryptoFile, file: CloudFile, progressAware: ProgressAware<DownloadState>): File {
 		val encryptedTmpFile = File.createTempFile(UUID.randomUUID().toString(), ".crypto", internalCache)
