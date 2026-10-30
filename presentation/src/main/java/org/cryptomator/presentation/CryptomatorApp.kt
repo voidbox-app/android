@@ -1,6 +1,7 @@
 package org.cryptomator.presentation
 
 import android.app.Activity
+import android.app.Application
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
@@ -10,7 +11,6 @@ import android.os.IBinder
 import android.os.StrictMode
 import com.google.android.material.color.DynamicColors
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.multidex.MultiDexApplication
 import org.cryptomator.data.cloud.crypto.Cryptors
 import org.cryptomator.data.cloud.crypto.CryptorsModule
 import org.cryptomator.data.repository.RepositoryModule
@@ -39,7 +39,7 @@ import java.util.concurrent.atomic.AtomicInteger
 import io.reactivex.plugins.RxJavaPlugins
 import timber.log.Timber
 
-class CryptomatorApp : MultiDexApplication(), HasComponent<ApplicationComponent> {
+class CryptomatorApp : Application(), HasComponent<ApplicationComponent> {
 
 	private val appCryptors = Cryptors.Delegating()
 	private lateinit var applicationComponent: ApplicationComponent
@@ -150,6 +150,7 @@ class CryptomatorApp : MultiDexApplication(), HasComponent<ApplicationComponent>
 
 			override fun onServiceDisconnected(name: ComponentName) {
 				Timber.tag("App").i("IAP Billing service disconnected")
+				pendingProductDetailsCallbacks.markNotReady()
 				iapBillingServiceBinder = null
 			}
 		}, BIND_AUTO_CREATE)
@@ -166,11 +167,13 @@ class CryptomatorApp : MultiDexApplication(), HasComponent<ApplicationComponent>
 			callback(emptyList())
 			return
 		}
-		iapBillingServiceBinder?.queryProductDetails(callback) ?: pendingProductDetailsCallbacks.enqueue(callback)
+		if (!pendingProductDetailsCallbacks.enqueueUnlessReady(callback)) {
+			iapBillingServiceBinder?.queryProductDetails(callback)
+		}
 	}
 
 	private fun drainPendingProductDetailsCallbacks() {
-		val snapshot = pendingProductDetailsCallbacks.drainSnapshot() ?: return
+		val snapshot = pendingProductDetailsCallbacks.markReadyAndDrain() ?: return
 		iapBillingServiceBinder?.queryProductDetails { products ->
 			snapshot.forEach { it(products) }
 		}

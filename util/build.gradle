@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'de.mannodermaus.android-junit5'
+apply plugin: 'de.mannodermaus.android-junit'
 apply plugin: 'org.jetbrains.kotlinx.kover'
 
 android {
@@ -20,10 +20,10 @@ android {
 	}
 
 	compileOptions {
-		sourceCompatibility JavaVersion.VERSION_17
-		targetCompatibility JavaVersion.VERSION_17
+		sourceCompatibility JavaVersion.VERSION_21
+		targetCompatibility JavaVersion.VERSION_21
 	}
-	kotlinOptions { jvmTarget = JavaVersion.VERSION_17 }
+	kotlinOptions { jvmTarget = JavaVersion.VERSION_21 }
 	buildFeatures {
 		buildConfig true
 	}
@@ -105,6 +105,7 @@ dependencies {
 	testRuntimeOnly dependencies.junitEngine
 	testImplementation dependencies.junitParams
 	testRuntimeOnly dependencies.junit4Engine
+	testRuntimeOnly dependencies.junitPlatformLauncher
 
 	testImplementation dependencies.hamcrest
 	testImplementation dependencies.mockito
