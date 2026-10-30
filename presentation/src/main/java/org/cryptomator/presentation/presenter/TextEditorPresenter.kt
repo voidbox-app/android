@@ -19,6 +19,7 @@ import org.cryptomator.util.file.FileCacheUtils
 import java.io.IOException
 import java.util.concurrent.atomic.AtomicReference
 import javax.inject.Inject
+import timber.log.Timber
 
 @PerView
 class TextEditorPresenter @Inject constructor( //
@@ -30,10 +31,7 @@ class TextEditorPresenter @Inject constructor( //
 ) : Presenter<TextEditorView>(exceptionMappings) {
 
 	private val textFile = AtomicReference<CloudFileModel>()
-
-	@JvmField
-	@InstanceState
-	var existingTextFileContent = AtomicReference("")
+	private lateinit var retainedState: TextEditorRetainedState
 
 	@JvmField
 	@InstanceState
@@ -56,7 +54,8 @@ class TextEditorPresenter @Inject constructor( //
 	}
 
 	private fun hasUnsavedChanges(): Boolean {
-		return existingTextFileContent.get() != view?.textFileContent
+		val originalContent = retainedState.originalContent ?: return false
+		return originalContent != view?.textFileContent
 	}
 
 	fun saveChanges() {
@@ -100,16 +99,41 @@ class TextEditorPresenter @Inject constructor( //
 	}
 
 	fun loadFileContent() {
-		// only load file content once since EditText retains its own instance state
-		if (didLoadFileContent) {
+		when {
+			retainedState.isLoaded -> restoreContent()
+			didLoadFileContent && !decryptedFileStillReadable() -> closeWithoutContent()
+			else -> readFileContent()
+		}
+	}
+
+	private fun closeWithoutContent() {
+		Timber.tag("TextEditorPresenter").i("The decrypted text file is no longer readable, closing the editor")
+		view?.finish()
+	}
+
+	private fun decryptedFileStillReadable(): Boolean {
+		return view?.allVaultsLocked() == false && fileUtil.fileFor(textFile.get()).exists()
+	}
+
+	private fun restoreContent() {
+		val content = retainedState.editedContent ?: retainedState.originalContent ?: return
+		view?.displayTextFileContent(content)
+		view?.restoreEditorPosition(retainedState.position)
+		retainedState.editedContent = null
+	}
+
+	private fun readFileContent() {
+		val textFileUri = try {
+			fileUtil.contentUriFor(textFile.get())
+		} catch (e: IllegalStateException) {
+			closeWithoutContent()
 			return
 		}
-		val textFileUri = fileUtil.contentUriFor(textFile.get())
 		try {
-			val data = contentResolverUtil.openInputStream(textFileUri)
-			data?.let {
-				existingTextFileContent.set(fileCacheUtils.read(it))
-				view?.displayTextFileContent(existingTextFileContent.get())
+			contentResolverUtil.openInputStream(textFileUri)?.let { data ->
+				val content = fileCacheUtils.read(data)
+				retainedState.originalContent = content
+				view?.displayTextFileContent(content)
 				didLoadFileContent = true
 			}
 		} catch (e: IOException) {
@@ -117,8 +141,20 @@ class TextEditorPresenter @Inject constructor( //
 		}
 	}
 
+	fun keepEditorContent(content: CharSequence, position: EditorPosition) {
+		if (!retainedState.isLoaded) {
+			return
+		}
+		retainedState.editedContent = content
+		retainedState.position = position
+	}
+
 	fun setTextFile(textFile: CloudFileModel) {
 		this.textFile.set(textFile)
+	}
+
+	fun setRetainedState(retainedState: TextEditorRetainedState) {
+		this.retainedState = retainedState
 	}
 
 	init {

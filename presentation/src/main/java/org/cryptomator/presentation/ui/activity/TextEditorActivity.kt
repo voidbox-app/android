@@ -3,15 +3,19 @@ package org.cryptomator.presentation.ui.activity
 import android.view.Menu
 import android.view.MenuItem
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.viewModels
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import org.cryptomator.generator.Activity
 import org.cryptomator.generator.InjectIntent
+import org.cryptomator.presentation.CryptomatorApp
 import org.cryptomator.presentation.R
 import org.cryptomator.presentation.databinding.ActivityLayoutBinding
 import org.cryptomator.presentation.intent.TextEditorIntent
 import org.cryptomator.presentation.licensing.LicenseEnforcer
+import org.cryptomator.presentation.presenter.EditorPosition
 import org.cryptomator.presentation.presenter.TextEditorPresenter
+import org.cryptomator.presentation.presenter.TextEditorRetainedState
 import org.cryptomator.presentation.ui.activity.view.TextEditorView
 import org.cryptomator.presentation.ui.dialog.UnsavedChangesDialog
 import org.cryptomator.presentation.ui.fragment.TextEditorFragment
@@ -32,6 +36,8 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 	@InjectIntent
 	lateinit var textEditorIntent: TextEditorIntent
 
+	private val retainedState: TextEditorRetainedState by viewModels()
+
 	private fun hasWriteAccess(): Boolean {
 		return licenseEnforcer.hasWriteAccess() || textEditorIntent.hubWriteAllowed() == true
 	}
@@ -39,8 +45,11 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 	override val textFileContent: String
 		get() = textEditorFragment().textFileContent
 
+	override fun allVaultsLocked(): Boolean = (application as CryptomatorApp).allVaultsLocked()
+
 	override fun setupView() {
 		textEditorPresenter.setTextFile(textEditorIntent.textFile())
+		textEditorPresenter.setRetainedState(retainedState)
 		setupToolbar()
 		setupBackPressedCallback()
 	}
@@ -135,11 +144,15 @@ class TextEditorActivity : BaseActivity<ActivityLayoutBinding>(ActivityLayoutBin
 		UnsavedChangesDialog.withContext(this).show()
 	}
 
-	override fun displayTextFileContent(textFileContent: String) {
+	override fun displayTextFileContent(textFileContent: CharSequence) {
 		textEditorFragment().displayTextFileContent(textFileContent)
 		if (!hasWriteAccess()) {
 			textEditorFragment().setReadOnly()
 		}
+	}
+
+	override fun restoreEditorPosition(position: EditorPosition) {
+		textEditorFragment().restoreEditorPosition(position)
 	}
 
 	override fun onSaveChangesClicked() {

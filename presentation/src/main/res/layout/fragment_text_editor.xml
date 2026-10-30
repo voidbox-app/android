@@ -9,6 +9,7 @@
 		android:layout_width="match_parent"
 		android:layout_height="match_parent"
 		android:clipToPadding="false"
+		android:saveEnabled="false"
 		android:scrollbars="none">
 
 		<com.google.android.material.textfield.TextInputEditText
@@ -20,6 +21,7 @@
 			android:imeOptions="flagNoPersonalizedLearning"
 			android:inputType="textMultiLine"
 			android:padding="16dp"
+			android:saveEnabled="false"
 			android:textAppearance="?attr/textAppearanceBodyLarge"
 			android:textColor="?attr/colorOnSurface" />
 	</ScrollView>
