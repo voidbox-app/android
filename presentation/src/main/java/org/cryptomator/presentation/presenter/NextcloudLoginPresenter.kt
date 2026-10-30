@@ -3,9 +3,12 @@ package org.cryptomator.presentation.presenter
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import org.cryptomator.data.util.LocalNetworkAccess
+import org.cryptomator.data.util.LocalNetworkAccessDeniedException
 import org.cryptomator.domain.Cloud
 import org.cryptomator.domain.WebDavCloud
 import org.cryptomator.domain.di.PerView
+import org.cryptomator.domain.exception.authentication.LocalNetworkPermissionMissingException
 import org.cryptomator.domain.usecases.cloud.AddOrChangeCloudConnectionUseCase
 import org.cryptomator.domain.usecases.cloud.ConnectToWebDavUseCase
 import org.cryptomator.generator.Callback
@@ -17,6 +20,8 @@ import org.cryptomator.presentation.model.ProgressStateModel
 import org.cryptomator.presentation.ui.activity.view.NextcloudLoginView
 import org.cryptomator.presentation.workflow.ActivityResult
 import org.cryptomator.presentation.workflow.AuthenticationExceptionHandler
+import org.cryptomator.presentation.workflow.PermissionsResult
+import org.cryptomator.util.ExceptionUtil
 import org.cryptomator.util.crypto.CredentialCryptor
 import java.io.IOException
 import java.util.concurrent.TimeUnit
@@ -46,10 +51,14 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 	exceptionMappings: ExceptionHandlers
 ) : Presenter<NextcloudLoginView>(exceptionMappings) {
 
-	private val http = OkHttpClient.Builder() //
-		.connectTimeout(15, TimeUnit.SECONDS) //
-		.readTimeout(30, TimeUnit.SECONDS) //
-		.build()
+	// needs the view's context, so it is first used in startLogin on the main thread
+	private val http by lazy {
+		OkHttpClient.Builder() //
+			.connectTimeout(15, TimeUnit.SECONDS) //
+			.readTimeout(30, TimeUnit.SECONDS) //
+			.addInterceptor(LocalNetworkAccess(context().applicationContext)) //
+			.build()
+	}
 
 	private var flow: Disposable? = null
 
@@ -65,7 +74,8 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 		}
 		flow?.dispose()
 		view?.showProgress(ProgressModel(ProgressStateModel.AUTHENTICATION))
-		flow = Single.fromCallable { initiate(server) } //
+		val client = http
+		flow = Single.fromCallable { initiate(client, server) } //
 			.subscribeOn(Schedulers.io()) //
 			.observeOn(AndroidSchedulers.mainThread()) //
 			.subscribe({ loginFlow ->
@@ -76,9 +86,20 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 			}, { e ->
 				view?.showProgress(ProgressModel.COMPLETED)
 				view?.showIdle()
-				Timber.tag("NextcloudLogin").e(e, "Login flow could not be started")
-				view?.showError(R.string.screen_nextcloud_login_msg_server_unreachable)
+				if (ExceptionUtil.contains(e, LocalNetworkAccessDeniedException::class.java)) {
+					requestLocalNetworkPermission(PermissionsResultCallbacks.nextcloudLocalNetworkPermissionResult(server))
+				} else {
+					Timber.tag("NextcloudLogin").e(e, "Login flow could not be started")
+					view?.showError(R.string.screen_nextcloud_login_msg_server_unreachable)
+				}
 			})
+	}
+
+	@Callback
+	fun nextcloudLocalNetworkPermissionResult(result: PermissionsResult, server: String) {
+		if (result.granted()) {
+			startLogin(server)
+		}
 	}
 
 	private fun waitForApproval(loginFlow: LoginFlow) {
@@ -112,7 +133,7 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 		return if (server.toHttpUrlOrNull() != null) server else null
 	}
 
-	private fun initiate(server: String): LoginFlow {
+	private fun initiate(http: OkHttpClient, server: String): LoginFlow {
 		val request = Request.Builder() //
 			.url("$server/index.php/login/v2") //
 			.header("User-Agent", USER_AGENT) //
@@ -187,11 +208,20 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 				override fun onError(e: Throwable) {
 					view?.showProgress(ProgressModel.COMPLETED)
 					view?.showIdle()
-					if (!authenticationExceptionHandler.handleAuthenticationException(this@NextcloudLoginPresenter, e, ActivityResultCallbacks.handledAuthenticationNextcloud())) {
+					if (ExceptionUtil.contains(e, LocalNetworkPermissionMissingException::class.java)) {
+						requestLocalNetworkPermission(PermissionsResultCallbacks.nextcloudWebDavLocalNetworkPermissionResult(cloud))
+					} else if (!authenticationExceptionHandler.handleAuthenticationException(this@NextcloudLoginPresenter, e, ActivityResultCallbacks.handledAuthenticationNextcloud())) {
 						super.onError(e)
 					}
 				}
 			})
+	}
+
+	@Callback
+	fun nextcloudWebDavLocalNetworkPermissionResult(result: PermissionsResult, cloud: WebDavCloud) {
+		if (result.granted()) {
+			authenticate(cloud)
+		}
 	}
 
 	@Callback
