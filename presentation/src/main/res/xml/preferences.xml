@@ -124,6 +124,10 @@
 
 	<PreferenceCategory android:title="@string/screen_settings_lru_cache">
 
+		<androidx.preference.PreferenceScreen
+			android:key="offlineFiles"
+			android:title="@string/screen_settings_offline_files" />
+
 		<ListPreference
 			android:defaultValue="wifi"
 			android:dialogTitle="@string/screen_settings_thumbnails"

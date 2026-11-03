@@ -36,8 +36,10 @@ class OfflineCopiesTest {
 		copies = OfflineCopies(directory)
 	}
 
+	private val vault1 get() = copies.vault(1)
+
 	private fun keep(ciphertext: CloudFile, content: String = "x".repeat(ciphertext.size!!.toInt()), vaultId: Long = 1): File {
-		return copies.store(vaultId, ciphertext) { part -> part.writeText(content) }
+		return copies.vault(vaultId).store(ciphertext) { part -> part.writeText(content) }
 	}
 
 	private fun vaultFolder(vaultId: Long = 1) = File(directory, vaultId.toString())
@@ -48,8 +50,8 @@ class OfflineCopiesTest {
 	fun aKeptFileIsFoundAndReadBack() {
 		val copy = keep(file, "hello world")
 
-		assertTrue(copies.isKept(file))
-		assertEquals(copy, copies.find(file))
+		assertTrue(vault1.isKept(file))
+		assertEquals(copy, vault1.find(file))
 		assertEquals("hello world", copy.readText())
 		assertEquals(vaultFolder(), copy.parentFile)
 		assertEquals(listOf(copy.name, copy.name + ".meta"), copiesOnDisk())
@@ -57,20 +59,20 @@ class OfflineCopiesTest {
 
 	@Test
 	fun aFileThatWasNeverKeptIsNotFound() {
-		assertFalse(copies.isKept(file))
-		assertNull(copies.find(file))
+		assertFalse(vault1.isKept(file))
+		assertNull(vault1.find(file))
 	}
 
 	@Test
 	fun aChangedSizeOrDateMakesTheCopyStaleAndDeletesIt() {
 		keep(file)
 
-		assertFalse(copies.isKept(file(d, "a.c9r", 12, 1000)))
-		assertFalse(copies.isKept(file))
+		assertFalse(vault1.isKept(file(d, "a.c9r", 12, 1000)))
+		assertFalse(vault1.isKept(file))
 		awaitEmpty(vaultFolder())
 
 		keep(file)
-		assertNull(copies.find(file(d, "a.c9r", 11, 2000)))
+		assertNull(vault1.find(file(d, "a.c9r", 11, 2000)))
 		assertEquals(emptyList<String>(), copiesOnDisk())
 	}
 
@@ -79,9 +81,9 @@ class OfflineCopiesTest {
 		val newer = file(d, "a.c9r", 12, 2000)
 		keep(newer)
 
-		assertFalse(copies.isKept(file))
-		assertNull(copies.find(file))
-		assertTrue(copies.isKept(newer))
+		assertFalse(vault1.isKept(file))
+		assertNull(vault1.find(file))
+		assertTrue(vault1.isKept(newer))
 		assertEquals(2, copiesOnDisk().size)
 	}
 
@@ -89,19 +91,19 @@ class OfflineCopiesTest {
 	fun aLookupWithoutSizeOrDateMatchesTheCopy() {
 		keep(file)
 
-		assertTrue(copies.isKept(file(d, "a.c9r", null, null)))
-		assertTrue(copies.isKept(file(d, "a.c9r", 11, null)))
-		assertTrue(copies.isKept(file(d, "a.c9r", null, 1000)))
-		assertNotNull(copies.find(file(d, "a.c9r", null, null)))
-		assertFalse(copies.isKept(file(d, "a.c9r", 12, null)))
+		assertTrue(vault1.isKept(file(d, "a.c9r", null, null)))
+		assertTrue(vault1.isKept(file(d, "a.c9r", 11, null)))
+		assertTrue(vault1.isKept(file(d, "a.c9r", null, 1000)))
+		assertNotNull(vault1.find(file(d, "a.c9r", null, null)))
+		assertFalse(vault1.isKept(file(d, "a.c9r", 12, null)))
 	}
 
 	@Test
 	fun aCopyThatVanishedFromDiskIsNotFound() {
 		keep(file).delete()
 
-		assertNull(copies.find(file))
-		assertFalse(copies.isKept(file))
+		assertNull(vault1.find(file))
+		assertFalse(vault1.isKept(file))
 		assertEquals(emptyList<String>(), copiesOnDisk())
 	}
 
@@ -109,7 +111,7 @@ class OfflineCopiesTest {
 	fun aCopyWithAnotherLengthThanTheFileIsDropped() {
 		keep(file, "too short")
 
-		assertNull(copies.find(file))
+		assertNull(vault1.find(file))
 		assertEquals(emptyList<String>(), copiesOnDisk())
 	}
 
@@ -121,10 +123,11 @@ class OfflineCopiesTest {
 
 		val reloaded = OfflineCopies(directory)
 
-		assertTrue(reloaded.isKept(file))
-		assertTrue(reloaded.isKept(other))
-		assertEquals(copies.find(file), reloaded.find(file))
-		assertFalse(reloaded.isKept(file(d, "a.c9r", 11, 1001)))
+		assertTrue(reloaded.vault(1).isKept(file))
+		assertTrue(reloaded.vault(2).isKept(other))
+		assertFalse(reloaded.vault(2).isKept(file))
+		assertEquals(vault1.find(file), reloaded.vault(1).find(file))
+		assertFalse(reloaded.vault(1).isKept(file(d, "a.c9r", 11, 1001)))
 	}
 
 	@Test
@@ -137,7 +140,7 @@ class OfflineCopiesTest {
 		File(vaultFolder(), "broken").writeText("copy")
 		File(vaultFolder(), "broken.meta").writeText("")
 
-		OfflineCopies(directory).also { it.isKept(file) }
+		OfflineCopies(directory).also { it.vault(1).isKept(file) }
 
 		assertEquals(listOf(kept.name, kept.name + ".meta"), copiesOnDisk())
 	}
@@ -147,13 +150,13 @@ class OfflineCopiesTest {
 		val old = keep(file, "old version")
 
 		assertThrows(IOException::class.java) {
-			copies.store(1, file) { part ->
+			vault1.store(file) { part ->
 				part.writeText("half")
 				throw IOException("connection lost")
 			}
 		}
 
-		assertEquals(old, copies.find(file))
+		assertEquals(old, vault1.find(file))
 		assertEquals("old version", old.readText())
 		assertEquals(listOf(old.name, old.name + ".meta"), copiesOnDisk())
 	}
@@ -162,9 +165,9 @@ class OfflineCopiesTest {
 	fun removeDeletesTheCopyAndItsMetadata() {
 		keep(file)
 
-		copies.remove(file)
+		vault1.remove(file)
 
-		assertFalse(copies.isKept(file))
+		assertFalse(vault1.isKept(file))
 		assertEquals(emptyList<String>(), copiesOnDisk())
 	}
 
@@ -177,11 +180,11 @@ class OfflineCopiesTest {
 		keep(inD)
 		keep(inE)
 
-		copies.removeBelow(d)
+		vault1.removeBelow(d)
 
-		assertFalse(copies.isKept(file))
-		assertFalse(copies.isKept(inD))
-		assertTrue(copies.isKept(inE))
+		assertFalse(vault1.isKept(file))
+		assertFalse(vault1.isKept(inD))
+		assertTrue(vault1.isKept(inE))
 		assertEquals(2, copiesOnDisk().size)
 	}
 
@@ -190,13 +193,13 @@ class OfflineCopiesTest {
 		val moved = file(folder("/e"), "z.c9r", 11, 1000)
 		keep(file, "hello world")
 
-		copies.move(file, moved)
+		vault1.move(file, moved)
 
-		assertFalse(copies.isKept(file))
-		assertTrue(copies.isKept(moved))
-		assertEquals("hello world", copies.find(moved)!!.readText())
+		assertFalse(vault1.isKept(file))
+		assertTrue(vault1.isKept(moved))
+		assertEquals("hello world", vault1.find(moved)!!.readText())
 		assertEquals(2, copiesOnDisk().size)
-		assertTrue(OfflineCopies(directory).isKept(moved))
+		assertTrue(OfflineCopies(directory).vault(1).isKept(moved))
 	}
 
 	@Test
@@ -204,16 +207,16 @@ class OfflineCopiesTest {
 		val listed = file(folder("/e"), "z.c9r", 11, 1000)
 		keep(file, "hello world")
 
-		copies.move(file, file(folder("/e"), "z.c9r", null, null))
+		vault1.move(file, file(folder("/e"), "z.c9r", null, null))
 
-		assertTrue(copies.isKept(listed))
-		assertEquals("hello world", copies.find(listed)!!.readText())
-		assertTrue(OfflineCopies(directory).isKept(listed))
+		assertTrue(vault1.isKept(listed))
+		assertEquals("hello world", vault1.find(listed)!!.readText())
+		assertTrue(OfflineCopies(directory).vault(1).isKept(listed))
 	}
 
 	@Test
 	fun movingAFileThatIsNotKeptDoesNothing() {
-		copies.move(file, file(d, "z.c9r", 11, 1000))
+		vault1.move(file, file(d, "z.c9r", 11, 1000))
 
 		assertEquals(emptyList<String>(), copiesOnDisk())
 	}
@@ -224,11 +227,11 @@ class OfflineCopiesTest {
 		val ciphertext = File(tmpDir, "upload").also { it.writeText("new one") }
 		keep(file, "old version")
 
-		copies.replace(file, written, ciphertext)
+		vault1.replace(file, written, ciphertext)
 
-		assertFalse(copies.isKept(file))
-		assertTrue(copies.isKept(written))
-		assertEquals("new one", copies.find(written)!!.readText())
+		assertFalse(vault1.isKept(file))
+		assertTrue(vault1.isKept(written))
+		assertEquals("new one", vault1.find(written)!!.readText())
 		assertEquals(2, copiesOnDisk().size)
 	}
 
@@ -236,7 +239,7 @@ class OfflineCopiesTest {
 	fun replaceIgnoresAFileThatIsNotKept() {
 		val ciphertext = File(tmpDir, "upload").also { it.writeText("new one") }
 
-		copies.replace(file, file(d, "a.c9r", 7, 3000), ciphertext)
+		vault1.replace(file, file(d, "a.c9r", 7, 3000), ciphertext)
 
 		assertEquals(emptyList<String>(), copiesOnDisk())
 	}
@@ -245,9 +248,9 @@ class OfflineCopiesTest {
 	fun replaceThatFailsDropsTheStaleCopy() {
 		keep(file)
 
-		assertThrows(IOException::class.java) { copies.replace(file, file(d, "a.c9r", 7, 3000), File(tmpDir, "missing")) }
+		assertThrows(IOException::class.java) { vault1.replace(file, file(d, "a.c9r", 7, 3000), File(tmpDir, "missing")) }
 
-		assertFalse(copies.isKept(file))
+		assertFalse(vault1.isKept(file))
 		assertEquals(emptyList<String>(), copiesOnDisk())
 	}
 
@@ -259,21 +262,90 @@ class OfflineCopiesTest {
 
 		copies.deleteVault(1)
 
-		assertFalse(copies.isKept(file))
-		assertTrue(copies.isKept(other))
+		assertFalse(vault1.isKept(file))
+		assertTrue(copies.vault(2).isKept(other))
 		assertFalse(vaultFolder(1).exists())
 		assertEquals(2, copiesOnDisk(2).size)
+	}
+
+	@Test
+	fun usageCountsBytesAndFilesPerVault() {
+		keep(file, vaultId = 1)
+		keep(file(d, "b.c9r", 5, 1000), vaultId = 1)
+		keep(file(d, "c.c9r", 7, 1000), vaultId = 2)
+
+		val usage = copies.usage().sortedBy { it.vaultId }
+
+		assertEquals(listOf(1L, 2L), usage.map { it.vaultId })
+		assertEquals(listOf(16L, 7L), usage.map { it.bytes })
+		assertEquals(listOf(2, 1), usage.map { it.files })
+		assertEquals(emptyList<Long>(), OfflineCopies(File(tmpDir, "empty")).usage().map { it.vaultId })
+	}
+
+	@Test
+	fun aFileOfUnknownSizeRecordsTheCopysLength() {
+		val unsized = file(d, "u.c9r", null, 1000)
+
+		keep(unsized, "hello world")
+
+		assertEquals(11L, copies.usage().single().bytes)
+		assertTrue(vault1.isKept(unsized))
+		assertTrue(vault1.isKept(file(d, "u.c9r", 11, 1000)))
+		assertNotNull(vault1.find(unsized))
+	}
+
+	@Test
+	fun deleteAllDropsEveryVault() {
+		keep(file, vaultId = 1)
+		keep(file(d, "c.c9r", 7, 1000), vaultId = 2)
+
+		copies.deleteAll()
+
+		assertFalse(vault1.isKept(file))
+		assertEquals(emptyList<String>(), directory.listFiles()?.map { it.name } ?: emptyList<String>())
+		assertEquals(0, copies.usage().size)
+	}
+
+	@Test
+	fun theSamePathInTwoVaultsIsTwoCopies() {
+		keep(file, "first vault", vaultId = 1)
+		keep(file, "other vault", vaultId = 2)
+
+		assertEquals("first vault", vault1.find(file)!!.readText())
+		assertEquals("other vault", copies.vault(2).find(file)!!.readText())
+		assertEquals(listOf(1L, 2L), copies.usage().map { it.vaultId }.sorted())
+
+		copies.deleteVault(2)
+
+		assertTrue(vault1.isKept(file))
+		assertFalse(copies.vault(2).isKept(file))
+		assertTrue(OfflineCopies(directory).vault(1).isKept(file))
+		assertFalse(OfflineCopies(directory).vault(2).isKept(file))
+	}
+
+	@Test
+	fun aFolderThatIsNotAVaultIdIsIgnoredOnLoad() {
+		keep(file)
+		File(directory, "stray").mkdirs()
+		File(directory, "stray/" + vault1.find(file)!!.name).writeText("copy")
+
+		val reloaded = OfflineCopies(directory)
+
+		assertTrue(reloaded.vault(1).isKept(file))
+		assertEquals(listOf(1L), reloaded.usage().map { it.vaultId })
 	}
 
 	@Test
 	fun withoutStorageNothingIsKept() {
 		val disabled = OfflineCopies(null)
 
-		assertFalse(disabled.isKept(file))
-		assertNull(disabled.find(file))
-		assertThrows(IOException::class.java) { disabled.store(1, file) { } }
-		disabled.remove(file)
+		assertFalse(disabled.vault(1).isKept(file))
+		assertNull(disabled.vault(1).find(file))
+		assertThrows(IOException::class.java) { disabled.vault(1).store(file) { } }
+		disabled.vault(1).remove(file)
 		disabled.deleteVault(1)
+		disabled.deleteAll()
+		assertEquals(0, disabled.usage().size)
 	}
 
 	@Test
@@ -291,7 +363,7 @@ class OfflineCopiesTest {
 		results.forEach { it.get(10, TimeUnit.SECONDS) }
 		executor.shutdown()
 
-		val copy = copies.find(file)
+		val copy = vault1.find(file)
 		assertNotNull(copy)
 		assertEquals("hello world", copy!!.readText())
 		assertEquals(listOf(copy.name, copy.name + ".meta"), copiesOnDisk())
@@ -301,7 +373,7 @@ class OfflineCopiesTest {
 	fun theNameOfACopyDependsOnThePathOnly() {
 		val renamed = file(d, "a.c9r", 12, 2000)
 		val first = keep(file)
-		copies.remove(file)
+		vault1.remove(file)
 		val second = keep(renamed)
 
 		assertEquals(first.name, second.name)

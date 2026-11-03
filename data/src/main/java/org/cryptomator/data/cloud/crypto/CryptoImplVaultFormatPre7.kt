@@ -228,7 +228,7 @@ internal class CryptoImplVaultFormatPre7(
 	@Throws(BackendException::class)
 	override fun move(source: CryptoFile, target: CryptoFile): CryptoFile {
 		assertCryptoFileAlreadyExists(target)
-		return file(target, cloudContentRepository.move(source.cloudFile, target.cloudFile), source.size).also { offlineCopies.move(source.cloudFile, it.cloudFile) }
+		return file(target, cloudContentRepository.move(source.cloudFile, target.cloudFile), source.size).also { offlineCopies?.move(source.cloudFile, it.cloudFile) }
 	}
 
 	@Throws(BackendException::class)
@@ -238,19 +238,19 @@ internal class CryptoImplVaultFormatPre7(
 			val cryptoSubfolders = deepCollectSubfolders(node)
 			for (cryptoSubfolder in cryptoSubfolders) {
 				getCachingAwareDirIdInfo(cryptoSubfolder)?.let {
-					offlineCopies.removeBelow(it.cloudFolder)
+					offlineCopies?.removeBelow(it.cloudFolder)
 					cloudContentRepository.delete(it.cloudFolder)
 				} ?: Timber.tag("CryptoFs").w("Dir file doesn't exists of a sub folder while deleting the parent, continue anyway")
 			}
 			getCachingAwareDirIdInfo(node)?.let {
-				offlineCopies.removeBelow(it.cloudFolder)
+				offlineCopies?.removeBelow(it.cloudFolder)
 				cloudContentRepository.delete(it.cloudFolder)
 			} ?: Timber.tag("CryptoFs").w("Dir file doesn't exists while deleting the folder, continue anyway")
 			cloudContentRepository.delete(node.dirFile)
 			evictFromCache(node)
 		} else if (node is CryptoFile) {
 			cloudContentRepository.delete(node.cloudFile)
-			offlineCopies.remove(node.cloudFile)
+			offlineCopies?.remove(node.cloudFile)
 		}
 	}
 

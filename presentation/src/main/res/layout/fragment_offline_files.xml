@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fillViewport="true">
+
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:paddingBottom="24dp">
+
+		<TextView
+			android:id="@+id/total"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="16dp"
+			android:paddingTop="8dp"
+			android:paddingEnd="16dp"
+			android:textColor="?attr/colorOnSurface"
+			android:textSize="32sp" />
+
+		<TextView
+			android:id="@+id/total_subtitle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="16dp"
+			android:paddingEnd="16dp"
+			android:textAppearance="?attr/textAppearanceBodyMedium"
+			android:textColor="?attr/colorOnSurfaceVariant" />
+
+		<LinearLayout
+			android:id="@+id/usage_bar"
+			android:layout_width="match_parent"
+			android:layout_height="8dp"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="14dp"
+			android:layout_marginEnd="16dp"
+			android:orientation="horizontal" />
+
+		<TextView
+			android:id="@+id/vaults_header"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="16dp"
+			android:paddingTop="16dp"
+			android:paddingEnd="16dp"
+			android:paddingBottom="8dp"
+			android:text="@string/screen_offline_files_section_vaults"
+			android:textAppearance="?attr/textAppearanceLabelLarge"
+			android:textColor="?attr/colorPrimary" />
+
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/vaults"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:nestedScrollingEnabled="false" />
+
+		<com.google.android.material.button.MaterialButton
+			android:id="@+id/remove_all"
+			style="?attr/materialButtonOutlinedStyle"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="16dp"
+			android:layout_marginTop="16dp"
+			android:layout_marginEnd="16dp"
+			android:text="@string/screen_offline_files_remove_all"
+			android:textColor="@color/text_remove_offline_files" />
+
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:paddingStart="16dp"
+			android:paddingTop="8dp"
+			android:paddingEnd="16dp"
+			android:text="@string/screen_offline_files_note"
+			android:textColor="?attr/colorOnSurfaceVariant"
+			android:textSize="13sp" />
+
+	</LinearLayout>
+</androidx.core.widget.NestedScrollView>

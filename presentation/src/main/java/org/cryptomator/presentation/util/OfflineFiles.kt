@@ -23,24 +23,37 @@ class OfflineFiles @Inject constructor(context: Context, private val cloudConten
 	/** Memory only, no hashing or disk access: called for every row of the file list. */
 	fun isOffline(file: CloudFileModel): Boolean {
 		val cryptoFile = file.toCloudNode() as? CryptoFile ?: return false
-		return copies.isKept(cryptoFile.cloudFile)
+		return vaultCopies(cryptoFile)?.isKept(cryptoFile.cloudFile) ?: false
 	}
 
 	/** Call off the main thread. */
 	@Throws(BackendException::class, IOException::class)
 	fun keep(file: CloudFileModel, progressAware: ProgressAware<DownloadState>) {
 		val cryptoFile = file.toCloudNode() as? CryptoFile ?: throw IllegalArgumentException("${file.name} is not in a vault")
-		val vaultId = (cryptoFile.cloud as CryptoCloud).vault.id
-		copies.store(vaultId, cryptoFile.cloudFile) { part ->
+		val vaultCopies = vaultCopies(cryptoFile) ?: throw IllegalArgumentException("${file.name} is in a vault without an id")
+		vaultCopies.store(cryptoFile.cloudFile) { part ->
 			FileOutputStream(part).use { out -> cloudContentRepository.read(cryptoFile.cloudFile, null, out, progressAware) }
 		}
 	}
 
 	fun remove(file: CloudFileModel) {
-		(file.toCloudNode() as? CryptoFile)?.let { copies.remove(it.cloudFile) }
+		(file.toCloudNode() as? CryptoFile)?.let { vaultCopies(it)?.remove(it.cloudFile) }
+	}
+
+	private fun vaultCopies(cryptoFile: CryptoFile): OfflineCopies.VaultCopies? {
+		val vaultId = (cryptoFile.cloud as? CryptoCloud)?.vault?.id ?: return null
+		return copies.vault(vaultId)
 	}
 
 	fun deleteVault(vaultId: Long) {
 		copies.deleteVault(vaultId)
 	}
+
+	fun deleteAll() {
+		copies.deleteAll()
+	}
+
+	fun usage(): List<OfflineCopies.VaultUsage> = copies.usage()
+
+	fun totalBytes(): Long = usage().sumOf { it.bytes }
 }

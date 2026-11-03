@@ -54,7 +54,11 @@ abstract class CryptoImplDecorator(
 	@Volatile
 	private var root: RootCryptoFolder? = null
 
-	val offlineCopies: OfflineCopies by lazy { OfflineCopies.of(context) }
+	/** Set by the repository that owns this implementation; null while the vault has no id yet. */
+	var vaultId: Long? = null
+
+	val offlineCopies: OfflineCopies.VaultCopies?
+		get() = vaultId?.let { OfflineCopies.of(context).vault(it) }
 
 	@Throws(BackendException::class)
 	abstract fun folder(cryptoParent: CryptoFolder, cleartextName: String): CryptoFolder
@@ -277,7 +281,7 @@ abstract class CryptoImplDecorator(
 	/** After a write: a file that was kept offline stays kept, with the new ciphertext. */
 	fun keepOfflineCopyOf(previous: CloudFile, written: CloudFile, encryptedFile: File) {
 		try {
-			offlineCopies.replace(previous, written, encryptedFile)
+			offlineCopies?.replace(previous, written, encryptedFile)
 		} catch (e: IOException) {
 			Timber.tag("CryptoFs").w(e, "Offline copy of %s not replaced after writing", written.path)
 		}
@@ -323,7 +327,7 @@ abstract class CryptoImplDecorator(
 	fun read(cryptoFile: CryptoFile, data: OutputStream, progressAware: ProgressAware<DownloadState>) {
 		val ciphertextFile = cryptoFile.cloudFile
 		try {
-			val offlineCopy = offlineCopies.find(ciphertextFile)
+			val offlineCopy = offlineCopies?.find(ciphertextFile)
 			val encryptedFile = offlineCopy ?: readToTmpFile(cryptoFile, ciphertextFile, progressAware)
 			progressAware.onProgress(Progress.started(DownloadState.decryption(cryptoFile)))
 			try {
@@ -361,7 +365,7 @@ abstract class CryptoImplDecorator(
 	/** Reads the offline copy when there is one, otherwise the cloud. */
 	@Throws(BackendException::class)
 	fun openRandomAccess(cryptoFile: CryptoFile): RandomAccessContent {
-		val ciphertext = offlineCopies.find(cryptoFile.cloudFile)?.let { FileRandomAccessContent(it) } ?: cloudContentRepository.openRandomAccess(cryptoFile.cloudFile)
+		val ciphertext = offlineCopies?.find(cryptoFile.cloudFile)?.let { FileRandomAccessContent(it) } ?: cloudContentRepository.openRandomAccess(cryptoFile.cloudFile)
 		return CryptoRandomAccessContent(ciphertext, cryptor())
 	}
 

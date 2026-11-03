@@ -18,11 +18,14 @@ import java.util.concurrent.Executors
  * A copy is named after the hash of its ciphertext path and sits next to a `.meta` file with the
  * path, size and date it was made from, so the index can be rebuilt from disk and a copy is stale
  * as soon as the cloud file's size or date differs. A copy without a `.meta` is from before the
- * metadata existed and is dropped on load.
+ * metadata existed and is dropped on load. Copies are indexed per vault: a vault added again under
+ * a new id can leave the same paths in two folders, and each belongs to its own vault.
  *
  * The index is loaded in the background; the lookups wait for it once and then stay in memory.
  */
 class OfflineCopies internal constructor(private val directory: File?) {
+
+	private data class Key(val vaultId: Long, val path: String)
 
 	private class Copy(val file: File, val meta: File, val size: Long?, val modified: Long?) {
 
@@ -45,7 +48,9 @@ class OfflineCopies internal constructor(private val directory: File?) {
 		}
 	}
 
-	private val index = ConcurrentHashMap<String, Copy>()
+	class VaultUsage(val vaultId: Long, val bytes: Long, val files: Int)
+
+	private val index = ConcurrentHashMap<Key, Copy>()
 	private val loaded = CountDownLatch(1)
 	private val commit = Any()
 	private val background: Executor = Executors.newSingleThreadExecutor { runnable -> Thread(runnable, "offline-copies").also { it.isDaemon = true } }
@@ -67,6 +72,7 @@ class OfflineCopies internal constructor(private val directory: File?) {
 	private fun load(directory: File) {
 		directory.mkdirs()
 		directory.listFiles()?.forEach { vault ->
+			val vaultId = vault.name.toLongOrNull() ?: return@forEach
 			vault.listFiles()?.forEach { file ->
 				when {
 					file.name.endsWith(PART) -> file.delete()
@@ -78,7 +84,7 @@ class OfflineCopies internal constructor(private val directory: File?) {
 							file.delete()
 							meta.delete()
 						} else {
-							index[copy.first] = copy.second
+							index[Key(vaultId, copy.first)] = copy.second
 						}
 					}
 				}
@@ -101,133 +107,152 @@ class OfflineCopies internal constructor(private val directory: File?) {
 		loaded.await()
 	}
 
-	/** Memory only, safe on the main thread. A copy of an older version of the file is dropped. */
-	fun isKept(ciphertext: CloudFile): Boolean = current(ciphertext) { copy -> background.execute { copy.delete() } } != null
+	/** The copies of one vault. */
+	fun vault(vaultId: Long): VaultCopies = VaultCopies(vaultId)
 
-	/** The copy to read, checked on disk; null when there is none or the cloud file has changed. */
-	fun find(ciphertext: CloudFile): File? {
-		val copy = current(ciphertext) { it.delete() } ?: return null
-		if (!copy.file.exists() || (copy.size != null && copy.file.length() != copy.size)) {
-			index.remove(ciphertext.path, copy)
-			copy.delete()
-			return null
+	inner class VaultCopies internal constructor(private val vaultId: Long) {
+
+		/** Memory only, safe on the main thread. A copy of an older version of the file is dropped. */
+		fun isKept(ciphertext: CloudFile): Boolean = current(ciphertext) { copy -> background.execute { copy.delete() } } != null
+
+		/** The copy to read, checked on disk; null when there is none or the cloud file has changed. */
+		fun find(ciphertext: CloudFile): File? {
+			val copy = current(ciphertext) { it.delete() } ?: return null
+			if (!copy.file.exists() || (copy.size != null && copy.file.length() != copy.size)) {
+				index.remove(key(ciphertext), copy)
+				copy.delete()
+				return null
+			}
+			return copy.file
 		}
-		return copy.file
-	}
 
-	private fun current(ciphertext: CloudFile, evict: (Copy) -> Unit): Copy? {
-		ready()
-		val copy = index[ciphertext.path] ?: return null
-		if (copy.matches(ciphertext)) {
-			return copy
-		}
-		if (!copy.isNewerThan(ciphertext) && index.remove(ciphertext.path, copy)) {
-			evict(copy)
-		}
-		return null
-	}
-
-	/** [write] fills a temporary file that becomes the copy only when complete. */
-	@Throws(IOException::class)
-	fun store(vaultId: Long, ciphertext: CloudFile, write: (File) -> Unit): File {
-		directory ?: throw IOException("There is no storage for offline copies")
-		ready()
-		return store(File(directory, vaultId.toString()), ciphertext, write)
-	}
-
-	private fun store(folder: File, ciphertext: CloudFile, write: (File) -> Unit): File {
-		folder.mkdirs()
-		val name = name(ciphertext.path)
-		val part = File.createTempFile(name, PART, folder)
-		try {
-			write(part)
-			synchronized(commit) {
-				val copy = File(folder, name)
-				val meta = File(folder, name + META)
-				writeMeta(meta, ciphertext)
-				if (!part.renameTo(copy)) {
-					throw IOException("Could not keep ${ciphertext.path}")
-				}
-				index[ciphertext.path] = Copy(copy, meta, ciphertext.size, ciphertext.modified?.time)
+		private fun current(ciphertext: CloudFile, evict: (Copy) -> Unit): Copy? {
+			ready()
+			val key = key(ciphertext)
+			val copy = index[key] ?: return null
+			if (copy.matches(ciphertext)) {
 				return copy
 			}
-		} finally {
-			part.delete()
+			if (!copy.isNewerThan(ciphertext) && index.remove(key, copy)) {
+				evict(copy)
+			}
+			return null
 		}
-	}
 
-	private fun writeMeta(meta: File, ciphertext: CloudFile) {
-		writeMeta(meta, ciphertext.path, ciphertext.size, ciphertext.modified?.time)
+		/** [write] fills a temporary file that becomes the copy only when complete. */
+		@Throws(IOException::class)
+		fun store(ciphertext: CloudFile, write: (File) -> Unit): File {
+			val folder = folder() ?: throw IOException("There is no storage for offline copies")
+			ready()
+			folder.mkdirs()
+			val name = name(ciphertext.path)
+			val part = File.createTempFile(name, PART, folder)
+			try {
+				write(part)
+				synchronized(commit) {
+					val copy = File(folder, name)
+					val meta = File(folder, name + META)
+					val size = ciphertext.size ?: part.length()
+					val modified = ciphertext.modified?.time
+					writeMeta(meta, ciphertext.path, size, modified)
+					if (!part.renameTo(copy)) {
+						throw IOException("Could not keep ${ciphertext.path}")
+					}
+					index[key(ciphertext)] = Copy(copy, meta, size, modified)
+					return copy
+				}
+			} finally {
+				part.delete()
+			}
+		}
+
+		fun remove(ciphertext: CloudFile) {
+			ready()
+			index.remove(key(ciphertext))?.delete()
+		}
+
+		/** Drops the copies of every file below the folder, for a folder that is deleted. */
+		fun removeBelow(folder: CloudFolder) {
+			ready()
+			val prefix = folder.path + "/"
+			index.filterKeys { it.vaultId == vaultId && it.path.startsWith(prefix) }.forEach { (key, copy) ->
+				if (index.remove(key, copy)) {
+					copy.delete()
+				}
+			}
+		}
+
+		/**
+		 * The file moved in the cloud with its content unchanged: the copy follows it. A move may
+		 * report the target without size or date (long names in vault format 7); the copy keeps its own.
+		 */
+		fun move(from: CloudFile, to: CloudFile) {
+			ready()
+			synchronized(commit) {
+				val copy = index.remove(key(from)) ?: return
+				val folder = copy.file.parentFile
+				val name = name(to.path)
+				val moved = File(folder, name)
+				val meta = File(folder, name + META)
+				val size = to.size ?: copy.size
+				val modified = to.modified?.time ?: copy.modified
+				if (copy.file.renameTo(moved)) {
+					copy.meta.delete()
+					try {
+						writeMeta(meta, to.path, size, modified)
+						index[key(to)] = Copy(moved, meta, size, modified)
+					} catch (e: IOException) {
+						moved.delete()
+						meta.delete()
+					}
+				} else {
+					copy.delete()
+				}
+			}
+		}
+
+		/**
+		 * The file was written anew: when it was kept, the copy is replaced with the new [ciphertext],
+		 * otherwise nothing happens. A copy that cannot be replaced is dropped rather than left stale.
+		 */
+		fun replace(previous: CloudFile, current: CloudFile, ciphertext: File) {
+			ready()
+			index[key(previous)] ?: return
+			try {
+				store(current) { part -> ciphertext.copyTo(part, overwrite = true) }
+			} catch (e: IOException) {
+				remove(previous)
+				throw e
+			}
+		}
+
+		private fun key(ciphertext: CloudFile) = Key(vaultId, ciphertext.path)
+
+		private fun folder(): File? = directory?.let { File(it, vaultId.toString()) }
 	}
 
 	private fun writeMeta(meta: File, path: String, size: Long?, modified: Long?) {
 		meta.writeText("$path\n${size ?: ""}\n${modified ?: ""}\n")
 	}
 
-	fun remove(ciphertext: CloudFile) {
-		ready()
-		index.remove(ciphertext.path)?.delete()
-	}
-
-	/** Drops the copies of every file below the folder, for a folder that is deleted. */
-	fun removeBelow(folder: CloudFolder) {
-		ready()
-		val prefix = folder.path + "/"
-		index.filterKeys { it.startsWith(prefix) }.forEach { (path, copy) ->
-			if (index.remove(path, copy)) {
-				copy.delete()
-			}
-		}
-	}
-
-	/**
-	 * The file moved in the cloud with its content unchanged: the copy follows it. A move may
-	 * report the target without size or date (long names in vault format 7); the copy keeps its own.
-	 */
-	fun move(from: CloudFile, to: CloudFile) {
-		ready()
-		synchronized(commit) {
-			val copy = index.remove(from.path) ?: return
-			val folder = copy.file.parentFile
-			val name = name(to.path)
-			val moved = File(folder, name)
-			val meta = File(folder, name + META)
-			val size = to.size ?: copy.size
-			val modified = to.modified?.time ?: copy.modified
-			if (copy.file.renameTo(moved)) {
-				copy.meta.delete()
-				try {
-					writeMeta(meta, to.path, size, modified)
-					index[to.path] = Copy(moved, meta, size, modified)
-				} catch (e: IOException) {
-					moved.delete()
-					meta.delete()
-				}
-			} else {
-				copy.delete()
-			}
-		}
-	}
-
-	/**
-	 * The file was written anew: when it was kept, the copy is replaced with the new [ciphertext],
-	 * otherwise nothing happens. A copy that cannot be replaced is dropped rather than left stale.
-	 */
-	fun replace(previous: CloudFile, current: CloudFile, ciphertext: File) {
-		ready()
-		val copy = index[previous.path] ?: return
-		try {
-			store(copy.file.parentFile, current) { part -> ciphertext.copyTo(part, overwrite = true) }
-		} catch (e: IOException) {
-			remove(previous)
-			throw e
-		}
-	}
-
 	fun deleteVault(vaultId: Long) {
 		ready()
-		index.values.removeIf { it.file.parentFile?.name == vaultId.toString() }
+		index.keys.removeIf { it.vaultId == vaultId }
 		directory?.let { File(it, vaultId.toString()).deleteRecursively() }
+	}
+
+	fun deleteAll() {
+		ready()
+		index.clear()
+		directory?.listFiles()?.forEach { it.deleteRecursively() }
+	}
+
+	/** Bytes and files per vault, from the index alone: safe on the main thread. */
+	fun usage(): List<VaultUsage> {
+		ready()
+		return index.entries
+			.groupBy({ it.key.vaultId }, { it.value })
+			.map { (vaultId, copies) -> VaultUsage(vaultId, copies.sumOf { it.size ?: 0L }, copies.size) }
 	}
 
 	private fun name(path: String): String {

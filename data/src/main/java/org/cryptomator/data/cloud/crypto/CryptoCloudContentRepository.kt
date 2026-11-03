@@ -129,5 +129,6 @@ internal class CryptoCloudContentRepository(context: Context, cloudContentReposi
 			6, 5 -> CryptoImplVaultFormatPre7(context, cryptor, cloudContentRepository, vaultLocation, DirIdCacheFormatPre7())
 			else -> throw IllegalStateException(String.format("No CryptoImpl for vault format %d.", cloud.vault.format))
 		}
+		cryptoImpl.vaultId = cloud.vault.id
 	}
 }

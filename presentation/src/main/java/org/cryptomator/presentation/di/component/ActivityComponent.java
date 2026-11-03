@@ -9,6 +9,7 @@ import org.cryptomator.presentation.ui.activity.AuthenticatePCloudActivity;
 import org.cryptomator.presentation.ui.activity.AutoUploadChooseVaultActivity;
 import org.cryptomator.presentation.ui.activity.AutoUploadRefreshTokenActivity;
 import org.cryptomator.presentation.ui.activity.BiometricAuthSettingsActivity;
+import org.cryptomator.presentation.ui.activity.OfflineFilesActivity;
 import org.cryptomator.presentation.ui.activity.BrowseFilesActivity;
 import org.cryptomator.presentation.ui.activity.ChooseCloudServiceActivity;
 import org.cryptomator.presentation.ui.activity.CloudConnectionListActivity;
@@ -32,6 +33,7 @@ import org.cryptomator.presentation.ui.activity.WebDavAddOrChangeActivity;
 import org.cryptomator.presentation.ui.activity.NextcloudLoginActivity;
 import org.cryptomator.presentation.ui.fragment.AutoUploadChooseVaultFragment;
 import org.cryptomator.presentation.ui.fragment.BiometricAuthSettingsFragment;
+import org.cryptomator.presentation.ui.fragment.OfflineFilesFragment;
 import org.cryptomator.presentation.ui.fragment.BrowseFilesFragment;
 import org.cryptomator.presentation.ui.fragment.ChooseCloudServiceFragment;
 import org.cryptomator.presentation.ui.fragment.CloudConnectionListFragment;
@@ -106,6 +108,10 @@ public interface ActivityComponent {
 	void inject(BiometricAuthSettingsActivity biometricAuthSettingsActivity);
 
 	void inject(BiometricAuthSettingsFragment biometricAuthSettingsFragment);
+
+	void inject(OfflineFilesActivity offlineFilesActivity);
+
+	void inject(OfflineFilesFragment offlineFilesFragment);
 
 	void inject(TextEditorActivity textEditorActivity);
 
