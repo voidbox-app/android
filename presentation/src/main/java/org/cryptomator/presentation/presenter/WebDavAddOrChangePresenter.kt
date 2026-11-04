@@ -102,7 +102,7 @@ class WebDavAddOrChangePresenter @Inject internal constructor( //
 					view?.showProgress(ProgressModel.COMPLETED)
 					if (ExceptionUtil.contains(e, LocalNetworkPermissionMissingException::class.java)) {
 						requestLocalNetworkPermission(PermissionsResultCallbacks.webDavLocalNetworkPermissionResult(cloud))
-					} else if (!authenticationExceptionHandler.handleAuthenticationException(this@WebDavAddOrChangePresenter, e, ActivityResultCallbacks.handledAuthenticationWebDavCloud())) {
+					} else if (!authenticationExceptionHandler.handleAuthenticationExceptionOfUnsavedConnection(this@WebDavAddOrChangePresenter, e, ActivityResultCallbacks.handledAuthenticationWebDavCloud())) {
 						super.onError(e)
 					}
 				}

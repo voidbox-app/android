@@ -210,7 +210,7 @@ class NextcloudLoginPresenter @Inject internal constructor( //
 					view?.showIdle()
 					if (ExceptionUtil.contains(e, LocalNetworkPermissionMissingException::class.java)) {
 						requestLocalNetworkPermission(PermissionsResultCallbacks.nextcloudWebDavLocalNetworkPermissionResult(cloud))
-					} else if (!authenticationExceptionHandler.handleAuthenticationException(this@NextcloudLoginPresenter, e, ActivityResultCallbacks.handledAuthenticationNextcloud())) {
+					} else if (!authenticationExceptionHandler.handleAuthenticationExceptionOfUnsavedConnection(this@NextcloudLoginPresenter, e, ActivityResultCallbacks.handledAuthenticationNextcloud())) {
 						super.onError(e)
 					}
 				}

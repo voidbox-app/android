@@ -17,4 +17,8 @@ public interface AuthenticateCloudIntent {
 	@Optional
 	android.content.Intent recoveryAction();
 
+	/** True: the caller stores an accepted certificate itself, once the new or edited connection works. */
+	@Optional
+	Boolean unsavedConnection();
+
 }
