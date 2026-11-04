@@ -28,6 +28,7 @@ Android backups of the app are disabled.
 ## Permissions
 
 - **Network access**, to reach your clouds.
+- **Local network**, on Android 17 and later, to reach a server in your local network.
 - **Photos and videos**, only for automatic photo upload, when you turn it on.
 - **Notifications and a foreground service**, to keep vaults unlocked and finish uploads in the
   background.

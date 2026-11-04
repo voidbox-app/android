@@ -1,9 +1,15 @@
 package org.cryptomator.presentation.presenter
 
 import android.Manifest
+import android.content.Context
 import android.content.pm.PackageManager
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import io.reactivex.android.plugins.RxAndroidPlugins
+import io.reactivex.plugins.RxJavaPlugins
+import io.reactivex.schedulers.Schedulers
+import org.cryptomator.data.util.LocalNetworkAccess
+import org.cryptomator.data.util.LocalNetworkAccessDeniedException
 import org.cryptomator.domain.WebDavCloud
 import org.cryptomator.domain.exception.authentication.LocalNetworkPermissionMissingException
 import org.cryptomator.domain.exception.authentication.WebDavCertificateUntrustedAuthenticationException
@@ -14,8 +20,10 @@ import org.cryptomator.presentation.exception.ExceptionHandlers
 import org.cryptomator.presentation.ui.activity.view.NextcloudLoginView
 import org.cryptomator.presentation.workflow.AuthenticationExceptionHandler
 import org.cryptomator.presentation.workflow.PermissionsResult
+import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.mockito.MockedStatic
 import org.mockito.Mockito
 import org.mockito.kotlin.any
 import org.mockito.kotlin.argumentCaptor
@@ -43,6 +51,27 @@ class NextcloudLoginPresenterTest {
 		whenever(connectToWebDavUseCase.withCloud(any())).thenReturn(connectToWebDavLauncher)
 		inTest = NextcloudLoginPresenter(mock<AddOrChangeCloudConnectionUseCase>(), connectToWebDavUseCase, authenticationExceptionHandler, exceptionHandlers)
 		inTest.view = view
+	}
+
+	@AfterEach
+	fun tearDown() {
+		RxJavaPlugins.reset()
+		RxAndroidPlugins.reset()
+	}
+
+	@Test
+	fun testMissingPermissionIsRequestedBeforeTheLoginStarts() = withLocalNetworkDenied { activityCompat ->
+		inTest.startLogin("https://192.168.178.20")
+
+		activityCompat.verify { ActivityCompat.requestPermissions(any(), eq(arrayOf<String?>(Manifest.permission.ACCESS_LOCAL_NETWORK)), any()) }
+		verify(view, never()).showError(any<Int>())
+	}
+
+	@Test
+	fun testGrantedPermissionRestartsTheLogin() = withLocalNetworkDenied { activityCompat ->
+		inTest.nextcloudLocalNetworkPermissionResult(PermissionsResult(mock(), true), "https://192.168.178.20")
+
+		activityCompat.verify { ActivityCompat.requestPermissions(any(), eq(arrayOf<String?>(Manifest.permission.ACCESS_LOCAL_NETWORK)), any()) }
 	}
 
 	@Test
@@ -87,6 +116,25 @@ class NextcloudLoginPresenterTest {
 		inTest.nextcloudLocalNetworkPermissionResult(PermissionsResult(mock(), false), "https://192.168.178.20")
 
 		verifyNoInteractions(view)
+	}
+
+	private fun withLocalNetworkDenied(test: (MockedStatic<ActivityCompat>) -> Unit) {
+		RxJavaPlugins.setIoSchedulerHandler { Schedulers.trampoline() }
+		RxAndroidPlugins.setInitMainThreadSchedulerHandler { Schedulers.trampoline() }
+		RxAndroidPlugins.setMainThreadSchedulerHandler { Schedulers.trampoline() }
+		val context = mock<Context>()
+		whenever(context.applicationContext).thenReturn(context)
+		whenever(view.context()).thenReturn(context)
+		Mockito.mockConstruction(LocalNetworkAccess::class.java) { interceptor, _ ->
+			whenever(interceptor.intercept(any())).thenThrow(LocalNetworkAccessDeniedException("192.168.178.20"))
+		}.use {
+			Mockito.mockStatic(ContextCompat::class.java).use { contextCompat ->
+				Mockito.mockStatic(ActivityCompat::class.java).use { activityCompat ->
+					contextCompat.`when`<Int> { ContextCompat.checkSelfPermission(any(), any()) }.thenReturn(PackageManager.PERMISSION_DENIED)
+					test(activityCompat)
+				}
+			}
+		}
 	}
 
 	// the granted result reconnects, so the handler of the second connect is the one under test

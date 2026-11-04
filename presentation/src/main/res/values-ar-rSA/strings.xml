@@ -85,13 +85,12 @@
 	<string name="screen_license_check_cancel_subscription_hint">أصبح لديك الآن ترخيص مدى الحياة. لتجنب الرسوم المستقبلية، ألغِ اشتراكك السنوي عبر خيار %1$s في الإعدادات.</string>
 	<string name="screen_welcome_title">أهلاً وسهلاً</string>
 	<string name="screen_welcome_notifications_title">ابقَ على اطلاع</string>
-	<string name="screen_welcome_notifications_message">اسمح بالإشعارات حتى يتمكن Cryptomator من إبلاغك بالنشاط في الخلفية أو التحميل التلقائي أو الأحداث المهمة الأخرى.</string>
+	<string name="screen_welcome_notifications_message">اسمح بالإشعارات حتى يتمكن Voidbox من إبلاغك بالنشاط في الخلفية أو التحميل التلقائي أو الأحداث المهمة الأخرى.</string>
 	<string name="screen_welcome_notifications_button">السماح بالإشعارات</string>
 	<string name="screen_welcome_notifications_granted">الإشعارات مفعّلة.</string>
 	<string name="screen_welcome_continue_button">استمرار</string>
 	<string name="screen_welcome_screen_lock_button">تعيين قفل الشاشة</string>
 	<string name="screen_welcome_screen_lock_already_set">قفل الشاشة مُعدّ بالفعل.</string>
-	<string name="screen_welcome_intro_body">شكرًا لاختيارك Cryptomator لحماية ملفاتك.\n\nمع Cryptomator، مفتاح بياناتك بين يديك.\n\nيقوم Cryptomator بتشفير بياناتك بسرعة وسهولة.</string>
 	<string name="next">التالي</string>
 	<string name="back">رجوع</string>
 	<!-- # clouds -->
