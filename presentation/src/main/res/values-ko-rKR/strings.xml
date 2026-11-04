@@ -91,7 +91,6 @@
 	<string name="screen_welcome_continue_button">계속하기</string>
 	<string name="screen_welcome_screen_lock_button">화면 잠금 설정</string>
 	<string name="screen_welcome_screen_lock_already_set">화면 잠금이 이미 설정되었습니다.</string>
-	<string name="screen_welcome_intro_body">파일 보호를 위해 Voidbox를 선택해 주셔서 감사합니다.\n\nVoidbox와 함께라면 귀하의 데이터의 제어권은 오직 귀하에게 있습니다.\n\n데이터를 빠르고 간편하게 암호화하세요.</string>
 	<string name="next">다음</string>
 	<string name="back">이전</string>
 	<!-- # clouds -->

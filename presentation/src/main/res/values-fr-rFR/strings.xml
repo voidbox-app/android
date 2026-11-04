@@ -91,7 +91,6 @@
 	<string name="screen_welcome_continue_button">Continuer</string>
 	<string name="screen_welcome_screen_lock_button">Régler le verrouillage de l\'écran</string>
 	<string name="screen_welcome_screen_lock_already_set">Le verrouillage de l\'écran est déjà défini.</string>
-	<string name="screen_welcome_intro_body">Merci d\'avoir choisi Voidbox pour protéger vos fichiers.\n\nAvec Voidbox, la clé vers vos données est dans vos mains.\n\nVoidbox chiffre vos données rapidement et facilement.</string>
 	<string name="next">Suivant</string>
 	<string name="back">Précédent</string>
 	<!-- # clouds -->

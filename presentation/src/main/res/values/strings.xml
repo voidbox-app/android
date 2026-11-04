@@ -102,7 +102,6 @@
 	<string name="screen_welcome_continue_button">Continue</string>
 	<string name="screen_welcome_screen_lock_button">Set screen lock</string>
 	<string name="screen_welcome_screen_lock_already_set">Screen lock is already set.</string>
-	<string name="screen_welcome_intro_body">Thanks for choosing Voidbox to protect your files.\n\nWith Voidbox, the key to your data is in your hands.\n\nVoidbox encrypts your data quickly and easily.</string>
 	<string name="screen_welcome_intro_title">Welcome to Voidbox</string>
 	<string name="screen_welcome_intro_thanks">Thanks for choosing Voidbox to protect your files.</string>
 	<string name="screen_welcome_intro_feature_key">With Voidbox, the key to your data is in your hands.</string>

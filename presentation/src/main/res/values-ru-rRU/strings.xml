@@ -91,7 +91,6 @@
 	<string name="screen_welcome_continue_button">Далее</string>
 	<string name="screen_welcome_screen_lock_button">Установка блокировки экрана</string>
 	<string name="screen_welcome_screen_lock_already_set">Блокировка экрана уже установлена.</string>
-	<string name="screen_welcome_intro_body">Благодарим, что вы доверили Voidbox защиту ваших файлов.\n\nБлагодаря Voidbox ключ к вашим данным - в ваших руках.\n\nVoidbox шифрует данные быстро и без усилий.</string>
 	<string name="next">Далее</string>
 	<string name="back">Назад</string>
 	<!-- # clouds -->
@@ -457,6 +456,7 @@
 	<string name="permission_snackbar_auth_local_vault">Для использования локальных хранилищ необходим доступ к месту хранения</string>
 	<string name="permission_snackbar_auth_auto_upload">Для автозагрузки фото у Voidbox должен быть доступ к месту хранения</string>
 	<string name="permission_snackbar_notifications">Для отображения состояния хранилища Voidbox требуется разрешение на уведомление</string>
+	<string name="permission_snackbar_local_network">Для серверов в локальной сети Voidbox нужен доступ к ней</string>
 	<!-- # error reports -->
 	<!-- # misc -->
 	<!-- ## file size helper -->

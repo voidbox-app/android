@@ -91,7 +91,6 @@
 	<string name="screen_welcome_continue_button">Tovább</string>
 	<string name="screen_welcome_screen_lock_button">Képernyőzár beállítása</string>
 	<string name="screen_welcome_screen_lock_already_set">Zárolási képernyő már beállítva.</string>
-	<string name="screen_welcome_intro_body">Köszönjük, hogy a Voidbox-t választotta fájljai védelmére.\n\nA Voidbox segítségével az adatokhoz tartozó kulcs a saját kezében van.\n\nA Voidbox gyorsan és egyszerűen titkosítja az adatait.</string>
 	<string name="next">Következő</string>
 	<string name="back">Vissza</string>
 	<!-- # clouds -->

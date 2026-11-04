@@ -91,7 +91,6 @@
 	<string name="screen_welcome_continue_button">Продовжити</string>
 	<string name="screen_welcome_screen_lock_button">Встановити блокування екрану</string>
 	<string name="screen_welcome_screen_lock_already_set">Блокування екрана вже встановлено.</string>
-	<string name="screen_welcome_intro_body">Дякуємо, що обрали Voidbox для захисту своїх файлів.\n\nЗ Voidbox ключ до ваших даних у ваших руках.\n\nVoidbox шифрує ваші дані швидко та легко.</string>
 	<string name="next">Далі</string>
 	<string name="back">Назад</string>
 	<!-- # clouds -->

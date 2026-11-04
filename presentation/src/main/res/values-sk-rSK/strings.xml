@@ -86,7 +86,6 @@
 	<string name="screen_welcome_continue_button">Pokračovať</string>
 	<string name="screen_welcome_screen_lock_button">Nastaviť zamykanie obrazovky</string>
 	<string name="screen_welcome_screen_lock_already_set">Zámok obrazovky je už nastavený.</string>
-	<string name="screen_welcome_intro_body">Ďakujeme, že ste si na ochranu svojich súborov vybrali Voidbox.\n\nS Voidboxom máte kľúč k vašim údajom vo svojich rukách.\n\nVoidbox šifruje vaše údaje rýchlo a jednoducho.</string>
 	<string name="next">Ďalej</string>
 	<string name="back">Späť</string>
 	<!-- # clouds -->

@@ -90,7 +90,6 @@
 	<string name="screen_welcome_continue_button">Weiter</string>
 	<string name="screen_welcome_screen_lock_button">Sperrbildschirm setzen</string>
 	<string name="screen_welcome_screen_lock_already_set">Sperrbildschirm ist bereits eingerichtet.</string>
-	<string name="screen_welcome_intro_body">Danke, dass du dich für Voidbox entschieden hast, um deine Dateien zu schützen.\n\nMit Voidbox liegt der Schlüssel zu deinen Daten in deinen Händen.\n\nVoidbox verschlüsselt deine Daten schnell und einfach.</string>
 	<string name="next">Weiter</string>
 	<string name="back">Zurück</string>
 	<!-- # clouds -->

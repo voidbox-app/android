@@ -91,7 +91,6 @@
 	<string name="screen_welcome_continue_button">Continuar</string>
 	<string name="screen_welcome_screen_lock_button">Definir bloqueio de tela</string>
 	<string name="screen_welcome_screen_lock_already_set">O bloqueio de tela já está definido.</string>
-	<string name="screen_welcome_intro_body">Obrigado por escolher o Voidbox para proteger os seus arquivos.\n\nCom ele, a chave para seus arquivos está em suas mãos.\n\nAlém de criptografar seus dados de forma rápida e fácil.</string>
 	<string name="next">Próximo</string>
 	<string name="back">Voltar</string>
 	<!-- # clouds -->
