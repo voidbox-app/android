@@ -20,11 +20,20 @@ public class AuthenticationExceptionHandler {
 	}
 
 	public boolean handleAuthenticationException(Presenter<?> presenter, Throwable e, BoundCallback callback) {
+		return handle(presenter, e, callback, false);
+	}
+
+	public boolean handleAuthenticationExceptionOfUnsavedConnection(Presenter<?> presenter, Throwable e, BoundCallback callback) {
+		return handle(presenter, e, callback, true);
+	}
+
+	private boolean handle(Presenter<?> presenter, Throwable e, BoundCallback callback, boolean unsavedConnection) {
 		if (e instanceof AuthenticationException) {
 			AuthenticationException authenticationException = (AuthenticationException) e;
 			AuthenticateCloudIntentBuilder intentBuilder = authenticateCloudIntent() //
 					.withCloud(cloudModelMapper.toModel(authenticationException.getCloud())) //
-					.withError(authenticationException);
+					.withError(authenticationException) //
+					.withUnsavedConnection(unsavedConnection);
 			if (authenticationException.getRecoveryAction().isPresent()) {
 				intentBuilder = intentBuilder.withRecoveryAction(authenticationException.getRecoveryAction().get());
 			}

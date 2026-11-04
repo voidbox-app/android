@@ -424,7 +424,7 @@ class UnlockVaultPresenter @Inject constructor(
 				}
 			} else {
 				view?.showProgress(ProgressModel.GENERIC)
-				startPrepareUnlockUseCase(vault)
+				startPrepareUnlockUseCase(Vault.aCopyOf(vault).withCloud(cloud).build())
 			}
 		} else {
 			view?.closeDialog()

@@ -83,7 +83,7 @@ class NextcloudLoginPresenterTest {
 				connectResultHandler().onError(LocalNetworkPermissionMissingException(cloud))
 
 				activityCompat.verify { ActivityCompat.requestPermissions(any(), eq(arrayOf<String?>(Manifest.permission.ACCESS_LOCAL_NETWORK)), any()) }
-				verify(authenticationExceptionHandler, never()).handleAuthenticationException(any(), any(), any())
+				verify(authenticationExceptionHandler, never()).handleAuthenticationExceptionOfUnsavedConnection(any(), any(), any())
 				verify(exceptionHandlers, never()).handle(any(), any())
 			}
 		}
@@ -98,7 +98,7 @@ class NextcloudLoginPresenterTest {
 
 				connectResultHandler().onError(error)
 
-				verify(authenticationExceptionHandler).handleAuthenticationException(any(), eq(error), any())
+				verify(authenticationExceptionHandler).handleAuthenticationExceptionOfUnsavedConnection(any(), eq(error), any())
 				activityCompat.verify({ ActivityCompat.requestPermissions(any(), any(), any()) }, never())
 			}
 		}

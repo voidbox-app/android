@@ -108,7 +108,7 @@ class AuthenticateCloudPresenter @Inject constructor( //
 	@Callback
 	fun authenticateCloudLocalNetworkPermissionResult(result: PermissionsResult, cloud: CloudModel) {
 		if (result.granted()) {
-			succeedAuthenticationWith(cloud.toCloud())
+			withStoredConnection(cloud.toCloud()) { succeedAuthenticationWith(it) }
 		} else {
 			// the snackbar explaining it would close together with this screen
 			view?.showMessage(R.string.permission_snackbar_local_network)
@@ -430,18 +430,68 @@ class AuthenticateCloudPresenter @Inject constructor( //
 
 	fun onAcceptWebDavCertificateClicked(cloud: WebDavCloud, certificate: X509Certificate) {
 		try {
-			val webDavCloudWithAcceptedCert = WebDavCloud.aCopyOf(cloud) //
-				.withCertificate(X509CertificateHelper.convertToPem(certificate)) //
-				.build()
-			finishWithResultAndExtra(
-				cloudModelMapper.toModel(webDavCloudWithAcceptedCert),  //
-				WEBDAV_ACCEPTED_UNTRUSTED_CERTIFICATE,  //
-				true
-			)
+			val acceptedCertificate = X509CertificateHelper.convertToPem(certificate)
+			if (view?.intent()?.unsavedConnection() == true) {
+				finishWithAcceptedCertificate(WebDavCloud.aCopyOf(cloud).withCertificate(acceptedCertificate).build())
+			} else {
+				withStoredConnection(cloud) { storedCloud ->
+					val storedWebDavCloud = storedCloud as WebDavCloud
+					val webDavCloudWithAcceptedCert = WebDavCloud.aCopyOf(storedWebDavCloud) //
+						.withCertificate(acceptedCertificate) //
+						.build()
+					// a connection the system trusts stays that way: a stored certificate would be the only one accepted
+					// from then on, and nothing but deleting the connection removes it
+					if (storedWebDavCloud.certificate() == null) {
+						finishWithAcceptedCertificate(webDavCloudWithAcceptedCert)
+						return@withStoredConnection
+					}
+					addOrChangeCloudConnectionUseCase //
+						.withCloud(webDavCloudWithAcceptedCert) //
+						.run(object : DefaultResultHandler<Void?>() {
+							override fun onSuccess(void: Void?) {
+								finishWithAcceptedCertificate(webDavCloudWithAcceptedCert)
+							}
+
+							override fun onError(e: Throwable) {
+								super.onError(e)
+								finish()
+							}
+						})
+				}
+			}
 		} catch (e: CertificateEncodingException) {
 			Timber.tag("AuthicateCloudPrester").e(e)
 			throw FatalBackendException(e)
 		}
+	}
+
+	// a notification keeps the connection as it was when the upload failed: saving that copy would bring back an old password
+	private fun withStoredConnection(cloud: Cloud, action: (Cloud) -> Unit) {
+		getCloudsUseCase //
+			.withCloudType(cloud.type()) //
+			.run(object : DefaultResultHandler<List<Cloud>>() {
+				override fun onSuccess(clouds: List<Cloud>) {
+					val storedCloud = clouds.firstOrNull { it.id() == cloud.id() }
+					if (storedCloud != null) {
+						action(storedCloud)
+					} else {
+						finish()
+					}
+				}
+
+				override fun onError(e: Throwable) {
+					super.onError(e)
+					finish()
+				}
+			})
+	}
+
+	private fun finishWithAcceptedCertificate(cloud: WebDavCloud) {
+		finishWithResultAndExtra(
+			cloudModelMapper.toModel(cloud),  //
+			WEBDAV_ACCEPTED_UNTRUSTED_CERTIFICATE,  //
+			true
+		)
 	}
 
 	fun onAcceptWebDavCertificateDenied() {

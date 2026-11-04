@@ -7,9 +7,11 @@ import android.content.pm.PackageManager
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import org.cryptomator.domain.Cloud
 import org.cryptomator.domain.WebDavCloud
 import org.cryptomator.domain.exception.authentication.LocalNetworkPermissionMissingException
 import org.cryptomator.domain.exception.authentication.WebDavServerNotFoundException
+import org.cryptomator.domain.usecases.ResultHandler
 import org.cryptomator.domain.usecases.cloud.AddOrChangeCloudConnectionUseCase
 import org.cryptomator.domain.usecases.cloud.GetCloudsUseCase
 import org.cryptomator.domain.usecases.cloud.GetUsernameUseCase
@@ -22,11 +24,13 @@ import org.cryptomator.presentation.ui.activity.view.AuthenticateCloudView
 import org.cryptomator.presentation.workflow.AddExistingVaultWorkflow
 import org.cryptomator.presentation.workflow.CreateNewVaultWorkflow
 import org.cryptomator.presentation.workflow.PermissionsResult
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.mockito.Mockito
 import org.mockito.kotlin.any
 import org.mockito.kotlin.anyVararg
+import org.mockito.kotlin.argumentCaptor
 import org.mockito.kotlin.doAnswer
 import org.mockito.kotlin.eq
 import org.mockito.kotlin.mock
@@ -40,6 +44,9 @@ class AuthenticateCloudPresenterTest {
 	private val cloud = WebDavCloud.aWebDavCloudCloud().withId(1L).withUrl("http://192.168.178.20/webdav").withUsername("alice").withPassword("encryptedSecret").build()
 	private val addOrChangeCloudConnectionUseCase = mock<AddOrChangeCloudConnectionUseCase>()
 	private val addOrChangeCloudConnectionLauncher = mock<AddOrChangeCloudConnectionUseCase.Launcher>()
+	private val getCloudsUseCase = mock<GetCloudsUseCase>()
+	private val getCloudsLauncher = mock<GetCloudsUseCase.Launcher>()
+	private var storedClouds = listOf<Cloud>(cloud)
 	private val activity = mock<Activity>()
 	private val view = mock<AuthenticateCloudView>()
 	private val intent = mock<AuthenticateCloudIntent>()
@@ -56,6 +63,8 @@ class AuthenticateCloudPresenterTest {
 		whenever(intent.cloud()).thenReturn(WebDavCloudModel(cloud))
 		whenever(intent.error()).thenReturn(LocalNetworkPermissionMissingException(cloud))
 		whenever(addOrChangeCloudConnectionUseCase.withCloud(any())).thenReturn(addOrChangeCloudConnectionLauncher)
+		whenever(getCloudsUseCase.withCloudType(any())).thenReturn(getCloudsLauncher)
+		doAnswer { it.getArgument<ResultHandler<List<Cloud>>>(0).onSuccess(storedClouds) }.whenever(getCloudsLauncher).run(any())
 		inTest = presenter()
 	}
 
@@ -123,6 +132,18 @@ class AuthenticateCloudPresenterTest {
 	}
 
 	@Test
+	fun testGrantedPermissionSavesTheStoredConnectionInsteadOfAnOldCopy() {
+		val changedCloud = WebDavCloud.aCopyOf(cloud).withPassword("changedSecret").build()
+		storedClouds = listOf(changedCloud)
+
+		inTest.authenticateCloudLocalNetworkPermissionResult(PermissionsResult(mock(), true), WebDavCloudModel(cloud))
+
+		val saved = argumentCaptor<Cloud>()
+		verify(addOrChangeCloudConnectionUseCase).withCloud(saved.capture())
+		assertEquals("changedSecret", (saved.firstValue as WebDavCloud).password())
+	}
+
+	@Test
 	fun testDeniedPermissionExplainsAndFinishes() {
 		inTest.authenticateCloudLocalNetworkPermissionResult(PermissionsResult(mock(), false), WebDavCloudModel(cloud))
 
@@ -136,7 +157,7 @@ class AuthenticateCloudPresenterTest {
 			mock<ExceptionHandlers>(),
 			mock<CloudModelMapper>(),
 			addOrChangeCloudConnectionUseCase,
-			mock<GetCloudsUseCase>(),
+			getCloudsUseCase,
 			mock<GetUsernameUseCase>(),
 			mock<AddExistingVaultWorkflow>(),
 			mock<CreateNewVaultWorkflow>()
